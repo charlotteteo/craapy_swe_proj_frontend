@@ -67,10 +67,9 @@ const CarparkMapsScreen = () => {
             urlTemplate="https://maps-a.onemap.sg/v3/Default/{z}/{x}/{y}.png"
             zIndex={-1}
           />
-          <Marker
-        coordinate={{ latitude : LATITUDE_DELTA , longitude : LONGITUDE_DELTA }}
-        image={{uri: 'custom_pin'}}
-      />
+            {/* onRegionChangeComplete={(region) => setRegion(region)} */}
+            <Marker coordinate={state.region} />
+    
               </MapView>
         <SafeAreaView style={{ flex: 1, justifyContent: "bottom", alignItems: "center" }}>
         <Button title="Show all Carparks" onPress={() => this.RBSheet.open() } />

@@ -2,13 +2,12 @@ import * as React from "react";
 import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HelpScreen from "./screens/HelpScreen";
 import HomeScreen from "./screens/HomeScreen";
-import WishlistScreen from "./screens/WishlistScreen";
+import HelpScreen from "./screens/help/HelpScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Ionicons } from '@expo/vector-icons';
 import CarparkMapsScreen from "./screens/maps/CarparkMapsScreen"
+
 
 const Tab = createBottomTabNavigator();
 // can change icons for the tab bar here - using ionicons/materialicons

@@ -8,9 +8,7 @@ import {
 	TouchableOpacity,
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { StackActions } from "@react-navigation/native";
 import FAQScreen from "./FAQScreen";
-import RestaurantScreen from "./RestaurantScreen";
 import EmailScreen from "./EmailScreen";
 
 function HelpScreen({ navigation }) {
@@ -23,7 +21,7 @@ function HelpScreen({ navigation }) {
 			>
 				<Text style={styles.buttonText}>Help</Text>
 
-				<Image style={styles.image} source={require("../assets/questionmark.png")}/>
+				<Image style={styles.image} source={require("../../assets/questionmark.png")}/>
 			</TouchableOpacity>
 
 			<TouchableOpacity
@@ -31,7 +29,7 @@ function HelpScreen({ navigation }) {
 				onPress={() => navigation.navigate("Email")}
 			>
 				<Text style={styles.buttonText}>Contact Us</Text>
-				<Image style={styles.image} source={require("../assets/mail.png")}/>
+				<Image style={styles.image} source={require("../../assets/mail.png")}/>
 			</TouchableOpacity>
 		</View>
 	);
@@ -56,7 +54,7 @@ const styles = StyleSheet.create({
 
 		justifyContent: "center",
 		alignItems: "center",
-		backgroundColor: "rgb(210, 210, 205)",
+		backgroundColor: "#FFB899",
 	},
 
 	button: {

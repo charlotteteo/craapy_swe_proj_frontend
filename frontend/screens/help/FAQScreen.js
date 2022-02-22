@@ -18,7 +18,7 @@ import {
 	IconButton,
 } from "react-native-paper";
 
-import {faq} from "../assets/faq";
+import {faq} from "../../assets/faq";
 
 function FAQScreen({ navigation }) {
 	const [searchtext, setsearchtext] = useState("");
@@ -94,6 +94,6 @@ export default function homestack() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "rgb(225, 232, 238)",
+		backgroundColor: "#FFB899",
 	},
 });

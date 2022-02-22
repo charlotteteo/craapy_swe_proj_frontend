@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {
   StyleSheet,
   View,
@@ -7,7 +7,7 @@ import {
  Button,
  SafeAreaView,
  ScrollView,
- TouchableOpacity
+ TouchableOpacity,
 } from 'react-native';
 import {
 	Avatar,
@@ -19,6 +19,7 @@ import {
 } from "react-native-paper";
 import {carpark} from "./carpark";
 
+import { carparksavailable } from '../../assets/carparksavailability';
 import MapView,  { MAP_TYPES, PROVIDER_DEFAULT } from 'react-native-maps';
 
 import RBSheet from "react-native-raw-bottom-sheet";
@@ -31,18 +32,53 @@ const LATITUDE = 1.290270;
 const LONGITUDE = 103.851959;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+const array = [
+  {
+    key: '1',
+    title: 'example title 1',
+    subtitle: 'example subtitle 1',
+  },
+  {
+    key: '2',
+    title: 'example title 2',
+    subtitle: 'example subtitle 2',
+  },
+  {
+    key: '3',
+    title: 'example title 3',
+    subtitle: 'example subtitle 3',
+  },
+];
 
-const CarparkMapsScreen = () => {
-    const  state = {
-        region: {
-          latitude: LATITUDE,
-          longitude: LONGITUDE,
-          latitudeDelta: LATITUDE_DELTA,
-          longitudeDelta: LONGITUDE_DELTA,
-        },
-      };
-    const { region } = state;
+const list = () => {
+  return carparksavailable.map((element) => {
     return (
+      
+        	<TouchableOpacity	onPress={() => {
+            // should be able to change the map view not implemented
+          }}>
+
+          <Card style={{ marginBottom: 10 }}>
+					<Card.Content>
+              {/* <View key={element.key} style={{margin: 10}}> */}
+                <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
+                  {element.title}
+                  </Text>
+                <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Lots Available: {element.lotsavail}</Text>
+          </Card.Content>
+
+
+</Card>
+          </TouchableOpacity>
+    
+    );
+  });
+};
+
+const CarparkMapsScreen= () =>{
+
+   
+  return (
       <View style={styles.container}>
         {/* <MapView
                 initialRegion={{
@@ -68,7 +104,7 @@ const CarparkMapsScreen = () => {
             zIndex={-1}
           />
             {/* onRegionChangeComplete={(region) => setRegion(region)} */}
-            <Marker coordinate={state.region} />
+            {/* <Marker coordinate={state.region} /> */}
     
               </MapView>
         <SafeAreaView style={{ flex: 1, justifyContent: "bottom", alignItems: "center" }}>
@@ -86,53 +122,8 @@ const CarparkMapsScreen = () => {
             }
           }}
         >
-          <ScrollView>
-         
-				<TouchableOpacity
-					onPress={() => {
-						// navigation.navigate("Tian Tian Hainanese Chicken Rice");
-                        console.log("index 0")
-					}}
-				>
-					<Card style={{ marginBottom: 10 }}>
-						<Card.Content>
-							{/* <Rating fractions="{1}" startingValue="{3.3}" readonly /> */}
-							<Title>{carpark[0].name}</Title>
-
-							<Paragraph>{carpark[0].shortDesc}</Paragraph>
-						</Card.Content>
-		
-					</Card>
-				</TouchableOpacity>
-
-				<TouchableOpacity
-					
-				>
-					<Card style={{ marginBottom: 10 }}>
-                    <Card.Content>
-							{/* <Rating fractions="{1}" startingValue="{3.3}" readonly /> */}
-							<Title>{carpark[1].name}</Title>
-
-							<Paragraph>{carpark[1].shortDesc}</Paragraph>
-						</Card.Content>
-					
-					</Card>
-				</TouchableOpacity>
-
-				<TouchableOpacity
-				>   
-                <Card style={{ marginBottom: 10 }}>
-					<Card.Content>
-							{/* <Rating fractions="{1}" startingValue="{3.3}" readonly /> */}
-							<Title>{carpark[2].name}</Title>
-
-							<Paragraph>{carpark[2].shortDesc}</Paragraph>
-						</Card.Content>
-
-
-					</Card>
-				</TouchableOpacity>
-			</ScrollView>
+        
+         <ScrollView>{list()}</ScrollView>
         </RBSheet>
       </SafeAreaView>
             {/* <Text>Custom Tiles</Text> */}
@@ -142,6 +133,7 @@ const CarparkMapsScreen = () => {
     );
   
 }
+
 
 // MapsScreen.propTypes = {
 //   provider: MapView.ProviderPropType,

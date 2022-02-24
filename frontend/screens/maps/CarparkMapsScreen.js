@@ -18,7 +18,6 @@ import {
 	Paragraph,
 	IconButton,
 } from "react-native-paper";
-import {carpark} from "./carpark";
 import * as WebBrowser from 'expo-web-browser';
 import { carparksavailable } from '../../assets/carparksavailability';
 import MapView,  { MAP_TYPES, PROVIDER_DEFAULT,PROVIDER_GOOGLE } from 'react-native-maps';

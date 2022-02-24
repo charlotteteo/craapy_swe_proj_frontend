@@ -25,8 +25,6 @@ import MapView,  { MAP_TYPES, PROVIDER_DEFAULT,PROVIDER_GOOGLE } from 'react-nat
 import { MaterialIcons } from "@expo/vector-icons";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
-import {HawkerScreen} from "../HawkerScreen";
-import kranjifarm from '../kranjifarm';
 
 const { width, height } = Dimensions.get('window');
 
@@ -57,7 +55,7 @@ const list = () => {
       return (
         
               <TouchableOpacity	
-              onPress={() => navigation.navigate("Home")}
+            //   onPress={() => navigation.navigate("Home")}
             >
              <SafeAreaView>
             <Card style={{ marginBottom: 10,width: 350}}>

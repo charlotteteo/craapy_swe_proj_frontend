@@ -2,7 +2,6 @@ import * as React from "react";
 import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "./screens/HomeScreen";
 import HelpScreen from "./screens/help/HelpScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -26,14 +25,11 @@ export default function App() {
 						if (route.name === "Home") {
 							iconName = "home";
 						} 
-						 else if (route.name === "Food") 
-							return <MaterialIcons name="restaurant" size={size} color={color} />;
-							
 							else if (route.name === "Carpark") 
 							return <MaterialIcons name="search" size={size} color={color} />;
 
 							else if (route.name === "Hawker Centres") 
-							return <MaterialIcons name="search" size={size} color={color} />;
+							return <MaterialIcons name="restaurant" size={size} color={color} />;
 						
 						else if (route.name === "Help")
 							return <MaterialIcons name="help" size={size} color={color} />;
@@ -53,8 +49,7 @@ export default function App() {
 					inactiveTintColor: "darkgrey",
 				}}
 			>
-				<Tab.Screen name="Home" component={HomeScreen} />
-				<Tab.Screen name="Food" component={HomeScreen} />
+				<Tab.Screen name="Home" component={CarparkMapsScreen} />
 				<Tab.Screen name="Hawker Centres" component={HawkerMaps} />
 				<Tab.Screen name="Carpark" component={CarparkMapsScreen} />
 				<Tab.Screen name="Help" component={HelpScreen} />

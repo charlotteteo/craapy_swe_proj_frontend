@@ -6,7 +6,8 @@ import HomeScreen from "./screens/HomeScreen";
 import HelpScreen from "./screens/help/HelpScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-import CarparkMapsScreen from "./screens/maps/CarparkMapsScreen"
+import HawkerMaps from "./screens/maps/HawkerMaps";
+import CarparkMapsScreen from "./screens/maps/CarparkMapsScreen";
 
 
 const Tab = createBottomTabNavigator();
@@ -30,6 +31,9 @@ export default function App() {
 							
 							else if (route.name === "Carpark") 
 							return <MaterialIcons name="search" size={size} color={color} />;
+
+							else if (route.name === "Hawker Centres") 
+							return <MaterialIcons name="search" size={size} color={color} />;
 						
 						else if (route.name === "Help")
 							return <MaterialIcons name="help" size={size} color={color} />;
@@ -51,6 +55,7 @@ export default function App() {
 			>
 				<Tab.Screen name="Home" component={HomeScreen} />
 				<Tab.Screen name="Food" component={HomeScreen} />
+				<Tab.Screen name="Hawker Centres" component={HawkerMaps} />
 				<Tab.Screen name="Carpark" component={CarparkMapsScreen} />
 				<Tab.Screen name="Help" component={HelpScreen} />
 			</Tab.Navigator>

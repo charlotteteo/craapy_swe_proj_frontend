@@ -10,6 +10,7 @@ import {
  TouchableOpacity,
  Pressable
 } from 'react-native';
+import { createStackNavigator } from "@react-navigation/stack";
 import {
 	Avatar,
 	
@@ -18,13 +19,14 @@ import {
 	Paragraph,
 	IconButton,
 } from "react-native-paper";
-import {carpark} from "./carpark";
 import * as WebBrowser from 'expo-web-browser';
-import { carparksavailable } from '../../assets/carparksavailability';
+import { hawkercentres } from '../../assets/HawkerCentres';
 import MapView,  { MAP_TYPES, PROVIDER_DEFAULT,PROVIDER_GOOGLE } from 'react-native-maps';
 import { MaterialIcons } from "@expo/vector-icons";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
+import {HawkerScreen} from "../HawkerScreen";
+import kranjifarm from '../kranjifarm';
 
 const { width, height } = Dimensions.get('window');
 
@@ -34,26 +36,9 @@ const LONGITUDE = 103.7861198;
 const LATITUDE_DELTA = 0.0922;
 
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const array = [
-  {
-    key: '1',
-    title: 'example title 1',
-    subtitle: 'example subtitle 1',
-  },
-  {
-    key: '2',
-    title: 'example title 2',
-    subtitle: 'example subtitle 2',
-  },
-  {
-    key: '3',
-    title: 'example title 3',
-    subtitle: 'example subtitle 3',
-  },
-];
 
 const markers =() => {
-  return carparksavailable.map((element) => {
+  return hawkercentres.map((element) => {
     return(
       <Marker coordinate = {{latitude: element.latitude,longitude: element.longitude} }/>
     );
@@ -61,44 +46,50 @@ const markers =() => {
 };
 
 
+
+function HawkerMaps ({navigation}){
+
 const list = () => {
-  return carparksavailable.map((element) => {
-    _handleOpenWithWebBrowser = () => {
-      WebBrowser.openBrowserAsync(element.link);
-    };
-    return (
-      
-        	<TouchableOpacity	onPress={() => {
-            // should be able to change the map view not implemented
-          }}>
-           <SafeAreaView>
-          <Card style={{ marginBottom: 10,width: 350}}>
-					<Card.Content>
-              {/* <View key={element.key} style={{margin: 10}}> */}
-                <Text style={[ {fontWeight: 'light',fontSize: 25}]}>
-                  {element.title}
-                  </Text>
-                <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Lots Available: {element.lotsavail}</Text>
-                <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
-      <Text style={styles.text}>Open on Google Maps</Text>
-
-    </Pressable>
+    return hawkercentres.map((element) => {
+      _handleOpenWithWebBrowser = () => {
+        WebBrowser.openBrowserAsync(element.link);
+      };
+      return (
+        
+              <TouchableOpacity	
+              onPress={() => navigation.navigate("Home")}
+            >
+             <SafeAreaView>
+            <Card style={{ marginBottom: 10,width: 350}}>
+                      <Card.Content>
+                {/* <View key={element.key} style={{margin: 10}}> */}
+                  <Text style={[ {fontWeight: 'light',fontSize: 25}]}>
+                    {element.title}
+                    </Text>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>
+                      Rating: {element.ratings}/5 
+                      </Text>
+                      <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>
+                      Opening Hours: {element.openingHours}
+                      </Text>
+             
+                  <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
+        <Text style={styles.text}>Open on Google Maps</Text>
   
-              
-          </Card.Content>
-
-
-</Card>
-</SafeAreaView>
-
-          </TouchableOpacity>
+      </Pressable>
     
-    );
-  });
-};
-
-const CarparkMapsScreen= () =>{
-
+                
+            </Card.Content>
+  
+  
+  </Card>
+  </SafeAreaView>
+  
+            </TouchableOpacity>
+      
+      );
+    });
+  };
    
   return (
       <View style={styles.container}>
@@ -134,7 +125,7 @@ const CarparkMapsScreen= () =>{
        
             
           
-            {carparksavailable.map((element) => (
+            {hawkercentres.map((element) => (
           <MapView.Marker 
             coordinate={element.coordinate}
             title={element.title} 
@@ -145,7 +136,7 @@ const CarparkMapsScreen= () =>{
 
               </MapView>
         <SafeAreaView style={{ flex: 1, justifyContent: "bottom", alignItems: "center" }}>
-          <Button title="Show all Carparks" onPress={() => this.RBSheet.open() } />
+          <Button title="Show all Hawker Centres" onPress={() => this.RBSheet.open() } />
           <RBSheet
             ref={ref => {
               this.RBSheet = ref;
@@ -172,10 +163,8 @@ const CarparkMapsScreen= () =>{
   
 }
 
+const Stack = createStackNavigator();
 
-// MapsScreen.propTypes = {
-//   provider: MapView.ProviderPropType,
-// };
 
 const styles = StyleSheet.create({
   container: {
@@ -229,4 +218,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = CarparkMapsScreen;
+module.exports = HawkerMaps;

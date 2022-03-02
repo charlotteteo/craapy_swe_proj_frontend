@@ -7,6 +7,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import HawkerMaps from "./screens/maps/HawkerMaps";
 import CarparkMapsScreen from "./screens/maps/CarparkMapsScreen";
+import HomeScreen from "./screens/home/HomeScreen";
 
 
 const Tab = createBottomTabNavigator();
@@ -49,7 +50,7 @@ export default function App() {
 					inactiveTintColor: "darkgrey",
 				}}
 			>
-				<Tab.Screen name="Home" component={CarparkMapsScreen} />
+				<Tab.Screen name="Home" component={HomeScreen} />   
 				<Tab.Screen name="Hawker Centres" component={HawkerMaps} />
 				<Tab.Screen name="Carpark" component={CarparkMapsScreen} />
 				<Tab.Screen name="Help" component={HelpScreen} />

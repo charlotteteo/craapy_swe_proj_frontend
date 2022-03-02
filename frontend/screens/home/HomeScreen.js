@@ -14,9 +14,9 @@ function HomeScreen({navigation}) {
         <View style={styles.container}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate("Search")}       // doesnt work, must rmb to delete
+              onPress={() => navigation.navigate("Search")}       
             >
-              <Text style={styles.buttonText}>Search Bar hello </Text>
+              <Text style={styles.buttonText}>Search Bar</Text>
 
             </TouchableOpacity>
 
@@ -33,9 +33,6 @@ export default function contactstack() {
 		</Stack.Navigator>
 	);
 }
-
-
-
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -71,4 +68,3 @@ const styles = StyleSheet.create({
 
   });
 
-//export default HomeScreen;  // i think u only have one export at the end?

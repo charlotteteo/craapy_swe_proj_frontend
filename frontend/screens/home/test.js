@@ -5,22 +5,10 @@
 import React, { useState, useEffect } from 'react';
 
 // import all the components we are going to use
-import {
-  SafeAreaView,
-  Text,
-  StyleSheet,
-  View,
-  FlatList,
-  TouchableOpacity,
-  Image, } from 'react-native';
+import { SafeAreaView, Text, StyleSheet, View, FlatList } from 'react-native';
 import { SearchBar } from 'react-native-elements';
-import { createStackNavigator } from "@react-navigation/stack";
 
-import FilterScreen from "../filter/FilterScreen";
-
-//const SearchScreen = () => 
-
-function SearchScreen({navigation}) {
+const App = () => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
@@ -90,9 +78,9 @@ function SearchScreen({navigation}) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.searchbar}>
-        <SearchBar //style = {styles.searchbar}
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <SearchBar
           round
           searchIcon={{ size: 24 }}
           onChangeText={(text) => searchFilterFunction(text)}
@@ -107,67 +95,17 @@ function SearchScreen({navigation}) {
           renderItem={ItemView}
         />
       </View>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("Filter")}       // MAKE IT NICER!!!!!!
-      >
-        <Image 
-        resizeMode="contain"
-        style={styles.image}
-        source={require("../../../assets/filterIcon.png")}/>
-      </TouchableOpacity>
-
-
     </SafeAreaView>
   );
 };
 
-const Stack = createStackNavigator();
-
-export default function homestack() {
-	return (
-		<Stack.Navigator headerMode="float">
-			<Stack.Screen name="Search" component={SearchScreen} />
-      <Stack.Screen name="Filter" component={FilterScreen} />
-		</Stack.Navigator>
-	);
-}
-
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    backgroundColor: 'white',
   },
   itemStyle: {
     padding: 10,
   },
-  searchbar: {
-    backgroundColor: 'white',
-    top: 50
-  },
-
-
-  button: {
-    backgroundColor: "white",
-    height: "6%",
-    width: "10%",
-    alignItems: "center",
-    justifyContent:"center",
-    position: "absolute",
-    top: 50,
-    right: 20,
-
-    margin: 10,
-    borderRadius: 20,
-  },
-
-  
-  image: {
-		width: "60%",
-    height: "60%",
-    paddingBottom: "20%",
-    paddingTop: "20%",
-  },
-
 });
 
+export default App;

@@ -33,73 +33,79 @@ import FilterScreen from "../filter/FilterScreen";
 //const SearchScreen = () => 
 
 function SearchScreen({navigation}) {
-  const [search, setSearch] = useState('');
-  const [filteredDataSource, setFilteredDataSource] = useState([]);
-  const [masterDataSource, setMasterDataSource] = useState([]);
 
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        setFilteredDataSource(responseJson);
-        setMasterDataSource(responseJson);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
-  const searchFilterFunction = (text) => {
-    // Check if searched text is not blank
-    if (text) {
-      // Inserted text is not blank
-      // Filter the masterDataSource
-      // Update FilteredDataSource
-      const newData = masterDataSource.filter(function (item) {
-        const itemData = item.title
-          ? item.title.toUpperCase()
-          : ''.toUpperCase();
-        const textData = text.toUpperCase();
-        return itemData.indexOf(textData) > -1;
-      });
-      setFilteredDataSource(newData);
-      setSearch(text);
-    } else {
-      // Inserted text is blank
-      // Update FilteredDataSource with masterDataSource
-      setFilteredDataSource(masterDataSource);
-      setSearch(text);
-    }
-  };
-
-  const ItemView = ({ item }) => {
-    return (
-      // Flat List Item
-      <Text style={styles.itemStyle} onPress={() => getItem(item)}>
-        {item.id}
-        {'.'}
-        {item.title.toUpperCase()}
-      </Text>
-    );
-  };
-
-  const ItemSeparatorView = () => {
-    return (
-      // Flat List Item Separator
-      <View
-        style={{
-          height: 0.5,
-          width: '100%',
-          backgroundColor: '#C8C8C8',
-        }}
-      />
-    );
-  };
-
-  const getItem = (item) => {
-    // Function for click on an item
-    alert('Id : ' + item.id + ' Title : ' + item.title);
-  };
+    const [search, setSearch] = useState('');
+    const [filteredDataSource, setFilteredDataSource] = useState([]);
+    const [masterDataSource, setMasterDataSource] = useState([]);
+  
+    useEffect(() => {
+      fetch('https://jsonplaceholder.typicode.com/posts')
+        .then((response) => response.json())
+        .then((responseJson) => {
+          setFilteredDataSource(responseJson);
+          setMasterDataSource(responseJson);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }, []);
+  
+    const searchFilterFunction = (text) => {
+      // Check if searched text is not blank
+      if (text) {
+        // Inserted text is not blank
+        // Filter the masterDataSource
+        // Update FilteredDataSource
+        const newData = masterDataSource.filter(function (item) {
+          const itemData = item.title
+            ? item.title.toUpperCase()
+            : ''.toUpperCase();
+          const textData = text.toUpperCase();
+          return itemData.indexOf(textData) > -1;
+        });
+        setFilteredDataSource(newData);
+        setSearch(text);
+      } else {
+        // Inserted text is blank
+        // Update FilteredDataSource with masterDataSource
+        setFilteredDataSource(masterDataSource);
+        setSearch(text);
+      }
+    };
+  
+    const ItemView = ({ item }) => {
+      return (
+        // Flat List Item
+        <View style={styles.itemview}       
+        >
+          <Text style={styles.itemStyle} onPress={() => getItem(item)}>
+            {item.id}
+            {'.'}
+            {item.title.toUpperCase()}
+          </Text>
+        </View>
+        
+      );
+    };
+  
+    const ItemSeparatorView = () => {
+      return (
+        // Flat List Item Separator
+        <View                             
+          style={{
+            height: 1,
+            width: '100%',
+            backgroundColor: 'white',  //#FECDB9  #FECDB9 background view?
+          }}
+        />
+      );
+    };
+  
+    const getItem = (item) => {
+      // Function for click on an item
+      alert('Id : ' + item.id + ' Title : ' + item.title);
+    };
+  
   // cuisine
   const [cuisine1, Setcuisine1] = useState(false);
   const [cuisine2, Setcuisine2] = useState(false);
@@ -132,35 +138,41 @@ function SearchScreen({navigation}) {
     const [n5, setn5] = useState(false);
 
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.searchbar}>
-        <SearchBar //style = {styles.searchbar}
-          round
-          searchIcon={{ size: 24 }}
-          onChangeText={(text) => searchFilterFunction(text)}
-          onClear={(text) => searchFilterFunction('')}
-          placeholder="Type Here..."
-          value={search}
-        />
-        <FlatList
-          data={filteredDataSource}
-          keyExtractor={(item, index) => index.toString()}
-          ItemSeparatorComponent={ItemSeparatorView}
-          renderItem={ItemView}
-        />
-      </View>
-
-      <TouchableOpacity
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.searchbar}>
+          <SearchBar //style = {styles.searchbar}
+            round
+            searchIcon={{ size: 24 }}
+            onChangeText={(text) => searchFilterFunction(text)}
+            onClear={(text) => searchFilterFunction('')}
+            placeholder="Search anything..."
+            value={search}
+            lightTheme="True"
+          />
+          <FlatList
+            data={filteredDataSource}
+            keyExtractor={(item, index) => index.toString()}
+            ItemSeparatorComponent={ItemSeparatorView}
+            renderItem={ItemView}
+          />
+        </View>
+  
+        <TouchableOpacity
         style={styles.button}
         onPress={() => this.RBSheet.open()}       // MAKE IT NICER!!!!!!
       >
-         <Image 
-        resizeMode="contain"
-        style={styles.image}
-        source={require("../../../assets/filterIcon.png")}/>
-      </TouchableOpacity>
+          <IconButton
+              icon="filter"
+              color={"#86939E"}
+              size={30}
+              //onPress={() => navigation.navigate("Filter")}
+            />
+        </TouchableOpacity>
+  
+  
 
+    
       
       <RBSheet
         ref={ref => {
@@ -443,43 +455,36 @@ export default function homestack() {
 const styles = StyleSheet.create({
   container: {
     flex:1,
+    backgroundColor: "#FFFFFF",    // #FFB899 // maybe change to white
   },
   itemStyle: {
     padding: 10,
   },
   searchbar: {
     backgroundColor: 'white',
-    top: 50
   },
 
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop:20,
-    height: 600
- },
- buttonItem:{
-   width:50,
-   height:120
- },
+  itemview: {
+    backgroundColor: "#FEE0D4",    //  light colors: #FEE0D4 #FFF3EE peach: #FEDBBB (try light peach)
+  },
 
 
-  button: {
-    backgroundColor: "white",
+  button: {         // tbh doesnt matter a lot haha
+    backgroundColor: "#BDC6CF", // dark mode: #303337
     height: "6%",
     width: "10%",
     alignItems: "center",
     justifyContent:"center",
     position: "absolute",
-    top: 50,
-    right: 20,
+    right: 15,
+    top: 5,
 
     margin: 10,
     borderRadius: 20,
   },
 
   
-  image: {
+  image: {      // maybe remove
 		width: "60%",
     height: "60%",
     paddingBottom: "20%",
@@ -487,4 +492,3 @@ const styles = StyleSheet.create({
   },
 
 });
-

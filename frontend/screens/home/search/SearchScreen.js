@@ -13,8 +13,12 @@ import {
   FlatList,
   TouchableOpacity,
   Image, } from 'react-native';
+  import {
+    IconButton,
+  } from "react-native-paper";
 import { SearchBar } from 'react-native-elements';
 import { createStackNavigator } from "@react-navigation/stack";
+
 
 import FilterScreen from "../filter/FilterScreen";
 
@@ -63,22 +67,26 @@ function SearchScreen({navigation}) {
   const ItemView = ({ item }) => {
     return (
       // Flat List Item
-      <Text style={styles.itemStyle} onPress={() => getItem(item)}>
-        {item.id}
-        {'.'}
-        {item.title.toUpperCase()}
-      </Text>
+      <View style={styles.itemview}       
+      >
+        <Text style={styles.itemStyle} onPress={() => getItem(item)}>
+          {item.id}
+          {'.'}
+          {item.title.toUpperCase()}
+        </Text>
+      </View>
+      
     );
   };
 
   const ItemSeparatorView = () => {
     return (
       // Flat List Item Separator
-      <View
+      <View                             
         style={{
-          height: 0.5,
+          height: 1,
           width: '100%',
-          backgroundColor: '#C8C8C8',
+          backgroundColor: 'white',  //#FECDB9  #FECDB9 background view?
         }}
       />
     );
@@ -97,8 +105,9 @@ function SearchScreen({navigation}) {
           searchIcon={{ size: 24 }}
           onChangeText={(text) => searchFilterFunction(text)}
           onClear={(text) => searchFilterFunction('')}
-          placeholder="Type Here..."
+          placeholder="Search anything..."
           value={search}
+          lightTheme="True"
         />
         <FlatList
           data={filteredDataSource}
@@ -109,13 +118,15 @@ function SearchScreen({navigation}) {
       </View>
 
       <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("Filter")}       // MAKE IT NICER!!!!!!
+        style={styles.button}                           // color blends in background
+        onPress={() => navigation.navigate("Filter")}       // CHARLOTTE - this links to the filter page
       >
-        <Image 
-        resizeMode="contain"
-        style={styles.image}
-        source={require("../../../assets/filterIcon.png")}/>
+        <IconButton
+            icon="filter"
+            color={"#86939E"}
+            size={30}
+            //onPress={() => navigation.navigate("Filter")}
+          />
       </TouchableOpacity>
 
 
@@ -137,32 +148,36 @@ export default function homestack() {
 const styles = StyleSheet.create({
   container: {
     flex:1,
+    backgroundColor: "#FFFFFF",    // #FFB899 // maybe change to white
   },
   itemStyle: {
     padding: 10,
   },
   searchbar: {
     backgroundColor: 'white',
-    top: 50
+  },
+
+  itemview: {
+    backgroundColor: "#FEE0D4",    //  light colors: #FEE0D4 #FFF3EE peach: #FEDBBB (try light peach)
   },
 
 
-  button: {
-    backgroundColor: "white",
+  button: {         // tbh doesnt matter a lot haha
+    backgroundColor: "#BDC6CF", // dark mode: #303337
     height: "6%",
     width: "10%",
     alignItems: "center",
     justifyContent:"center",
     position: "absolute",
-    top: 50,
-    right: 20,
+    right: 15,
+    top: 5,
 
     margin: 10,
     borderRadius: 20,
   },
 
   
-  image: {
+  image: {      // maybe remove
 		width: "60%",
     height: "60%",
     paddingBottom: "20%",

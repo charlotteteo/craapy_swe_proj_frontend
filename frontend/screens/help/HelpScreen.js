@@ -39,7 +39,7 @@ const Stack = createStackNavigator();
 
 export default function contactstack() {
 	return (
-		<Stack.Navigator mode="modal">
+		<Stack.Navigator mode="card">
 			<Stack.Screen name="Help" component={HelpScreen} />
 			<Stack.Screen name="FAQ" component={FAQScreen} />
 			<Stack.Screen name="Email" component={EmailScreen} />

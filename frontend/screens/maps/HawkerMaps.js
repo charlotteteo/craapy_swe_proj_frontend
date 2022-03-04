@@ -11,9 +11,10 @@ import {
  Pressable
 } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from '@react-navigation/native';
+import ResultsScreen from "../ResultsScreen";
 import {
 	Avatar,
-	
 	Card,
 	Title,
 	Paragraph,
@@ -55,7 +56,11 @@ const list = () => {
       return (
         
               <TouchableOpacity	
-            //   onPress={() => navigation.navigate("Home")}
+
+              onPress={() => 
+                navigation.navigate("Results",{path:"fruits"})
+         
+              }
             >
              <SafeAreaView>
             <Card style={{ marginBottom: 10,width: 350}}>
@@ -163,6 +168,15 @@ const list = () => {
 
 const Stack = createStackNavigator();
 
+export default function homestack() {
+	return (
+		<Stack.Navigator headerMode="float">
+			<Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen name="Filter" component={FilterScreen} />
+      <Stack.Screen name="Results" component={ResultsScreen} />
+		</Stack.Navigator>
+	);
+}
 
 const styles = StyleSheet.create({
   container: {

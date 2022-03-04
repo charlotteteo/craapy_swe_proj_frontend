@@ -13,11 +13,13 @@ import {
 	IconButton,
 } from "react-native-paper";
 
+
 function ResultsScreen ({ navigation,route }){
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-
   const {path} = route.params;
+  
+
 
   const getMovies = async () => {
      try {
@@ -44,7 +46,7 @@ function ResultsScreen ({ navigation,route }){
       return (
         
               <TouchableOpacity	onPress={() => {
-              // should be able to change the map view not implemented
+                // should be indiv info of hawker stall
             
             }}>
 

@@ -80,7 +80,7 @@ function HomeScreen({ navigation }) {
           </View>
 
           <View>
-            <Text style={styles.scrolltitle}>HealthyChoices</Text>
+            <Text style={styles.scrolltitle}>Healthy Choices</Text>
             <View style={{height:130, marginTop:20}}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
               <Choices name="Ramen" color="yellow"
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     color: "#fff",
-    fontFamily: "Roboto",
+    //fontFamily: "Roboto",
     //paddingVertical: 10,
     paddingTop: 10,
     fontSize: 28,
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   scrolltitle:{
     fontSize:18,
     fontWeight:"700",
-    fontFamily: "Work Sans",
+    //fontFamily: "Work Sans",
     marginTop:10,
     //marginBottom:10,
     marginLeft:10,

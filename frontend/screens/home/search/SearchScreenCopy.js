@@ -8,6 +8,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { CheckBox } from 'react-native-elements';
 import ResultsScreen from '../../ResultsScreen';
 import { NavigationContainer } from '@react-navigation/native';
+
 // import all the components we are going to use
 import {
   SafeAreaView,
@@ -29,10 +30,9 @@ import {
 } from "react-native-paper";
 import { SearchBar } from 'react-native-elements';
 import { createStackNavigator } from "@react-navigation/stack";
-
 import FilterScreen from "../filter/FilterScreen";
 
-function SearchScreen({navigation}) {
+function SearchScreenCopy({navigation}) {
 
     const [search, setSearch] = useState('');
     const [filteredDataSource, setFilteredDataSource] = useState([]);
@@ -169,10 +169,23 @@ function SearchScreen({navigation}) {
         setn5(false)
       }
   
+    
       function checkFilter() {
-        alert("HIII" + r1 + r2)
-        
+        namearray = ["r1","r2","r3","r4","r5","cuisine1","cuisine2","cuisine3","cuisine4","n1","n2","n3","n4","n5","a1","a2","a3","a4","a5","a6","a7"]
+        listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7]
+        length = listarray.length
+        final = []
+        for (let i=0; i<length; i++) {
+          if (listarray[i]) {
+            final.push(namearray[i])
+          }
+        }
+        alert(final)
+  
+        //alert("HIII" + r1 + r2)
+  
       }
+    
   
   // cuisine
   const [cuisine1, Setcuisine1] = useState(false);
@@ -508,7 +521,7 @@ const Stack = createStackNavigator();
 export default function homestack() {
 	return (
 		<Stack.Navigator headerMode="float">
-			<Stack.Screen name="Search" component={SearchScreen} />
+			<Stack.Screen name="Search" component={SearchScreenCopy} />
       <Stack.Screen name="Filter" component={FilterScreen} />
       <Stack.Screen name="Results" component={ResultsScreen} />
 		</Stack.Navigator>

@@ -105,6 +105,39 @@ function SearchScreen({navigation}) {
       // Function for click on an item
       alert('Id : ' + item.id + ' Title : ' + item.title);
     };
+
+
+    // clear functions
+    function clearPressedRatings(){
+      //alert("HIII" + r1 + r2)
+      setr1(false)
+      setr2(false)
+      setr3(false)
+      setr4(false)
+      setr5(false)
+    }
+    function clearPressedCuisine(){
+      Setcuisine1(false)
+      Setcuisine2(false)
+      Setcuisine3(false)
+      Setcuisine4(false)
+    }
+    function clearPressedNeighbourhood(){
+      seta1(false)
+      seta2(false)
+      seta3(false)
+      seta4(false)
+      seta5(false)
+      seta6(false)
+      seta7(false)
+    }
+    function clearPressedDistance(){
+      setn1(false)
+      setn2(false)
+      setn3(false)
+      setn4(false)
+      setn5(false)
+    }
   
   // cuisine
   const [cuisine1, Setcuisine1] = useState(false);
@@ -112,30 +145,29 @@ function SearchScreen({navigation}) {
   const [cuisine3, Setcuisine3] = useState(false);
   const [cuisine4, Setcuisine4] = useState(false);
 
+  // ratings
+  const [r1, setr1] = useState(false);
+  const [r2, setr2] = useState(false);
+  const [r3, setr3] = useState(false);
+  const [r4, setr4] = useState(false);
+  const [r5, setr5] = useState(false);
 
-    // ratings
-    const [r1, setr1] = useState(false);
-    const [r2, setr2] = useState(false);
-    const [r3, setr3] = useState(false);
-    const [r4, setr4] = useState(false);
-    const [r5, setr5] = useState(false);
+  // neighbourhood area
+  const [a1, seta1] = useState(false);
+  const [a2, seta2] = useState(false);
+  const [a3, seta3] = useState(false);
+  const [a4, seta4] = useState(false);
+  const [a5, seta5] = useState(false);
+  const [a6, seta6] = useState(false);
+  const [a7, seta7] = useState(false);
 
-    // neighbourhood area
-    const [a1, seta1] = useState(false);
-    const [a2, seta2] = useState(false);
-    const [a3, seta3] = useState(false);
-    const [a4, seta4] = useState(false);
-    const [a5, seta5] = useState(false);
-    const [a6, seta6] = useState(false);
-    const [a7, seta7] = useState(false);
-  
 
-    // distance
-    const [n1, setn1] = useState(false);
-    const [n2, setn2] = useState(false);
-    const [n3, setn3] = useState(false);
-    const [n4, setn4] = useState(false);
-    const [n5, setn5] = useState(false);
+  // distance
+  const [n1, setn1] = useState(false);
+  const [n2, setn2] = useState(false);
+  const [n3, setn3] = useState(false);
+  const [n4, setn4] = useState(false);
+  const [n5, setn5] = useState(false);
 
 
     return (
@@ -189,7 +221,6 @@ function SearchScreen({navigation}) {
         }}
       >
     <SafeAreaView>
-    <Text >    </Text>
       <Text style={[ {fontWeight: 'bold',fontSize: 25}]}>     Filter</Text>
       
       <ScrollView horizontal={true}>
@@ -199,66 +230,58 @@ function SearchScreen({navigation}) {
                 {/* <View key={element.key} style={{margin: 10}}> */}
                 <Text style={[ {fontWeight: 'bold',fontSize:20, color:"black"}]}>Ratings</Text>
           {/* <Icon name="facebook" style={styles.icon}></Icon> */}
-          <Button title="Clear Filters" onClick={
-            () =>{ 
-            // implementation
-
-            }
-            
-            }/>
+          <Button title="Clear Filters" onPress={clearPressedRatings}/>
+    
           <CheckBox
       
-      title="1 Star"
-      checked={r1}
-      onPress={() => setr1(!r1)}
- 
-  />
-  <CheckBox
-      
-      title="2 Stars"
-      checked={r2}
-      onPress={() => setr2(!r2)}
- 
-  />
-  <CheckBox
-      
-      title="3 Stars"
-      checked={r3}
-      onPress={() => setr3(!r3)}
- 
-  />
-  <CheckBox
-      
-      title="4 Stars"
-      checked={r4}
-      onPress={() => setr1(!r4)}
- 
-  />
-  <CheckBox
-      
-      title="5 Stars"
-      checked={r5}
-      onPress={() => setr1(!r5)}
- 
-  />
+            title="1 Star"
+            checked={r1}
+            onPress={() => setr1(!r1)
+            }
+          />
+          <CheckBox
+              
+              title="2 Stars"
+              checked={r2}
+              onPress={() => setr2(!r2)}
+        
+          />
+          <CheckBox
+              
+              title="3 Stars"
+              checked={r3}
+              onPress={() => setr3(!r3)}
+        
+          />
+          <CheckBox
+              
+              title="4 Stars"
+              checked={r4}
+              onPress={() => setr4(!r4)}
+        
+          />
+          <CheckBox
+              
+              title="5 Stars"
+              checked={r5}
+              onPress={() => 
+                setr5(!r5)
+              }
+        
+          />
 
 
 
-            </Card.Content>
+  </Card.Content>
   </Card>
   
       <Card style={{ marginBottom: 10,width:320,height:340,flexDirection:"column",color: "black"}}>
                       <Card.Content>
                 {/* <View key={element.key} style={{margin: 10}}> */}
                 <Text style={[ {fontWeight: 'bold',fontSize: 20, color:"black"}]}>Cuisine</Text>
-                <Button title="Clear Filters" onClick={
-            () =>{ 
-            // implementation
+                <Button title="Clear Filters" onPress={clearPressedCuisine}/>
 
-            }
-            
-            }/>
-                <CheckBox
+    <CheckBox
       
         title="Chinese"
         checked={cuisine1}
@@ -294,13 +317,7 @@ function SearchScreen({navigation}) {
                 {/* <View key={element.key} style={{margin: 10}}> */}
                 <Text style={[ {fontWeight: 'bold',fontSize: 20, color:"black"}]}>Distance</Text>
           {/* <Icon name="facebook" style={styles.icon}></Icon> */}
-          <Button title="Clear Filters" onClick={
-            () =>{ 
-            // implementation
-
-            }
-            
-            }/>
+          <Button title="Clear Filters" onPress={clearPressedDistance}/>
           <CheckBox
       
       title="<100m"
@@ -347,13 +364,7 @@ function SearchScreen({navigation}) {
                 <Text style={[ {fontWeight: 'bold',fontSize:20, color:"black"}]}>Neighbourhood</Text>
           {/* <Icon name="facebook" style={styles.icon}></Icon> */}
           <ScrollView horizontal={false}>
-          <Button title="Clear Filters" onClick={
-            () =>{ 
-            // implementation
-
-            }
-            
-            }/>
+          <Button title="Clear Filters" onPress={clearPressedNeighbourhood}/>
           <CheckBox
       
       title="Bukit Timah"

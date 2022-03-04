@@ -6,6 +6,7 @@ import {
 	Image,
 	Button,
 	TouchableOpacity,
+	ImageBackground
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import FAQScreen from "./FAQScreen";
@@ -14,7 +15,6 @@ import EmailScreen from "./EmailScreen";
 function HelpScreen({ navigation }) {
 	return (
 		<View style={styles.container}>
-
 			<TouchableOpacity
 				style={styles.button}
 				onPress={() => navigation.navigate("FAQ")}

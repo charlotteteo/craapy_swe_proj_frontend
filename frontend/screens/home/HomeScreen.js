@@ -21,7 +21,7 @@ import {
   Paragraph,
   IconButton,
 } from "react-native-paper";
-import App from "./search/SearchScreen";
+import SearchScreenCopy from "./search/SearchScreenCopy";
 import Choices from "./Choices"
 
 function HomeScreen({ navigation }) {
@@ -30,7 +30,7 @@ function HomeScreen({ navigation }) {
   return (
     <ScrollView>
       <View>
-        <View style={styles.header}>
+        <SafeAreaView style={styles.header}>
           <ImageBackground style={styles.container} source={require('../../assets/Background.png')} resizeMode="cover">
           <View style={styles.headerwrap}>
               <Text style={styles.headerTitle}>HotHawks</Text>
@@ -53,7 +53,7 @@ function HomeScreen({ navigation }) {
             
           </View>
           </ImageBackground>
-        </View>
+        </SafeAreaView>
         <ScrollView scrollEventThrottle={16}>
           <View style={{flex:1, backgroundColor:"white", paddingTop:10}}>
           <Text style={styles.scrolltitle}>All Time Favourites</Text>
@@ -111,7 +111,7 @@ export default function homestack() {
       />
       <Stack.Screen
         name="Search"
-        component={App}
+        component={SearchScreenCopy}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
@@ -121,7 +121,6 @@ export default function homestack() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:"white"
   },
   // header: {
   //   flex:1,
@@ -133,7 +132,7 @@ const styles = StyleSheet.create({
     // flex: 1,
     flexDirection: "row",
     // justifyContent: "center",
-    paddingTop: 35,
+    paddingTop: 15,
     paddingRight:0,
     marginLeft:100
     //alignItems: "center"
@@ -141,9 +140,7 @@ const styles = StyleSheet.create({
   headerImage: {
     height: 50,
     width: null,
-    paddingTop: 35,
     marginRight:100,
-    marginLeft:5,
     flex: 1,
   },
   headerTitle: {
@@ -164,10 +161,9 @@ const styles = StyleSheet.create({
   //   fontSize: 15,
   // },
   searchButton: {
-    alignItems: "center",
+    alignItems: "flex-end",
     marginRight: 5,
-    marginTop: 0,
-    top:-5
+    marginTop:5
   },
   scrolltitle:{
     fontSize:18,

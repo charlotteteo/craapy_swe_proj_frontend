@@ -1,15 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Text, View } from 'react-native';
+import { SafeAreaView,ActivityIndicator, FlatList, Text, View , TouchableOpacity,ScrollView} from 'react-native';
+import { createStackNavigator } from "@react-navigation/stack";
+import SearchScreen from "./home/search/SearchScreen";
+import FilterScreen from "./home/filter/FilterScreen";
+import { NavigationContainer } from '@react-navigation/native';
+import {
+	Avatar,
+	
+	Card,
+	Title,
+	Paragraph,
+	IconButton,
+} from "react-native-paper";
 
-export default ResultsScreen = () => {
+
+function ResultsScreen ({ navigation,route }){
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const {path} = route.params;
+  
+
 
   const getMovies = async () => {
      try {
-      const response = await fetch('https://reactnative.dev/movies.json');
+      const response = await fetch('http://localhost:8080/search/'+path);
+      console.log(path)
       const json = await response.json();
-      setData(json.movies);
+  
+      setData(json);
     } catch (error) {
       console.error(error);
     } finally {
@@ -21,17 +39,50 @@ export default ResultsScreen = () => {
     getMovies();
   }, []);
 
+  const list = () => {
+  
+    return data.map((element) => {
+     
+      return (
+        
+              <TouchableOpacity	onPress={() => {
+                // should be indiv info of hawker stall
+            
+            }}>
+
+           
+            <Card style={{ marginBottom: 10 }}>
+                      <Card.Content>
+                {/* <View key={element.key} style={{margin: 10}}> */}
+                  <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
+                    {element.name}
+                    </Text>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Address:{element.address}</Text>
+
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Operation Hours:{element.operationhours}</Text>
+
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Food Categories:{element.foodcategories}</Text>
+
+            </Card.Content>
+  
+  
+  </Card>
+            </TouchableOpacity>
+        
+      );
+    });
+  };
+
+
+
   return (
-    <View style={{ flex: 1, padding: 24 }}>
-      {isLoading ? <ActivityIndicator/> : (
-        <FlatList
-          data={data}
-          keyExtractor={({ id }, index) => id}
-          renderItem={({ item }) => (
-            <Text>{item.title}, {item.releaseYear}</Text>
-          )}
-        />
-      )}
-    </View>
+    <SafeAreaView style={{ flex: 1, padding: 24 }}>
+      <ScrollView>
+     {list()}
+    </ScrollView>
+    </SafeAreaView>
   );
 };
+
+module.exports=ResultsScreen;
+

@@ -25,6 +25,7 @@ import MapView,  { MAP_TYPES, PROVIDER_DEFAULT } from 'react-native-maps';
 
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
+import { NavigationContainer } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -58,7 +59,8 @@ const list = () => {
     return (
       
         	<TouchableOpacity	onPress={() => {
-            // should be able to change the map view not implemented
+            
+            navigation.navigate("Results",{path:element.title,})
           
           }}>
 

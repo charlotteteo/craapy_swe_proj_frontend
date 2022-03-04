@@ -6,6 +6,9 @@ import React, { useState, useEffect } from 'react';
 import { Icon } from 'react-native-elements';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { CheckBox } from 'react-native-elements';
+import ResultsScreen from '../../ResultsScreen';
+import { NavigationContainer } from '@react-navigation/native';
+
 // import all the components we are going to use
 import {
   SafeAreaView,
@@ -16,8 +19,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Button,
-  Image,
-  _ScrollView, } from 'react-native';
+  Image, } from 'react-native';
 import {
     Avatar,
     
@@ -28,29 +30,31 @@ import {
 } from "react-native-paper";
 import { SearchBar } from 'react-native-elements';
 import { createStackNavigator } from "@react-navigation/stack";
-
 import FilterScreen from "../filter/FilterScreen";
 
-//const SearchScreen = () => 
-
-function SearchScreen({navigation}) {
+function SearchScreenCopy({navigation}) {
 
     const [search, setSearch] = useState('');
     const [filteredDataSource, setFilteredDataSource] = useState([]);
     const [masterDataSource, setMasterDataSource] = useState([]);
   
-    useEffect(() => {
-      fetch('https://jsonplaceholder.typicode.com/posts')
-        .then((response) => response.json())
-        .then((responseJson) => {
-          setFilteredDataSource(responseJson);
-          setMasterDataSource(responseJson);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }, []);
-  
+    const getMovies = async () => {
+        try {
+         const response = await fetch('http://localhost:8080/hawkerstalls');
+         const json = await response.json();
+         // console.log(json)
+    
+         setFilteredDataSource(json);
+         setMasterDataSource(json);
+       } catch (error) {
+         console.error(error);
+       } 
+     }
+   
+     useEffect(() => {
+       getMovies();
+     }, []);
+   
     const searchFilterFunction = (text) => {
       // Check if searched text is not blank
       if (text) {
@@ -58,8 +62,8 @@ function SearchScreen({navigation}) {
         // Filter the masterDataSource
         // Update FilteredDataSource
         const newData = masterDataSource.filter(function (item) {
-          const itemData = item.title
-            ? item.title.toUpperCase()
+          const itemData = item.name
+            ? item.name.toUpperCase()
             : ''.toUpperCase();
           const textData = text.toUpperCase();
           return itemData.indexOf(textData) > -1;
@@ -73,82 +77,116 @@ function SearchScreen({navigation}) {
         setSearch(text);
       }
     };
+    
+    const list = () => {
   
+        return filteredDataSource.map((element) => {
+         
+          return (
+            
+                  <TouchableOpacity	onPress={() => {
+                  // should be able to change the map view not implemented
+                
+                }}>
+      
+                <Card style={{ marginBottom: 10 }}>
+                          <Card.Content>
+                    {/* <View key={element.key} style={{margin: 10}}> */}
+                      <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
+                        {element.name}
+                        </Text>
+                      <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Address:{element.address}</Text>
+    
+                      <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Operation Hours:{element.operationhours}</Text>
+    
+                      <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Food Categories:{element.foodcategories}</Text>
+    
+    
+                </Card.Content>
+      
+      
+      </Card>
+                </TouchableOpacity>
+          
+          );
+        });
+      };
+
     const ItemView = ({ item }) => {
       return (
         // Flat List Item
-        <View style={styles.itemview}       
-        >
-          <Text style={styles.itemStyle} onPress={() => getItem(item)}>
-            {item.id}
-            {'.'}
-            {item.title.toUpperCase()}
-          </Text>
-        </View>
+        <SafeAreaView style={{ flex: 1, padding: 24 }}>
+              return (
+    <SafeAreaView style={styles.container}>
+     
+    </SafeAreaView>
+    <ScrollView>
+                {list()}
+                </ScrollView>
+      </SafeAreaView>
         
       );
     };
-  
-    const ItemSeparatorView = () => {
-      return (
-        // Flat List Item Separator
-        <View                             
-          style={{
-            height: 1,
-            width: '100%',
-            backgroundColor: 'white',  //#FECDB9  #FECDB9 background view?
-          }}
-        />
+
+    const renderItem = ({ item }) => (
+        <Item name={item.name} address={item.address} operationhours={item.operationhours} foodcategories={item.foodcategories}/>
+           
       );
-    };
   
-    const getItem = (item) => {
-      // Function for click on an item
-      alert('Id : ' + item.id + ' Title : ' + item.title);
-    };
+    
+  
 
 
     // clear functions
     function clearPressedRatings(){
-      //alert("HIII" + r1 + r2)
-      setr1(false)
-      setr2(false)
-      setr3(false)
-      setr4(false)
-      setr5(false)
-    }
-    function clearPressedCuisine(){
-      Setcuisine1(false)
-      Setcuisine2(false)
-      Setcuisine3(false)
-      Setcuisine4(false)
-    }
-    function clearPressedNeighbourhood(){
-      seta1(false)
-      seta2(false)
-      seta3(false)
-      seta4(false)
-      seta5(false)
-      seta6(false)
-      seta7(false)
-    }
-    function clearPressedDistance(){
-      setn1(false)
-      setn2(false)
-      setn3(false)
-      setn4(false)
-      setn5(false)
-    }
+      
+        setr1(false)
+        setr2(false)
+        setr3(false)
+        setr4(false)
+        setr5(false)
+      }
+      function clearPressedCuisine(){
+        Setcuisine1(false)
+        Setcuisine2(false)
+        Setcuisine3(false)
+        Setcuisine4(false)
+      }
+      function clearPressedNeighbourhood(){
+        seta1(false)
+        seta2(false)
+        seta3(false)
+        seta4(false)
+        seta5(false)
+        seta6(false)
+        seta7(false)
+      }
+      function clearPressedDistance(){
+        setn1(false)
+        setn2(false)
+        setn3(false)
+        setn4(false)
+        setn5(false)
+      }
   
-
-
-  // ratings
-  const [r1, setr1] = useState(false);
-  const [r2, setr2] = useState(false);
-  const [r3, setr3] = useState(false);
-  const [r4, setr4] = useState(false);
-  const [r5, setr5] = useState(false);
-
+    
+      function checkFilter() {
+        namearray = ["r1","r2","r3","r4","r5","cuisine1","cuisine2","cuisine3","cuisine4","n1","n2","n3","n4","n5","a1","a2","a3","a4","a5","a6","a7"]
+        listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7]
+        length = listarray.length
+        final = []
+        for (let i=0; i<length; i++) {
+          if (listarray[i]) {
+            final.push(namearray[i])
+          }
+        }
+        alert(final)
+  
+        //alert("HIII" + r1 + r2)
+  
+      }
+    
+  
   // cuisine
   const [cuisine1, Setcuisine1] = useState(false);
   const [cuisine2, Setcuisine2] = useState(false);
@@ -179,7 +217,6 @@ function SearchScreen({navigation}) {
   const [n4, setn4] = useState(false);
   const [n5, setn5] = useState(false);
 
- 
 
     return (
       <SafeAreaView style={styles.container}>
@@ -189,18 +226,34 @@ function SearchScreen({navigation}) {
             searchIcon={{ size: 24 }}
             onChangeText={(text) => searchFilterFunction(text)}
             onClear={(text) => searchFilterFunction('')}
+            onSubmitEditing={()=>
+                navigation.navigate("Results",{path:search,})
+                // console.log(search)
+            }
+            
             placeholder="Search anything..."
             value={search}
             lightTheme="True"
           />
-          <FlatList
-            data={filteredDataSource}
-            keyExtractor={(item, index) => index.toString()}
-            ItemSeparatorComponent={ItemSeparatorView}
-            renderItem={ItemView}
-          />
         </View>
+        <ScrollView>
+        {list()}
+        </ScrollView>
+    
+        <TouchableOpacity
+        style={styles.button}
+        onPress={() => this.RBSheet.open()}       // MAKE IT NICER!!!!!!
+      >
+          <IconButton
+              icon="filter"
+              color={"#86939E"}
+              size={30}
+              //onPress={() => navigation.navigate("Filter")}
+            />
+        </TouchableOpacity>
   
+  
+
         <TouchableOpacity
         style={styles.button}
         onPress={() => this.RBSheet.open()}       // MAKE IT NICER!!!!!!
@@ -231,8 +284,6 @@ function SearchScreen({navigation}) {
           }
         }}
       >
-    <SafeAreaView>
-      <Text style={[ {fontWeight: 'bold',fontSize: 25}]}>     Filter</Text>
       
       <SafeAreaView>
       <View style={styles.filterStyle}>
@@ -263,58 +314,62 @@ function SearchScreen({navigation}) {
                   <Text style={[ {fontWeight: 'bold',fontSize:20, color:"black"}]}>Ratings</Text>
                 </View>
           {/* <Icon name="facebook" style={styles.icon}></Icon> */}
-          <Button title="Clear Filters" onPress={clearPressedRatings}/>
+          <View style={styles.clearFilterContainer}>
+            <Button title="Clear Filters" onPress={clearPressedRatings}/>
+          </View>
+          <ScrollView nestedScrollEnabled = {true}>
     
           <CheckBox
-      
             title="1 Star"
             checked={r1}
             onPress={() => setr1(!r1)
             }
           />
           <CheckBox
-              
               title="2 Stars"
               checked={r2}
               onPress={() => setr2(!r2)}
         
           />
           <CheckBox
-              
               title="3 Stars"
               checked={r3}
               onPress={() => setr3(!r3)}
         
           />
           <CheckBox
-              
               title="4 Stars"
               checked={r4}
               onPress={() => setr4(!r4)}
         
           />
           <CheckBox
-              
               title="5 Stars"
               checked={r5}
               onPress={() => 
                 setr5(!r5)
               }
-        
           />
-
-
-
-  </Card.Content>
-  </Card>
+          </ScrollView>
+          </Card.Content>
+          </Card>
+        
   
-      <Card style={{ marginBottom: 10,width:320,height:340,flexDirection:"column",color: "black"}}>
-                      <Card.Content>
-                {/* <View key={element.key} style={{margin: 10}}> */}
-                <Text style={[ {fontWeight: 'bold',fontSize: 20, color:"black"}]}>Cuisine</Text>
-                <Button title="Clear Filters" onPress={clearPressedCuisine}/>
 
-    <CheckBox
+
+
+        
+
+      <Card style={{ marginBottom: 10,width:320,height:340,flexDirection:"column",color: "black"}}>
+            <Card.Content>
+      {/* <View key={element.key} style={{margin: 10}}> */}
+      <View style ={styles.filterfieldtitle}>
+        <Text style={[ {fontWeight: 'bold',fontSize: 20, color:"black"}]}>Cuisine</Text>
+      </View>
+      <View style={styles.clearFilterContainer}>
+        <Button title="Clear Filters" onPress={clearPressedCuisine}/>
+      </View>
+      <ScrollView nestedScrollEnabled = {true}>
       
         <CheckBox
             title="Chinese"
@@ -347,8 +402,13 @@ function SearchScreen({navigation}) {
                       <Card.Content>
             <View style ={styles.filterfieldtitle}>
                 <Text style={[ {fontWeight: 'bold',fontSize: 20, color:"black"}]}>Distance</Text>
-          {/* <Icon name="facebook" style={styles.icon}></Icon> */}
-          <Button title="Clear Filters" onPress={clearPressedDistance}/>
+            </View>
+          
+          <View style={styles.clearFilterContainer}>
+            <Button title="Clear Filters" onPress={clearPressedDistance}/>
+          </View>
+          <ScrollView nestedScrollEnabled = {true}>
+          
           <CheckBox
             title="<100m"
             checked={n1}
@@ -392,67 +452,43 @@ function SearchScreen({navigation}) {
             <Button title="Clear Filters" onPress={clearPressedNeighbourhood}/>
           </View>
           <ScrollView horizontal={false}>
-          <Button title="Clear Filters" onPress={clearPressedNeighbourhood}/>
-          <CheckBox
-      
-      title="Bukit Timah"
-      checked={a1}
-      onPress={() => seta1(!a1)}
- 
-  />
-  <CheckBox
-      
-      title="Orchard"
-      checked={a2}
-      onPress={() => seta2(!a2)}
- 
-  />
-  <CheckBox
-      
-      title="Changi"
-      checked={a3}
-      onPress={() => seta3(!a3)}
- 
-  />
-  <CheckBox
-      
-      title="East Coast"
-      checked={a4}
-      onPress={() => seta4(!a4)}
- 
-  />
-  <CheckBox
-      
-      title="Tampines"
-      checked={a5}
-      onPress={() => seta5(!a5)}
- 
-  />
-    <CheckBox
-      
-      title="Bukit Panjang"
-      checked={a6}
-      onPress={() => seta6(!a6)}
- 
-  />
-
-<CheckBox
-      
-      title="Ang Mo Kio"
-      checked={a7}
-      onPress={() => seta7(!a7)}
- 
-  />
-
-
-</ScrollView>
-            </Card.Content>
-  </Card>
-
-
-
-
-
+          
+        <CheckBox
+          title="Bukit Timah"
+          checked={a1}
+          onPress={() => seta1(!a1)}
+        />
+        <CheckBox
+          title="Orchard"
+          checked={a2}
+          onPress={() => seta2(!a2)}
+        />
+        <CheckBox
+          title="Changi"
+          checked={a3}
+          onPress={() => seta3(!a3)}
+        />
+        <CheckBox
+          title="East Coast"
+          checked={a4}
+          onPress={() => seta4(!a4)}
+        />
+        <CheckBox
+          title="Tampines"
+          checked={a5}
+          onPress={() => seta5(!a5)}
+        />
+        <CheckBox
+          title="Bukit Panjang"
+          checked={a6}
+          onPress={() => seta6(!a6)}
+        />
+        <CheckBox
+          title="Ang Mo Kio"
+          checked={a7}
+          onPress={() => seta7(!a7)}
+        />
+  
 
 
         </ScrollView>
@@ -485,8 +521,9 @@ const Stack = createStackNavigator();
 export default function homestack() {
 	return (
 		<Stack.Navigator headerMode="float">
-			<Stack.Screen name="Search" component={SearchScreen} />
+			<Stack.Screen name="Search" component={SearchScreenCopy} />
       <Stack.Screen name="Filter" component={FilterScreen} />
+      <Stack.Screen name="Results" component={ResultsScreen} />
 		</Stack.Navigator>
 	);
 }

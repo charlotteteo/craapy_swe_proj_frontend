@@ -6,6 +6,8 @@ import React, { useState, useEffect } from 'react';
 import { Icon } from 'react-native-elements';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { CheckBox } from 'react-native-elements';
+import ResultsScreen from '../../ResultsScreen';
+import { NavigationContainer } from '@react-navigation/native';
 // import all the components we are going to use
 import {
   SafeAreaView,
@@ -30,26 +32,29 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import FilterScreen from "../filter/FilterScreen";
 
-//const SearchScreen = () => 
-
 function SearchScreen({navigation}) {
 
     const [search, setSearch] = useState('');
     const [filteredDataSource, setFilteredDataSource] = useState([]);
     const [masterDataSource, setMasterDataSource] = useState([]);
   
-    useEffect(() => {
-      fetch('https://jsonplaceholder.typicode.com/posts')
-        .then((response) => response.json())
-        .then((responseJson) => {
-          setFilteredDataSource(responseJson);
-          setMasterDataSource(responseJson);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }, []);
-  
+    const getMovies = async () => {
+        try {
+         const response = await fetch('http://localhost:8080/hawkerstalls');
+         const json = await response.json();
+         // console.log(json)
+    
+         setFilteredDataSource(json);
+         setMasterDataSource(json);
+       } catch (error) {
+         console.error(error);
+       } 
+     }
+   
+     useEffect(() => {
+       getMovies();
+     }, []);
+   
     const searchFilterFunction = (text) => {
       // Check if searched text is not blank
       if (text) {
@@ -57,8 +62,8 @@ function SearchScreen({navigation}) {
         // Filter the masterDataSource
         // Update FilteredDataSource
         const newData = masterDataSource.filter(function (item) {
-          const itemData = item.title
-            ? item.title.toUpperCase()
+          const itemData = item.name
+            ? item.name.toUpperCase()
             : ''.toUpperCase();
           const textData = text.toUpperCase();
           return itemData.indexOf(textData) > -1;
@@ -72,39 +77,65 @@ function SearchScreen({navigation}) {
         setSearch(text);
       }
     };
+    
+    const list = () => {
   
+        return filteredDataSource.map((element) => {
+         
+          return (
+            
+                  <TouchableOpacity	onPress={() => {
+                  // should be able to change the map view not implemented
+                
+                }}>
+      
+                <Card style={{ marginBottom: 10 }}>
+                          <Card.Content>
+                    {/* <View key={element.key} style={{margin: 10}}> */}
+                      <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
+                        {element.name}
+                        </Text>
+                      <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Address:{element.address}</Text>
+    
+                      <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Operation Hours:{element.operationhours}</Text>
+    
+                      <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Food Categories:{element.foodcategories}</Text>
+    
+    
+                </Card.Content>
+      
+      
+      </Card>
+                </TouchableOpacity>
+          
+          );
+        });
+      };
+
     const ItemView = ({ item }) => {
       return (
         // Flat List Item
-        <View style={styles.itemview}       
-        >
-          <Text style={styles.itemStyle} onPress={() => getItem(item)}>
-            {item.id}
-            {'.'}
-            {item.title.toUpperCase()}
-          </Text>
-        </View>
+        <SafeAreaView style={{ flex: 1, padding: 24 }}>
+              return (
+    <SafeAreaView style={styles.container}>
+     
+    </SafeAreaView>
+    <ScrollView>
+                {list()}
+                </ScrollView>
+      </SafeAreaView>
         
       );
     };
-  
-    const ItemSeparatorView = () => {
-      return (
-        // Flat List Item Separator
-        <View                             
-          style={{
-            height: 1,
-            width: '100%',
-            backgroundColor: 'white',  //#FECDB9  #FECDB9 background view?
-          }}
-        />
+
+    const renderItem = ({ item }) => (
+        <Item name={item.name} address={item.address} operationhours={item.operationhours} foodcategories={item.foodcategories}/>
+           
       );
-    };
   
-    const getItem = (item) => {
-      // Function for click on an item
-      alert('Id : ' + item.id + ' Title : ' + item.title);
-    };
+    
+  
+
 
 
     // clear functions
@@ -178,18 +209,20 @@ function SearchScreen({navigation}) {
             searchIcon={{ size: 24 }}
             onChangeText={(text) => searchFilterFunction(text)}
             onClear={(text) => searchFilterFunction('')}
+            onSubmitEditing={()=>
+                navigation.navigate("Results",{path:search,})
+                // console.log(search)
+            }
+            
             placeholder="Search anything..."
             value={search}
             lightTheme="True"
           />
-          <FlatList
-            data={filteredDataSource}
-            keyExtractor={(item, index) => index.toString()}
-            ItemSeparatorComponent={ItemSeparatorView}
-            renderItem={ItemView}
-          />
         </View>
-  
+        <ScrollView>
+        {list()}
+        </ScrollView>
+    
         <TouchableOpacity
         style={styles.button}
         onPress={() => this.RBSheet.open()}       // MAKE IT NICER!!!!!!
@@ -458,7 +491,8 @@ export default function homestack() {
 	return (
 		<Stack.Navigator headerMode="float">
 			<Stack.Screen name="Search" component={SearchScreen} />
-      <Stack.Screen name="Filter" component={FilterScreen} />
+            <Stack.Screen name="Filter" component={FilterScreen} />
+            <Stack.Screen name="Results" component={ResultsScreen} />
 		</Stack.Navigator>
 	);
 }

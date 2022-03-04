@@ -141,15 +141,22 @@ function SearchScreen({navigation}) {
     }
 
     function checkFilter() {
-      alert("HIII" + r1 + r2)
-      
+      namearray = ["r1","r2","r3","r4","r5","cuisine1","cuisine2","cuisine3","cuisine4","n1","n2","n3","n4","n5","a1","a2","a3","a4","a5","a6","a7"]
+      listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7]
+      length = listarray.length
+      final = []
+      for (let i=0; i<length; i++) {
+        if (listarray[i]) {
+          final.push(namearray[i])
+        }
+      }
+      alert(final)
+
+      //alert("HIII" + r1 + r2)
+
     }
   
-  // cuisine
-  const [cuisine1, Setcuisine1] = useState(false);
-  const [cuisine2, Setcuisine2] = useState(false);
-  const [cuisine3, Setcuisine3] = useState(false);
-  const [cuisine4, Setcuisine4] = useState(false);
+
 
   // ratings
   const [r1, setr1] = useState(false);
@@ -157,6 +164,19 @@ function SearchScreen({navigation}) {
   const [r3, setr3] = useState(false);
   const [r4, setr4] = useState(false);
   const [r5, setr5] = useState(false);
+
+  // cuisine
+  const [cuisine1, Setcuisine1] = useState(false);
+  const [cuisine2, Setcuisine2] = useState(false);
+  const [cuisine3, Setcuisine3] = useState(false);
+  const [cuisine4, Setcuisine4] = useState(false);
+
+  // distance
+  const [n1, setn1] = useState(false);
+  const [n2, setn2] = useState(false);
+  const [n3, setn3] = useState(false);
+  const [n4, setn4] = useState(false);
+  const [n5, setn5] = useState(false);
 
   // neighbourhood area
   const [a1, seta1] = useState(false);
@@ -168,13 +188,7 @@ function SearchScreen({navigation}) {
   const [a7, seta7] = useState(false);
 
 
-  // distance
-  const [n1, setn1] = useState(false);
-  const [n2, setn2] = useState(false);
-  const [n3, setn3] = useState(false);
-  const [n4, setn4] = useState(false);
-  const [n5, setn5] = useState(false);
-
+ 
 
     return (
       <SafeAreaView style={styles.container}>

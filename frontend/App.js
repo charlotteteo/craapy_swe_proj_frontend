@@ -8,7 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons'; 
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-
+import InfoScreen from "./screens/InfoScreen";
 import HomeScreen from "./screens/home/HomeScreen";
 import HelpScreen from "./screens/help/HelpScreen";
 import MapScreen from "./screens/maps/HawkerMaps";
@@ -51,7 +51,7 @@ export default function App() {
           inactiveTintColor: "darkgrey",
         }}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Home" component={InfoScreen} />
         <Tab.Screen name="Maps" component={MapScreen} />
         <Tab.Screen name="Carparks" component={CarparkScreen} />
         <Tab.Screen name="Help" component={HelpScreen} />

@@ -522,7 +522,6 @@ export default function homestack() {
 	return (
 		<Stack.Navigator headerMode="float">
 			<Stack.Screen name="Search" component={SearchScreenCopy} />
-      <Stack.Screen name="Filter" component={FilterScreen} />
       <Stack.Screen name="Results" component={ResultsScreen} />
 		</Stack.Navigator>
 	);

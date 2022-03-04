@@ -6,15 +6,15 @@ import {
 	Image,
 	Button,
 	TouchableOpacity,
+	ImageBackground
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import FAQScreen from "./FAQScreen";
-import EmailScreen from "./EmailScreen";
+import EmailTrialScreen from "./EmailTrialScreen";
 
 function HelpScreen({ navigation }) {
 	return (
 		<View style={styles.container}>
-
 			<TouchableOpacity
 				style={styles.button}
 				onPress={() => navigation.navigate("FAQ")}
@@ -39,10 +39,10 @@ const Stack = createStackNavigator();
 
 export default function contactstack() {
 	return (
-		<Stack.Navigator mode="modal">
+		<Stack.Navigator mode="card">
 			<Stack.Screen name="Help" component={HelpScreen} />
 			<Stack.Screen name="FAQ" component={FAQScreen} />
-			<Stack.Screen name="Email" component={EmailScreen} />
+			<Stack.Screen name="Email" component={EmailTrialScreen} />
 		</Stack.Navigator>
 	);
 }

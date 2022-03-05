@@ -417,16 +417,34 @@ function SearchScreen({navigation}) {
   />
 
 
-      </ScrollView>
-      </Card.Content>
-      </Card>
+</ScrollView>
+            </Card.Content>
+  </Card>
 
 
 
-      </ScrollView>
+
+
+
+
+
+
+
+
+     </ScrollView>
+
       </SafeAreaView>
+                
       </RBSheet>
   
+
+
+
+
+
+       
+
+
     </SafeAreaView>
   );
 };

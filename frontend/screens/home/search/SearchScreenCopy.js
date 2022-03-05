@@ -252,35 +252,20 @@ function SearchScreenCopy({navigation}) {
             />
         </TouchableOpacity>
   
-  
-
-        <TouchableOpacity
-        style={styles.button}
-        onPress={() => this.RBSheet.open()}       // MAKE IT NICER!!!!!!
-      >
-          <IconButton
-              icon="filter"
-              color={"#86939E"}
-              size={30}
-              //onPress={() => navigation.navigate("Filter")}
-            />
-        </TouchableOpacity>
-  
-  
 
     
     
-      <RBSheet
+        <RBSheet
         ref={ref => {
           this.RBSheet = ref;
         }}
-        height={450}           // WHY HEIGHT DONT CHANGE. original was 340
+        height={340}
         openDuration={300}
         customStyles={{
           container: {
-             justifyContent: "center",
-             alignItems: "center",
-            //flex:1
+            // justifyContent: "center",
+            // alignItems: "center",
+            flex:1
           }
         }}
       >
@@ -522,7 +507,6 @@ export default function homestack() {
 	return (
 		<Stack.Navigator headerMode="float">
 			<Stack.Screen name="Search" component={SearchScreenCopy} />
-      <Stack.Screen name="Filter" component={FilterScreen} />
       <Stack.Screen name="Results" component={ResultsScreen} />
 		</Stack.Navigator>
 	);

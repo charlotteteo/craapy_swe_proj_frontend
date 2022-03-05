@@ -8,7 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons'; 
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-
+import InfoScreen from "./screens/InfoScreen";
 import HomeScreen from "./screens/home/HomeScreen";
 import HelpScreen from "./screens/help/HelpScreen";
 import MapScreen from "./screens/maps/HawkerMaps";
@@ -31,7 +31,7 @@ export default function App() {
             } else if (route.name === "Maps") {
               iconName = "local-attraction";
               return (
-                <FontAwesome5 name="map-marked-alt" size={size} color="#A7A7A7" />
+                <FontAwesome5 name="map-marked-alt" size={size} color="#A9A9A9" />
               );
             } else if (route.name === "Carparks") {return <FontAwesome5 name="car" size={size} color={color} />}
             else if (route.name === "Help")

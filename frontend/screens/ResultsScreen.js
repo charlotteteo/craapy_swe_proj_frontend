@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import SearchScreen from "./home/search/SearchScreen";
 import FilterScreen from "./home/filter/FilterScreen";
 import { NavigationContainer } from '@react-navigation/native';
+import InfoScreen from "./InfoScreen";
 import {
 	Avatar,
 	
@@ -41,12 +42,12 @@ function ResultsScreen ({ navigation,route }){
 
   const list = () => {
   
-    return data.element.map((element) => {
+    return data.map((element) => {
      
       return (
         
               <TouchableOpacity	onPress={() => {
-                // should be indiv info of hawker stall
+                navigation.navigate("Info")
             
             }}>
 
@@ -84,5 +85,17 @@ function ResultsScreen ({ navigation,route }){
   );
 };
 
-module.exports=ResultsScreen;
 
+const Stack = createStackNavigator();
+
+export default function homestack() {
+	return (
+		<Stack.Navigator headerMode="float">
+			<Stack.Screen name="Info" component={InfoScreen} />
+      <Stack.Screen name="Filter" component={FilterScreen} />
+      <Stack.Screen name="Results" component={ResultsScreen} />
+		</Stack.Navigator>
+	);
+}
+
+module.exports=ResultsScreen;

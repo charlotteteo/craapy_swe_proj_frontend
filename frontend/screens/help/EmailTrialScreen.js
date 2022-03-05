@@ -1,59 +1,82 @@
-
-import React from 'react'
-import { StyleSheet, Button, SafeAreaView,TouchableOpacity } from 'react-native'
+import React, { Component } from "react";
 import {
-	Avatar,
-	Card,
-	Title,
-	Paragraph,
-	IconButton,
-} from "react-native-paper";
-// import { openComposer } from "react-native-email-link";
-import { Linking } from 'react-native';
-// AUTO FILL EMAIL RECEPIENT NOT IMPLEMENTED YET
-// auto fill name can try to use open composer https://github.com/flexible-agency/react-native-email-link
-
-export default class EmailTrialScreen extends React.Component {
-    render() {
-        return (
-            <SafeAreaView style={styles.container}>
-                 <Button
-          title="Open Email"
-          onPress={() =>{Linking.openURL('https://gmail.com') }}
-          title="support@example.com" 
-          style={styles.button}
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  Button,
+  Linking,
+  Platform,
+  Alert
+} from "react-native";
+ 
+import Communications from "react-native-communications";
+ 
+export default class EmailTrialScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bodayText: ""
+    };
+  }
+ 
+ 
+  /*Function to send the mail function(to, cc, bcc, subject, body)*/
+  openEmail = () => {
+    Communications.email(
+      ["rovereign455@gmail.com"],
+      null,
+      null,
+      "Query to CRAAPY",
+      "Enter body for the mail"
+    );
+  };
+ 
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text
+          style={{ textAlign: "center", fontWeight: "bold", fontSize: 20, paddingVertical: 30, color: "red" }}
+        >
+          FAQ@hawkerpedia {"\n"}
+						Contact us via Email for queries or feedback
+        </Text>
+        <TextInput
+          value={this.state.bodayText}
+          onChangeText={bodayText => this.setState({ bodayText })}
+          placeholder={"Enter Query"}
+          style={styles.input}
         />
-                 <TouchableOpacity
-					onPress={() => {
-						console.log("fAQ0");
-					}}
-				>
-					<Card style={{ marginBottom: 10 }}>
-						<Card.Content>
-				
-							<Title>FAQ@hawkerpedia.com</Title>
-
-							<Paragraph>Contact us via Email for queries or feedback</Paragraph>
-						</Card.Content>
-					
-					</Card>
-				</TouchableOpacity>
-                
-            </SafeAreaView>
-        )
-    }
-
-   
-
-   
-};
-
+        <View style={{ marginTop: 20 }}>
+          <Button onPress={this.openEmail} title="Send Email" />
+        </View>
+      </View>
+    );
+  }
+}
+ 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-      
-    }
-})
-
-module.exports = EmailTrialScreen;
+  container: {
+    flex: 1,
+    alignItems: "center",
+    padding: 30,
+    backgroundColor: "#ffffff"
+  },
+  paragraph: {
+    margin: 24,
+    marginTop: 0,
+    fontSize: 14,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  input: {
+    width: 255,
+    height: 44,
+    padding: 10,
+    margin: 10,
+    backgroundColor: "#FFF",
+    borderColor: "#000",
+    borderRadius: 0.5,
+    borderWidth: 0.5
+  }
+});

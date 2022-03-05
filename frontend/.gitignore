@@ -1,11 +1,10 @@
 
-.expo/
 npm-debug.*
 *.jks
 *.p8
 *.p12
 *.key
-*.mobileprovision
+*.mobileprovision#
 *.orig.*
 web-build/
 

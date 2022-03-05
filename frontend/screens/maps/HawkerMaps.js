@@ -39,7 +39,7 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const markers =() => {
   return hawkercentres.map((element) => {
     return(
-      <Marker coordinate = {{latitude: element.latitude,longitude: element.longitude} }/>
+      <Marker coordinate = {{latitude: element.Coordinates.latitude,longitude: element.Coordinates.longitude} }/>
     );
   });
 };
@@ -51,29 +51,23 @@ function HawkerMaps ({navigation}){
 const list = () => {
     return hawkercentres.map((element) => {
       _handleOpenWithWebBrowser = () => {
-        WebBrowser.openBrowserAsync(element.link);
+        WebBrowser.openBrowserAsync(element.Address);
       };
       return (
         
               <TouchableOpacity	
 
-              onPress={() => 
-                navigation.navigate("Results",{path:"fruits"})
+              // onPress={() => 
+              //   // navigation.navigate("Results",{path:"fruits"})
          
-              }
+              // // }
             >
              <SafeAreaView>
             <Card style={{ marginBottom: 10,width: 350}}>
                       <Card.Content>
-                {/* <View key={element.key} style={{margin: 10}}> */}
                   <Text style={[ {fontWeight: 'light',fontSize: 25}]}>
-                    {element.title}
-                    </Text>
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>
-                      Rating: {element.ratings}/5 
-                      </Text>
-                      <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>
-                      Opening Hours: {element.openingHours}
+                    {element.Name}
+            
                       </Text>
              
                   <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
@@ -125,16 +119,17 @@ const list = () => {
             zIndex={-1}
           />
            
-       
-            
           
+            
+         
             {hawkercentres.map((element) => (
           <MapView.Marker 
-            coordinate={element.coordinate}
-            title={element.title} 
+            coordinate={element.Coordinates}
+            title={element.Name} 
+            // onPress={() => indivRbSheet(element) } NOT DONE YET - open sheet to get hawker centre rbsheet up
           />
         ))}
-            
+             
          
 
               </MapView>
@@ -166,11 +161,74 @@ const list = () => {
   
 }
 
+// function indivRbSheet(element) {
+
+//   return(
+//   <RBSheet
+//             ref={ref => {
+//               this.RBSheet1 = ref;
+//             }}
+//             height={300}
+//             openDuration={300}
+//             customStyles={{
+//               container: {
+//                 justifyContent: "center",
+//                 alignItems: "center",
+//                 flex:1
+//               }
+//             }}
+//           >
+
+
+
+        
+//               <TouchableOpacity	
+
+//               // onPress={() => 
+//               //   // navigation.navigate("Results",{path:"fruits"})
+         
+//               // // }
+//             >
+//              <SafeAreaView>
+//             <Card style={{ marginBottom: 10,width: 350}}>
+//                       <Card.Content>
+//                   <Text style={[ {fontWeight: 'light',fontSize: 25}]}>
+//                     {element.Name}
+            
+//                       </Text>
+             
+//                   <Pressable style={styles.button_box} onPress={WebBrowser.openBrowserAsync(element.Address)}>
+//         <Text style={styles.text}>Open on Google Maps</Text>
+  
+//       </Pressable>
+    
+                
+//             </Card.Content>
+  
+  
+//   </Card>
+//   </SafeAreaView>
+  
+//             </TouchableOpacity>
+        
+//           </RBSheet>
+          
+          
+      
+          
+//           )
+
+// }
+
+
+
+
+
 const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
-		<Stack.Navigator headerMode="float">
+		<Stack.Navigator mode="card">
 			<Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="Filter" component={FilterScreen} />
       <Stack.Screen name="Results" component={ResultsScreen} />

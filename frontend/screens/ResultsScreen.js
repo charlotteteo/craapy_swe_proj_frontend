@@ -41,7 +41,7 @@ function ResultsScreen ({ navigation,route }){
 
   const list = () => {
   
-    return data.map((element) => {
+    return data.element.map((element) => {
      
       return (
         

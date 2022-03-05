@@ -16,8 +16,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Button,
-  Image,
-  _ScrollView, } from 'react-native';
+  Image, } from 'react-native';
 import {
     Avatar,
     
@@ -140,15 +139,6 @@ function SearchScreen({navigation}) {
       setn5(false)
     }
   
-
-
-  // ratings
-  const [r1, setr1] = useState(false);
-  const [r2, setr2] = useState(false);
-  const [r3, setr3] = useState(false);
-  const [r4, setr4] = useState(false);
-  const [r5, setr5] = useState(false);
-
   // cuisine
   const [cuisine1, Setcuisine1] = useState(false);
   const [cuisine2, Setcuisine2] = useState(false);
@@ -179,7 +169,6 @@ function SearchScreen({navigation}) {
   const [n4, setn4] = useState(false);
   const [n5, setn5] = useState(false);
 
- 
 
     return (
       <SafeAreaView style={styles.container}>
@@ -216,52 +205,30 @@ function SearchScreen({navigation}) {
   
 
     
-    
+      
       <RBSheet
         ref={ref => {
           this.RBSheet = ref;
         }}
-        height={450}           // WHY HEIGHT DONT CHANGE. original was 340
+        height={340}
         openDuration={300}
         customStyles={{
           container: {
-             justifyContent: "center",
-             alignItems: "center",
-            //flex:1
+            // justifyContent: "center",
+            // alignItems: "center",
+            flex:1
           }
         }}
       >
     <SafeAreaView>
       <Text style={[ {fontWeight: 'bold',fontSize: 25}]}>     Filter</Text>
       
-      <SafeAreaView>
-      <View style={styles.filterStyle}>
-          <TouchableOpacity onPress={checkFilter}> 
-            <Text style={styles.doneButton}> Done </Text>
-          </TouchableOpacity>
-
-        </View>
-
-
+      <ScrollView horizontal={true}>
     
-      <View style ={{paddingTop:10
-      //,left:0 aligns
-      }}>
-        <Text style={[ {fontWeight: 'bold',fontSize: 25}]}>     Filter</Text>
-      </View>
-
-      
-
-
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        
-
-          <Card style={{ marginBottom: 10,width:320,height:340,flexDirection:"column"}}>
+      <Card style={{ marginBottom: 10,width:320,height:340,flexDirection:"column"}}>
                       <Card.Content>
                 {/* <View key={element.key} style={{margin: 10}}> */}
-                <View style ={styles.filterfieldtitle}>
-                  <Text style={[ {fontWeight: 'bold',fontSize:20, color:"black"}]}>Ratings</Text>
-                </View>
+                <Text style={[ {fontWeight: 'bold',fontSize:20, color:"black"}]}>Ratings</Text>
           {/* <Icon name="facebook" style={styles.icon}></Icon> */}
           <Button title="Clear Filters" onPress={clearPressedRatings}/>
     
@@ -316,81 +283,86 @@ function SearchScreen({navigation}) {
 
     <CheckBox
       
-        <CheckBox
-            title="Chinese"
-            checked={cuisine1}
-            onPress={() => Setcuisine1(!cuisine1)}
-        />
-        <CheckBox
-            title="Thai"
-            checked={cuisine2}
-            onPress={() => Setcuisine2(!cuisine2)}
-        />
-        <CheckBox
-            title="Japanese"
-            checked={cuisine3}
-            onPress={() => Setcuisine3(!cuisine3)}
-        />
-        <CheckBox
-          title="French"
-          checked={cuisine4}
-          onPress={() => Setcuisine4(!cuisine4)}
-        />
-      </ScrollView>
-      </Card.Content>
-      </Card>
+        title="Chinese"
+        checked={cuisine1}
+        onPress={() => Setcuisine1(!cuisine1)}
+   
+    />
+    <CheckBox
       
+        title="Thai"
+        checked={cuisine2}
+        onPress={() => Setcuisine2(!cuisine2)}
+   
+    />
+    <CheckBox
+       
+        title="Japanese"
+        checked={cuisine3}
+        onPress={() => Setcuisine3(!cuisine3)}
+   
+    />
+     <CheckBox
+       
+       title="French"
+       checked={cuisine4}
+       onPress={() => Setcuisine4(!cuisine4)}
+  
+   />
+            </Card.Content>
+  </Card>
  
-
-      
       <Card style={{ marginBottom: 10,width:320,height:340,flexDirection:"column"}}>
                       <Card.Content>
-            <View style ={styles.filterfieldtitle}>
+                {/* <View key={element.key} style={{margin: 10}}> */}
                 <Text style={[ {fontWeight: 'bold',fontSize: 20, color:"black"}]}>Distance</Text>
           {/* <Icon name="facebook" style={styles.icon}></Icon> */}
           <Button title="Clear Filters" onPress={clearPressedDistance}/>
           <CheckBox
-            title="<100m"
-            checked={n1}
-            onPress={() => setn1(!n1)}
-          />
-          <CheckBox              
-              title="<300m"
-              checked={n2}
-              onPress={() => setn2(!n2)}
-          />
-          <CheckBox
-              title="<500m"
-              checked={n3}
-              onPress={() => setn3(!n3)}
-          />
-          <CheckBox
-              title="<1km"
-              checked={n4}
-              onPress={() => setn4(!n4)}
-          />
-          <CheckBox
-              title="<2km"
-              checked={n5}
-              onPress={() => setn5(!n5)}
-          />
-      </ScrollView>
-      </Card.Content>
-      </Card>
       
+      title="<100m"
+      checked={n1}
+      onPress={() => setn1(!n1)}
+ 
+  />
+ <CheckBox
+      
+      title="<300m"
+      checked={n2}
+      onPress={() => setn2(!n2)}
+ 
+  />
+  <CheckBox
+      
+      title="<500m"
+      checked={n3}
+      onPress={() => setn3(!n3)}
+ 
+  />
+  <CheckBox
+      
+      title="<1km"
+      checked={n4}
+      onPress={() => setn4(!n4)}
+ 
+  />
+  <CheckBox
+      
+      title="<2km"
+      checked={n5}
+      onPress={() => setn5(!n5)}
+ 
+  />
+            </Card.Content>
+  </Card>
+  
 
   
-      <ScrollView horizontal={true}>
       <Card style={{ marginBottom: 10,width:320,height:340,flexDirection:"column"}}>
                       <Card.Content>
                 {/* <View key={element.key} style={{margin: 10}}> */}
-                <View style ={styles.filterfieldtitle}>
                 <Text style={[ {fontWeight: 'bold',fontSize:20, color:"black"}]}>Neighbourhood</Text>
-                </View>
           {/* <Icon name="facebook" style={styles.icon}></Icon> */}
-          <View style={styles.clearFilterContainer}>
-            <Button title="Clear Filters" onPress={clearPressedNeighbourhood}/>
-          </View>
           <ScrollView horizontal={false}>
           <Button title="Clear Filters" onPress={clearPressedNeighbourhood}/>
           <CheckBox
@@ -445,34 +417,16 @@ function SearchScreen({navigation}) {
   />
 
 
-</ScrollView>
-            </Card.Content>
-  </Card>
+      </ScrollView>
+      </Card.Content>
+      </Card>
 
 
 
-
-
-
-
-        </ScrollView>
-        </Card.Content>
-        </Card>
-
-
-        </ScrollView>
-        </ScrollView>
-
-
-        
-
+      </ScrollView>
       </SafeAreaView>
-                
       </RBSheet>
   
-
-
-
     </SafeAreaView>
   );
 };
@@ -520,33 +474,6 @@ const styles = StyleSheet.create({
 
     margin: 10,
     borderRadius: 20,
-  },
-  clearFilterContainer: {
-    position:"absolute",
-    top: 10,
-    right: 20,
-  },
-  filterfieldtitle: {
-    paddingBottom:5,
-    left: 10
-  },
-  
-  filterStyle: {
-    position:"absolute",
-    //top:5,
-    //right:10,
-    
-    justifyContent:"center",
-    alignSelf:"center",
-    //left:160,                           // NVR do 
-    bottom:20,
-    //marginBottom:10
-  }, 
-
-  doneButton: {
-    color: "#1880FB",
-    fontSize: 18,
-    fontWeight: "bold",
   },
 
   

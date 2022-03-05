@@ -8,7 +8,8 @@ import {
  SafeAreaView,
  ScrollView,
  TouchableOpacity,
- Pressable
+ Pressable,
+ Alert
 } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
@@ -126,11 +127,43 @@ const list = () => {
           <MapView.Marker 
             coordinate={element.Coordinates}
             title={element.Name} 
-            // onPress={() => indivRbSheet(element) } NOT DONE YET - open sheet to get hawker centre rbsheet up
+           onPress={() => Alert.alert(
+            element.Name,
+            "Route in Google Maps",
+            [
+              
+              {
+                text: "No",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              {
+                text: "Yes",
+                onPress: () => WebBrowser.openBrowserAsync(element.Address)
+              }
+            ]
+        )
+          
+          
+          
+          }
           />
         ))}
              
          
+             
+          
+
+
+
+
+
+
+
+
+
+
+
 
               </MapView>
         <SafeAreaView style={{ flex: 1, justifyContent: "bottom", alignItems: "center" }}>
@@ -161,64 +194,7 @@ const list = () => {
   
 }
 
-// function indivRbSheet(element) {
 
-//   return(
-//   <RBSheet
-//             ref={ref => {
-//               this.RBSheet1 = ref;
-//             }}
-//             height={300}
-//             openDuration={300}
-//             customStyles={{
-//               container: {
-//                 justifyContent: "center",
-//                 alignItems: "center",
-//                 flex:1
-//               }
-//             }}
-//           >
-
-
-
-        
-//               <TouchableOpacity	
-
-//               // onPress={() => 
-//               //   // navigation.navigate("Results",{path:"fruits"})
-         
-//               // // }
-//             >
-//              <SafeAreaView>
-//             <Card style={{ marginBottom: 10,width: 350}}>
-//                       <Card.Content>
-//                   <Text style={[ {fontWeight: 'light',fontSize: 25}]}>
-//                     {element.Name}
-            
-//                       </Text>
-             
-//                   <Pressable style={styles.button_box} onPress={WebBrowser.openBrowserAsync(element.Address)}>
-//         <Text style={styles.text}>Open on Google Maps</Text>
-  
-//       </Pressable>
-    
-                
-//             </Card.Content>
-  
-  
-//   </Card>
-//   </SafeAreaView>
-  
-//             </TouchableOpacity>
-        
-//           </RBSheet>
-          
-          
-      
-          
-//           )
-
-// }
 
 
 

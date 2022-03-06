@@ -31,7 +31,7 @@ export default function App() {
             } else if (route.name === "Maps") {
               iconName = "local-attraction";
               return (
-                <FontAwesome5 name="map-marked-alt" size={size} color="#A9A9A9" />
+                <FontAwesome5 name="map-marked-alt" size={size} color={color} />
               );
             } else if (route.name === "Carparks") {return <FontAwesome5 name="car" size={size} color={color} />}
             else if (route.name === "Help")

@@ -171,7 +171,7 @@ function SearchScreenCopy({navigation}) {
   
     
       function checkFilter() {
-        namearray = ["r1","r2","r3","r4","r5","cuisine1","cuisine2","cuisine3","cuisine4","n1","n2","n3","n4","n5","a1","a2","a3","a4","a5","a6","a7"]
+        namearray = ["20","40","60","80","90","Chinese","Thai","Japanese","French","100","300","500","1000","2000","Bukit Timah","Orchard","Changi","East Coast","Tampines","Bukit Panjang","Ang Mo Kio"]
         listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7]
         length = listarray.length
         final = []
@@ -180,9 +180,11 @@ function SearchScreenCopy({navigation}) {
             final.push(namearray[i])
           }
         }
-        alert(final)
-  
-        //alert("HIII" + r1 + r2)
+        alert(final[0]) // only the first one for now
+
+        
+        //searchFilterFunction(final)
+        navigation.navigate("Results",{path:final[0],})     // SEARCHES for cuisine 
   
       }
     
@@ -228,7 +230,7 @@ function SearchScreenCopy({navigation}) {
             onClear={(text) => searchFilterFunction('')}
             onSubmitEditing={()=>
                 navigation.navigate("Results",{path:search,})
-                // console.log(search)
+                //console.log(search)
             }
             
             placeholder="Search anything..."

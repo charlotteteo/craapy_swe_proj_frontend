@@ -20,12 +20,26 @@ function ResultsScreen ({ navigation,route }){
   const [data, setData] = useState([]);
   const {path} = route.params;
   
-
+  ratingArray = ["20","40","60","80","90"]
+  distanceArray = ["100","300","500","1000","2000"]
+  neighbourhoodArray = ["Bukit Timah","Orchard","Changi","East Coast","Tampines","Bukit Panjang","Ang Mo Kio"]
 
   const getMovies = async () => {
      try {
-      const response = await fetch('http://localhost:8080/search/'+path);
-      console.log(path)
+      
+      if (ratingArray.includes(path)) {
+        var response = await fetch('http://localhost:8080/greater/'+path);    //var used to make it editable. 
+        //console.log("check??")
+      } else {
+        var response = await fetch('http://localhost:8080/search/'+path);
+      }
+
+      
+      
+
+
+      console.log("search: " + path)
+      //console.log("check: " + ratingArray.includes(path))
       const json = await response.json();
   
       setData(json);

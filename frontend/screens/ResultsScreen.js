@@ -5,6 +5,7 @@ import SearchScreen from "./home/search/SearchScreen";
 import FilterScreen from "./home/filter/FilterScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import InfoScreen from "./InfoScreen";
+import HawkerMaps from "./maps/HawkerMaps";
 import {
 	Avatar,
 	
@@ -94,6 +95,8 @@ export default function homestack() {
 			<Stack.Screen name="Info" component={InfoScreen} />
       <Stack.Screen name="Filter" component={FilterScreen} />
       <Stack.Screen name="Results" component={ResultsScreen} />
+
+      <Stack.Screen name="Maps" component={HawkerMaps} />
 		</Stack.Navigator>
 	);
 }

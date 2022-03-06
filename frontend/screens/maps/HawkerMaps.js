@@ -59,7 +59,7 @@ const list = () => {
               <TouchableOpacity	
 
               onPress={() => 
-                navigation.navigate("Results",{path:"fruits"})
+                navigation.navigate("Results",{path:element.Name})
          
               }
             >

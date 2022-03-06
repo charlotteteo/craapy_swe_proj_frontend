@@ -168,6 +168,12 @@ function SearchScreenCopy({navigation}) {
         setn4(false)
         setn5(false)
       }
+      function clearAll() {
+        clearPressedCuisine()
+        clearPressedDistance()
+        clearPressedNeighbourhood()
+        clearPressedRatings()
+      }
   
     
       function checkFilter() {
@@ -288,6 +294,14 @@ function SearchScreenCopy({navigation}) {
       >
       
       <SafeAreaView>
+      <View>
+          <TouchableOpacity onPress={clearAll}> 
+            <Text style={styles.clearAllButton}> Clear All </Text>
+          </TouchableOpacity>
+
+        </View>
+      
+      
       <View style={styles.filterStyle}>
           <TouchableOpacity onPress={checkFilter}> 
             <Text style={styles.doneButton}> Done </Text>
@@ -564,6 +578,14 @@ const styles = StyleSheet.create({
     top: 10,
     right: 20,
   },
+
+  clearAllButton: {       // HARD TO PRESS - click above it...
+    top:35,
+    left:260,
+    color: "#1880FB",
+    fontSize: 18,
+  },
+
   filterfieldtitle: {
     paddingBottom:5,
     left: 10

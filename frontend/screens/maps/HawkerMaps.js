@@ -8,7 +8,8 @@ import {
  SafeAreaView,
  ScrollView,
  TouchableOpacity,
- Pressable
+ Pressable,
+ Alert
 } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
@@ -21,7 +22,7 @@ import {
 	IconButton,
 } from "react-native-paper";
 import * as WebBrowser from 'expo-web-browser';
-import { hawkercentres } from '../../assets/HawkerCentres';
+import { hawkerclosure } from '../../assets/HawkerClosure';
 import MapView,  { MAP_TYPES, PROVIDER_DEFAULT,PROVIDER_GOOGLE } from 'react-native-maps';
 import { MaterialIcons } from "@expo/vector-icons";
 import RBSheet from "react-native-raw-bottom-sheet";
@@ -37,9 +38,9 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const markers =() => {
-  return hawkercentres.map((element) => {
+  return hawkerclosure.map((element) => {
     return(
-      <Marker coordinate = {{latitude: element.latitude,longitude: element.longitude} }/>
+      <Marker coordinate = {{latitude: element.Coordinates.latitude,longitude: element.Coordinates.longitude} }/>
     );
   });
 };
@@ -49,9 +50,9 @@ const markers =() => {
 function HawkerMaps ({navigation}){
 
 const list = () => {
-    return hawkercentres.map((element) => {
+    return hawkerclosure.map((element) => {
       _handleOpenWithWebBrowser = () => {
-        WebBrowser.openBrowserAsync(element.link);
+        WebBrowser.openBrowserAsync(element.Address);
       };
       return (
         
@@ -65,15 +66,16 @@ const list = () => {
              <SafeAreaView>
             <Card style={{ marginBottom: 10,width: 350}}>
                       <Card.Content>
-                {/* <View key={element.key} style={{margin: 10}}> */}
                   <Text style={[ {fontWeight: 'light',fontSize: 25}]}>
-                    {element.title}
-                    </Text>
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>
-                      Rating: {element.ratings}/5 
+                    {element.Name}
+            
                       </Text>
-                      <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>
-                      Opening Hours: {element.openingHours}
+                  <Text style={[ {fontWeight: 'light',fontSize: 18}]}>
+                    Hawker Centre Closure:
+                    </Text>
+                 <Text style={[ {fontWeight: 'light',fontSize: 16}]}>
+                    {element.q1_cleaningstartdate} to {element.q1_cleaningenddate}
+            
                       </Text>
              
                   <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
@@ -125,17 +127,50 @@ const list = () => {
             zIndex={-1}
           />
            
-       
-            
           
-            {hawkercentres.map((element) => (
-          <MapView.Marker 
-            coordinate={element.coordinate}
-            title={element.title} 
-          />
-        ))}
             
          
+            {hawkerclosure.map((element) => (
+          <MapView.Marker 
+            coordinate={element.Coordinates}
+            title={element.Name} 
+           onPress={() => Alert.alert(
+            element.Name,
+            "Route in Google Maps",
+            [
+              
+              {
+                text: "No",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              {
+                text: "Yes",
+                onPress: () => WebBrowser.openBrowserAsync(element.Address)
+              }
+            ]
+        )
+          
+          
+          
+          }
+          />
+        ))}
+             
+         
+             
+          
+
+
+
+
+
+
+
+
+
+
+
 
               </MapView>
         <SafeAreaView style={{ flex: 1, justifyContent: "bottom", alignItems: "center" }}>
@@ -166,11 +201,17 @@ const list = () => {
   
 }
 
+
+
+
+
+
+
 const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
-		<Stack.Navigator headerMode="float">
+		<Stack.Navigator mode="card">
 			<Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="Filter" component={FilterScreen} />
       <Stack.Screen name="Results" component={ResultsScreen} />

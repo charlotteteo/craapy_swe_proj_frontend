@@ -99,3 +99,17 @@ export default function homestack() {
 }
 
 module.exports=ResultsScreen;
+
+const Stack = createStackNavigator();
+
+export default function homestack() {
+	return (
+		<Stack.Navigator headerMode="float">
+			<Stack.Screen name="Info" component={InfoScreen} />
+      <Stack.Screen name="Filter" component={FilterScreen} />
+      <Stack.Screen name="Results" component={ResultsScreen} />
+		</Stack.Navigator>
+	);
+}
+
+module.exports=ResultsScreen;

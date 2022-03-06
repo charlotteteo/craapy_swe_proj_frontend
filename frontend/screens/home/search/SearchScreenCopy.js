@@ -259,13 +259,13 @@ function SearchScreenCopy({navigation}) {
         ref={ref => {
           this.RBSheet = ref;
         }}
-        height={340}
+        height={450}
         openDuration={300}
         customStyles={{
           container: {
-            // justifyContent: "center",
-            // alignItems: "center",
-            flex:1
+            justifyContent: "center",
+            alignItems: "center",
+            //flex:1
           }
         }}
       >
@@ -568,6 +568,7 @@ const styles = StyleSheet.create({
     color: "#1880FB",
     fontSize: 18,
     fontWeight: "bold",
+    //bottom: 20,
   },
 
   

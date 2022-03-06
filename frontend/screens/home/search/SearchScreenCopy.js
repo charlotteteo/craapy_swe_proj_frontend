@@ -252,19 +252,34 @@ function SearchScreenCopy({navigation}) {
             />
         </TouchableOpacity>
   
+  
+
+        <TouchableOpacity
+        style={styles.button}
+        onPress={() => this.RBSheet.open()}       // MAKE IT NICER!!!!!!
+      >
+          <IconButton
+              icon="filter"
+              color={"#86939E"}
+              size={30}
+              //onPress={() => navigation.navigate("Filter")}
+            />
+        </TouchableOpacity>
+  
+  
 
     
     
-        <RBSheet
+      <RBSheet
         ref={ref => {
           this.RBSheet = ref;
         }}
-        height={450}
+        height={450}           // WHY HEIGHT DONT CHANGE. original was 340
         openDuration={300}
         customStyles={{
           container: {
-            justifyContent: "center",
-            alignItems: "center",
+             justifyContent: "center",
+             alignItems: "center",
             //flex:1
           }
         }}
@@ -568,7 +583,6 @@ const styles = StyleSheet.create({
     color: "#1880FB",
     fontSize: 18,
     fontWeight: "bold",
-    //bottom: 20,
   },
 
   

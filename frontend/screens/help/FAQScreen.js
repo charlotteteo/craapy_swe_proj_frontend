@@ -150,4 +150,3 @@ const styles = StyleSheet.create({
         marginTop: 45
     }
 });
-

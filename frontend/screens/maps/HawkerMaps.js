@@ -22,7 +22,7 @@ import {
 	IconButton,
 } from "react-native-paper";
 import * as WebBrowser from 'expo-web-browser';
-import { hawkercentres } from '../../assets/HawkerCentres';
+import { hawkerclosure } from '../../assets/HawkerClosure';
 import MapView,  { MAP_TYPES, PROVIDER_DEFAULT,PROVIDER_GOOGLE } from 'react-native-maps';
 import { MaterialIcons } from "@expo/vector-icons";
 import RBSheet from "react-native-raw-bottom-sheet";
@@ -38,7 +38,7 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const markers =() => {
-  return hawkercentres.map((element) => {
+  return hawkerclosure.map((element) => {
     return(
       <Marker coordinate = {{latitude: element.Coordinates.latitude,longitude: element.Coordinates.longitude} }/>
     );
@@ -50,7 +50,7 @@ const markers =() => {
 function HawkerMaps ({navigation}){
 
 const list = () => {
-    return hawkercentres.map((element) => {
+    return hawkerclosure.map((element) => {
       _handleOpenWithWebBrowser = () => {
         WebBrowser.openBrowserAsync(element.Address);
       };
@@ -68,6 +68,13 @@ const list = () => {
                       <Card.Content>
                   <Text style={[ {fontWeight: 'light',fontSize: 25}]}>
                     {element.Name}
+            
+                      </Text>
+                  <Text style={[ {fontWeight: 'light',fontSize: 18}]}>
+                    Hawker Centre Closure:
+                    </Text>
+                 <Text style={[ {fontWeight: 'light',fontSize: 16}]}>
+                    {element.q1_cleaningstartdate} to {element.q1_cleaningenddate}
             
                       </Text>
              
@@ -123,7 +130,7 @@ const list = () => {
           
             
          
-            {hawkercentres.map((element) => (
+            {hawkerclosure.map((element) => (
           <MapView.Marker 
             coordinate={element.Coordinates}
             title={element.Name} 

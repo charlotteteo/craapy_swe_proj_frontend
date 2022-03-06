@@ -11,6 +11,7 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import FAQScreen from "./FAQScreen";
 import EmailScreen from "./EmailScreen";
+import EmailTrialScreen from "./EmailTrialScreen";
 
 function HelpScreen({ navigation }) {
     return (
@@ -59,7 +60,7 @@ export default function contactstack() {
                 headerTransparent:true,
                 headerTintColor:'#fff'
             }} />
-            <Stack.Screen name="Email" component={EmailScreen} />
+            <Stack.Screen name="Email" component={EmailTrialScreen} />
         </Stack.Navigator>
     );
 }

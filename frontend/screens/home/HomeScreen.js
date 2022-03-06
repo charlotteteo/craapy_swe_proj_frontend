@@ -30,7 +30,7 @@ function HomeScreen({ navigation }) {
   return (
     <ScrollView>
       <View>
-        <SafeAreaView style={styles.header}>
+        <View style={styles.header}>
           <ImageBackground style={styles.container} source={require('../../assets/Background.png')} resizeMode="cover">
           <View style={styles.headerwrap}>
               <Text style={styles.headerTitle}>HotHawks</Text>
@@ -53,7 +53,7 @@ function HomeScreen({ navigation }) {
             
           </View>
           </ImageBackground>
-        </SafeAreaView>
+        </View>
         <ScrollView scrollEventThrottle={16}>
           <View style={{flex:1, backgroundColor:"white", paddingTop:10}}>
           <Text style={styles.scrolltitle}>All Time Favourites</Text>

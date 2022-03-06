@@ -58,10 +58,10 @@ const list = () => {
         
               <TouchableOpacity	
 
-              // onPress={() => 
-              //   // navigation.navigate("Results",{path:"fruits"})
+              onPress={() => 
+                navigation.navigate("Results",{path:"fruits"})
          
-              // // }
+              }
             >
              <SafeAreaView>
             <Card style={{ marginBottom: 10,width: 350}}>

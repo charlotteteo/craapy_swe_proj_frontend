@@ -20,51 +20,42 @@ import {
 } from "react-native-paper";
 
 import {faq} from "../../assets/faq";
+const list = ()=>{
+    return (faq.map((element)=>{
+        return(
+    <TouchableOpacity
+>
+    <Card style={{ marginBottom: 10 }}>
+        <Card.Content>
+
+            <Title>{element.name}</Title>
+
+            <Paragraph>{element.shortDesc}</Paragraph>
+        </Card.Content>
+    
+    </Card>
+</TouchableOpacity>);
+
+    }));
+  };
+   
 
 function FAQScreen({ navigation }) {
     const [searchtext, setsearchtext] = useState("");
     const [wish, setWish] = useState("false");
     const searchResults = [];
-
-    const searchFunction = (searchtext) => {
-        //  for (locale in hawkerchoices) {
-        //  if (locale.name.tolower() === searchtext.tolower()) {
-        //      searchResults.push(locale);
-        //  }
-    };
+    
 
     return (
         <View style={styles.container}>
             <ImageBackground style={styles.background} source={require('../../assets/Background.png')} resizeMode="cover">      
                 <Text style={styles.headerText}>FAQ Page</Text>
             </ImageBackground>
-            {/* <View style={{ flexDirection: "row", justifyContent: "center" }}>
-                <SearchBar
-                    onChangeText={(searchtext) => searchFunction(searchtext)}
-                    onClearText={(searchtext) => searchFunction("")}
-                    placeholder="where would you like to eat?"
-                    lightTheme
-                    containerStyle={{ width: "85%" }}
-                />
-            </View> */}
+         
             <ScrollView>
-            <TouchableOpacity
-                    onPress={() => {
-                        console.log("fAQ0");
-                    }}
-                >
-                    <Card style={{ marginBottom: 10 }}>
-                        <Card.Content>
-                
-                            <Title>{faq[0].name}</Title>
+                {list()}
 
-                            <Paragraph>{faq[0].shortDesc}</Paragraph>
-                        </Card.Content>
-                    
-                    </Card>
-                </TouchableOpacity>
-
-                <TouchableOpacity
+                {/* <TouchableOpacity
                     onPress={() => {
                         console.log("FAQ1");
                     }}
@@ -78,7 +69,7 @@ function FAQScreen({ navigation }) {
                         </Card.Content>
                     
                     </Card>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </ScrollView>
         </View>
     );

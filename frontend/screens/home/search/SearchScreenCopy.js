@@ -96,7 +96,9 @@ function SearchScreenCopy({navigation}) {
                         {element.name}
                         </Text>
                       <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Address:{element.address}</Text>
-    
+
+                       <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Ratings:{element.rating}</Text>
+
                       <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Operation Hours:{element.operationhours}</Text>
     
                       <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Food Categories:{element.foodcategories}</Text>
@@ -168,10 +170,16 @@ function SearchScreenCopy({navigation}) {
         setn4(false)
         setn5(false)
       }
+      function clearAll() {
+        clearPressedCuisine()
+        clearPressedDistance()
+        clearPressedNeighbourhood()
+        clearPressedRatings()
+      }
   
     
       function checkFilter() {
-        namearray = ["r1","r2","r3","r4","r5","cuisine1","cuisine2","cuisine3","cuisine4","n1","n2","n3","n4","n5","a1","a2","a3","a4","a5","a6","a7"]
+        namearray = ["20","40","60","80","90","Chinese","Thai","Japanese","French","100","300","500","1000","2000","Bukit Timah","Orchard","Changi","East Coast","Tampines","Bukit Panjang","Ang Mo Kio"]
         listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7]
         length = listarray.length
         final = []
@@ -180,9 +188,11 @@ function SearchScreenCopy({navigation}) {
             final.push(namearray[i])
           }
         }
-        alert(final)
-  
-        //alert("HIII" + r1 + r2)
+        alert(final[0]) // only the first one for now
+
+        
+        //searchFilterFunction(final)
+        navigation.navigate("Results",{path:final[0],})     // SEARCHES for cuisine 
   
       }
     
@@ -228,7 +238,7 @@ function SearchScreenCopy({navigation}) {
             onClear={(text) => searchFilterFunction('')}
             onSubmitEditing={()=>
                 navigation.navigate("Results",{path:search,})
-                // console.log(search)
+                //console.log(search)
             }
             
             placeholder="Search anything..."
@@ -286,6 +296,14 @@ function SearchScreenCopy({navigation}) {
       >
       
       <SafeAreaView>
+      <View>
+          <TouchableOpacity onPress={clearAll}> 
+            <Text style={styles.clearAllButton}> Clear All </Text>
+          </TouchableOpacity>
+
+        </View>
+      
+      
       <View style={styles.filterStyle}>
           <TouchableOpacity onPress={checkFilter}> 
             <Text style={styles.doneButton}> Done </Text>
@@ -562,6 +580,14 @@ const styles = StyleSheet.create({
     top: 10,
     right: 20,
   },
+
+  clearAllButton: {       // HARD TO PRESS - click above it...
+    top:35,
+    left:260,
+    color: "#1880FB",
+    fontSize: 18,
+  },
+
   filterfieldtitle: {
     paddingBottom:5,
     left: 10

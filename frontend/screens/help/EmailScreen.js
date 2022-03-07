@@ -1,58 +1,102 @@
-
-import React from 'react'
-import { StyleSheet, Button, SafeAreaView,TouchableOpacity } from 'react-native'
+import React, { Component } from "react";
 import {
-	Avatar,
-	Card,
-	Title,
-	Paragraph,
-	IconButton,
+  Text,
+  View,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  Button,
+  ImageBackground,
+  Linking,
+  Platform,
+  Alert
+} from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import {
+  Avatar,
+  Card,
+  Title,
+  Paragraph,
+  IconButton,
 } from "react-native-paper";
-// import { openComposer } from "react-native-email-link";
-import * as WebBrowser from 'expo-web-browser';
-// AUTO FILL EMAIL RECEPIENT NOT IMPLEMENTED YET
-// auto fill name can try to use open composer https://github.com/flexible-agency/react-native-email-link
+ 
+import Communications from "react-native-communications";
 
-export default class EmailScreen extends React.Component {
-    render() {
-        return (
-            <SafeAreaView style={styles.container}>
-                 <Button
-          title="Open Email"
-          onPress={this._handleOpenWithWebBrowser}
-          style={styles.button}
-        />
-                 <TouchableOpacity
-					onPress={() => {
-						console.log("fAQ0");
-					}}
-				>
-					<Card style={{ marginBottom: 10 }}>
-						<Card.Content>
-				
-							<Title>FAQ@hawkerpedia.com</Title>
 
-							<Paragraph>Contact us via Email for queries or feedback</Paragraph>
-						</Card.Content>
-					
-					</Card>
-				</TouchableOpacity>
-                
-            </SafeAreaView>
-        )
-    }
-
-    _handleOpenWithWebBrowser = () => {
-        WebBrowser.openBrowserAsync('https://gmail.com');
-      };
-
-   
+export default class EmailTrialScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bodayText: ""
+    };
+  }
+ 
+ 
+  /*Function to send the mail function(to, cc, bcc, subject, body)*/
+  openEmail = () => {
+    Communications.email(
+      ["rovereign455@gmail.com"],
+      null,
+      null,
+      "Query to CRAAPY",
+      null
+    );
+  };
+ 
+  render() {
+    return (
+      <View style={styles.container}>
+            <ImageBackground style={styles.background} source={require('../../assets/Background.png')} resizeMode="cover">      
+                    <Text style={styles.headerText}>Email</Text>
+            </ImageBackground>
+    <Card style={styles.card}>
+      <Card.Content>
+        <Title>Contact us via Email</Title>
+        <TouchableOpacity style={styles.button} onPress={this.openEmail}>
+          <Text>Send Email</Text>
+        </TouchableOpacity>
+      </Card.Content>
+    </Card>
+      </View>
+    );
+  }
 }
-
+ 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-      
-    }
-})
+  container: {
+    flex: 1,
+    backgroundColor: "#FFB899",
+    flexDirection:"column",
+    justifyContent:"flex-start"
+  },
+  background:{
+    width:"110%",
+    height:100,
+    //top:50,
+    //alignSelf: "flex-start",
+    //justifyContent: "flex-start",
+    position: "relative",
+    //borderColor: "black",
+    //borderWidth: 5,
+    marginBottom: 30
+  },
+  headerText:{
+      color:"white",
+      fontSize: 28,
+      fontWeight:"bold",
+      flexDirection: "column",
+      alignSelf:"center",
+      marginTop: 40,
+      marginRight:50
+  },
+  card:{
+    margin:20
+  },
+  button:{
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10,
+    marginTop: 20
+  }
+});

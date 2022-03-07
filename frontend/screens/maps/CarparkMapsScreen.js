@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{Component, useRef} from 'react';
 import {
   StyleSheet,
   View,
@@ -8,7 +8,8 @@ import {
  SafeAreaView,
  ScrollView,
  TouchableOpacity,
- Pressable
+ Pressable,
+ ImageBackground
 } from 'react-native';
 import {
 	Avatar,
@@ -24,6 +25,7 @@ import MapView,  { MAP_TYPES, PROVIDER_DEFAULT,PROVIDER_GOOGLE } from 'react-nat
 import { MaterialIcons } from "@expo/vector-icons";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
+import { Modalize } from 'react-native-modalize';
 
 const { width, height } = Dimensions.get('window');
 
@@ -74,7 +76,7 @@ const list = () => {
           <Card style={{ marginBottom: 10,width: 350}}>
 					<Card.Content>
               {/* <View key={element.key} style={{margin: 10}}> */}
-                <Text style={[ {fontWeight: 'light',fontSize: 25}]}>
+                <Text style={[ {fontSize: 25}]}>
                   {element.title}
                   </Text>
                 <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Lots Available: {element.lotsavail}</Text>
@@ -97,10 +99,16 @@ const list = () => {
 };
 
 const CarparkMapsScreen= () =>{
-
+  const modalizeRef = useRef(null);
+  const onOpen = () => {
+    modalizeRef.current?.open();
+  };
    
   return (
       <View style={styles.container}>
+                      <ImageBackground style={styles.background} source={require('../../assets/Background.png')} resizeMode="cover">      
+                <Text style={styles.headerText}>Carpark Map</Text>
+            </ImageBackground>     
         {/* <MapView
                 initialRegion={{
                 latitude: LATITUDE,
@@ -143,28 +151,30 @@ const CarparkMapsScreen= () =>{
          
 
               </MapView>
-        <SafeAreaView style={{ flex: 1, justifyContent: "bottom", alignItems: "center" }}>
-          <Button title="Show all Carparks" onPress={() => this.RBSheet.open() } />
-          <RBSheet
-            ref={ref => {
-              this.RBSheet = ref;
-            }}
-            height={300}
-            openDuration={300}
-            customStyles={{
-              container: {
-                justifyContent: "center",
-                alignItems: "center",
-                flex:1
-              }
-            }}
+        <SafeAreaView style={styles.test}>
+        <>
+      <TouchableOpacity style={styles.buttoncarpark} onPress={onOpen}>
+        <Text style={styles.Buttontext}>Show all Carparks</Text>
+      </TouchableOpacity>
+
+      <Modalize ref={modalizeRef}
+          scrollViewProps={{ showsVerticalScrollIndicator: false }}
+          snapPoint={400}
+          modalStyle={styles.modalcontainer}
+          HeaderComponent={
+            <View>
+              <Text style={styles.ModalHeadertext}>All Carparks</Text>
+            </View>
+          }
+          //withHandle={false}
+          //adjustToContentHeight={true}
           >
-        
-            <ScrollView horizontal={false} >{list()}</ScrollView>
-          </RBSheet>
+          <ScrollView horizontal={false} >{list()}</ScrollView>
+        </Modalize>
+    </>
+
       </SafeAreaView>
             {/* <Text>Custom Tiles</Text> */}
-         
        
       </View>
     );
@@ -188,7 +198,7 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    top: 0,
+    top:80,
     left: 0,
     right: 0,
     bottom: 0,
@@ -204,11 +214,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     alignItems: 'center',
     marginHorizontal: 10,
-  },
-  buttonContainer: {
-    // flexDirection: 'row',
-    marginVertical: 20,
-    backgroundColor: 'transparent',
   },
   button_box: {
     alignItems: 'center',
@@ -226,6 +231,72 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: 'white',
   },
+  background:{
+    width:"110%",
+    height:80,
+    //top:50,
+    //alignSelf: "flex-start",
+    //justifyContent: "flex-start",
+    position: "relative",
+    //borderColor: "black",
+    //borderWidth: 5,
+    marginBottom: 0
+},
+headerText:{
+    color:"white",
+    fontSize: 28,
+    fontWeight:"bold",
+    flexDirection: "column",
+    alignSelf:"center",
+    marginTop: 30
+},
+test:{
+  flex: 1, 
+  justifyContent: "flex-end",
+  alignItems: "center",
+ //borderColor:"blue",
+ //borderWidth:10
+},
+buttoncarpark:{
+  borderColor:"grey",
+  borderWidth:1,
+  backgroundColor: "#F3F3F3",
+  marginBottom: 10,
+  borderRadius:20,
+  opacity: 0.7
+
+},
+Buttontext:{
+  fontWeight:"bold",
+  fontSize: 15,
+  padding:15
+},
+modalcontainer:{
+  //borderWidth:5,
+  //borderColor: "blue",
+  height:100,
+  width:400,
+  marginRight:0,
+  alignSelf:"center",
+  alignItems:"center",
+  shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 3,
+},
+shadowOpacity: 0.27,
+shadowRadius: 4.65,
+
+elevation: 6,
+
+},
+ModalHeadertext:{
+  fontWeight:"bold",
+  fontSize: 25,
+  alignSelf:"center",
+  marginBottom:5,
+  padding:5
+}
 });
 
 module.exports = CarparkMapsScreen;

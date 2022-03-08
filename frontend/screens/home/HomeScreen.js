@@ -107,12 +107,22 @@ export default function homestack() {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options={{ headerShown: false }}
+        options={{
+          headerBackTitleVisible:false,
+          headerTitle:false,
+          headerTransparent:true,
+          headerTintColor:'#fff'
+      }}
       />
       <Stack.Screen
         name="Search"
         component={App}
-        options={{ headerShown: false }}
+        options={{
+          headerBackTitleVisible:false,
+          headerTitle:false,
+          headerTransparent:true,
+          headerTintColor:'#fff'
+      }}
       />
     </Stack.Navigator>
   );

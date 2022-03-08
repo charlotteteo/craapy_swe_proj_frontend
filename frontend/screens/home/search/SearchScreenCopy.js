@@ -19,6 +19,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Button,
+  ImageBackground,
   Image, } from 'react-native';
 import {
     Avatar,
@@ -96,9 +97,7 @@ function SearchScreenCopy({navigation}) {
                         {element.name}
                         </Text>
                       <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Address:{element.address}</Text>
-
-                       <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Ratings:{element.rating}</Text>
-
+    
                       <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Operation Hours:{element.operationhours}</Text>
     
                       <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Food Categories:{element.foodcategories}</Text>
@@ -170,16 +169,10 @@ function SearchScreenCopy({navigation}) {
         setn4(false)
         setn5(false)
       }
-      function clearAll() {
-        clearPressedCuisine()
-        clearPressedDistance()
-        clearPressedNeighbourhood()
-        clearPressedRatings()
-      }
   
     
       function checkFilter() {
-        namearray = ["20","40","60","80","90","Chinese","Thai","Japanese","French","100","300","500","1000","2000","Bukit Timah","Orchard","Changi","East Coast","Tampines","Bukit Panjang","Ang Mo Kio"]
+        namearray = ["r1","r2","r3","r4","r5","cuisine1","cuisine2","cuisine3","cuisine4","n1","n2","n3","n4","n5","a1","a2","a3","a4","a5","a6","a7"]
         listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7]
         length = listarray.length
         final = []
@@ -188,11 +181,9 @@ function SearchScreenCopy({navigation}) {
             final.push(namearray[i])
           }
         }
-        alert(final[0]) // only the first one for now
-
-        
-        //searchFilterFunction(final)
-        navigation.navigate("Results",{path:final[0],})     // SEARCHES for cuisine 
+        alert(final)
+  
+        //alert("HIII" + r1 + r2)
   
       }
     
@@ -230,6 +221,9 @@ function SearchScreenCopy({navigation}) {
 
     return (
       <SafeAreaView style={styles.container}>
+              <ImageBackground style={styles.background} source={require('../../../assets/Background.png')} resizeMode="cover">      
+                <Text style={styles.headerText}>Search</Text>
+            </ImageBackground>  
         <View style={styles.searchbar}>
           <SearchBar //style = {styles.searchbar}
             round
@@ -238,7 +232,7 @@ function SearchScreenCopy({navigation}) {
             onClear={(text) => searchFilterFunction('')}
             onSubmitEditing={()=>
                 navigation.navigate("Results",{path:search,})
-                //console.log(search)
+                // console.log(search)
             }
             
             placeholder="Search anything..."
@@ -296,14 +290,6 @@ function SearchScreenCopy({navigation}) {
       >
       
       <SafeAreaView>
-      <View>
-          <TouchableOpacity onPress={clearAll}> 
-            <Text style={styles.clearAllButton}> Clear All </Text>
-          </TouchableOpacity>
-
-        </View>
-      
-      
       <View style={styles.filterStyle}>
           <TouchableOpacity onPress={checkFilter}> 
             <Text style={styles.doneButton}> Done </Text>
@@ -538,8 +524,14 @@ const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
-		<Stack.Navigator headerMode="float">
-			<Stack.Screen name="Search" component={SearchScreenCopy} />
+		<Stack.Navigator headerMode='none'>
+			<Stack.Screen name="Search" component={SearchScreenCopy}         
+      options={{
+                  headerBackTitleVisible:false,
+                  headerTitle:false,
+                  headerTransparent:true,
+                  headerTintColor:'#fff'
+              }}/>
       <Stack.Screen name="Results" component={ResultsScreen} />
 		</Stack.Navigator>
 	);
@@ -549,12 +541,11 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     backgroundColor: "#FFFFFF",    // #FFB899 // maybe change to white
-  },
-  itemStyle: {
-    padding: 10,
+    alignContent:"flex-start"
   },
   searchbar: {
     backgroundColor: 'white',
+    marginTop:60
   },
 
   itemview: {
@@ -569,9 +560,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent:"center",
     position: "absolute",
-    right: 15,
-    top: 5,
-
+    right: 8,
+    top: 83,
     margin: 10,
     borderRadius: 20,
   },
@@ -580,14 +570,6 @@ const styles = StyleSheet.create({
     top: 10,
     right: 20,
   },
-
-  clearAllButton: {       // HARD TO PRESS - click above it...
-    top:35,
-    left:260,
-    color: "#1880FB",
-    fontSize: 18,
-  },
-
   filterfieldtitle: {
     paddingBottom:5,
     left: 10
@@ -618,5 +600,26 @@ const styles = StyleSheet.create({
     paddingBottom: "20%",
     paddingTop: "20%",
   },
+  background:{
+    width:"110%",
+    height:100,
+    //top:50,
+    //alignSelf: "flex-start",
+    //justifyContent: "flex-start",
+    position: "absolute",
+    //borderColor: "black",
+    //borderWidth: 5,
+    marginBottom: 50
+},
+headerText:{
+    color:"white",
+    fontSize: 28,
+    fontWeight:"bold",
+    flexDirection: "column",
+    alignSelf:"center",
+    marginTop: 30,
+    marginRight:15,
+    marginBottom:10
+}
 
 });

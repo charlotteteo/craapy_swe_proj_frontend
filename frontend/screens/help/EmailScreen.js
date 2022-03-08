@@ -58,6 +58,7 @@ export default class EmailTrialScreen extends Component {
         </TouchableOpacity>
       </Card.Content>
     </Card>
+    <Text style={{alignSelf:"center"}}>Or call our hotline at 9737 7893. Thank you!</Text>
       </View>
     );
   }

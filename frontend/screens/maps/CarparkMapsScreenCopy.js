@@ -8,6 +8,7 @@ import {
  SafeAreaView,
  ScrollView,
  TouchableOpacity,
+ ImageBackground
 } from 'react-native';
 import {
 	Avatar,
@@ -86,25 +87,10 @@ const CarparkMapsScreenCopy= () =>{
    
   return (
       <View style={styles.container}>
-         <MapView
-          provider={PROVIDER_DEFAULT}
-          mapType={MAP_TYPES.STANDARD}
-          style={styles.map}
-          initialRegion={{
-            latitude: LATITUDE,
-            longitude: LONGITUDE,
-            latitudeDelta: LATITUDE_DELTA,
-            longitudeDelta: LONGITUDE_DELTA,
-          }}
-        >
-           <WebView
-          source={{html: '<iframe width="980" height="2000" src="https://data.gov.sg/dataset/hawker-centres/resource/c2e33097-4f46-4ef5-91db-64eef290ca85/view/6cda5c46-895d-49ce-9c1c-0ac912365ca6" frameBorder="0"> </iframe>'}}
-         
-        />
-            {/* onRegionChangeComplete={(region) => setRegion(region)} */}
-            {/* <Marker coordinate={state.region} /> */}
-    
-              </MapView>
+              <ImageBackground style={styles.background} source={require('../../assets/Background.png')} resizeMode="cover">      
+                <Text style={styles.headerText}>Help Page</Text>
+            </ImageBackground>    
+
              
         <SafeAreaView style={{ flex: 1, justifyContent: "bottom", alignItems: "center" }}>
         <Button title="Show all Carparks" onPress={() => this.RBSheet.open() } />
@@ -147,6 +133,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: 'flex-end',
     alignItems: 'center',
+    //borderColor:"red",
+    //borderWidth:5
   },
   map: {
     position: 'absolute',
@@ -177,6 +165,25 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     backgroundColor: 'transparent',
   },
+  background:{
+    width:"110%",
+    height:100,
+    //top:50,
+    //alignSelf: "flex-start",
+    //justifyContent: "flex-start",
+    position: "relative",
+    //borderColor: "black",
+    //borderWidth: 5,
+    marginBottom: 0
+},
+headerText:{
+    color:"white",
+    fontSize: 28,
+    fontWeight:"bold",
+    flexDirection: "column",
+    alignSelf:"center",
+    marginTop: 45
+}
 });
 
 module.exports = CarparkMapsScreenCopy;

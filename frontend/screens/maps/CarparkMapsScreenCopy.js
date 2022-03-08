@@ -133,6 +133,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: 'flex-end',
     alignItems: 'center',
+    //borderColor:"red",
+    //borderWidth:5
   },
   map: {
     position: 'absolute',

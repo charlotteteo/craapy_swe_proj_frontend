@@ -222,7 +222,7 @@ function SearchScreenCopy({navigation}) {
     return (
       <SafeAreaView style={styles.container}>
               <ImageBackground style={styles.background} source={require('../../../assets/Background.png')} resizeMode="cover">      
-                <Text style={styles.headerText}>Help Page</Text>
+                <Text style={styles.headerText}>Search</Text>
             </ImageBackground>  
         <View style={styles.searchbar}>
           <SearchBar //style = {styles.searchbar}
@@ -524,8 +524,14 @@ const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
-		<Stack.Navigator headerMode="float">
-			<Stack.Screen name="Search" component={SearchScreenCopy} />
+		<Stack.Navigator headerMode='none'>
+			<Stack.Screen name="Search" component={SearchScreenCopy}         
+      options={{
+                  headerBackTitleVisible:false,
+                  headerTitle:false,
+                  headerTransparent:true,
+                  headerTintColor:'#fff'
+              }}/>
       <Stack.Screen name="Results" component={ResultsScreen} />
 		</Stack.Navigator>
 	);
@@ -535,12 +541,11 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
     backgroundColor: "#FFFFFF",    // #FFB899 // maybe change to white
-  },
-  itemStyle: {
-    padding: 10,
+    alignContent:"flex-start"
   },
   searchbar: {
     backgroundColor: 'white',
+    marginTop:60
   },
 
   itemview: {
@@ -555,9 +560,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent:"center",
     position: "absolute",
-    right: 15,
-    top: 5,
-
+    right: 8,
+    top: 83,
     margin: 10,
     borderRadius: 20,
   },
@@ -602,10 +606,10 @@ const styles = StyleSheet.create({
     //top:50,
     //alignSelf: "flex-start",
     //justifyContent: "flex-start",
-    position: "relative",
+    position: "absolute",
     //borderColor: "black",
     //borderWidth: 5,
-    marginBottom: 0
+    marginBottom: 50
 },
 headerText:{
     color:"white",
@@ -613,7 +617,9 @@ headerText:{
     fontWeight:"bold",
     flexDirection: "column",
     alignSelf:"center",
-    marginTop: 45
+    marginTop: 30,
+    marginRight:15,
+    marginBottom:10
 }
 
 });

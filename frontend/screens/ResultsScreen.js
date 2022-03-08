@@ -93,7 +93,7 @@ export default function homestack() {
 		<Stack.Navigator headerMode="float">
 			<Stack.Screen name="Info" component={InfoScreen} />
       <Stack.Screen name="Filter" component={FilterScreen} />
-      <Stack.Screen name="Results" component={ResultsScreen} />
+      <Stack.Screen name="ResultsScreen" component={ResultsScreen} />
 		</Stack.Navigator>
 	);
 }

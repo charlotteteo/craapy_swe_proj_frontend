@@ -10,6 +10,8 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import InfoScreen from "./screens/InfoScreen";
 import HomeScreen from "./screens/home/HomeScreen";
+
+import HomeScreenCopy from "./screens/home/HomeScreenCopy";
 import HelpScreen from "./screens/help/HelpScreen";
 import MapScreen from "./screens/maps/HawkerMaps";
 import CarparkScreen from "./screens/maps/CarparkMapsScreen";
@@ -51,7 +53,7 @@ export default function App() {
           inactiveTintColor: "darkgrey",
         }}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Home" component={HomeScreenCopy} />
         <Tab.Screen name="Maps" component={MapScreen} />
         <Tab.Screen name="Carparks" component={CarparkScreen} />
         <Tab.Screen name="Help" component={HelpScreen} />

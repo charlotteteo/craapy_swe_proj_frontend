@@ -190,6 +190,7 @@ function SearchScreen({navigation}) {
           />
         </View>
   
+      
         <TouchableOpacity
         style={styles.button}
         onPress={() => this.RBSheet.open()}       // MAKE IT NICER!!!!!!
@@ -448,6 +449,8 @@ function SearchScreen({navigation}) {
     </SafeAreaView>
   );
 };
+
+
 
 
 

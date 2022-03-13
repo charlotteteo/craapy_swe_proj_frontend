@@ -9,12 +9,14 @@ import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import InfoScreen from "./screens/InfoScreen";
+import HawkerMaps from "./screens/maps/HawkerMaps";
 import HomeScreen from "./screens/home/HomeScreen";
-
+import CarparksResultsScreen from "./screens/CarparksResultsScreen";
 import HomeScreenCopy from "./screens/home/HomeScreenCopy";
 import HelpScreen from "./screens/help/HelpScreen";
 import MapScreen from "./screens/maps/HawkerMaps";
-import CarparkScreen from "./screens/maps/CarparkMapsScreen";
+import NearbyCarparkMapsScreen from "./screens/maps/NearbyCarparkMapsScreen";
+import CarparkMapsScreen from "./screens/maps/CarparkMapsScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -54,8 +56,8 @@ export default function App() {
         }}
       >
         <Tab.Screen name="Home" component={HomeScreenCopy} />
-        <Tab.Screen name="Maps" component={MapScreen} />
-        <Tab.Screen name="Carparks" component={CarparkScreen} />
+        <Tab.Screen name="Maps" component={HawkerMaps} />
+        <Tab.Screen name="Carparks" component={CarparkMapsScreen} />
         <Tab.Screen name="Help" component={HelpScreen} />
       </Tab.Navigator>
     </NavigationContainer>

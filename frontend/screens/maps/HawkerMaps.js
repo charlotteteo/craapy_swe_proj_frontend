@@ -30,6 +30,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
 
+
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
@@ -57,12 +58,14 @@ const list = () => {
       _handleOpenWithWebBrowser = () => {
         WebBrowser.openBrowserAsync(element.Address);
       };
+
+
       return (
         
               <TouchableOpacity	
 
               onPress={() => 
-                navigation.navigate("ResultsScreen",{path:"element.name"})
+                navigation.navigate("ResultsScreen",{path:element.name})
          
               }
             >

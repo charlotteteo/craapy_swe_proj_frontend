@@ -34,99 +34,207 @@ import { Modalize } from 'react-native-modalize';
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
-const LATITUDE =  1.3109708;
-const LONGITUDE = 103.7861198;
+const LATITUDE =  1.339645028;
+const LONGITUDE = 103.7758026;
 const LATITUDE_DELTA = 0.0922;
 
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 
-function CarparkMapsScreen ({navigation}){
+
+function NearbyCarparkMapsScreen ({navigation,route}){
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const modalizeRef = useRef(null);
+  const {latitude,longitude}=route.params;
+  console.log(latitude,longitude)
   const onOpen = () => {
     modalizeRef.current?.open();}
-  const getMovies = async () => {
-     try {
-      const response = await fetch('http://localhost:8080/carparkcodes');
-      const json = await response.json();
 
-      setData(json);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    getMovies();
-  }, []);
-
-
-
-const markers =() => {
-  return data.map((element) => {
-    return(
-      <Marker coordinate = {{latitude: element.latitude,longitude: element.longitude} }/>
-    );
-  });
-};
-
-
-
-
-
-
-  const list = () => {
-   
-    return data.map((element) => {
-    
-      const address= 'https://www.google.com/maps?saddr=My+Location&daddr='+element.latitude+','+element.longitude
-      _handleOpenWithWebBrowser = () => {
-        WebBrowser.openBrowserAsync(address);
-      };
-
-      return (
+    const getMovies = async () => {
+       try {
+        const response = await fetch('http://localhost:8080/getcarparkinfo/'+latitude+longitude);
+        const json = await response.json();
+        setData(json);
+  
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
         
-              <TouchableOpacity	onPress={() => {
-                // navigation.navigate("NearbyCarpark",{path:element.car_park_no,})
-                
-            }}>
-
-           
-            <Card style={{ marginBottom: 10 }}>
-                      <Card.Content>
-                {/* <View key={element.key} style={{margin: 10}}> */}
-                  <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
-                    {element.name}
-                    </Text>
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Address:{element.address}</Text>
-
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Carpark Type:{element.car_park_type}</Text>
-
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Free Parking:{element.free_parking}</Text>
-
-            </Card.Content>
+      }
+    }
+  
+    useEffect(() => {
+      getMovies();
+    }, []);
+  
+  
+    const  list= () =>{
+  
+      return Object.keys(data).map(key => {
+        let obj = data[key];
+        obj.keyName = key;
+        
+        for (const item of carparksavailable) {
+          if (item.car_park_no === key) {
+            obj.name=item.address
+            obj.free_parking=item.free_parking
             
-            <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
+            break
+          }
+        }
+        obj.address= 'https://www.google.com/maps?saddr=My+Location&daddr='+obj.latitude+','+obj.longitude
+        _handleOpenWithWebBrowser = () => {
+          WebBrowser.openBrowserAsync(obj.address);
+        };
+        
+  
+        // console.log(response1)
+        return (
+          
+                <TouchableOpacity	onPress={() => {
+                  // navigation.navigate("Info")
+              
+              }}>
+  
+                
+  
+             
+              <Card style={{ marginBottom: 10 }}>
+                        <Card.Content>
+                  
+                    <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
+                      {obj.name}
+                      </Text>
+                    <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>keyName:{obj.keyName}</Text>
+  
+                    <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>lots avail:{obj.lotsAvailable}</Text>
+  
+                    <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>total lots:{obj.totalLots}</Text>
+                   
+                    <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>free parking:{obj.free_parking}</Text>
+                   
+                  
+                   
+              </Card.Content>
+    
+    
+    
+
+    <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
         <Text style={styles.text}>Open on Google Maps</Text>
   
       </Pressable>
-  
-  </Card>
-            </TouchableOpacity>
+      </Card>
+    
+
+
+              </TouchableOpacity>
+          
+        );
+      });
+    };
+    const  maps= () =>{
+      
+      return Object.keys(data).map(key => {
+        let obj = data[key];
+        obj.keyName = key;
+
+       
         
-      );
-    });
-  };
+        for (const item of carparksavailable) {
+          if (item.car_park_no === key) {
+            obj.name=item.address
+            obj.latitude=item.Coordinates.latitude
+            obj.longitude=item.Coordinates.longitude
+            break
+          }
+        }
+        obj.address= 'https://www.google.com/maps?saddr=My+Location&daddr='+obj.latitude+','+obj.longitude
+        _handleOpenWithWebBrowser = () => {
+          WebBrowser.openBrowserAsync(address);
+        };
+  
+        // console.log(response1)
+        return (
+          
+          <MapView.Marker 
+           coordinate = {{latitude: obj.latitude,longitude: obj.longitude} }
+           
+           
+          onPress={() => Alert.alert(
+            element.Name,
+            "Route in Google Maps",
+            [
+              
+              {
+                text: "No",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              {
+                text: "Yes",
+                onPress: () => WebBrowser.openBrowserAsync(obj.address)
+              }
+            ]
+            )
+              
+              
+              
+              }/>
+          
+        );
+      });
+    };
+  // const MapView = ()=>{
+  //   return Object.keys(data).map(key => {
+  //     let obj = data[key];
+  //     obj.keyName = key;
+  //     for (const item of carparksavailable) {
+  //       if (item.car_park_no === key) {
+  //         obj.name=item.address
+  //         obj.latitude=item.Coordinates.latitude
+  //         obj.longitude=item.Coordinates.longitude
+  //         break
+  //       }
+  //     }
+  //     return (
+      
+  //   <MapView.Marker 
+  //     coordinate = {{latitude: obj.latitude,longitude: obj.longitude} }
+
+  //     // onPress={() => Alert.alert(
+  //     //   element.Name,
+  //     //   "Route in Google Maps",
+  //     //   [
+          
+  //     //     {
+  //     //       text: "No",
+  //     //       onPress: () => console.log("Cancel Pressed"),
+  //     //       style: "cancel"
+  //     //     },
+  //     //     {
+  //     //       text: "Yes",
+  //     //       onPress: () => WebBrowser.openBrowserAsync(element.Address)
+  //     //     }
+  //     //   ]
+  //     //   )
+          
+          
+          
+  //     //     }
+  //         />
+  //        )})
+  // }
+
+
 
 
   return (
     <View style={styles.container}>
                     <ImageBackground style={styles.background} source={require('../../assets/Background.png')} resizeMode="cover">      
-              <Text style={styles.headerText}>Carpark Map</Text>
+              <Text style={styles.headerText}>Nearby Carparks Map</Text>
           </ImageBackground>     
       {/* <MapView
               initialRegion={{
@@ -159,38 +267,7 @@ const markers =() => {
          
      
           
-        
-          {data.map((element) => (
-        <MapView.Marker 
-        // FORMAT coordinate: {
-        //   latitude: 1.342339,
-        //   longitude: 103.7742345,
-        //   }
-          coordinate = {{latitude: element.latitude,longitude: element.longitude} }
-          title={element.title} 
-          onPress={() => Alert.alert(
-            element.Name,
-            "Route in Google Maps",
-            [
-              
-              {
-                text: "No",
-                onPress: () => console.log("Cancel Pressed"),
-                style: "cancel"
-              },
-              {
-                text: "Yes",
-                onPress: () => WebBrowser.openBrowserAsync(element.Address)
-              }
-            ]
-            )
-              
-              
-              
-              }
-              />
-            ))}
-                 
+       {maps()}
        
 
             </MapView>
@@ -198,6 +275,7 @@ const markers =() => {
       <>
     <TouchableOpacity style={styles.buttoncarpark} onPress={onOpen}>
       <Text style={styles.Buttontext}>Show all Carparks</Text>
+
     </TouchableOpacity>
 
     <Modalize ref={modalizeRef}
@@ -206,7 +284,7 @@ const markers =() => {
         modalStyle={styles.modalcontainer}
         HeaderComponent={
           <View>
-            <Text style={styles.ModalHeadertext}>All Carparks</Text>
+            <Text style={styles.ModalHeadertext}>Nearby Carparks</Text>
           </View>
         }
         //withHandle={false}
@@ -303,7 +381,7 @@ const styles = StyleSheet.create({
 },
 headerText:{
     color:"white",
-    fontSize: 28,
+    fontSize: 25,
     fontWeight:"bold",
     flexDirection: "column",
     alignSelf:"center",
@@ -367,8 +445,8 @@ export default function homestack() {
     <NavigationContainer>
 		  <Stack.Navigator headerMode="float">
     
-
-       
+  
+        
 
         <Stack.Screen name="CarparkInfoScreen" component={ResultsScreen}       
                 options={{
@@ -382,4 +460,4 @@ export default function homestack() {
 	);
 }
 
-module.exports = CarparkMapsScreen;
+module.exports = NearbyCarparkMapsScreen;

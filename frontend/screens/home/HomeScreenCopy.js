@@ -24,56 +24,64 @@ import {
   Paragraph,
   IconButton,
 } from "react-native-paper";
-import App from "./search/SearchScreenCopy";
+import SearchScreenCopy from "./search/SearchScreenCopy";
 import Choices from "./Choices"
 import {top10ratings}  from "../../assets/top10ratings";
 import { top10communityratings } from "../../assets/top10communityratings";
 import { healthychoices } from "../../assets/healthychoices";
-
-const ratingslist = () => {
-  return top10ratings.map((element) => {
-    const thumbnail=element.Thumbnail;
-    return (
-    
-      <Choices name={element.Name} 
-        imageUri={{uri:thumbnail}} />
-
-   
-    );
-  });
-};
-
-
-const healthyratingslist = () => {
-    return healthychoices.map((element) => {
-      const thumbnail=element.Thumbnail;
-      return (
-      
-        <Choices name={element.Name} 
-          imageUri={{uri:thumbnail}} />
-  
-     
-      );
-    });
-  };
-
-const communityratingslist = () => {
-    return top10communityratings.map((element) => {
-      const thumbnail=element.Thumbnail;
-      return (
-      
-        <Choices name={element.Name} 
-          imageUri={{uri:thumbnail}} />
-  
-     
-      );
-    });
-  };
+import InfoScreen from "../InfoScreen";
 
 
 function HomeScreenCopy({ navigation }) {
   const [wish, setWish] = useState(false);
-
+  const ratingslist = () => {
+    return top10ratings.map((element) => {
+      const thumbnail=element.Thumbnail;
+      return (
+      <TouchableOpacity
+      onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
+      >
+        
+        <Choices name={element.Name} 
+          imageUri={{uri:thumbnail}} />
+          </TouchableOpacity>
+  
+     
+      );
+    });
+  };
+  
+  
+  const healthyratingslist = () => {
+      return healthychoices.map((element) => {
+        const thumbnail=element.Thumbnail;
+        return (
+          <TouchableOpacity
+          onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
+          >
+          <Choices name={element.Name} 
+            imageUri={{uri:thumbnail}} />
+            </TouchableOpacity>
+        );
+      });
+    };
+  
+  const communityratingslist = () => {
+      return top10communityratings.map((element) => {
+        const thumbnail=element.Thumbnail;
+        return (
+        
+          <TouchableOpacity
+          onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
+      >
+          <Choices name={element.Name} 
+            imageUri={{uri:thumbnail}} />
+            </TouchableOpacity>
+       
+        );
+      });
+    };
+  
   return (
     <ScrollView>
       <View>
@@ -152,7 +160,17 @@ export default function homestack() {
       />
       <Stack.Screen
         name="Search"
-        component={App}
+        component={SearchScreenCopy}
+        options={{
+          headerBackTitleVisible:false,
+          headerTitle:false,
+          headerTransparent:true,
+          headerTintColor:'#fff'
+      }}
+      />
+         <Stack.Screen
+        name="InfoScreen"
+        component={InfoScreen}
         options={{
           headerBackTitleVisible:false,
           headerTitle:false,

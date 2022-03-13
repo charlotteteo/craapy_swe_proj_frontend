@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -7,106 +7,140 @@ import {
  Button,
  Image,
  SafeAreaView,
+ ImageBackground,
  ScrollView,
  TouchableOpacity,
  Pressable
 } from 'react-native';
 import {
-	Avatar,
-	Card,
-	Title,
-	Paragraph,
-	IconButton,
+  Avatar,
+  Card,
+  Title,
+  Paragraph,
+  IconButton,
 } from "react-native-paper";
-import {hawkerstalls} from '../assets/stall';
+import { createStackNavigator } from "@react-navigation/stack";
+import SearchScreen from "./home/search/SearchScreen";
+import FilterScreen from "./home/filter/FilterScreen";
+import ResultsScreen from "./ResultsScreen"
+import { NavigationContainer } from '@react-navigation/native';
+import NearbyCarparkMapsScreen from "./maps/NearbyCarparkMapsScreen";
+import * as WebBrowser from 'expo-web-browser';
 
-const List = () => {
-  return hawkerstalls.map((element) => {
+function InfoScreen ({ navigation,route}){
+  
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const {path}=route.params;
+  console.log(path)
+  const getMovies = async () => {
+     try {
+      // const response = await fetch('http://localhost:8080/search/De Sheng Shou Gong Mian Yu Tang');
+
+      const response = await fetch('http://localhost:8080/search/'+path);
+      const json = await response.json();
+  
+      setData(json);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
+  const List = () => {
+   return data.map((element) => {
+
+    const address= 'https://www.google.com/maps?saddr=My+Location&daddr='+element.hc_latitude+','+element.hc_longitude
+    _handleOpenWithWebBrowser = () => {
+      WebBrowser.openBrowserAsync(address);
+    };
     return (
-           <TouchableOpacity	onPress={() => {
-          }}>
-           <SafeAreaView>
-          <Card>
-					<Card.Content>
+      
+           <SafeAreaView >
+          <Card style= {{backgroundColor: "#FFB899"}}>
+          <Card.Content>
               {/* <View key={element.key} style={{margin: 10}}> */}
                 <Text  style={styles.paragraph}>
                   {element.name}
                   </Text>
-                <Card.Cover source={{ uri: element.imageUri }} />
+                <Card.Cover source={{ uri: element.thumbnail }} />
                 <Text style={styles.infotext}> 
-                <Image style={styles.small} source={require('../assets/star.png')} /> {" "}:  {element.hawkerpediarating} %
-                {"\n"}
-                <Image style={styles.small} source={require('../assets/location.png')} /> {" "}: {element.address} {"\n"}  
-                <Image style={styles.small} source={require('../assets/time.png')} />  {" "} : {element.hours}{"\n"} 
+                <ImageBackground style={styles.small} source={require('../assets/star.png')} /> {" "}: {element.rating} % {"\n"}  
+                <ImageBackground style={styles.small} source={require('../assets/location.png')} /> {" "}: {element.hawkercentrename} {"\n"}  
+                <ImageBackground style={styles.small} source={require('../assets/time.png')} />  {" "} : {element.operationhours}{"\n"} 
   
                 </Text>
           </Card.Content>
 </Card>
-</SafeAreaView>
-</TouchableOpacity>
-          
+
+          <Text  style={styles.infotext}>    
+          <Image style={styles.small} source={require('../assets/direction.png')} /> {" "} Directions:
+          </Text >
+          <View style={{ flexDirection:"row" }}>
+          <TouchableOpacity onPress={this._handleOpenWithWebBrowser}  
+          style={styles.button}>
+          <Image style={styles.med} source={require('../assets/bus.png')} />
+           <Text style={styles.infotext}>
+            Public Transport
+           </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>{
+            navigation.navigate("NearbyCarparkMapsScreen",{latitude:element.hc_latitude,longitude:element.hc_longitude})
+                   
+          }}
+          style={styles.button}>
+          <Image style={styles.med} source={require('../assets/car.png')} />
+           <Text style={styles.infotext}>
+            Car
+           </Text>
+          </TouchableOpacity >
+          <TouchableOpacity onPress={this._handleOpenWithWebBrowser} 
+          style={styles.button}>
+          <Image style={styles.med} source={require('../assets/walking.png')} />
+           <Text style={styles.infotext}>
+            Walking
+           </Text>
+          </TouchableOpacity>
+          </View>
+          </SafeAreaView>
     
    );
   });
 };
 
-const InfoScreen = () =>{
 
-  return (
-      <View style={styles.container}>
-      {List()}
-  <Text  style={styles.paragraph}>    
-<Image style={styles.small} source={require('../assets/direction.png')} /> {" "} Directions:
-</Text >
-<TouchableOpacity 
-    style={styles.button}>
-    <Image style={styles.med} source={require('../assets/bus.png')} />
-     <Text style={styles.infotext}>
-      Public Transport
-     </Text>
-    </TouchableOpacity>
-    <TouchableOpacity 
-    style={styles.buttonr}>
-    <Image style={styles.med} source={require('../assets/car.png')} />
-     <Text style={styles.infotext}>
-      Car
-     </Text>
-    </TouchableOpacity>
-    <TouchableOpacity 
-    style={styles.buttonl}>
-    <Image style={styles.med} source={require('../assets/walking.png')} />
-     <Text style={styles.infotext}>
-      Walking
-     </Text>
-    </TouchableOpacity>
+return (
+  <SafeAreaView>
+   {List()}
 
-      </View>
-    );
+  </SafeAreaView>
+);
   
 }
 
-
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 18,
     backgroundColor: "#FEE0D4"
   },
   paragraph: {
     margin: 24,
     marginTop: 0,
-    fontSize: 14,
+    fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'center',
     color : 'red',
   },
   infotext: {
-		color: "black",
+    color: "black",
     fontWeight: 'bold',
     textAlign: 'center',
-		fontSize: 10,
-	},
+    fontSize: 15,
+  },
   logo: {
     height: 128,
     width: 128,
@@ -120,40 +154,39 @@ const styles = StyleSheet.create({
     width: 10,
   },
   button: {         // tbh doesnt matter a lot haha
-    backgroundColor: "white", // dark mode: #303337
-    height: "22%",
+    backgroundColor: "pink", // dark mode: #303337
+    height: "50%",
     width: "22%",
     alignItems: "center",
     justifyContent:"center",
     margin: 10,
     borderRadius: 20
   },
-  buttonr: {         // tbh doesnt matter a lot haha
-    backgroundColor: "white", // dark mode: #303337
-    height: "20%",
-    width: "20%",
-    alignItems: "center",
-    justifyContent:"center",
-    position: "absolute",
-    right: 15,
-    bottom: 9,
-    margin: 10,
-    borderRadius: 20
-  },
-  buttonl: {         // tbh doesnt matter a lot haha
-    backgroundColor: "white", // dark mode: #303337
-    height: "20%",
-    width: "20%",
-    alignItems: "center",
-    justifyContent:"center",
-    position: "absolute",
-    left: 15,
-    bottom:  9,
-    margin: 10,
-    borderRadius: 20
-  },
+  
 });
 
-
+const Stack = createStackNavigator();
+export default function stacker() {
+  return (
+    <Stack.Navigator headerMode="float">
+{/* 
+    <Stack.Screen name="ResultsScreen" component={ResultsScreen} /> */}
+      <Stack.Screen name="Info" component={InfoScreen} 
+      options={{
+                headerBackTitleVisible:false,
+                headerTitle:false,
+                headerTransparent:true,
+                headerTintColor:'#fff'
+            }}/>
+       <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen} 
+      options={{
+                headerBackTitleVisible:false,
+                headerTitle:false,
+                headerTransparent:true,
+                headerTintColor:'#fff'
+            }}/>
+    </Stack.Navigator>
+  );
+}
 
 module.exports = InfoScreen;

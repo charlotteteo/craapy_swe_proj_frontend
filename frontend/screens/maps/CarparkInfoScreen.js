@@ -5,6 +5,7 @@ import SearchScreen from "./home/search/SearchScreen";
 import FilterScreen from "./home/filter/FilterScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import InfoScreen from "./InfoScreen";
+import CarparkMapsScreen from "./CarparkMapsScreen";
 import {
 	Avatar,
 	
@@ -15,7 +16,7 @@ import {
 } from "react-native-paper";
 
 
-function ResultsScreen ({ navigation,route }){
+function CarparkInfoScreen ({ navigation,route }){
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const {path} = route.params;
@@ -24,10 +25,9 @@ function ResultsScreen ({ navigation,route }){
 
   const getMovies = async () => {
      try {
-      const response = await fetch('http://localhost:8080/search/'+path);
-      console.log(path)
+      const response = await fetch('http://localhost:8080/carpark/'+path);
       const json = await response.json();
-  
+      console.log(json)
       setData(json);
     } catch (error) {
       console.error(error);
@@ -47,7 +47,8 @@ function ResultsScreen ({ navigation,route }){
       return (
         
               <TouchableOpacity	onPress={() => {
-                navigation.navigate("InfoScreen",{path:element.name})
+                navigation.navigate("Info")
+            
             }}>
 
            
@@ -89,12 +90,26 @@ const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
-		<Stack.Navigator headerMode="float">
-    <Stack.Screen name="ResultsScreen" component={ResultsScreen} />
-    	<Stack.Screen name="InfoScreen" component={InfoScreen} />
-		
-		</Stack.Navigator>
+    <NavigationContainer>
+		  <Stack.Navigator mode="none">
+          <Stack.Screen name="CarparkMapsScreen" component={CarparkMapsScreen}       
+        options={{
+                  headerBackTitleVisible:false,
+                  headerTitle:false,
+                  headerTransparent:true,
+                  headerTintColor:'#fff'
+              }}/>
+		  </Stack.Navigator>
+        <Stack.Screen name="CarparkInfoScreen" component={ResultsScreen}       
+        options={{
+                  headerBackTitleVisible:false,
+                  headerTitle:false,
+                  headerTransparent:true,
+                  headerTintColor:'#fff'
+              }}/>
+       
+    </NavigationContainer>
 	);
 }
 
-module.exports=ResultsScreen;
+module.exports=CarparkInfoScreen;

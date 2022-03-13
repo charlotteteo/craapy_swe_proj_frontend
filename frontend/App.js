@@ -15,7 +15,7 @@ import CarparksResultsScreen from "./screens/CarparksResultsScreen";
 import HomeScreenCopy from "./screens/home/HomeScreenCopy";
 import HelpScreen from "./screens/help/HelpScreen";
 import MapScreen from "./screens/maps/HawkerMaps";
-import NearbyCarparkMapsScreen from "./screens/maps/NearbyCarparkMapsScreen";
+import NearbyCarparkMapsScreenCopy from "./screens/maps/NearbyCarparkMapsScreenCopy";
 import CarparkMapsScreen from "./screens/maps/CarparkMapsScreen";
 
 const Tab = createBottomTabNavigator();

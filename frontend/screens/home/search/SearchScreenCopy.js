@@ -32,6 +32,7 @@ import {
 import { SearchBar } from 'react-native-elements';
 import { createStackNavigator } from "@react-navigation/stack";
 import FilterScreen from "../filter/FilterScreen";
+import NearbyCarparkMapsScreen from "../../maps/NearbyCarparkMapsScreen";
 
 function SearchScreenCopy({navigation}) {
 
@@ -86,7 +87,7 @@ function SearchScreenCopy({navigation}) {
           return (
             
                   <TouchableOpacity	onPress={() => {
-                  // should be able to change the map view not implemented
+                    navigation.navigate("InfoScreen",{path:element.name})
                 
                 }}>
       
@@ -544,6 +545,8 @@ export default function homestack() {
 		<Stack.Navigator headerMode="float">
 			<Stack.Screen name="Search" component={SearchScreenCopy} />
       <Stack.Screen name="Results" component={ResultsScreen} />
+      <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen} />
+      
 		</Stack.Navigator>
 	);
 }

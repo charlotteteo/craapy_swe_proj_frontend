@@ -15,6 +15,7 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import ResultsScreen from "../ResultsScreen";
+import HomeScreenCopy from "../home/HomeScreenCopy";
 import {
 	Avatar,
 	Card,
@@ -65,7 +66,8 @@ const list = () => {
               <TouchableOpacity	
 
               onPress={() => 
-                navigation.navigate("ResultsScreen",{path:element.name})
+                navigation.navigate("Results",{path:element.name})
+      
          
               }
             >
@@ -228,28 +230,12 @@ const Stack = createStackNavigator();
 export default function homestack() {
 	return (
     <NavigationContainer>
-		  <Stack.Navigator mode="none">
-        <Stack.Screen name="Search" component={SearchScreen}        
-        options={{
-                  headerBackTitleVisible:false,
-                  headerTitle:false,
-                  headerTransparent:true,
-                  headerTintColor:'#fff'
-              }} />
-        <Stack.Screen name="Filter" component={FilterScreen}       
-        options={{
-                  headerBackTitleVisible:false,
-                  headerTitle:false,
-                  headerTransparent:true,
-                  headerTintColor:'#fff'
-              }}/>
-        <Stack.Screen name="ResultsScreen" component={ResultsScreen}       
-        options={{
-                  headerBackTitleVisible:false,
-                  headerTitle:false,
-                  headerTransparent:true,
-                  headerTintColor:'#fff'
-              }}/>
+      <Stack.Navigator headerMode="float">
+        <Stack.Screen name="Home" component={HomeScreenCopy}/>
+       <Stack.Screen name="HawkerMaps" component={HawkerMaps} />
+    <Stack.Screen name="Results" component={ResultsScreen}  />      
+    <Stack.Screen name="InfoScreen" component={InfoScreen} />
+		
 		  </Stack.Navigator>
     </NavigationContainer>
 	);

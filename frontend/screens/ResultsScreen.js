@@ -5,6 +5,7 @@ import SearchScreen from "./home/search/SearchScreen";
 import FilterScreen from "./home/filter/FilterScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import InfoScreen from "./InfoScreen";
+import NearbyCarparkMapsScreen from "./maps/NearbyCarparkMapsScreen";
 import {
 	Avatar,
 	
@@ -92,7 +93,7 @@ export default function homestack() {
 		<Stack.Navigator headerMode="float">
     <Stack.Screen name="ResultsScreen" component={ResultsScreen} />
     	<Stack.Screen name="InfoScreen" component={InfoScreen} />
-		
+      <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen} />
 		</Stack.Navigator>
 	);
 }

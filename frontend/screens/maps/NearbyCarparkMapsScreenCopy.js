@@ -42,31 +42,53 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 
 
-function NearbyCarparkMapsScreen ({navigation,route}){
+ function NearbyCarparkMapsScreenCopy ({navigation}){
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const modalizeRef = useRef(null);
-  console.log(route.params)
-  const {latitude,longitude}=route.params;
-  console.log(latitude,longitude)
+
   const onOpen = () => {
     modalizeRef.current?.open();}
+  const getMovies=()=>{
+    return fetch('http://localhost:8080/getcarparkinfo/1.284682989/103.832428')
+    .then((response) => response.json())
+    .then((json) => {
+      return json;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+  console.log(getMovies())
+// const getMovies=async()=>{
+//   try {
 
-    const getMovies = async () => {
-       try {
-        const response=await fetch('http://localhost:8080/getcarparkinfo/ 1.313349962/103.7645874')
-        // const response = await fetch('http://localhost:8080/getcarparkinfo/'+latitude+ "/"+longitude);
-        const json = await response.json();
-        setData(json);
+//       const response=await fetch('http://localhost:8080/getcarparkinfo/1.284682989/103.832428')
      
-  
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-        
-      }
-    }
+       
+
+      // //  const response=await fetch('http://localhost:8080/getcarparkinfo/ 1.313349962/103.7645874')
+      // // const response = await fetch('http://localhost:8080/getcarparkinfo/'+latitude+ "/"+longitude);
+      // const json = await response.json();
+      // console.log(json)
+      // setData(json)
+      // console.log(data)
+      // return Object.keys(data).map(key => {
+       
+      //   let obj = data[key];
+      //   obj.keyName = key; 
+      //   console.log(obj)
+      
+      
+      // })
+
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //     setLoading(false);
+      
+  //   }
+  // }
   
     useEffect(() => {
       getMovies();
@@ -76,9 +98,9 @@ function NearbyCarparkMapsScreen ({navigation,route}){
     const  list= () =>{
   
       return Object.keys(data).map(key => {
+       
         let obj = data[key];
-        obj.keyName = key;
-        
+        obj.keyName = key; 
         for (const item of carparksavailable) {
           if (item.car_park_no === key) {
             obj.name=item.address
@@ -190,46 +212,8 @@ function NearbyCarparkMapsScreen ({navigation,route}){
         );
       });
     };
-  // const MapView = ()=>{
-  //   return Object.keys(data).map(key => {
-  //     let obj = data[key];
-  //     obj.keyName = key;
-  //     for (const item of carparksavailable) {
-  //       if (item.car_park_no === key) {
-  //         obj.name=item.address
-  //         obj.latitude=item.Coordinates.latitude
-  //         obj.longitude=item.Coordinates.longitude
-  //         break
-  //       }
-  //     }
-  //     return (
-      
-  //   <MapView.Marker 
-  //     coordinate = {{latitude: obj.latitude,longitude: obj.longitude} }
 
-  //     // onPress={() => Alert.alert(
-  //     //   element.Name,
-  //     //   "Route in Google Maps",
-  //     //   [
-          
-  //     //     {
-  //     //       text: "No",
-  //     //       onPress: () => console.log("Cancel Pressed"),
-  //     //       style: "cancel"
-  //     //     },
-  //     //     {
-  //     //       text: "Yes",
-  //     //       onPress: () => WebBrowser.openBrowserAsync(element.Address)
-  //     //     }
-  //     //   ]
-  //     //   )
-          
-          
-          
-  //     //     }
-  //         />
-  //        )})
-  // }
+
 
 
 
@@ -302,7 +286,7 @@ function NearbyCarparkMapsScreen ({navigation,route}){
      
     </View>
   );
-
+  
 }
 
 
@@ -463,4 +447,4 @@ export default function homestack() {
 	);
 }
 
-module.exports = NearbyCarparkMapsScreen;
+module.exports = NearbyCarparkMapsScreenCopy;

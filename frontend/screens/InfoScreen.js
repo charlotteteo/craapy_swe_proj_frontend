@@ -54,8 +54,7 @@ function InfoScreen ({ navigation,route}){
 
   const List = () => {
    return data.map((element) => {
-
-    const address= 'https://www.google.com/maps?saddr=My+Location&daddr='+element.hc_latitude+','+element.hc_longitude
+    address= 'https://www.google.com/maps?saddr=My+Location&daddr='+element.latitude_hc+','+element.longitude_hc
     _handleOpenWithWebBrowser = () => {
       WebBrowser.openBrowserAsync(address);
     };
@@ -90,7 +89,9 @@ function InfoScreen ({ navigation,route}){
            </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={()=>{
-            navigation.navigate("NearbyCarparkMapsScreen",{latitude:element.hc_latitude,longitude:element.hc_longitude})
+            navigation.navigate("NearbyCarparkMapsScreen",{latitude:element.latitude_hc,longitude:element.longitude_hc})
+
+            // navigation.navigate("NearbyCarparkMapsScreen",{latitude:element.hc_latitude,longitude:element.hc_longitude,})
                    
           }}
           style={styles.button}>

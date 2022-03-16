@@ -40,7 +40,7 @@ function SearchScreenCopy({navigation}) {
     const [filteredDataSource, setFilteredDataSource] = useState([]);
     const [masterDataSource, setMasterDataSource] = useState([]);
   
-    const getMovies = async () => {
+    const getHawkers = async () => {
         try {
          const response = await fetch('http://localhost:8080/hawkerstalls');
          const json = await response.json();
@@ -54,7 +54,7 @@ function SearchScreenCopy({navigation}) {
      }
    
      useEffect(() => {
-       getMovies();
+       getHawkers();
      }, []);
    
     const searchFilterFunction = (text) => {

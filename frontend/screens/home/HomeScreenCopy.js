@@ -24,6 +24,7 @@ import {
   Paragraph,
   IconButton,
 } from "react-native-paper";
+import SplashScreen from "../SplashScreen";
 import SearchScreenCopy from "./search/SearchScreenCopy";
 import Choices from "./Choices"
 import {top10ratings}  from "../../assets/top10ratings";
@@ -148,6 +149,7 @@ const Stack = createStackNavigator();
 export default function homestack() {
   return (
     <Stack.Navigator>
+
       <Stack.Screen
         name="Home"
         component={HomeScreenCopy}
@@ -221,6 +223,22 @@ const styles = StyleSheet.create({
     //lineHeight: 43,
     //letterSpacing: 0,
     //textAlign: 'center'
+  },
+  button_box: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 5,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: '#FFB899',
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
   },
   // headerSubtitle: {
   //   fontFamily: "sans-serif",

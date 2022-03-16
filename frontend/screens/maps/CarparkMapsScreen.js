@@ -99,21 +99,23 @@ const markers =() => {
             <Card style={{ marginBottom: 10 }}>
                       <Card.Content>
                 {/* <View key={element.key} style={{margin: 10}}> */}
-                  <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
+                  {/* <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
                     {element.name}
-                    </Text>
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Address:{element.address}</Text>
+                    </Text> */}
+                  <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center',}]}>{element.address}</Text>
 
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Carpark Type:{element.car_park_type}</Text>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',}]}>{element.car_park_type}</Text>
 
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Free Parking:{element.free_parking}</Text>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',}]}>Free Parking: {element.free_parking}</Text>
 
             </Card.Content>
-            
+            <View style={{alignItems:"center"}}>
             <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
+            <View style={{alignItems:"center"}}>
         <Text style={styles.text}>Open on Google Maps</Text>
-  
+        </View>
       </Pressable>
+      </View>
   
   </Card>
             </TouchableOpacity>
@@ -201,7 +203,7 @@ const markers =() => {
     </TouchableOpacity>
 
     <Modalize ref={modalizeRef}
-        scrollViewProps={{ showsVerticalScrollIndicator: false }}
+        scrollViewProps={{ showsVerticalScrollIndicator: true }}
         snapPoint={400}
         modalStyle={styles.modalcontainer}
         HeaderComponent={
@@ -275,13 +277,19 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   button_box: {
-    alignItems: 'center',
+
+    padding: 6,
+    height: 45,
+    width: 250,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    elevation: 5,
     justifyContent: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 5,
-    borderRadius: 4,
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    borderRadius: 2,
     elevation: 3,
-    backgroundColor: '#FFB899',
+    backgroundColor: '#ffbe30',
   },
   text: {
     fontSize: 16,
@@ -289,6 +297,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',
+    alignItems:"center"
   },
   background:{
     width:"110%",

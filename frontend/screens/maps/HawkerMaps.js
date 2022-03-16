@@ -16,6 +16,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import ResultsScreen from "../ResultsScreen";
 import HomeScreenCopy from "../home/HomeScreenCopy";
+import InfoScreen from "../InfoScreen";
 import {
 	Avatar,
 	Card,
@@ -74,23 +75,25 @@ const list = () => {
              <SafeAreaView>
             <Card style={{ marginBottom: 10,width: 350}}>
                       <Card.Content>
-                  <Text style={[ {fontSize: 25}]}>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center',}]}>
                     {element.Name}
             
                       </Text>
-                  <Text style={[ {fontSize: 18}]}>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',}]}>
                     Hawker Centre Closure:
                     </Text>
-                 <Text style={[ {fontSize: 16}]}>
+                 <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',}]}>
                     {element.q1_cleaningstartdate} to {element.q1_cleaningenddate}
             
                       </Text>
-             
-                  <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
+                      <View style={{alignItems:"center"}}>
+            <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
+            <View style={{alignItems:"center"}}>
         <Text style={styles.text}>Open on Google Maps</Text>
-  
+        </View>
       </Pressable>
-    
+      </View>
+  
                 
             </Card.Content>
   
@@ -276,13 +279,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   button_box: {
-    alignItems: 'center',
+
+    padding: 6,
+    height: 45,
+    width: 250,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    elevation: 5,
     justifyContent: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 5,
-    borderRadius: 4,
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    borderRadius: 2,
     elevation: 3,
-    backgroundColor: '#FFB899',
+    backgroundColor: '#ffbe30',
   },
   text: {
     fontSize: 16,
@@ -291,6 +300,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: 'white',
   },
+
   background:{
     width:"110%",
     height:80,

@@ -153,6 +153,7 @@ function SearchScreenCopy({navigation}) {
         Setcuisine2(false)
         Setcuisine3(false)
         Setcuisine4(false)
+        Setcuisine5(false)
       }
       function clearPressedNeighbourhood(){
         seta1(false)
@@ -179,9 +180,9 @@ function SearchScreenCopy({navigation}) {
   
     
       function checkFilter() {
-        namearray = ["20","40","60","80","90","Chinese","Thai","Japanese","French","0.1","0.3","0.5","1","2",
+        namearray = ["20","40","60","80","90","Chinese","Western","Indian","Thai","Japanese","0.1","0.3","0.5","1","2",
               "Ardmore, Bukit Timah, Holland Road, Tanglin","Orchard, Cairnhill, River Valley","Jurong","Little India","Tampines, Pasir Ris","Queenstown, Tiong Bahru","Raffles Place, Cecil, Marina, Peoples Park"]
-        listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7]
+        listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,cuisine5,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7]
         length = listarray.length
         final = []
         for (let i=0; i<length; i++) {
@@ -189,7 +190,7 @@ function SearchScreenCopy({navigation}) {
             final.push(namearray[i])
           }
         }
-        //alert(final) // only the first one for now
+        alert(final) // only the first one for now
 
         
         //searchFilterFunction(final)
@@ -203,6 +204,7 @@ function SearchScreenCopy({navigation}) {
   const [cuisine2, Setcuisine2] = useState(false);
   const [cuisine3, Setcuisine3] = useState(false);
   const [cuisine4, Setcuisine4] = useState(false);
+  const [cuisine5, Setcuisine5] = useState(false);
 
   // ratings
   const [r1, setr1] = useState(false);
@@ -254,23 +256,23 @@ function SearchScreenCopy({navigation}) {
 
   // distance
   function setn1fx() {
-    setn1(!r1)
+    setn1(!n1)
     setn2(false), setn3(false), setn4(false), setn5(false)
   }
   function setn2fx() {
-    setn2(!r2)
+    setn2(!n2)
     setn1(false), setn3(false), setn4(false), setn5(false)
   }
   function setn3fx() {
-    setn3(!r3)
+    setn3(!n3)
     setn1(false), setn2(false), setn4(false), setn5(false)
   }
   function setn4fx() {
-    setn4(!r4)
+    setn4(!n4)
     setn1(false), setn2(false), setn3(false), setn5(false)
   }
   function setn5fx() {
-    setn5(!r5)
+    setn5(!n5)
     setn1(false), setn2(false), setn3(false), setn4(false)
   }
 
@@ -450,19 +452,24 @@ function SearchScreenCopy({navigation}) {
             onPress={() => Setcuisine1(!cuisine1)}
         />
         <CheckBox
-            title="Thai"
+            title="Western"
             checked={cuisine2}
             onPress={() => Setcuisine2(!cuisine2)}
         />
         <CheckBox
-            title="Japanese"
+            title="Indian"
             checked={cuisine3}
             onPress={() => Setcuisine3(!cuisine3)}
         />
         <CheckBox
-          title="French"
+          title="Thai"
           checked={cuisine4}
           onPress={() => Setcuisine4(!cuisine4)}
+        />
+        <CheckBox
+          title="Japanese"
+          checked={cuisine5}
+          onPress={() => Setcuisine5(!cuisine5)}
         />
       </ScrollView>
       </Card.Content>
@@ -514,7 +521,7 @@ function SearchScreenCopy({navigation}) {
 
   
       <ScrollView horizontal={true}>
-      <Card style={{ marginBottom: 10,width:320,height:340,flexDirection:"column"}}>
+      <Card style={{ marginBottom: 10,paddingBottom: 25, width:320,height:340,flexDirection:"column"}}>   
                       <Card.Content>
                 {/* <View key={element.key} style={{margin: 10}}> */}
                 <View style ={styles.filterfieldtitle}>

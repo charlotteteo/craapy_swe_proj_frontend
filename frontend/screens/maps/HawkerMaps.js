@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
   },
   button: {
     // flexDirection: 'row',
-    width: 100,
+    width: 100,  //100
     paddingHorizontal: 12,
     alignItems: 'center',
     marginHorizontal: 10,
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
 
     padding: 6,
     height: 45,
-    width: 250,
+    width: 250,   //250
     // justifyContent: 'center',
     // alignItems: 'center',
     elevation: 5,
@@ -310,10 +310,14 @@ headerText:{
 },
 test:{
   flex: 1, 
+  marginRight: "-30%",    // doesnt work
+  marginLeft: "-30%",
+  //flexDirection: "row",
   justifyContent: "flex-end",
   alignItems: "center",
- //borderColor:"blue",
- //borderWidth:10
+  //test
+  borderColor:"blue",
+  borderWidth:10
 },
 buttoncarpark:{
   borderColor:"grey",
@@ -333,7 +337,7 @@ modalcontainer:{
   //borderWidth:5,
   //borderColor: "blue",
   height:100,
-  width:400,
+  width:400,   //400
   marginRight:0,
   alignSelf:"center",
   alignItems:"center",
@@ -343,7 +347,7 @@ shadowOffset: {
 	height: 3,
 },
 shadowOpacity: 0.27,
-shadowRadius: 4.65,
+shadowRadius: 4.65, // 4.65
 
 elevation: 6,
 

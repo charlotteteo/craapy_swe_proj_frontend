@@ -114,7 +114,7 @@ const list = () => {
 
   return (
       <View style={styles.container}>
-                              <ImageBackground style={styles.background} source={require('../../assets/Background.png')} resizeMode="cover">      
+                <ImageBackground style={styles.background} source={require('../../assets/Background.png')} resizeMode="cover">      
                 <Text style={styles.headerText}>Hawker Map</Text>
             </ImageBackground>  
         {/* <MapView
@@ -177,19 +177,7 @@ const list = () => {
         ))}
              
          
-             
-          
-
-
-
-
-
-
-
-
-
-
-
+    
 
               </MapView>
         <SafeAreaView style={styles.test}>

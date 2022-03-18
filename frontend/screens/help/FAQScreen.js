@@ -24,7 +24,7 @@ const list = ()=>{
     return (faq.map((element)=>{
         return(
     
-    <Card style={{ marginBottom: 10 ,backgroundColor:"#FFC30B"}}>
+    <Card style={{ marginBottom: 10 ,borderColor:"#FFC30B",borderWidth:1.5}}>
         <Card.Content>
 
             <Title>{element.name}</Title>

@@ -96,18 +96,20 @@ const markers =() => {
             }}>
 
            
-            <Card style={{ marginBottom: 10 }}>
+            <Card style={{ marginBottom: 10,borderColor:"#FFC30B",borderWidth:1.5,width:350 }}>
                       <Card.Content>
                 {/* <View key={element.key} style={{margin: 10}}> */}
                   {/* <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
                     {element.name}
                     </Text> */}
+                   
                   <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center',}]}>{element.address}</Text>
+                  <Text></Text>
 
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',}]}>{element.car_park_type}</Text>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>{element.car_park_type}</Text>
 
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',}]}>Free Parking: {element.free_parking}</Text>
-
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>Free Parking: {element.free_parking}</Text>
+<Text></Text>
             </Card.Content>
             <View style={{alignItems:"center"}}>
             <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
@@ -115,6 +117,7 @@ const markers =() => {
         <Text style={styles.text}>Open on Google Maps</Text>
         </View>
       </Pressable>
+      <Text></Text>
       </View>
   
   </Card>

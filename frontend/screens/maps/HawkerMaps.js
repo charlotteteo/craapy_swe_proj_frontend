@@ -73,12 +73,14 @@ const list = () => {
               }
             >
              <SafeAreaView>
-            <Card style={{ marginBottom: 10,width: 350}}>
+             <Card style={{ marginBottom: 10,borderColor:"#FFC30B",borderWidth:1.5,width: 350}}>
                       <Card.Content>
+                  
                   <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center',}]}>
                     {element.Name}
-            
+                
                       </Text>
+                      <Text></Text>
                   <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>
                     Hawker Centre Closure:
                     </Text>
@@ -86,6 +88,7 @@ const list = () => {
                     {element.q1_cleaningstartdate} to {element.q1_cleaningenddate}
             
                       </Text>
+                      <Text></Text>
                       <View style={{alignItems:"center"}}>
             <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
             <View style={{alignItems:"center"}}>

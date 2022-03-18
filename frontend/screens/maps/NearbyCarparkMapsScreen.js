@@ -108,20 +108,22 @@ function NearbyCarparkMapsScreen ({navigation,route}){
                 
   
              
-              <Card style={{ marginBottom: 10 ,alignItems:"center" }}>
+  <Card style={{ marginBottom: 10,borderColor:"#FFC30B",borderWidth:1.5 ,alignItems:"center",width:350}}>
                         <Card.Content>
                         <View style={{alignItems:"center"}}>
+                        
                     <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
                       {obj.name}
                       </Text>
-                    <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>keyName:{obj.keyName}</Text>
+                      <Text></Text>
+                    <Text style={[ {fontWeight: 'bold',fontSize: 15,color:'#c2c2c2'}]}>Carpark Code:{obj.keyName}</Text>
   
-                    <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>lots avail:{obj.lotsAvailable}</Text>
+                    <Text style={[ {fontWeight: 'bold',fontSize: 15,color:'#c2c2c2'}]}>lots avail:{obj.lotsAvailable}</Text>
   
-                    <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>total lots:{obj.totalLots}</Text>
+                    <Text style={[ {fontWeight: 'bold',fontSize: 15,color:'#c2c2c2'}]}>total lots:{obj.totalLots}</Text>
                    
-                    <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>free parking:{obj.free_parking}</Text>
-                   
+                    <Text style={[ {fontWeight: 'bold',fontSize: 15,color:'#c2c2c2'}]}>free parking:{obj.free_parking}</Text>
+                    <Text></Text>
                   </View>
                    
               </Card.Content>
@@ -136,6 +138,7 @@ function NearbyCarparkMapsScreen ({navigation,route}){
         </View>
      
       </Pressable>
+      <Text></Text>
       </View>
       </Card>
     

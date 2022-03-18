@@ -93,7 +93,8 @@ const styles = StyleSheet.create({
   },
   card:{
     margin:20,
-    backgroundColor:"#FFC30B",
+    borderColor:"#FFC30B",
+    borderWidth:1.5,
 
   },
   button:{

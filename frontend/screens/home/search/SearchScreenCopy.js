@@ -40,7 +40,7 @@ function SearchScreenCopy({navigation}) {
     const [filteredDataSource, setFilteredDataSource] = useState([]);
     const [masterDataSource, setMasterDataSource] = useState([]);
   
-    const getMovies = async () => {
+    const getHawkers = async () => {
         try {
          const response = await fetch('http://localhost:8080/hawkerstalls');
          const json = await response.json();
@@ -54,7 +54,7 @@ function SearchScreenCopy({navigation}) {
      }
    
      useEffect(() => {
-       getMovies();
+       getHawkers();
      }, []);
    
     const searchFilterFunction = (text) => {
@@ -153,6 +153,7 @@ function SearchScreenCopy({navigation}) {
         Setcuisine2(false)
         Setcuisine3(false)
         Setcuisine4(false)
+        Setcuisine5(false)
       }
       function clearPressedNeighbourhood(){
         seta1(false)
@@ -179,8 +180,9 @@ function SearchScreenCopy({navigation}) {
   
     
       function checkFilter() {
-        namearray = ["20","40","60","80","90","Chinese","Thai","Japanese","French","100","300","500","1000","2000","Bukit Timah","Orchard","Changi","East Coast","Tampines","Bukit Panjang","Ang Mo Kio"]
-        listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7]
+        namearray = ["20","40","60","80","90","Chinese","Western","Indian","Thai","Japanese","0.1","0.3","0.5","1","2",
+              "Ardmore, Bukit Timah, Holland Road, Tanglin","Orchard, Cairnhill, River Valley","Jurong","Little India","Tampines, Pasir Ris","Queenstown, Tiong Bahru","Raffles Place, Cecil, Marina, Peoples Park"]
+        listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,cuisine5,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7]
         length = listarray.length
         final = []
         for (let i=0; i<length; i++) {
@@ -188,11 +190,11 @@ function SearchScreenCopy({navigation}) {
             final.push(namearray[i])
           }
         }
-        alert(final[0]) // only the first one for now
+        alert(final) // only the first one for now
 
         
         //searchFilterFunction(final)
-        navigation.navigate("Results",{path:final[0],})     // SEARCHES for cuisine 
+        navigation.navigate("Results",{path:final,})     // SEARCHES for cuisine 
   
       }
     
@@ -202,6 +204,7 @@ function SearchScreenCopy({navigation}) {
   const [cuisine2, Setcuisine2] = useState(false);
   const [cuisine3, Setcuisine3] = useState(false);
   const [cuisine4, Setcuisine4] = useState(false);
+  const [cuisine5, Setcuisine5] = useState(false);
 
   // ratings
   const [r1, setr1] = useState(false);
@@ -228,6 +231,52 @@ function SearchScreenCopy({navigation}) {
   const [n5, setn5] = useState(false);
 
 
+    // remove all other checkboxes when toggling
+  // ratings
+  function setr1fx() {
+    setr1(!r1)
+    setr2(false), setr3(false), setr4(false), setr5(false)
+  }
+  function setr2fx() {
+    setr2(!r2)
+    setr1(false), setr3(false), setr4(false), setr5(false)
+  }
+  function setr3fx() {
+    setr3(!r3)
+    setr1(false), setr2(false), setr4(false), setr5(false)
+  }
+  function setr4fx() {
+    setr4(!r4)
+    setr1(false), setr2(false), setr3(false), setr5(false)
+  }
+  function setr5fx() {
+    setr5(!r5)
+    setr1(false), setr2(false), setr3(false), setr4(false)
+  }
+
+  // distance
+  function setn1fx() {
+    setn1(!n1)
+    setn2(false), setn3(false), setn4(false), setn5(false)
+  }
+  function setn2fx() {
+    setn2(!n2)
+    setn1(false), setn3(false), setn4(false), setn5(false)
+  }
+  function setn3fx() {
+    setn3(!n3)
+    setn1(false), setn2(false), setn4(false), setn5(false)
+  }
+  function setn4fx() {
+    setn4(!n4)
+    setn1(false), setn2(false), setn3(false), setn5(false)
+  }
+  function setn5fx() {
+    setn5(!n5)
+    setn1(false), setn2(false), setn3(false), setn4(false)
+  }
+
+
     return (
       <SafeAreaView style={styles.container}>
       <ImageBackground style={styles.background} source={require('../../../assets/Background.png')} resizeMode="cover">      
@@ -240,7 +289,7 @@ function SearchScreenCopy({navigation}) {
     onChangeText={(text) => searchFilterFunction(text)}
     onClear={(text) => searchFilterFunction('')}
     onSubmitEditing={()=>
-        navigation.navigate("Results",{path:search,})
+        navigation.navigate("Results",{path:[search],})
         // console.log(search)
     }
     
@@ -344,32 +393,36 @@ function SearchScreenCopy({navigation}) {
           <CheckBox
             title="1 Star"
             checked={r1}
-            onPress={() => setr1(!r1)
+            onPress={() => 
+              setr1fx()
             }
           />
           <CheckBox
               title="2 Stars"
               checked={r2}
-              onPress={() => setr2(!r2)}
-        
+              onPress={() => 
+                setr2fx()
+              }
           />
           <CheckBox
               title="3 Stars"
               checked={r3}
-              onPress={() => setr3(!r3)}
-        
+              onPress={() => 
+                setr3fx()
+              }
           />
           <CheckBox
               title="4 Stars"
               checked={r4}
-              onPress={() => setr4(!r4)}
-        
+              onPress={() => 
+                setr4fx()
+              }
           />
           <CheckBox
               title="5 Stars"
               checked={r5}
               onPress={() => 
-                setr5(!r5)
+                setr5fx()
               }
           />
           </ScrollView>
@@ -399,19 +452,24 @@ function SearchScreenCopy({navigation}) {
             onPress={() => Setcuisine1(!cuisine1)}
         />
         <CheckBox
-            title="Thai"
+            title="Western"
             checked={cuisine2}
             onPress={() => Setcuisine2(!cuisine2)}
         />
         <CheckBox
-            title="Japanese"
+            title="Indian"
             checked={cuisine3}
             onPress={() => Setcuisine3(!cuisine3)}
         />
         <CheckBox
-          title="French"
+          title="Thai"
           checked={cuisine4}
           onPress={() => Setcuisine4(!cuisine4)}
+        />
+        <CheckBox
+          title="Japanese"
+          checked={cuisine5}
+          onPress={() => Setcuisine5(!cuisine5)}
         />
       </ScrollView>
       </Card.Content>
@@ -434,27 +492,27 @@ function SearchScreenCopy({navigation}) {
           <CheckBox
             title="<100m"
             checked={n1}
-            onPress={() => setn1(!n1)}
+            onPress={() => setn1fx()}
           />
           <CheckBox              
               title="<300m"
               checked={n2}
-              onPress={() => setn2(!n2)}
+              onPress={() => setn2fx()}
           />
           <CheckBox
               title="<500m"
               checked={n3}
-              onPress={() => setn3(!n3)}
+              onPress={() => setn3fx()}
           />
           <CheckBox
               title="<1km"
               checked={n4}
-              onPress={() => setn4(!n4)}
+              onPress={() => setn4fx()}
           />
           <CheckBox
               title="<2km"
               checked={n5}
-              onPress={() => setn5(!n5)}
+              onPress={() => setn5fx()}
           />
       </ScrollView>
       </Card.Content>
@@ -463,7 +521,7 @@ function SearchScreenCopy({navigation}) {
 
   
       <ScrollView horizontal={true}>
-      <Card style={{ marginBottom: 10,width:320,height:340,flexDirection:"column"}}>
+      <Card style={{ marginBottom: 10,paddingBottom: 25, width:320,height:340,flexDirection:"column"}}>   
                       <Card.Content>
                 {/* <View key={element.key} style={{margin: 10}}> */}
                 <View style ={styles.filterfieldtitle}>
@@ -486,12 +544,12 @@ function SearchScreenCopy({navigation}) {
           onPress={() => seta2(!a2)}
         />
         <CheckBox
-          title="Changi"
+          title="Jurong"
           checked={a3}
           onPress={() => seta3(!a3)}
         />
         <CheckBox
-          title="East Coast"
+          title="Little India"
           checked={a4}
           onPress={() => seta4(!a4)}
         />
@@ -501,12 +559,12 @@ function SearchScreenCopy({navigation}) {
           onPress={() => seta5(!a5)}
         />
         <CheckBox
-          title="Bukit Panjang"
+          title="Queenstown"
           checked={a6}
           onPress={() => seta6(!a6)}
         />
         <CheckBox
-          title="Ang Mo Kio"
+          title="Raffles Place"
           checked={a7}
           onPress={() => seta7(!a7)}
         />

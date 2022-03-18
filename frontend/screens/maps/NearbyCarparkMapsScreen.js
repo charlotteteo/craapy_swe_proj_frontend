@@ -49,8 +49,9 @@ function NearbyCarparkMapsScreen ({navigation,route}){
   console.log(route.params)
   const {latitude,longitude}=route.params;
   console.log(latitude,longitude)
+
   const LATITUDE =  latitude;
-const LONGITUDE = longitude;
+  const LONGITUDE = longitude;
   const onOpen = () => {
     modalizeRef.current?.open();}
 
@@ -59,6 +60,7 @@ const LONGITUDE = longitude;
         // const response=await fetch('http://localhost:8080/getcarparkinfo/ 1.313349962/103.7645874')
         const response = await fetch('http://localhost:8080/getcarparkinfo/'+latitude+ "/"+longitude);
         const json = await response.json();
+
         setData(json);
         console.log(data)
   
@@ -127,10 +129,14 @@ const LONGITUDE = longitude;
     
     
 
-    <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
+              <View style={{alignItems:"center"}}>
+            <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
+            <View style={{alignItems:"center"}}>
         <Text style={styles.text}>Open on Google Maps</Text>
-  
+        </View>
+     
       </Pressable>
+      </View>
       </Card>
     
 
@@ -151,8 +157,6 @@ const LONGITUDE = longitude;
           obj.keyName = key;
     
       
-
-       
           
           for (const item of carparksavailable) {
             if (item.car_park_no === key) {
@@ -201,48 +205,6 @@ const LONGITUDE = longitude;
         
         
     })};
-  // const MapView = ()=>{
-  //   return Object.keys(data).map(key => {
-  //     let obj = data[key];
-  //     obj.keyName = key;
-  //     for (const item of carparksavailable) {
-  //       if (item.car_park_no === key) {
-  //         obj.name=item.address
-  //         obj.latitude=item.Coordinates.latitude
-  //         obj.longitude=item.Coordinates.longitude
-  //         break
-  //       }
-  //     }
-  //     return (
-      
-  //   <MapView.Marker 
-  //     coordinate = {{latitude: obj.latitude,longitude: obj.longitude} }
-
-  //     // onPress={() => Alert.alert(
-  //     //   element.Name,
-  //     //   "Route in Google Maps",
-  //     //   [
-          
-  //     //     {
-  //     //       text: "No",
-  //     //       onPress: () => console.log("Cancel Pressed"),
-  //     //       style: "cancel"
-  //     //     },
-  //     //     {
-  //     //       text: "Yes",
-  //     //       onPress: () => WebBrowser.openBrowserAsync(element.Address)
-  //     //     }
-  //     //   ]
-  //     //   )
-          
-          
-          
-  //     //     }
-  //         />
-  //        )})
-  // }
-
-
 
 
   return (
@@ -250,6 +212,8 @@ const LONGITUDE = longitude;
                     <ImageBackground style={styles.background} source={require('../../assets/Background.png')} resizeMode="cover">      
               <Text style={styles.headerText}>Nearby Carparks Map</Text>
           </ImageBackground>     
+
+
       {/* <MapView
               initialRegion={{
               latitude: LATITUDE,
@@ -279,6 +243,12 @@ const LONGITUDE = longitude;
           zIndex={-1}
         />
          
+          
+         <MapView.Marker 
+            coordinate = {{latitude: latitude,longitude: longitude}} 
+            pinColor={"#FFc166"}
+            title={"DESTINATION"} />
+            
      
           
        {maps()}
@@ -367,13 +337,19 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   button_box: {
-    alignItems: 'center',
+
+    padding: 6,
+    height: 45,
+    width: 250,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    elevation: 5,
     justifyContent: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 5,
-    borderRadius: 4,
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    borderRadius: 2,
     elevation: 3,
-    backgroundColor: '#FFB899',
+    backgroundColor: '#ffbe30',
   },
   text: {
     fontSize: 16,
@@ -381,6 +357,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',
+    alignItems:"center"
   },
   background:{
     width:"110%",
@@ -395,7 +372,7 @@ const styles = StyleSheet.create({
 },
 headerText:{
     color:"white",
-    fontSize: 25,
+    fontSize: 28,
     fontWeight:"bold",
     flexDirection: "column",
     alignSelf:"center",
@@ -449,7 +426,6 @@ ModalHeadertext:{
   padding:5
 }
 });
-
 
 
 const Stack = createStackNavigator();

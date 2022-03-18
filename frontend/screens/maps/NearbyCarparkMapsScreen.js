@@ -101,16 +101,16 @@ function NearbyCarparkMapsScreen ({navigation,route}){
         return (
           
                 <TouchableOpacity	onPress={() => {
-                  // navigation.navigate("Info")
+                  //YIPING AND ANANYA B -- navigate from here :)))
               
               }}>
   
                 
   
              
-              <Card style={{ marginBottom: 10 }}>
+              <Card style={{ marginBottom: 10 ,alignItems:"center" }}>
                         <Card.Content>
-                  
+                        <View style={{alignItems:"center"}}>
                     <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
                       {obj.name}
                       </Text>
@@ -122,7 +122,7 @@ function NearbyCarparkMapsScreen ({navigation,route}){
                    
                     <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>free parking:{obj.free_parking}</Text>
                    
-                  
+                  </View>
                    
               </Card.Content>
     
@@ -349,14 +349,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 2,
     elevation: 3,
-    backgroundColor: '#ffbe30',
+    backgroundColor: '#ffde17',
   },
   text: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
-    color: 'white',
+    color: 'black',
     alignItems:"center"
   },
   background:{

@@ -38,14 +38,27 @@ function HomeScreenCopy({ navigation }) {
   const [wish, setWish] = useState(false);
   const ratingslist = () => {
     return top10ratings.map((element) => {
-      const thumbnail=element.Thumbnail;
       return (
       <TouchableOpacity
       onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
       >
-        
-        <Choices name={element.Name} 
-          imageUri={{uri:thumbnail}} />
+        <Card style={{width:250,height:250 ,alignItems:"center"}}>
+          <Card.Content>
+
+            <Text style={{fontSize:15}}>
+              {element.Name}
+            </Text>
+            <Text></Text>
+            <Card.Cover source={{ uri: element.Thumbnail }} style={{height:200,width:150}} />
+
+            
+           
+          </Card.Content>
+         
+        </Card>
+       
+        {/* <Choices name={element.Name} 
+          imageUri={{uri:thumbnail}} /> */}
           </TouchableOpacity>
   
      
@@ -61,9 +74,22 @@ function HomeScreenCopy({ navigation }) {
           <TouchableOpacity
           onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
           >
-          <Choices name={element.Name} 
-            imageUri={{uri:thumbnail}} />
-            </TouchableOpacity>
+          <Card style={{width:250,height:250 ,alignItems:"center"}}>
+          <Card.Content>
+
+            <Text style={{fontSize:15}}>
+              {element.Name}
+            </Text>
+            <Text></Text>
+            <Card.Cover source={{ uri: element.Thumbnail }} style={{height:200,width:150}} />
+
+            
+           
+          </Card.Content>
+         
+        </Card>
+       
+        </TouchableOpacity>
         );
       });
     };
@@ -76,8 +102,21 @@ function HomeScreenCopy({ navigation }) {
           <TouchableOpacity
           onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
       >
-          <Choices name={element.Name} 
-            imageUri={{uri:thumbnail}} />
+           <Card style={{width:250,height:250 ,alignItems:"center"}}>
+          <Card.Content>
+
+            <Text style={{fontSize:15, }}>
+              {element.Name}
+            </Text>
+            <Text></Text>
+            <Card.Cover source={{ uri: element.Thumbnail }} style={{height:200,width:150}} />
+
+            
+           
+          </Card.Content>
+         
+        </Card>
+       
             </TouchableOpacity>
        
         );

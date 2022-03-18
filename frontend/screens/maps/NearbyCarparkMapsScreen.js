@@ -30,12 +30,12 @@ import { MaterialIcons } from "@expo/vector-icons";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
+import InfoScreen from "../InfoScreen";
 
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
-const LATITUDE =  1.339645028;
-const LONGITUDE = 103.7758026;
+
 const LATITUDE_DELTA = 0.0922;
 
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
@@ -49,16 +49,18 @@ function NearbyCarparkMapsScreen ({navigation,route}){
   console.log(route.params)
   const {latitude,longitude}=route.params;
   console.log(latitude,longitude)
+  const LATITUDE =  latitude;
+const LONGITUDE = longitude;
   const onOpen = () => {
     modalizeRef.current?.open();}
 
     const getMovies = async () => {
        try {
-        const response=await fetch('http://localhost:8080/getcarparkinfo/ 1.313349962/103.7645874')
-        // const response = await fetch('http://localhost:8080/getcarparkinfo/'+latitude+ "/"+longitude);
+        // const response=await fetch('http://localhost:8080/getcarparkinfo/ 1.313349962/103.7645874')
+        const response = await fetch('http://localhost:8080/getcarparkinfo/'+latitude+ "/"+longitude);
         const json = await response.json();
         setData(json);
-     
+        console.log(data)
   
       } catch (error) {
         console.error(error);
@@ -141,55 +143,64 @@ function NearbyCarparkMapsScreen ({navigation,route}){
     const  maps= () =>{
       
       return Object.keys(data).map(key => {
+        console.log(key,data[key])
+        if (data[key]==null){
+          data[key]={"totalLots":277,"lotType":"C","lotsAvailable":20}
+        }
         let obj = data[key];
-        obj.keyName = key;
+          obj.keyName = key;
+    
+      
 
        
-        
-        for (const item of carparksavailable) {
-          if (item.car_park_no === key) {
-            obj.name=item.address
-            obj.latitude=item.Coordinates.latitude
-            obj.longitude=item.Coordinates.longitude
-            break
+          
+          for (const item of carparksavailable) {
+            if (item.car_park_no === key) {
+              obj.name=item.address
+              obj.latitude=item.Coordinates.latitude
+              obj.longitude=item.Coordinates.longitude
+              break
+            }
           }
-        }
-        obj.address= 'https://www.google.com/maps?saddr=My+Location&daddr='+obj.latitude+','+obj.longitude
-        _handleOpenWithWebBrowser = () => {
-          WebBrowser.openBrowserAsync(address);
-        };
-  
-        // console.log(response1)
-        return (
-          
-          <MapView.Marker 
-           coordinate = {{latitude: obj.latitude,longitude: obj.longitude} }
-           
-           
-          onPress={() => Alert.alert(
-            element.Name,
-            "Route in Google Maps",
-            [
-              
-              {
-                text: "No",
-                onPress: () => console.log("Cancel Pressed"),
-                style: "cancel"
-              },
-              {
-                text: "Yes",
-                onPress: () => WebBrowser.openBrowserAsync(obj.address)
-              }
-            ]
-            )
-              
-              
-              
-              }/>
-          
-        );
-      });
-    };
+          obj.address= 'https://www.google.com/maps?saddr=My+Location&daddr='+obj.latitude+','+obj.longitude
+          _handleOpenWithWebBrowser = () => {
+            WebBrowser.openBrowserAsync(address);
+          };
+    
+          // console.log(response1)
+          return (
+            
+            <MapView.Marker 
+            coordinate = {{latitude: obj.latitude,longitude: obj.longitude} }
+            
+            
+            onPress={() => Alert.alert(
+              element.Name,
+              "Route in Google Maps",
+              [
+                
+                {
+                  text: "No",
+                  onPress: () => console.log("Cancel Pressed"),
+                  style: "cancel"
+                },
+                {
+                  text: "Yes",
+                  onPress: () => WebBrowser.openBrowserAsync(obj.address)
+                }
+              ]
+              )
+                
+                
+                
+                }/>
+            
+          );
+        
+        
+        
+        
+    })};
   // const MapView = ()=>{
   //   return Object.keys(data).map(key => {
   //     let obj = data[key];
@@ -449,8 +460,7 @@ export default function homestack() {
 		  <Stack.Navigator headerMode="float">
     
   
-        
-
+  
         <Stack.Screen name="CarparkInfoScreen" component={ResultsScreen}       
                 options={{
                           headerBackTitleVisible:false,
@@ -458,6 +468,15 @@ export default function homestack() {
                           headerTransparent:true,
                           headerTintColor:'#fff'
                       }}/>  
+
+            
+      <Stack.Screen name="Info" component={InfoScreen} 
+      options={{
+                headerBackTitleVisible:false,
+                headerTitle:false,
+                headerTransparent:true,
+                headerTintColor:'#fff'
+            }}/>
 		  </Stack.Navigator>
     </NavigationContainer>
 	);

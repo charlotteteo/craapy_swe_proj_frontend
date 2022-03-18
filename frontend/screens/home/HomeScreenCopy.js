@@ -2,6 +2,7 @@
 
  
 import React, { useState } from "react";
+import NearbyCarparkMapsScreen from "../maps/NearbyCarparkMapsScreen";
 import {
   Text,
   View,
@@ -180,6 +181,13 @@ export default function homestack() {
           headerTintColor:'#fff'
       }}
       />
+      <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen} 
+      options={{
+                headerBackTitleVisible:false,
+                headerTitle:false,
+                headerTransparent:true,
+                headerTintColor:'#fff'
+            }}/>
     </Stack.Navigator>
   );
 }
@@ -223,22 +231,6 @@ const styles = StyleSheet.create({
     //lineHeight: 43,
     //letterSpacing: 0,
     //textAlign: 'center'
-  },
-  button_box: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 5,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: '#FFB899',
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
   },
   // headerSubtitle: {
   //   fontFamily: "sans-serif",

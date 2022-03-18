@@ -89,9 +89,9 @@ function InfoScreen ({ navigation,route}){
            </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={()=>{
-            navigation.navigate("NearbyCarparkMapsScreen",{latitude:element.latitude_hc,longitude:element.longitude_hc})
+            // navigation.navigate("NearbyCarparkMapsScreen",{latitude:1.311102033,longitude:103.7949448})
 
-            // navigation.navigate("NearbyCarparkMapsScreen",{latitude:element.hc_latitude,longitude:element.hc_longitude,})
+            navigation.navigate("NearbyCarparkMapsScreen",{latitude:element.latitude_hc,longitude:element.longitude_hc,})
                    
           }}
           style={styles.button}>
@@ -170,8 +170,8 @@ const Stack = createStackNavigator();
 export default function stacker() {
   return (
     <Stack.Navigator headerMode="float">
-{/* 
-    <Stack.Screen name="ResultsScreen" component={ResultsScreen} /> */}
+
+      <Stack.Screen name="ResultsScreen" component={ResultsScreen} /> 
       <Stack.Screen name="Info" component={InfoScreen} 
       options={{
                 headerBackTitleVisible:false,

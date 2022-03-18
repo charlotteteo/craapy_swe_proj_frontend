@@ -47,7 +47,7 @@ export default class EmailTrialScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-            <ImageBackground style={styles.background} source={require('../../assets/Background.png')} resizeMode="cover">      
+            <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
                     <Text style={styles.headerText}>Email</Text>
             </ImageBackground>
     <Card style={styles.card}>
@@ -67,7 +67,7 @@ export default class EmailTrialScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFB899",
+    backgroundColor: "white",
     flexDirection:"column",
     justifyContent:"flex-start"
   },
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     marginBottom: 30
   },
   headerText:{
-      color:"white",
+      color:"black",
       fontSize: 28,
       fontWeight:"bold",
       flexDirection: "column",
@@ -92,7 +92,9 @@ const styles = StyleSheet.create({
       marginRight:50
   },
   card:{
-    margin:20
+    margin:20,
+    backgroundColor:"#FFC30B",
+
   },
   button:{
     alignItems: "center",

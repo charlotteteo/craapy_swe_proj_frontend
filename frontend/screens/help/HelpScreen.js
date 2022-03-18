@@ -15,9 +15,11 @@ import EmailScreen from "./EmailScreen";
 function HelpScreen({ navigation }) {
 	return (
 		<View style={styles.container}>
-      <ImageBackground style={styles.background} source={require('../../assets/Background.png')} resizeMode="cover">      
+           
+      <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
                 <Text style={styles.headerText}>Help Page</Text>
             </ImageBackground>     
+
 			<TouchableOpacity
 				style={styles.button}
 				onPress={() => navigation.navigate("FAQ")}
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
 
         //justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#FFB899",
+        backgroundColor: "white",
     },
 
     button: {
@@ -84,7 +86,8 @@ const styles = StyleSheet.create({
         height: "30%",
         width: "60%",
         alignItems: "center",
-
+        borderColor:"black",
+        borderWidth:5,
         marginTop: 40,
         marginBottom:15,
         borderRadius: 20,
@@ -113,8 +116,8 @@ const styles = StyleSheet.create({
         marginBottom: 0
     },
     headerText:{
-        color:"white",
-        fontSize: 28,
+        color:"black",
+        fontSize: 24,
         fontWeight:"bold",
         flexDirection: "column",
         alignSelf:"center",

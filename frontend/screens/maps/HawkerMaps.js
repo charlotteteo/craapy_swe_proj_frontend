@@ -79,10 +79,10 @@ const list = () => {
                     {element.Name}
             
                       </Text>
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',}]}>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>
                     Hawker Centre Closure:
                     </Text>
-                 <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',}]}>
+                 <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>
                     {element.q1_cleaningstartdate} to {element.q1_cleaningenddate}
             
                       </Text>
@@ -114,7 +114,7 @@ const list = () => {
 
   return (
       <View style={styles.container}>
-                              <ImageBackground style={styles.background} source={require('../../assets/Background.png')} resizeMode="cover">      
+                              <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
                 <Text style={styles.headerText}>Hawker Map</Text>
             </ImageBackground>  
         {/* <MapView
@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
     marginBottom: 0
 },
 headerText:{
-    color:"white",
+    color:"black",
     fontSize: 28,
     fontWeight:"bold",
     flexDirection: "column",

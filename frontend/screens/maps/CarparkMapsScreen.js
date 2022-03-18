@@ -127,7 +127,7 @@ const markers =() => {
 
   return (
     <View style={styles.container}>
-                    <ImageBackground style={styles.background} source={require('../../assets/Background.png')} resizeMode="cover">      
+                    <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
               <Text style={styles.headerText}>Carpark Map</Text>
           </ImageBackground>     
       {/* <MapView
@@ -311,8 +311,8 @@ const styles = StyleSheet.create({
     marginBottom: 0
 },
 headerText:{
-    color:"white",
-    fontSize: 28,
+    color:"black",
+    fontSize: 24,
     fontWeight:"bold",
     flexDirection: "column",
     alignSelf:"center",

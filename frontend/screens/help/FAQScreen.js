@@ -23,9 +23,8 @@ import {faq} from "../../assets/faq";
 const list = ()=>{
     return (faq.map((element)=>{
         return(
-    <TouchableOpacity
->
-    <Card style={{ marginBottom: 10 }}>
+    
+    <Card style={{ marginBottom: 10 ,backgroundColor:"#FFC30B"}}>
         <Card.Content>
 
             <Title>{element.name}</Title>
@@ -34,7 +33,7 @@ const list = ()=>{
         </Card.Content>
     
     </Card>
-</TouchableOpacity>);
+);
 
     }));
   };
@@ -48,7 +47,7 @@ function FAQScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <ImageBackground style={styles.background} source={require('../../assets/Background.png')} resizeMode="cover">      
+            <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
                 <Text style={styles.headerText}>FAQ Page</Text>
             </ImageBackground>
          
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
 
         //justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#FFB899",
+        backgroundColor: "white",
     },
 
     button: {
@@ -133,7 +132,7 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
     headerText:{
-        color:"white",
+        color:"black",
         fontSize: 28,
         fontWeight:"bold",
         flexDirection: "column",

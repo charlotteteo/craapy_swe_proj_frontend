@@ -291,14 +291,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 2,
     elevation: 3,
-    backgroundColor: '#ffbe30',
+    backgroundColor: '#ffde17',
   },
   text: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
-    color: 'white',
+    color: 'black',
   },
 
   background:{

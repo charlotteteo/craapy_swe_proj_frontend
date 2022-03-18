@@ -113,7 +113,8 @@ const styles = StyleSheet.create({
         position: "relative",
         //borderColor: "black",
         //borderWidth: 5,
-        marginBottom: 0
+        marginBottom: 0,
+
     },
     headerText:{
         color:"black",

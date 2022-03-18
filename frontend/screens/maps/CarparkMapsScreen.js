@@ -30,7 +30,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
-
+import { reducedcarparksavailable } from '../../assets/reducedcarparksavailability';
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
@@ -42,34 +42,34 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 
 function CarparkMapsScreen ({navigation}){
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
+  // const [isLoading, setLoading] = useState(tßrue);
+  // const [data, setData] = useState([]);
   const modalizeRef = useRef(null);
   const onOpen = () => {
     modalizeRef.current?.open();}
-  const getMovies = async () => {
-     try {
-      const response = await fetch('http://localhost:8080/carparkcodes');
-      const json = await response.json();
+  // const getMovies = async () => {
+  //    try {
+  //     const response = await fetch('http://localhost:8080/carparkcodes');
+  //     const json = await response.json();
 
-      setData(json);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }
+  //     setData(json);
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
 
-  useEffect(() => {
-    getMovies();
-  }, []);
-
+  // useEffect(() => {
+  //   getMovies();
+  // }, []);
+  const data=reducedcarparksavailable;
 
 
 const markers =() => {
   return data.map((element) => {
     return(
-      <Marker coordinate = {{latitude: element.latitude,longitude: element.longitude} }/>
+      <Marker coordinate = {element.Coordinates }/>
     );
   });
 };
@@ -168,7 +168,7 @@ const markers =() => {
         //   latitude: 1.342339,
         //   longitude: 103.7742345,
         //   }
-          coordinate = {{latitude: element.latitude,longitude: element.longitude} }
+          coordinate = {element.Coordinates}
           title={element.title} 
           onPress={() => Alert.alert(
             element.Name,

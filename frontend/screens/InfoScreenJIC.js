@@ -19,9 +19,6 @@ import {
   Paragraph,
   IconButton,
 } from "react-native-paper";
-//import {CSVLink, CSVDownload} from 'react-csv';
-//import {writeJsonFile} from 'write-json-file';
-
 import { createStackNavigator } from "@react-navigation/stack";
 import SearchScreen from "./home/search/SearchScreen";
 import FilterScreen from "./home/filter/FilterScreen";
@@ -30,18 +27,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import NearbyCarparkMapsScreen from "./maps/NearbyCarparkMapsScreen";
 import * as WebBrowser from 'expo-web-browser';
 
-import * as FileSystem from 'expo-file-system';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-
 function InfoScreen ({ navigation,route}){
   
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const {path}=route.params;
   console.log(path)
-
-
   const getMovies = async () => {
      try {
       // const response = await fetch('http://localhost:8080/search/De Sheng Shou Gong Mian Yu Tang');
@@ -50,94 +41,12 @@ function InfoScreen ({ navigation,route}){
       const json = await response.json();
   
       setData(json);
-  
-
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
     }
-
-
-    // IF need to reset the history
-    /*
-      try {
-        await AsyncStorage.removeItem('history');
-      }
-      catch(error) {
-          //error;
-      }
-      */
-
-
-    try {
-      var jsonString = await AsyncStorage.getItem('history');
-      if (jsonString == null) {
-        // We INITIALIZE jsonstring
-        console.log(jsonString)
-        jsonString = '{"history1":"Holland V Coffee & Drink", "history2":"Xiang Jiang Soya Sauce Chicken", "history3":"Depot Road Zhen Shan Mei Laksa","history4":"Hock Kee Fried Kway Teow","history5":"Kwang Kee Teochew Fish Porridge","history6":"The Sugarcane Plant", "history7":"Ma Bo", "history8":"Teck Kee Hot & Cold Dessert","history9":"Ramen Taisho","history10":"Kwang Kee Teochew Fish Porridge"}';
-        try {
-          await AsyncStorage.setItem(
-            'history',
-            jsonString
-          );
-        } catch (error) {
-          // Error saving data
-        }
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
-    
-    
-
-
-    //edot
-    
-    try {
-      var jsonString = await AsyncStorage.getItem('history');
-      if (jsonString !== null) {
-        // We have data!!
-        jsonHistory = JSON.parse(jsonString);
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
-
-
-    console.log(jsonHistory);
-
-    for (let i = 9; i > 0; i--) {     // hardcoded btw 
-      jsonHistory["history" + (i+1).toString()] = jsonHistory["history" + (i).toString()];   
-    }
-
-    jsonHistory["history1"] = path;
-
-    console.log(jsonHistory);
-
-    jsonString = JSON.stringify(jsonHistory);
-    try {
-      await AsyncStorage.setItem(
-        'history',
-        jsonString
-      );
-    } catch (error) {
-      // Error saving data
-    }
-
-    
-
-    
-    
-
-
-
-    
   }
-
-
-
-
 
   useEffect(() => {
     getMovies();
@@ -167,6 +76,7 @@ function InfoScreen ({ navigation,route}){
                 </Text>
           </Card.Content>
 </Card>
+
           <Text  style={styles.infotext}>    
           <Image style={styles.small} source={require('../assets/direction.png')} /> {" "} Directions:
           </Text >

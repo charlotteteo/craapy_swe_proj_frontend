@@ -112,12 +112,22 @@ function HomeScreenCopy({ navigation }) {
         </View>
         <ScrollView scrollEventThrottle={16}>
           <View style={{flex:1, backgroundColor:"white", paddingTop:10}}>
+          <Text style={styles.scrolltitle}>Recent</Text>
+          <View style={{height:130, marginTop:20}}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+           {ratingslist()}
+            </ScrollView>
+          </View>
+          </View>
+          
+          <View style={{flex:1, backgroundColor:"white", paddingTop:10}}>
           <Text style={styles.scrolltitle}>All Time Favourites</Text>
           <View style={{height:130, marginTop:20}}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
            {ratingslist()}
             </ScrollView>
           </View>
+
           <View>
             <Text style={styles.scrolltitle}>Trending</Text>
             <View style={{height:130, marginTop:20}}>

@@ -601,9 +601,27 @@ const Stack = createStackNavigator();
 export default function homestack() {
 	return (
 		<Stack.Navigator headerMode="float">
-			<Stack.Screen name="Search" component={SearchScreenCopy} />
-      <Stack.Screen name="Results" component={ResultsScreen} />
-      <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen} />
+			<Stack.Screen name="Search" component={SearchScreenCopy} 
+                      options={{
+                        headerBackTitleVisible:false,
+                        headerTitle:false,
+                        headerTransparent:true,
+                        headerTintColor:'#fff'
+                    }}/>
+      <Stack.Screen name="Results" component={ResultsScreen} 
+                      options={{
+                        headerBackTitleVisible:false,
+                        headerTitle:false,
+                        headerTransparent:true,
+                        headerTintColor:'#fff'
+                    }}/>
+      <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen}
+                      options={{
+                        headerBackTitleVisible:false,
+                        headerTitle:false,
+                        headerTransparent:true,
+                        headerTintColor:'#fff'
+                    }} />
       
 		</Stack.Navigator>
 	);

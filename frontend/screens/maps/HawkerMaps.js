@@ -31,6 +31,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
+import CarparkInfoScreen from '../maps/CarparkInfoScreen'
 
 
 const { width, height } = Dimensions.get('window');
@@ -210,6 +211,18 @@ const list = () => {
               <Text style={styles.ModalHeadertext}>All Hawker Centres</Text>
             </View>
           }
+          overlayStyle={{
+            flex:1,
+            position:"relative",
+            right:200,
+            //justifyContent:"center",
+            alignSelf:"center",
+            width:1000,
+            marginRight:100,
+            paddingRight:100,
+        
+            backgroundColor: 'rgba(0, 0, 0, 0.65)',
+          }}
           //withHandle={false}
           //adjustToContentHeight={true}
           >
@@ -241,7 +254,7 @@ export default function homestack() {
        <Stack.Screen name="HawkerMaps" component={HawkerMaps} />
     <Stack.Screen name="Results" component={ResultsScreen}  />      
     <Stack.Screen name="InfoScreen" component={InfoScreen} />
-		
+		<Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen} />
 		  </Stack.Navigator>
     </NavigationContainer>
 	);

@@ -1,7 +1,7 @@
 export const top10communityratings=[
 	{
 		"Id" : 5809,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/highlight-item/20201107/XoVLk5anaaEC_kwangkee_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/highlight-item/20201107/XoVLk5anaaEC_kwangkee_sf.jpg",
 		"Name" : "Kwang Kee Teochew Fish Porridge",
 		"Rating" : 78,
 		"Hawkercentrename" : "Newton Food Centre",
@@ -27,7 +27,7 @@ export const top10communityratings=[
 	},
 	{
 		"Id" : 5249,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/hawker-centre-manually/Holland Village Mkt _ FC (Near HV MRT) (277700)/koreanstall_sf.JPG",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/hawker-centre-manually/Holland Village Mkt _ FC (Near HV MRT) (277700)/koreanstall_sf.JPG",
 		"Name" : "Korean Stall",
 		"Rating" : 71,
 		"Hawkercentrename" : "Holland Village Market & Food Centre",
@@ -53,7 +53,7 @@ export const top10communityratings=[
 	},
 	{
 		"Id" : 5362,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/highlight-item/20201108/PSrtX8J61goO_shengkee_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/highlight-item/20201108/PSrtX8J61goO_shengkee_sf.jpg",
 		"Name" : "Sheng Kee Curry Chicken Noodle",
 		"Rating" : 94,
 		"Hawkercentrename" : "Berseh Food Centre",
@@ -79,7 +79,7 @@ export const top10communityratings=[
 	},
 	{
 		"Id" : 5380,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/highlight-item/20201123/EaY3XjHGk63w_hag4ejPEB4Au_3hainanesechickenrice_m1.JPG",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/article/20201102/aGhxQYd9UN8f_Screenshot%202020-11-02%20at%2011.09.44%20AM.png",
 		"Name" : "3 Hainanese Chicken Rice",
 		"Rating" : 75,
 		"Hawkercentrename" : "Bukit Timah Market",
@@ -131,7 +131,7 @@ export const top10communityratings=[
 	},
 	{
 		"Id" : 5276,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/stall/20210913/CiIVFRZGF3cT_Selera Rasa Nasi Lemak @ Adam Road FC.jpeg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/stall/20210913/CiIVFRZGF3cT_Selera Rasa Nasi Lemak @ Adam Road FC.jpeg",
 		"Name" : "Selera Rasa Nasi Lemak",
 		"Rating" : 82,
 		"Hawkercentrename" : "Adam Road Food Centre",
@@ -157,7 +157,7 @@ export const top10communityratings=[
 	},
 	{
 		"Id" : 5402,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/hawker-centre-manually/Bukit Timah Mkt (588215)/nyonyachendol_m1.JPG",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/hawker-centre-manually/Bukit Timah Mkt (588215)/nyonyachendol_m1.JPG",
 		"Name" : "Nyonya Chendol",
 		"Rating" : 85,
 		"Hawkercentrename" : "Bukit Timah Market",
@@ -183,7 +183,7 @@ export const top10communityratings=[
 	},
 	{
 		"Id" : 5432,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/highlight-item/20201123/cGszu0mFLoQs_MXVkOPKcnSnd_183cheecheongfun_m1.JPG",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/highlight-item/20201123/cGszu0mFLoQs_MXVkOPKcnSnd_183cheecheongfun_m1.JPG",
 		"Name" : "183 Chee Cheong Fun Pork Dumping Yam Cake Nonya Dumping",
 		"Rating" : 71,
 		"Hawkercentrename" : "Bukit Timah Market",
@@ -209,7 +209,7 @@ export const top10communityratings=[
 	},
 	{
 		"Id" : 5715,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/hawker-centre-manually/Maxwell Food Centre/lioncity_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/hawker-centre-manually/Maxwell Food Centre/lioncity_sf.jpg",
 		"Name" : "Famous Queens Briyani",
 		"Rating" : 92,
 		"Hawkercentrename" : "Maxwell Food Centre",
@@ -235,7 +235,7 @@ export const top10communityratings=[
 	},
 	{
 		"Id" : 6722,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/highlight-item/20201108/aIM3JFKlWzzy_chongqingxiaomian_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/highlight-item/20201108/aIM3JFKlWzzy_chongqingxiaomian_sf.jpg",
 		"Name" : "Chong Qing Xiao Mian",
 		"Rating" : 68,
 		"Hawkercentrename" : "Upper Boon Keng Road Blk 17",

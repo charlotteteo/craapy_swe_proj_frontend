@@ -31,6 +31,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
 import { reducedcarparksavailable } from '../../assets/reducedcarparksavailability';
+import CarparkInfoScreen from "../maps/CarparkInfoScreen";
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
@@ -91,19 +92,20 @@ const markers =() => {
       return (
         
               <TouchableOpacity	onPress={() => {
-                // navigation.navigate("NearbyCarpark",{path:element.car_park_no,})
+                console.log(element.car_park_no)
+                navigation.navigate("CarparkInfoScreen",{path:element.car_park_no})
                 
             }}>
 
            
-            <Card style={{ marginBottom: 10,borderColor:"#FFC30B",borderWidth:1.5,width:350 }}>
+            <Card style={{ marginBottom: 10,backgroundColor:"#FFF2D6",width:350 }}>
                       <Card.Content>
                 {/* <View key={element.key} style={{margin: 10}}> */}
                   {/* <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
                     {element.name}
                     </Text> */}
                    
-                  <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center',}]}>{element.address}</Text>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center'}]}>{element.address}</Text>
                   <Text></Text>
 
                   <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>{element.car_park_type}</Text>
@@ -114,9 +116,10 @@ const markers =() => {
             <View style={{alignItems:"center"}}>
             <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
             <View style={{alignItems:"center"}}>
-        <Text style={styles.text}>Open on Google Maps</Text>
+        <Text style={styles.text}>Google Maps</Text>
         </View>
       </Pressable>
+  
       <Text></Text>
       </View>
   
@@ -130,17 +133,10 @@ const markers =() => {
 
   return (
     <View style={styles.container}>
-                    <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
+                    {/* <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
               <Text style={styles.headerText}>Carpark Map</Text>
-          </ImageBackground>     
-      {/* <MapView
-              initialRegion={{
-              latitude: LATITUDE,
-              longitude: LONGITUDE,
-              latitudeDelta: LATITUDE_DELTA,
-              longitudeDelta: LONGITUDE_DELTA,
-              }}
-          > */}
+          </ImageBackground>      */}
+  
           <MapView
           showsUserLocation={true}
         provider={PROVIDER_DEFAULT}
@@ -208,6 +204,16 @@ const markers =() => {
     <Modalize ref={modalizeRef}
         scrollViewProps={{ showsVerticalScrollIndicator: true }}
         snapPoint={400}
+        overlayStyle={{
+          flex:1,
+          position:"relative",
+          right:200,
+          //justifyContent:"center",
+          alignSelf:"center",
+          width:1000,
+      
+          backgroundColor: 'rgba(0, 0, 0, 0.65)',
+        }}
         modalStyle={styles.modalcontainer}
         HeaderComponent={
           <View>
@@ -230,18 +236,35 @@ const markers =() => {
 }
 
 
+const Stack = createStackNavigator();
 
+export default function homestack() {
+	return (
+    <NavigationContainer>
+		  <Stack.Navigator headerMode="float">
 
-
-
-
-
-
-
-
-
-
-
+        <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen}    
+        initialParams={{path:element.car_park_no}}     
+                options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>  
+              <Stack.Screen
+        name="CarparkMapsScreen"
+        component={CarparkMapsScreen}
+        options={{
+          headerBackTitleVisible:false,
+          headerTitle:false,
+          headerTransparent:true,
+          headerTintColor:'#fff'
+      }}
+      />
+		  </Stack.Navigator>
+    </NavigationContainer>
+	);
+}
 
 
 
@@ -292,7 +315,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 2,
     elevation: 3,
-    backgroundColor: '#ffde17',
+    backgroundColor: '#F2A501',
+    
   },
   text: {
     fontSize: 16,
@@ -331,7 +355,7 @@ test:{
 buttoncarpark:{
   borderColor:"grey",
   borderWidth:1,
-  backgroundColor: "#F3F3F3",
+  backgroundColor: "#FFBE30",
   marginBottom: 10,
   borderRadius:20,
   opacity: 0.7
@@ -369,29 +393,5 @@ ModalHeadertext:{
   padding:5
 }
 });
-
-
-
-const Stack = createStackNavigator();
-
-export default function homestack() {
-	return (
-    <NavigationContainer>
-		  <Stack.Navigator headerMode="float">
-    
-
-       
-
-        <Stack.Screen name="CarparkInfoScreen" component={ResultsScreen}       
-                options={{
-                          headerBackTitleVisible:false,
-                          headerTitle:false,
-                          headerTransparent:true,
-                          headerTintColor:'#fff'
-                      }}/>  
-		  </Stack.Navigator>
-    </NavigationContainer>
-	);
-}
 
 module.exports = CarparkMapsScreen;

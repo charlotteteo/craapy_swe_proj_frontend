@@ -1,7 +1,7 @@
 export const top10ratings=[
 	{
 		"Id" : 5733,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/highlight-item/20201123/8kGJ1Q6vIthT_5I7kSlX3qtVt_jiangramen_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/highlight-item/20201123/8kGJ1Q6vIthT_5I7kSlX3qtVt_jiangramen_sf.jpg",
 		"Name" : "Ramen Taisho",
 		"Rating" : 98,
 		"Hawkercentrename" : "Maxwell Food Centre",
@@ -27,7 +27,7 @@ export const top10ratings=[
 	},
 	{
 		"Id" : 6267,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/hawker-centre-manually/Alexandra Village Food Centre/thethunderteastory_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/hawker-centre-manually/Alexandra Village Food Centre/thethunderteastory_sf.jpg",
 		"Name" : "The Thunder Tea Story",
 		"Rating" : 97,
 		"Hawkercentrename" : "Alexandra Village Food Centre",
@@ -53,7 +53,7 @@ export const top10ratings=[
 	},
 	{
 		"Id" : 5616,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/highlight-item/20201108/F1iVQgkKrxY2_yewchuan_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/highlight-item/20201108/F1iVQgkKrxY2_yewchuan_sf.jpg",
 		"Name" : "Yew Chuan Claypot Rice",
 		"Rating" : 96,
 		"Hawkercentrename" : "Golden Mile Food Centre",
@@ -79,7 +79,7 @@ export const top10ratings=[
 	},
 	{
 		"Id" : 5763,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/highlight-item/20201123/m5vTTN9EXmor_4MJHd0HhDoEw_fushun_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/highlight-item/20201123/m5vTTN9EXmor_4MJHd0HhDoEw_fushun_sf.jpg",
 		"Name" : "Fu Shun Shao La Mian Jia",
 		"Rating" : 96,
 		"Hawkercentrename" : "Maxwell Food Centre",
@@ -105,7 +105,7 @@ export const top10ratings=[
 	},
 	{
 		"Id" : 5337,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/hawker-centre-manually/Berseh Food Centre - 66 stalls/hockkee_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/hawker-centre-manually/Berseh Food Centre - 66 stalls/hockkee_sf.jpg",
 		"Name" : "Hock Kee Fried Kway Teow",
 		"Rating" : 96,
 		"Hawkercentrename" : "Berseh Food Centre",
@@ -131,7 +131,7 @@ export const top10ratings=[
 	},
 	{
 		"Id" : 5710,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/highlight-item/20201123/iZdn0gZaLdRc_XQ6mGc8Onk3K_ahyai_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/highlight-item/20201123/iZdn0gZaLdRc_XQ6mGc8Onk3K_ahyai_sf.jpg",
 		"Name" : "Ah Tai Hainanese Chicken Rice",
 		"Rating" : 95,
 		"Hawkercentrename" : "Maxwell Food Centre",
@@ -157,7 +157,7 @@ export const top10ratings=[
 	},
 	{
 		"Id" : 5362,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/highlight-item/20201108/PSrtX8J61goO_shengkee_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/highlight-item/20201108/PSrtX8J61goO_shengkee_sf.jpg",
 		"Name" : "Sheng Kee Curry Chicken Noodle",
 		"Rating" : 94,
 		"Hawkercentrename" : "Berseh Food Centre",
@@ -183,7 +183,7 @@ export const top10ratings=[
 	},
 	{
 		"Id" : 5353,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/highlight-item/20201108/JR6y2WVnQvm7_lims_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/highlight-item/20201108/JR6y2WVnQvm7_lims_sf.jpg",
 		"Name" : "Lim's Fried Oyster",
 		"Rating" : 93,
 		"Hawkercentrename" : "Berseh Food Centre",
@@ -209,7 +209,7 @@ export const top10ratings=[
 	},
 	{
 		"Id" : 6287,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/highlight-item/20201107/B5o8Fe5ylQEX_depotroadzhenshanmei_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/highlight-item/20201107/B5o8Fe5ylQEX_depotroadzhenshanmei_sf.jpg",
 		"Name" : "Depot Road Zhen Shan Mei Laksa",
 		"Rating" : 93,
 		"Hawkercentrename" : "Alexandra Village Food Centre",
@@ -235,7 +235,7 @@ export const top10ratings=[
 	},
 	{
 		"Id" : 6289,
-		"Thumbnail" : "https://oss.hawkerpedia.com.sg/hawkerpedia/highlight-item/20201106/gWlVYRfVggCf_xiangjiang_sf.jpg",
+		"Thumbnail" : "https://ewr1.vultrobjects.com/hawkerpedia/highlight-item/20201106/gWlVYRfVggCf_xiangjiang_sf.jpg",
 		"Name" : "Xiang Jiang Soya Sauce Chicken",
 		"Rating" : 92,
 		"Hawkercentrename" : "Alexandra Village Food Centre",

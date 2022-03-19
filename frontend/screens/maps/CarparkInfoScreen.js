@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView,ActivityIndicator, FlatList, Text, View , TouchableOpacity,ScrollView} from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
-import SearchScreen from "./home/search/SearchScreen";
-import FilterScreen from "./home/filter/FilterScreen";
+//import SearchScreen from "./home/search/SearchScreen";
+//import FilterScreen from "./home/filter/FilterScreen";
 import { NavigationContainer } from '@react-navigation/native';
-import InfoScreen from "./InfoScreen";
+//import InfoScreen from "./InfoScreen";
 import CarparkMapsScreen from "./CarparkMapsScreen";
 import {
 	Avatar,
@@ -17,15 +17,18 @@ import {
 
 
 function CarparkInfoScreen ({ navigation,route }){
+  console.log("hello1")
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const {path} = route.params;
-  
+  console.log("hello2")
+  console.log(route.params)
+  console.log("hello3")
 
 
   const getMovies = async () => {
      try {
-      const response = await fetch('http://localhost:8080/carpark/'+path);
+      const response = await fetch('http://localhost:8080/carpark/ACB');
       const json = await response.json();
       console.log(json)
       setData(json);

@@ -31,6 +31,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
 import InfoScreen from "../InfoScreen";
+import CarparkInfoScreen from '../maps/CarparkInfoScreen'
 
 const { width, height } = Dimensions.get('window');
 
@@ -274,6 +275,15 @@ function NearbyCarparkMapsScreen ({navigation,route}){
             <Text style={styles.ModalHeadertext}>Nearby Carparks</Text>
           </View>
         }
+        overlayStyle={{
+          flex:1,
+          position:"relative",
+          right:200,
+          //justifyContent:"center",
+          alignSelf:"center",
+          width:1000,
+          backgroundColor: 'rgba(0, 0, 0, 0.65)',
+        }}
         //withHandle={false}
         //adjustToContentHeight={true}
         >
@@ -456,6 +466,7 @@ export default function homestack() {
                 headerTransparent:true,
                 headerTintColor:'#fff'
             }}/>
+      <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen} />
 		  </Stack.Navigator>
     </NavigationContainer>
 	);

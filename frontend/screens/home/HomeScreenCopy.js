@@ -32,34 +32,19 @@ import {top10ratings}  from "../../assets/top10ratings";
 import { top10communityratings } from "../../assets/top10communityratings";
 import { healthychoices } from "../../assets/healthychoices";
 import InfoScreen from "../InfoScreen";
-
+import CarparkInfoScreen from "../maps/CarparkInfoScreen";
 
 function HomeScreenCopy({ navigation }) {
   const [wish, setWish] = useState(false);
   const ratingslist = () => {
     return top10ratings.map((element) => {
       return (
-      <TouchableOpacity
-      onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
-      >
-        <Card style={{width:250,height:250 ,alignItems:"center"}}>
-          <Card.Content>
-
-            <Text style={{fontSize:15}}>
-              {element.Name}
-            </Text>
-            <Text></Text>
-            <Card.Cover source={{ uri: element.Thumbnail }} style={{height:200,width:150}} />
-
-            
-           
-          </Card.Content>
-         
-        </Card>
-       
-        {/* <Choices name={element.Name} 
-          imageUri={{uri:thumbnail}} /> */}
-          </TouchableOpacity>
+        <TouchableOpacity
+        onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
+        >
+          <Choices name={element.Name} 
+            imageUri={{uri:element.Thumbnail}} />
+        </TouchableOpacity>
   
      
       );
@@ -69,26 +54,12 @@ function HomeScreenCopy({ navigation }) {
   
   const healthyratingslist = () => {
       return healthychoices.map((element) => {
-        const thumbnail=element.Thumbnail;
         return (
           <TouchableOpacity
           onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
           >
-          <Card style={{width:250,height:250 ,alignItems:"center"}}>
-          <Card.Content>
-
-            <Text style={{fontSize:15}}>
-              {element.Name}
-            </Text>
-            <Text></Text>
-            <Card.Cover source={{ uri: element.Thumbnail }} style={{height:200,width:150}} />
-
-            
-           
-          </Card.Content>
-         
-        </Card>
-       
+        <Choices name={element.Name} 
+            imageUri={{uri:element.Thumbnail}} />
         </TouchableOpacity>
         );
       });
@@ -96,26 +67,13 @@ function HomeScreenCopy({ navigation }) {
   
   const communityratingslist = () => {
       return top10communityratings.map((element) => {
-        const thumbnail=element.Thumbnail;
         return (
         
           <TouchableOpacity
           onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
       >
-           <Card style={{width:250,height:250 ,alignItems:"center"}}>
-          <Card.Content>
-
-            <Text style={{fontSize:15, }}>
-              {element.Name}
-            </Text>
-            <Text></Text>
-            <Card.Cover source={{ uri: element.Thumbnail }} style={{height:200,width:150}} />
-
-            
-           
-          </Card.Content>
-         
-        </Card>
+        <Choices name={element.Name} 
+            imageUri={{uri:element.Thumbnail}} />
        
             </TouchableOpacity>
        
@@ -127,7 +85,7 @@ function HomeScreenCopy({ navigation }) {
     <ScrollView>
       <View>
         <View style={styles.header}>
-          <ImageBackground style={styles.container} source={require('../../assets/Background.png')} resizeMode="cover">
+          {/* <ImageBackground style={styles.container} source={require('../../assets/Background.png')} resizeMode="cover">
           <View style={styles.headerwrap}>
               <Text style={styles.headerTitle}>HotHawks</Text>
               <Image
@@ -135,23 +93,40 @@ function HomeScreenCopy({ navigation }) {
                   style={styles.headerImage}
                   resizeMode="contain"
                 />
-              
           </View>
+          </ImageBackground> */}
+          <Text style={styles.text}>Good day to you,</Text>
+          <Text style={styles.headerTitle}>Happy Eating!</Text>
           <View style={styles.searchButton}>
-            <Button 
-            icon={require("../../assets/Search.png")}
-            color={"white"}
-            size={20}
-            onPress={() => navigation.navigate("Search")}
-            >
-            Search
-            </Button>
-            
-          </View>
-          </ImageBackground>
+
+        <TouchableOpacity
+        onPress={() => navigation.navigate("Search")}
+        >
+          <View style={styles.searchcontainer}>
+        <Image
+                  source={require("../../assets/Search.png")}
+                  style={styles.headerImage}
+                  resizeMode="contain"
+                  tintColor="black"
+        />
+        <Text style={styles.button}>Search</Text>
         </View>
+        </TouchableOpacity>
+        
+          </View>
+          </View>
         <ScrollView scrollEventThrottle={16}>
           <View style={{flex:1, backgroundColor:"white", paddingTop:10}}>
+          <Text style={styles.scrolltitle}>Recent</Text>
+          <View style={{height:130, marginTop:20}}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+           {ratingslist()}
+            </ScrollView>
+          </View>
+        </View>
+        </ScrollView>
+        <ScrollView scrollEventThrottle={16}>
+          <View style={{flex:1, backgroundColor:"white", paddingTop:2}}>
           <Text style={styles.scrolltitle}>All Time Favourites</Text>
           <View style={{height:130, marginTop:20}}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -227,6 +202,14 @@ export default function homestack() {
                 headerTransparent:true,
                 headerTintColor:'#fff'
             }}/>
+                    <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen}       
+                options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>  
+            
     </Stack.Navigator>
   );
 }
@@ -235,6 +218,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:"white"
+  },
+  header:{
+    flex:1,
+    //borderColor:"blue",
+    //borderWidth:5
+
+  },
+  text:{
+    color:"grey",
+    marginTop:50,
+    marginLeft:8,
+    fontWeight:"bold",
+    fontFamily:"notoserif"
   },
   // header: {
   //   flex:1,
@@ -252,21 +248,31 @@ const styles = StyleSheet.create({
     //alignItems: "center"
   },
   headerImage: {
-    height: 50,
-    width: null,
-    paddingTop: 35,
-    marginRight:100,
-    marginLeft:5,
-    flex: 1,
+    height:15,
+    width:15,
+    marginLeft:157,
+    marginRight:3
+  
+  },
+  searchcontainer:{
+    flexDirection:"row",
+    //justifyContent:"center",
+    alignItems:"center",
+    width:375,
+    //backgroundColor:"lightblue",
+    height:30
+
   },
   headerTitle: {
-    color: "#fff",
-    //fontFamily: "Roboto",
+    color: "black",
+    marginLeft:8,
+    fontFamily: "serif",
     //paddingVertical: 10,
-    paddingTop: 10,
-    fontSize: 28,
+    paddingTop: 2,
+    fontSize: 36,
     fontStyle: 'normal',
     fontWeight: 'bold',
+    
     //lineHeight: 43,
     //letterSpacing: 0,
     //textAlign: 'center'
@@ -278,9 +284,14 @@ const styles = StyleSheet.create({
   // },
   searchButton: {
     alignItems: "center",
-    marginRight: 5,
-    marginTop: 0,
-    top:-5
+    alignSelf:"center",
+    marginRight: 10,
+    marginTop: 10,
+    backgroundColor:"#d2d2d2",
+    borderRadius:15,
+    width:"95%",
+    height:30
+    
   },
   scrolltitle:{
     fontSize:18,
@@ -290,4 +301,7 @@ const styles = StyleSheet.create({
     //marginBottom:10,
     marginLeft:10,
   },
+  button:{
+    fontWeight:"normal",
+  }
 });

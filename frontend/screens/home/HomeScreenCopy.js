@@ -32,7 +32,7 @@ import {top10ratings}  from "../../assets/top10ratings";
 import { top10communityratings } from "../../assets/top10communityratings";
 import { healthychoices } from "../../assets/healthychoices";
 import InfoScreen from "../InfoScreen";
-
+import CarparkInfoScreen from "../maps/CarparkInfoScreen";
 
 function HomeScreenCopy({ navigation }) {
   const [wish, setWish] = useState(false);
@@ -227,6 +227,14 @@ export default function homestack() {
                 headerTransparent:true,
                 headerTintColor:'#fff'
             }}/>
+                    <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen}       
+                options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>  
+            
     </Stack.Navigator>
   );
 }

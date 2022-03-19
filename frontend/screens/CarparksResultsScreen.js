@@ -6,6 +6,7 @@ import FilterScreen from "./home/filter/FilterScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import InfoScreen from "./InfoScreen";
 import { carparksavailable } from '../assets/carparksavailability';
+import CarparkInfoScreen from '../screens/maps/CarparkInfoScreen';
 import {
 	Avatar,
 	
@@ -104,14 +105,15 @@ function CarparkResultsScreen ({navigation}){
 
 const Stack = createStackNavigator();
 
-// export default function homestack() {
-// 	return (
-// 		<Stack.Navigator headerMode="float">
-// 			<Stack.Screen name="Info" component={InfoScreen} />
-//       <Stack.Screen name="Filter" component={FilterScreen} />
-//       <Stack.Screen name="ResultsScreen" component={ResultsScreen} />
-// 		</Stack.Navigator>
-// 	);
-// }
+export default function homestack() {
+	return (
+		<Stack.Navigator headerMode="float">
+			<Stack.Screen name="Info" component={InfoScreen} />
+      <Stack.Screen name="Filter" component={FilterScreen} />
+      <Stack.Screen name="ResultsScreen" component={ResultsScreen} />
+      <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen} />
+		</Stack.Navigator>
+	);
+}
 
 module.exports=CarparkResultsScreen;

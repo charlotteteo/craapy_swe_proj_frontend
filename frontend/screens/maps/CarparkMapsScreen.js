@@ -31,6 +31,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
 import { reducedcarparksavailable } from '../../assets/reducedcarparksavailability';
+import CarparkInfoScreen from "../maps/CarparkInfoScreen";
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
@@ -91,7 +92,8 @@ const markers =() => {
       return (
         
               <TouchableOpacity	onPress={() => {
-                // navigation.navigate("NearbyCarpark",{path:element.car_park_no,})
+                console.log(element.car_park_no)
+                navigation.navigate("CarparkInfoScreen",{path:element.car_park_no})
                 
             }}>
 
@@ -208,6 +210,16 @@ const markers =() => {
     <Modalize ref={modalizeRef}
         scrollViewProps={{ showsVerticalScrollIndicator: true }}
         snapPoint={400}
+        overlayStyle={{
+          flex:1,
+          position:"relative",
+          right:200,
+          //justifyContent:"center",
+          alignSelf:"center",
+          width:1000,
+      
+          backgroundColor: 'rgba(0, 0, 0, 0.65)',
+        }}
         modalStyle={styles.modalcontainer}
         HeaderComponent={
           <View>
@@ -230,18 +242,35 @@ const markers =() => {
 }
 
 
+const Stack = createStackNavigator();
 
+export default function homestack() {
+	return (
+    <NavigationContainer>
+		  <Stack.Navigator headerMode="float">
 
-
-
-
-
-
-
-
-
-
-
+        <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen}    
+        initialParams={{path:element.car_park_no}}     
+                options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>  
+              <Stack.Screen
+        name="CarparkMapsScreen"
+        component={CarparkMapsScreen}
+        options={{
+          headerBackTitleVisible:false,
+          headerTitle:false,
+          headerTransparent:true,
+          headerTintColor:'#fff'
+      }}
+      />
+		  </Stack.Navigator>
+    </NavigationContainer>
+	);
+}
 
 
 
@@ -369,29 +398,5 @@ ModalHeadertext:{
   padding:5
 }
 });
-
-
-
-const Stack = createStackNavigator();
-
-export default function homestack() {
-	return (
-    <NavigationContainer>
-		  <Stack.Navigator headerMode="float">
-    
-
-       
-
-        <Stack.Screen name="CarparkInfoScreen" component={ResultsScreen}       
-                options={{
-                          headerBackTitleVisible:false,
-                          headerTitle:false,
-                          headerTransparent:true,
-                          headerTintColor:'#fff'
-                      }}/>  
-		  </Stack.Navigator>
-    </NavigationContainer>
-	);
-}
 
 module.exports = CarparkMapsScreen;

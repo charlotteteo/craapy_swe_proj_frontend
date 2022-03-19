@@ -11,14 +11,15 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import FAQScreen from "./FAQScreen";
 import EmailScreen from "./EmailScreen";
+import SplashScreen from "../SplashScreen";
 
 function HelpScreen({ navigation }) {
 	return (
 		<View style={styles.container}>
            
-      <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
+      <View style={styles.headercontainer}>      
                 <Text style={styles.headerText}>Help Page</Text>
-            </ImageBackground>     
+            </View> 
 
 			<TouchableOpacity
 				style={styles.button}
@@ -36,6 +37,8 @@ function HelpScreen({ navigation }) {
 				<Text style={styles.buttonText}>Contact Us</Text>
 				<Image style={styles.image} source={require("../../assets/mail.png")}/>
 			</TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Splash")}
+			>Press</TouchableOpacity>
 		</View>
 	);
 }
@@ -65,6 +68,7 @@ export default function contactstack() {
                 headerTransparent:true,
                 headerTintColor:'#fff'
             }}/>
+             <Stack.Screen name="Splash" component={SplashScreen} />
 		</Stack.Navigator>
 	);
 }
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
         color: "black",
         fontWeight: "bold",
         paddingBottom: "5%",
-        paddingTop: "10%",
+        paddingTop: "7%",
         fontSize: 18,
     },
     image: {
@@ -122,6 +126,11 @@ const styles = StyleSheet.create({
         fontWeight:"bold",
         flexDirection: "column",
         alignSelf:"center",
-        marginTop: 45
+        marginTop: 45,
+        marginBottom:10
+    },
+    headercontainer:{
+        backgroundColor:"#ffdf52",
+        width:"100%"
     }
 });

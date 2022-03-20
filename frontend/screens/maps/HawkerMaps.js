@@ -33,6 +33,7 @@ import { Marker } from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
 import CarparkInfoScreen from '../maps/CarparkInfoScreen'
 
+import EmailScreen from "../help/EmailScreen";
 
 const { width, height } = Dimensions.get('window');
 
@@ -61,14 +62,16 @@ const list = () => {
       _handleOpenWithWebBrowser = () => {
         WebBrowser.openBrowserAsync(element.Address);
       };
-
-
       return (
         
               <TouchableOpacity	
 
-              onPress={() => 
-                navigation.navigate("Results",{path:element.name})
+              onPress={() => {
+
+                   console.log(element.Name)
+                   navigation.navigate("Results",{path:element.Name})
+                // navigation.navigate("Results")
+              }
       
          
               }
@@ -248,15 +251,49 @@ const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
-    <NavigationContainer>
-      <Stack.Navigator headerMode="float">
-        <Stack.Screen name="Home" component={HomeScreenCopy}/>
-       <Stack.Screen name="HawkerMaps" component={HawkerMaps} />
-    <Stack.Screen name="Results" component={ResultsScreen}  />      
-    <Stack.Screen name="InfoScreen" component={InfoScreen} />
-		<Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen} />
+    // <NavigationContainer>
+      <Stack.Navigator headerMode="none">    
+        <Stack.Screen name="Maps" component={HawkerMaps} 
+                        options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>
+        <Stack.Screen name="Home" component={HomeScreenCopy}
+                        options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>
+        <Stack.Screen name="HawkerMaps" component={HawkerMaps} 
+                        options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>        
+        {/* <Stack.Screen name="Results" component={EmailScreen} />       */}
+        <Stack.Screen name="Results" component={ResultsScreen} 
+            initialParams={{path:element.Name}}  
+
+                        options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>      
+        {/* <Stack.Screen name="InfoScreen" component={InfoScreen} /> */}
+        <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen} 
+                        options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>
 		  </Stack.Navigator>
-    </NavigationContainer>
+    // </NavigationContainer>
 	);
 }
 
@@ -385,4 +422,4 @@ ModalHeadertext:{
 }
 });
 
-module.exports = HawkerMaps;
+// module.exports = HawkerMaps;

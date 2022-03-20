@@ -33,6 +33,7 @@ import { top10communityratings } from "../../assets/top10communityratings";
 import { healthychoices } from "../../assets/healthychoices";
 import InfoScreen from "../InfoScreen";
 import CarparkInfoScreen from "../maps/CarparkInfoScreen";
+import { useFonts } from 'expo-font';
 
 function HomeScreenCopy({ navigation }) {
   const [wish, setWish] = useState(false);
@@ -80,7 +81,18 @@ function HomeScreenCopy({ navigation }) {
         );
       });
     };
-  
+
+  const [loaded] = useFonts({
+      OpenSans: require('../../assets/fonts/OpenSans.ttf'),
+      Nunito: require('../../assets/fonts/Nunito.ttf'),
+      NunitoBold: require('../../assets/fonts/NunitoBold.ttf'),
+      NunitoLight: require('../../assets/fonts/NunitoLight.ttf'),
+      OpenSansbold: require('../../assets/fonts/OpenSansBold.ttf')
+    });
+    
+    if (!loaded) {
+      return null;
+    }
   return (
     <ScrollView>
       <View>
@@ -115,14 +127,30 @@ function HomeScreenCopy({ navigation }) {
         
           </View>
           </View>
+
+      
         <ScrollView scrollEventThrottle={16}>
-          <View style={{flex:1, backgroundColor:"white", paddingTop:10}}>
+          <View style={{flex:1, backgroundColor:"white", paddingTop:10, borderTopRightRadius:20,borderTopLeftRadius:20}}>
           <Text style={styles.scrolltitle}>Recent</Text>
-          <View style={{height:130, marginTop:20}}>
+          <View
+              style={{
+                paddingTop:10,
+                borderBottomColor: '#fee241',
+                borderBottomWidth: 3,
+              }}
+          />
+          <View style={{height:140, marginTop:15, paddingBottom:0}}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
            {ratingslist()}
             </ScrollView>
           </View>
+          <View
+              style={{
+                paddingBottom:5,
+                borderBottomColor: '#fee241',
+                borderBottomWidth: 3,
+              }}
+          />
         </View>
         </ScrollView>
         <ScrollView scrollEventThrottle={16}>
@@ -133,6 +161,14 @@ function HomeScreenCopy({ navigation }) {
            {ratingslist()}
             </ScrollView>
           </View>
+          <View
+              style={{
+                paddingTop:10,
+                paddingBottom:5,
+                borderBottomColor: '#fee241',
+                borderBottomWidth: 3,
+              }}
+          />
           <View>
             <Text style={styles.scrolltitle}>Trending</Text>
             <View style={{height:130, marginTop:20}}>
@@ -141,20 +177,36 @@ function HomeScreenCopy({ navigation }) {
             </ScrollView>
           </View>
           </View>
-
+          <View
+              style={{
+                paddingTop:10,
+                paddingBottom:5,
+                borderBottomColor: '#fee241',
+                borderBottomWidth: 3,
+              }}
+          />
           <View>
             <Text style={styles.scrolltitle}>Healthy Choices</Text>
             <View style={{height:130, marginTop:20}}>
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {healthyratingslist()}
-            </ScrollView>
+              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                {healthyratingslist()}
+              </ScrollView>
+            </View>
           </View>
-          </View>
+          <View
+              style={{
+                paddingTop:10,
+                paddingBottom:5,
+                borderBottomColor: '#fee241',
+                borderBottomWidth: 3,
+              }}
+          />
 
 
         </View>
         </ScrollView>
       </View>
+
     </ScrollView>
     
   );
@@ -221,16 +273,21 @@ const styles = StyleSheet.create({
   },
   header:{
     flex:1,
+    backgroundColor:"#ececec",
+    paddingBottom:15,
+    //borderRadius:20,
+    zIndex:5
     //borderColor:"blue",
     //borderWidth:5
 
   },
   text:{
     color:"grey",
-    marginTop:50,
-    marginLeft:8,
+    marginTop:80,
+    marginLeft:9,
     fontWeight:"bold",
-    fontFamily:"notoserif"
+    fontFamily: 'NunitoBold',
+    fontSize:16
   },
   // header: {
   //   flex:1,
@@ -251,7 +308,7 @@ const styles = StyleSheet.create({
     height:15,
     width:15,
     marginLeft:157,
-    marginRight:3
+    marginRight:3,
   
   },
   searchcontainer:{
@@ -266,9 +323,10 @@ const styles = StyleSheet.create({
   headerTitle: {
     color: "black",
     marginLeft:8,
-    fontFamily: "serif",
+    fontFamily: "OpenSansbold",
     //paddingVertical: 10,
-    paddingTop: 2,
+    paddingTop: 4,
+    paddingBottom:5,
     fontSize: 36,
     fontStyle: 'normal',
     fontWeight: 'bold',
@@ -287,7 +345,7 @@ const styles = StyleSheet.create({
     alignSelf:"center",
     marginRight: 10,
     marginTop: 10,
-    backgroundColor:"#d2d2d2",
+    backgroundColor:"#fec241",
     borderRadius:15,
     width:"95%",
     height:30
@@ -296,12 +354,15 @@ const styles = StyleSheet.create({
   scrolltitle:{
     fontSize:18,
     fontWeight:"700",
-    //fontFamily: "Work Sans",
+    fontFamily: "NunitoBlack",
     marginTop:10,
     //marginBottom:10,
-    marginLeft:10,
+    marginLeft:15,
   },
   button:{
-    fontWeight:"normal",
+    fontFamily:"NunitoBold",
+    marginLeft:3,
+    color:"white"
+    
   }
 });

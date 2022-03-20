@@ -23,9 +23,14 @@ const styles = StyleSheet.create({
     foodcontainer:{
     height:130, 
     width:130,
-    marginLeft:20,
+    marginLeft:15,
     borderWidth:0.5,
-    borderColor:"#dddddd"
+    borderRadius:10,
+    borderColor:"#dddddd",
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   foodimage:{
     flex:1,
@@ -37,5 +42,7 @@ const styles = StyleSheet.create({
     flex:1,
     paddingLeft:10,
     paddingTop:10,
+    textAlign:"center"
+    
   }
 })

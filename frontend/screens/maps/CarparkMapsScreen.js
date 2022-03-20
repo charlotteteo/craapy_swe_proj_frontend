@@ -136,7 +136,13 @@ const markers =() => {
                     {/* <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
               <Text style={styles.headerText}>Carpark Map</Text>
           </ImageBackground>      */}
-  
+      
+        <View style={styles.headercontainer}>
+          <Text style={styles.headerText}>Carpark Maps</Text>
+
+
+        </View>
+          
           <MapView
           showsUserLocation={true}
         provider={PROVIDER_DEFAULT}
@@ -285,7 +291,7 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    top:80,
+    top:90,
     left: 0,
     right: 0,
     bottom: 0,
@@ -306,16 +312,16 @@ const styles = StyleSheet.create({
 
     padding: 6,
     height: 45,
-    width: 250,
+    width: 200,
     // justifyContent: 'center',
     // alignItems: 'center',
     elevation: 5,
     justifyContent: 'center',
     paddingVertical: 5,
     paddingHorizontal: 8,
-    borderRadius: 2,
+    borderRadius: 8,
     elevation: 3,
-    backgroundColor: '#F2A501',
+    backgroundColor: '#fec241',
     
   },
   text: {
@@ -343,7 +349,8 @@ headerText:{
     fontWeight:"bold",
     flexDirection: "column",
     alignSelf:"center",
-    marginTop: 30
+    marginTop: 53,
+    marginBottom: 10
 },
 test:{
   flex: 1, 
@@ -391,6 +398,23 @@ ModalHeadertext:{
   alignSelf:"center",
   marginBottom:5,
   padding:5
+},
+headercontainer:{
+  position:"absolute",
+  top:0,
+  backgroundColor:"white",
+  width:"100%",
+  height:100,
+  marginBottom:20,
+  borderRadius:25,
+  shadowOpacity: 1,
+  shadowRadius: 6,
+
+  elevation: 6,
+
+  //borderColor:"red",
+  //borderWidth:5,
+  zIndex:5
 }
 });
 

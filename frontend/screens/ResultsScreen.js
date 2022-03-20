@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView,ActivityIndicator, FlatList, Text, View , TouchableOpacity,ScrollView} from 'react-native';
+import { SafeAreaView,ActivityIndicator, FlatList, Text, View , TouchableOpacity, ScrollView, Alert} from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import SearchScreen from "./home/search/SearchScreen";
 import FilterScreen from "./home/filter/FilterScreen";
@@ -15,24 +15,30 @@ import {
 	IconButton,
 } from "react-native-paper";
 
-
-function ResultsScreen ({ navigation,route }){
+// function ResultsScreen ({ navigation }){
+function ResultsScreen ({navigation, route}){
+  
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const {path} = route.params;
+  const {path}=route.params;
+  console.log(path)
+  // const {path} = route.params.path;
   
-  ratingArray = ["20","40","60","80","90"]
-  cuisineArray = ["Chinese","Western","Indian","Thai","Japanese"]
-  distanceArray = ["0.1","0.3","0.5","1","2"]
-  neighbourhoodArray = ["Ardmore, Bukit Timah, Holland Road, Tanglin","Orchard, Cairnhill, River Valley","Jurong","Little India","Tampines, Pasir Ris","Queenstown, Tiong Bahru","Raffles Place, Cecil, Marina, Peoples Park"]
+  const ratingArray = ["20","40","60","80","90"]
+  const cuisineArray = ["Chinese","Western","Indian","Thai","Japanese"]
+  const distanceArray = ["0.1","0.3","0.5","1","2"]
+  const neighbourhoodArray = ["Ardmore, Bukit Timah, Holland Road, Tanglin","Orchard, Cairnhill, River Valley","Jurong","Little India","Tampines, Pasir Ris","Queenstown, Tiong Bahru","Raffles Place, Cecil, Marina, Peoples Park"]
 
   // BV MRT
   const LATITUDE =  1.3072;
   const LONGITUDE = 103.7906;
+  // var ppath=route.params.path;
+
+  // const {path} = route.params;
 
   const getHawkers = async () => {
      try {
-      var response = "empty"
+      var response = "empty"   
 
       if (path.length == 1) {
         if (ratingArray.includes(path[0])) {
@@ -155,12 +161,30 @@ const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
-		<Stack.Navigator headerMode="float">
-    <Stack.Screen name="ResultsScreen" component={ResultsScreen} />
-    	<Stack.Screen name="InfoScreen" component={InfoScreen} />
-      <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen} />
+		<Stack.Navigator headerMode="none">
+    <Stack.Screen name="ResultsScreen" component={ResultsScreen} 
+                    options={{
+                      headerBackTitleVisible:false,
+                      headerTitle:false,
+                      headerTransparent:true,
+                      headerTintColor:'#fff'
+                  }}/>
+    	<Stack.Screen name="InfoScreen" component={InfoScreen} 
+                      options={{
+                        headerBackTitleVisible:false,
+                        headerTitle:false,
+                        headerTransparent:true,
+                        headerTintColor:'#fff'
+                    }}/>
+      <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen} 
+                      options={{
+                        headerBackTitleVisible:false,
+                        headerTitle:false,
+                        headerTransparent:true,
+                        headerTintColor:'#fff'
+                    }}/>
 		</Stack.Navigator>
 	);
 }
 
-module.exports=ResultsScreen;
+// module.exports=ResultsScreen;

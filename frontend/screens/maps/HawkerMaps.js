@@ -121,9 +121,9 @@ const list = () => {
 
   return (
       <View style={styles.container}>
-                              <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
+            <View style={styles.background}>      
                 <Text style={styles.headerText}>Hawker Map</Text>
-            </ImageBackground>  
+            </View>  
         {/* <MapView
                 initialRegion={{
                 latitude: LATITUDE,
@@ -276,7 +276,7 @@ export default function homestack() {
                       }}/>        
         {/* <Stack.Screen name="Results" component={EmailScreen} />       */}
         <Stack.Screen name="Results" component={ResultsScreen} 
-            initialParams={{path:element.Name}}  
+            //initialParams={{path:element.Name}}  
 
                         options={{
                           headerBackTitleVisible:false,
@@ -355,23 +355,32 @@ const styles = StyleSheet.create({
   },
 
   background:{
-    width:"110%",
+    position:"absolute",
+    top:0,
+    backgroundColor:"white",
+    width:"100%",
     height:80,
-    //top:50,
-    //alignSelf: "flex-start",
-    //justifyContent: "flex-start",
-    position: "relative",
-    //borderColor: "black",
-    //borderWidth: 5,
-    marginBottom: 0
-},
+    marginBottom:5,
+    borderRadius:10,
+    shadowOpacity: 1,
+    shadowRadius: 6,
+  
+    elevation: 6,
+  
+    //borderColor:"red",
+    //borderWidth:5,
+    zIndex:5
+  },
 headerText:{
-    color:"black",
-    fontSize: 28,
-    fontWeight:"bold",
-    flexDirection: "column",
-    alignSelf:"center",
-    marginTop: 30
+  color:"black",
+  fontSize: 22,
+  fontWeight:"bold",
+  flexDirection: "column",
+  alignSelf:"center",
+  marginTop: 40,
+  marginBottom: 0,
+  fontFamily:"OpenSansbold",
+
 },
 test:{
   flex: 1, 
@@ -383,7 +392,7 @@ test:{
 buttoncarpark:{
   borderColor:"grey",
   borderWidth:1,
-  backgroundColor: "#F3F3F3",
+  backgroundColor: "#fec241",
   marginBottom: 10,
   borderRadius:20,
   opacity: 0.7

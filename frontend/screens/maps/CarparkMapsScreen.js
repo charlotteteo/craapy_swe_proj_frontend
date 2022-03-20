@@ -138,7 +138,7 @@ const markers =() => {
           </ImageBackground>      */}
       
         <View style={styles.headercontainer}>
-          <Text style={styles.headerText}>Carpark Maps</Text>
+          <Text style={styles.headerText}>Carpark Map</Text>
 
 
         </View>
@@ -246,17 +246,18 @@ const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
-    <NavigationContainer>
-		  <Stack.Navigator headerMode="float">
+		  <Stack.Navigator headerMode="none">
 
         <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen}    
-        initialParams={{path:element.car_park_no}}     
+            
                 options={{
                           headerBackTitleVisible:false,
                           headerTitle:false,
                           headerTransparent:true,
-                          headerTintColor:'#fff'
-                      }}/>  
+                          headerTintColor:'red'
+                      }}
+                      
+                      initialParams={{path:element.car_park_no}} />  
               <Stack.Screen
         name="CarparkMapsScreen"
         component={CarparkMapsScreen}
@@ -264,11 +265,10 @@ export default function homestack() {
           headerBackTitleVisible:false,
           headerTitle:false,
           headerTransparent:true,
-          headerTintColor:'#fff'
+          headerTintColor:'black'
       }}
       />
 		  </Stack.Navigator>
-    </NavigationContainer>
 	);
 }
 
@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    top:90,
+    top:80,
     left: 0,
     right: 0,
     bottom: 0,
@@ -345,12 +345,14 @@ const styles = StyleSheet.create({
 },
 headerText:{
     color:"black",
-    fontSize: 24,
+    fontSize: 22,
     fontWeight:"bold",
     flexDirection: "column",
     alignSelf:"center",
-    marginTop: 53,
-    marginBottom: 10
+    marginTop: 40,
+    marginBottom: 0,
+    fontFamily:"OpenSansbold",
+
 },
 test:{
   flex: 1, 
@@ -362,7 +364,7 @@ test:{
 buttoncarpark:{
   borderColor:"grey",
   borderWidth:1,
-  backgroundColor: "#FFBE30",
+  backgroundColor: "#fec241",
   marginBottom: 10,
   borderRadius:20,
   opacity: 0.7
@@ -370,6 +372,7 @@ buttoncarpark:{
 },
 Buttontext:{
   fontWeight:"bold",
+  fontFamily:"NunitoBlack",
   fontSize: 15,
   padding:15
 },
@@ -404,9 +407,9 @@ headercontainer:{
   top:0,
   backgroundColor:"white",
   width:"100%",
-  height:100,
-  marginBottom:20,
-  borderRadius:25,
+  height:80,
+  marginBottom:5,
+  borderRadius:10,
   shadowOpacity: 1,
   shadowRadius: 6,
 

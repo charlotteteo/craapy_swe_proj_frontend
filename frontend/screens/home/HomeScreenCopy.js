@@ -234,7 +234,7 @@ export default function homestack() {
           headerBackTitleVisible:false,
           headerTitle:false,
           headerTransparent:true,
-          headerTintColor:'#fff'
+          headerTintColor:'#dcd8d8'
       }}
       />
          <Stack.Screen
@@ -254,12 +254,12 @@ export default function homestack() {
                 headerTransparent:true,
                 headerTintColor:'#fff'
             }}/>
-                    <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen}       
+                    <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen}   //apparently this links to CarparkInfoScreen???    
                 options={{
                           headerBackTitleVisible:false,
                           headerTitle:false,
                           headerTransparent:true,
-                          headerTintColor:'#fff'
+                          headerTintColor:'black'
                       }}/>  
             
     </Stack.Navigator>

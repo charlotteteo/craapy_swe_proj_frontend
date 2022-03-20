@@ -89,15 +89,15 @@ headerText:{
     marginTop: 45
 },
  
-  // headerText:{
-  //     color:"white",
-  //     fontSize: 28,
-  //     fontWeight:"bold",
-  //     flexDirection: "column",
-  //     alignSelf:"center",
-  //     marginTop: 40,
-  //     marginRight:50
-  // },
+headerText:{
+  fontFamily: "OpenSansbold",
+  //paddingVertical: 10,
+  marginTop:45,
+  paddingTop: 4,
+  paddingBottom:5,
+  fontSize: 24,
+  alignSelf:"center"
+},
   card:{
     margin:20
   },

@@ -11,22 +11,23 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import FAQScreen from "./FAQScreen";
 import EmailScreen from "./EmailScreen";
+import { AntDesign } from '@expo/vector-icons'; 
 
 function HelpScreen({ navigation }) {
 	return (
 		<View style={styles.container}>
            
-      <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
+      <View style={styles.background}>      
                 <Text style={styles.headerText}>Help Page</Text>
-            </ImageBackground>     
+            </View>     
 
 			<TouchableOpacity
 				style={styles.button}
 				onPress={() => navigation.navigate("FAQ")}
 			>
-				<Text style={styles.buttonText}>Help</Text>
+				<Text style={styles.buttonText2}>Help</Text>
 
-				<Image style={styles.image} source={require("../../assets/questionmark.png")}/>
+				<AntDesign name="questioncircleo" size={80} color="black" />
 			</TouchableOpacity>
 
 			<TouchableOpacity
@@ -57,13 +58,13 @@ export default function contactstack() {
                 headerBackTitleVisible:false,
                 headerTitle:false,
                 headerTransparent:true,
-                headerTintColor:'#fff'
+                headerTintColor:'black'
             }}/>
 			<Stack.Screen name="Email" component={EmailScreen}                                options={{
                 headerBackTitleVisible:false,
                 headerTitle:false,
                 headerTransparent:true,
-                headerTintColor:'#fff'
+                headerTintColor:'black'
             }}/>
 		</Stack.Navigator>
 	);
@@ -78,31 +79,49 @@ const styles = StyleSheet.create({
 
         //justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "white",
+        backgroundColor: "#ececec",
     },
 
     button: {
         backgroundColor: "white",
-        height: "30%",
+        height: "25%",
         width: "60%",
         alignItems: "center",
         borderColor:"black",
         borderWidth:5,
-        marginTop: 40,
-        marginBottom:15,
+        marginTop: 60,
+        marginBottom:20,
         borderRadius: 20,
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.5,
+        shadowRadius: 3,
     },
 
     buttonText: {
-        color: "black",
-        fontWeight: "bold",
-        paddingBottom: "5%",
-        paddingTop: "10%",
-        fontSize: 18,
+        fontFamily:"NunitoBold",
+        paddingBottom: 0,
+        paddingTop: 20,
+        fontSize: 24,
+        color:"black"
+    },
+    buttonText2: {
+        fontFamily:"NunitoBold",
+        paddingBottom: 0,
+        paddingTop: 20,
+        marginBottom:12,
+        fontSize: 24,
     },
     image: {
-        width: "40%",
-        height: "45%",
+        width: "50%",
+        height: "60%",
+        bottom:7
+    },
+    image2:{
+        marginTop:5,
+        width: "46%",
+        height: "50%",
+        marginBottom:5
     },
     background:{
         width:"110%",
@@ -110,18 +129,21 @@ const styles = StyleSheet.create({
         //top:50,
         //alignSelf: "flex-start",
         //justifyContent: "flex-start",
+        bottom:5,
         position: "relative",
-        //borderColor: "black",
-        //borderWidth: 5,
+        borderColor: "black",
+        borderWidth: 5,
         marginBottom: 0,
+        backgroundColor:"#fec241"
 
     },
     headerText:{
-        color:"black",
+        fontFamily: "OpenSansbold",
+        //paddingVertical: 10,
+        marginTop:40,
+        paddingTop: 4,
+        paddingBottom:5,
         fontSize: 24,
-        fontWeight:"bold",
-        flexDirection: "column",
-        alignSelf:"center",
-        marginTop: 45
+        alignSelf:"center"
     }
 });

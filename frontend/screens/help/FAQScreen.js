@@ -24,7 +24,7 @@ const list = ()=>{
     return (faq.map((element)=>{
         return(
     
-    <Card style={{ marginBottom: 10 ,borderColor:"#FFC30B",borderWidth:1.5}}>
+    <Card style={{ marginBottom: 10 ,borderColor:"#FFC30B",borderWidth:2}}>
         <Card.Content>
 
             <Title>{element.name}</Title>
@@ -47,28 +47,12 @@ function FAQScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
+            <View style={styles.background}>      
                 <Text style={styles.headerText}>FAQ Page</Text>
-            </ImageBackground>
+            </View>
          
             <ScrollView>
                 {list()}
-
-                {/* <TouchableOpacity
-                    onPress={() => {
-                        console.log("FAQ1");
-                    }}
-                >
-                    <Card style={{ marginBottom: 10 }}>
-                        <Card.Content>
-                
-                            <Title>{faq[1].name}</Title>
-
-                            <Paragraph>{faq[1].shortDesc}</Paragraph>
-                        </Card.Content>
-                    
-                    </Card>
-                </TouchableOpacity> */}
             </ScrollView>
         </View>
     );
@@ -88,13 +72,8 @@ export default function homestack() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //flexDirection: 'column',
-        //borderColor: "blue",
-        //borderWidth: 5,
-
-        //justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "white",
+        backgroundColor: "#ececec",
     },
 
     button: {
@@ -125,18 +104,21 @@ const styles = StyleSheet.create({
     },
     background:{
         width:"110%",
-        height:100,
+        height:110,
         position: "relative",
-        //borderColor: "black",
-        //borderWidth: 5,
-        marginBottom: 30
+        backgroundColor:"#fec241",
+        borderColor: "black",
+        borderWidth: 5,
+        marginBottom: 15,
+        bottom:5
     },
     headerText:{
-        color:"black",
-        fontSize: 28,
-        fontWeight:"bold",
-        flexDirection: "column",
-        alignSelf:"center",
-        marginTop: 45
+        fontFamily: "OpenSansbold",
+        //paddingVertical: 10,
+        marginTop:45,
+        paddingTop: 4,
+        paddingBottom:5,
+        fontSize: 24,
+        alignSelf:"center"
     }
 });

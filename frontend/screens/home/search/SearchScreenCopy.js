@@ -279,9 +279,9 @@ function SearchScreenCopy({navigation}) {
 
     return (
       <SafeAreaView style={styles.container}>
-      <ImageBackground style={styles.background} source={require('../../../assets/Background.png')} resizeMode="cover">      
-        <Text style={styles.headerText}>Search</Text>
-    </ImageBackground>  
+      <View>      
+        <Text style={styles.headerTitle}>Search</Text>
+    </View>  
 <View style={styles.searchbar}>
   <SearchBar //style = {styles.searchbar}
     round
@@ -600,10 +600,26 @@ const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
-		<Stack.Navigator headerMode="float">
-			<Stack.Screen name="Search" component={SearchScreenCopy} />
-      <Stack.Screen name="Results" component={ResultsScreen} />
-      <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen} />
+		<Stack.Navigator headerMode="none">
+			<Stack.Screen name="Search" component={SearchScreenCopy}      
+       options={{
+                headerBackTitleVisible:false,
+                headerTitle:false,
+                headerTransparent:true,
+                headerTintColor:'#fff'
+            }}/>
+      <Stack.Screen name="Results" component={ResultsScreen}      options={{
+                headerBackTitleVisible:false,
+                headerTitle:false,
+                headerTransparent:true,
+                headerTintColor:'#fff'
+            }} />
+      <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen}      options={{
+                headerBackTitleVisible:false,
+                headerTitle:false,
+                headerTransparent:true,
+                headerTintColor:'#fff'
+            }} />
       
 		</Stack.Navigator>
 	);
@@ -617,7 +633,7 @@ const styles = StyleSheet.create({
   },
   searchbar: {
     backgroundColor: 'white',
-    marginTop:60
+    marginTop:10
   },
 
   itemview: {
@@ -633,7 +649,7 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     position: "absolute",
     right: 8,
-    top: 83,
+    top: 99,
     margin: 10,
     borderRadius: 20,
   },
@@ -701,6 +717,15 @@ headerText:{
     marginTop: 30,
     marginRight:15,
     marginBottom:10
-}
+},
+headerTitle: {
+  //marginLeft:8,
+  fontFamily: "OpenSansbold",
+  //paddingVertical: 10,
+  paddingTop: 4,
+  paddingBottom:5,
+  fontSize: 24,
+  alignSelf:"center"
+},
 
 });

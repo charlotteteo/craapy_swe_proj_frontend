@@ -103,51 +103,56 @@ const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
-    <NavigationContainer>
 		  <Stack.Navigator mode="none">
           <Stack.Screen name="CarparkMapsScreen" component={CarparkMapsScreen}       
         options={{
                   headerBackTitleVisible:false,
                   headerTitle:false,
                   headerTransparent:true,
-                  headerTintColor:'#fff'
+                  headerTintColor:'black'
               }}/>
-		  </Stack.Navigator>
+
         <Stack.Screen name="CarparkInfoScreen" component={ResultsScreen}       
         options={{
                   headerBackTitleVisible:false,
                   headerTitle:false,
                   headerTransparent:true,
-                  headerTintColor:'#fff'
+                  headerTintColor:'black'
               }}/>
-       
-    </NavigationContainer>
+		  </Stack.Navigator>
+
 	);
 }
 
 const styles = StyleSheet.create({
   container:{
-    //backgroundColor:"white",
-    borderColor:"red",
-    borderWidth:5
+    flex: 1,
+    //alignItems: "center",
+    backgroundColor: "#ececec",
   },
   headercontainer:{
-    backgroundColor:"white",
-    width:"100%",
-    height:"28%",
-    marginBottom:0,
-    borderColor:"blue",
-    borderWidth:5
+    width:"120%",
+    right:20,
+    height:120,
+    //top:50,
+    //alignSelf: "flex-start",
+    //justifyContent: "flex-start",
+    bottom:5,
+    position: "relative",
+    borderColor: "black",
+    borderWidth: 5,
+    marginBottom: 0,
+    backgroundColor:"#fec241"
 
   },
   headerText:{
-    color:"black",
+    fontFamily: "OpenSansbold",
+    //paddingVertical: 10,
+    marginTop:40,
+    paddingTop: 4,
+    paddingBottom:5,
     fontSize: 24,
-    fontWeight:"bold",
-    flexDirection: "column",
-    alignSelf:"center",
-    marginTop:20,
-    marginBottom: 0
+    alignSelf:"center"
 },
 content:{
   position:"relative",

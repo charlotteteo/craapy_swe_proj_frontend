@@ -187,4 +187,4 @@ export default function homestack() {
 	);
 }
 
-// module.exports=ResultsScreen;
+module.exports=ResultsScreen;

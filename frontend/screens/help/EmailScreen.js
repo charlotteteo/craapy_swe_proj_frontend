@@ -108,6 +108,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fec241",
     padding: 10,
     marginTop: 20,
-    borderRadius:5
+    borderRadius:5,
+    borderColor:"black",
+    borderWidth:1,
+    width:"95%",
+    alignSelf:"center"
   }
 });

@@ -87,7 +87,9 @@ function HomeScreenCopy({ navigation }) {
       Nunito: require('../../assets/fonts/Nunito.ttf'),
       NunitoBold: require('../../assets/fonts/NunitoBold.ttf'),
       NunitoLight: require('../../assets/fonts/NunitoLight.ttf'),
-      OpenSansbold: require('../../assets/fonts/OpenSansBold.ttf')
+      OpenSansbold: require('../../assets/fonts/OpenSansBold.ttf'),
+      LatoBold:require('../../assets/fonts/LatoBold.ttf'),
+      LatoBlack:require('../../assets/fonts/LatoBlack.ttf'),
     });
     
     if (!loaded) {
@@ -317,7 +319,8 @@ const styles = StyleSheet.create({
     alignItems:"center",
     width:375,
     //backgroundColor:"lightblue",
-    height:30
+    height:30,
+    
 
   },
   headerTitle: {
@@ -348,7 +351,11 @@ const styles = StyleSheet.create({
     backgroundColor:"#fec241",
     borderRadius:15,
     width:"95%",
-    height:30
+    height:30,
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
     
   },
   scrolltitle:{

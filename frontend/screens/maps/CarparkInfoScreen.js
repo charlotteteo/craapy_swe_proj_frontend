@@ -49,52 +49,92 @@ function CarparkInfoScreen ({ navigation,route }){
   
     //return data.map((element) => {
      
-      return (
-        <View style={styles.container}>
-              <View style={styles.headercontainer}>
-                <Text style={styles.headerText}>Carpark Info</Text>
-              </View>
-            <View style={styles.content}>
-                <Title style={{fontWeight: 'bold',fontSize: 20,color:"black", alignSelf:"center", textAlign:"center"}}>{carpark[0].address}</Title>
-            </View>
+      // return (
 
-        <SafeAreaView style={styles.cardcontainer}>
-              <Card>
-                <Text style={styles.paragraph}>
-                  Available Slots:
-                </Text>
-              </Card>
-        </SafeAreaView>
+      //       <Card style={{ marginTop:100,marginBottom: 10 }}>
+      //           <Card.Content>
+      //           {/* <View key={element.key} style={{margin: 10}}> */}
+      //             <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
+      //               {carpark[0].name}
+      //               </Text>
+      //             <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Address:{carpark[0].address}</Text>
 
-            <Card style={{ marginBottom: 10 }}>
-                <Card.Content>
-                {/* <View key={element.key} style={{margin: 10}}> */}
-                  <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
-                    {carpark[0].name}
-                    </Text>
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Address:{carpark[0].address}</Text>
+      //             <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Operation Hours:{carpark[0].operationhours}</Text>
 
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Operation Hours:{carpark[0].operationhours}</Text>
+      //             <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Food Categories:{carpark[0].foodcategories}</Text>
 
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Food Categories:{carpark[0].foodcategories}</Text>
-
-               </Card.Content>
-            </Card>
-
-            </View>
+      //          </Card.Content>
+      //       </Card>
         
-      );
+      // );
     //});
   };
 
 
 
   return (
-    <SafeAreaView style={{ flex: 1, padding: 24 }}>
-      <ScrollView>
-     {list()}
-    </ScrollView>
-    </SafeAreaView>
+
+
+    <View style={styles.container}>
+    <View style={styles.headercontainer}>
+      <Text style={styles.headerText}>Carpark Info</Text>
+    </View>
+      <Title style={{fontSize: 20,alignSelf:"center", textAlign:"center", fontFamily:"OpenSansbold", marginTop:10, marginBottom:10}}>{carpark[0].address}</Title>
+
+
+  <ScrollView style={styles.content}>
+<SafeAreaView style={styles.cardcontainer}>
+    <Card style={styles.card}>
+    <Title style={{fontFamily:"Nunito", color:"black", alignSelf:"center", fontSize:20}}>Available Slots:</Title>
+      <Text style={styles.paragraph}>
+        28/256
+      </Text>
+    </Card>
+    <Card style={styles.card}>
+    <Title style={{fontFamily:"Nunito", color:"black", alignSelf:"center"}}>Free Parking</Title>
+      <Text style={styles.paragraph3}>
+      SUN & PH FR 7AM-10.30PM
+      </Text>
+    </Card>
+</SafeAreaView>
+<Card style={styles.card2}>
+  <View style={{margin:10}}>
+    <Title style={styles.paragraph2}>Type of Car Park:</Title>
+      <Text style={styles.bigcontent}>
+      {carparkresult[0].car_park_type}
+      </Text>
+  </View>
+  <View style={{margin:10}}>
+      <Title style={styles.paragraph2}>Type of Parking System:</Title>
+      <Text style={styles.bigcontent}>
+      {carparkresult[0].type_of_parking_system}
+      </Text>
+  </View>
+  <View style={{margin:10}}>
+      <Title style={styles.paragraph2}>Short Term Parking:</Title>
+      <Text style={styles.bigcontent}>
+      {carparkresult[0].car_park_type}
+      </Text>
+  </View>
+  <View style={{margin:10}}>
+      <Title style={styles.paragraph2}>Night Parking:</Title>
+      <Text style={styles.bigcontent}>
+      {carparkresult[0].night_parking}
+      </Text>
+      </View>
+  <View style={{margin:10}}>
+      <Title style={styles.paragraph2}>Gantry Height:</Title>
+      <Text style={styles.bigcontent}>
+      {carparkresult[0].gantry_height}m
+      </Text>
+      </View>
+    </Card>
+{list()}
+</ScrollView>
+</View>
+
+
+
   );
 };
 
@@ -132,43 +172,94 @@ const styles = StyleSheet.create({
   },
   headercontainer:{
     width:"120%",
-    right:20,
-    height:120,
-    //top:50,
-    //alignSelf: "flex-start",
-    //justifyContent: "flex-start",
+    right:5,
     bottom:5,
-    position: "relative",
+    height:110,
     borderColor: "black",
     borderWidth: 5,
-    marginBottom: 0,
     backgroundColor:"#fec241"
 
   },
   headerText:{
     fontFamily: "OpenSansbold",
     //paddingVertical: 10,
-    marginTop:40,
+    right:38,
+    marginTop:50,
     paddingTop: 4,
-    paddingBottom:5,
+    paddingBottom:0,
     fontSize: 24,
     alignSelf:"center"
 },
 content:{
   position:"relative",
-  borderColor:"green",
-  borderWidth:5
+  // borderColor:"green",
+  // borderWidth:5,
+  padding:7
 },
 cardcontainer:{
   flex: 1,
-  justifyContent: 'center',
+  flexDirection:"row",
+  justifyContent: 'space-evenly',
   padding: 20,
   backgroundColor: '#ecf0f1',
+  marginBottom:40
+
+},
+card:{
+  height:100,
+  width:160,
+  borderRadius:10,
+  shadowColor: '#171717',
+  shadowOffset: {width: -2, height: 4},
+  shadowOpacity: 0.4,
+  shadowRadius: 3,
+  backgroundColor:'#fed274',
+  opacity:0.8
+
+
+},
+card2:{
+  flexDirection: 'row',
+  height:400,
+  width:"90%",
+  borderRadius:10,
+  shadowColor: '#171717',
+  shadowOffset: {width: -2, height: 4},
+  shadowOpacity: 0.5,
+  shadowRadius: 3,
+  backgroundColor:'white',
+  opacity:0.8,
+  alignSelf:"center"
 },
 paragraph:{
   fontWeight:"bold",
-  fontSize:16
-}
+  fontSize:28,
+  alignSelf:"center",
+  marginTop:4,
+  fontFamily:"LatoBold",
+  color:"black"
+},
+paragraph3:{
+  fontWeight:"bold",
+  fontSize:18,
+  alignSelf:"center",
+  marginTop:3,
+  fontFamily:"LatoBold",
+},
+paragraph2:{
+  fontWeight:"bold",
+  fontSize:18,
+  alignSelf:"center",
+  marginTop:3,
+  fontFamily:"NunitoBold",
+},
+bigcontent:{
+  fontFamily:"Nunito", 
+  color:"black", 
+  alignSelf:"center",
+  fontSize:16,
+  flexShrink: 1 ,
+  }
 });
 
 module.exports=CarparkInfoScreen;

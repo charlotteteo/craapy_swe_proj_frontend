@@ -121,8 +121,10 @@ function ResultsScreen ({ navigation,route }){
 
 
 function opennowtime(x){
+  // can use to test time !!! allocate on 24h if not uncomment  line 125- to get actual hour
   // time= new Date().getHours(x);
   time = 21
+
 
   try{
   actualhours=x.split(':')[1]

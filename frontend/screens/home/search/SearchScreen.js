@@ -460,8 +460,18 @@ const Stack = createStackNavigator();
 export default function homestack() {
 	return (
 		<Stack.Navigator headerMode="float">
-			<Stack.Screen name="Search" component={SearchScreen} />
-      <Stack.Screen name="Filter" component={FilterScreen} />
+			<Stack.Screen name="Search" component={SearchScreen}       options={{
+                headerBackTitleVisible:false,
+                headerTitle:false,
+                headerTransparent:true,
+                headerTintColor:'#fff'
+            }}/>
+      <Stack.Screen name="Filter" component={FilterScreen}       options={{
+                headerBackTitleVisible:false,
+                headerTitle:false,
+                headerTransparent:true,
+                headerTintColor:'#fff'
+            }}/>
 		</Stack.Navigator>
 	);
 }

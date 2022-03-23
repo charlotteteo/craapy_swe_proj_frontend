@@ -20,6 +20,7 @@
     "expo-constants": "~11.0.2",
     "expo-status-bar": "~1.0.4",
     "expo-web-browser": "~9.2.0",
+    "moment": "^2.29.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-expo-snack": "^1.0.0",

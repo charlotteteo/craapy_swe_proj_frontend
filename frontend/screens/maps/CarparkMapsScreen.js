@@ -136,7 +136,13 @@ const markers =() => {
                     {/* <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
               <Text style={styles.headerText}>Carpark Map</Text>
           </ImageBackground>      */}
-  
+      
+        <View style={styles.headercontainer}>
+          <Text style={styles.headerText}>Carpark Map</Text>
+
+
+        </View>
+          
           <MapView
           showsUserLocation={true}
         provider={PROVIDER_DEFAULT}
@@ -240,17 +246,18 @@ const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
-    <NavigationContainer>
-		  <Stack.Navigator headerMode="float">
+		  <Stack.Navigator headerMode="none">
 
         <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen}    
-        initialParams={{path:element.car_park_no}}     
+            
                 options={{
                           headerBackTitleVisible:false,
                           headerTitle:false,
                           headerTransparent:true,
-                          headerTintColor:'#fff'
-                      }}/>  
+                          headerTintColor:'red'
+                      }}
+                      
+                      initialParams={{path:element.car_park_no}} />  
               <Stack.Screen
         name="CarparkMapsScreen"
         component={CarparkMapsScreen}
@@ -258,11 +265,10 @@ export default function homestack() {
           headerBackTitleVisible:false,
           headerTitle:false,
           headerTransparent:true,
-          headerTintColor:'#fff'
+          headerTintColor:'black'
       }}
       />
 		  </Stack.Navigator>
-    </NavigationContainer>
 	);
 }
 
@@ -306,16 +312,16 @@ const styles = StyleSheet.create({
 
     padding: 6,
     height: 45,
-    width: 250,
+    width: 200,
     // justifyContent: 'center',
     // alignItems: 'center',
     elevation: 5,
     justifyContent: 'center',
     paddingVertical: 5,
     paddingHorizontal: 8,
-    borderRadius: 2,
+    borderRadius: 8,
     elevation: 3,
-    backgroundColor: '#F2A501',
+    backgroundColor: '#fec241',
     
   },
   text: {
@@ -339,11 +345,14 @@ const styles = StyleSheet.create({
 },
 headerText:{
     color:"black",
-    fontSize: 24,
+    fontSize: 22,
     fontWeight:"bold",
     flexDirection: "column",
     alignSelf:"center",
-    marginTop: 30
+    marginTop: 40,
+    marginBottom: 0,
+    fontFamily:"OpenSansbold",
+
 },
 test:{
   flex: 1, 
@@ -355,7 +364,7 @@ test:{
 buttoncarpark:{
   borderColor:"grey",
   borderWidth:1,
-  backgroundColor: "#FFBE30",
+  backgroundColor: "#fec241",
   marginBottom: 10,
   borderRadius:20,
   opacity: 0.7
@@ -363,6 +372,7 @@ buttoncarpark:{
 },
 Buttontext:{
   fontWeight:"bold",
+  fontFamily:"NunitoBlack",
   fontSize: 15,
   padding:15
 },
@@ -391,6 +401,23 @@ ModalHeadertext:{
   alignSelf:"center",
   marginBottom:5,
   padding:5
+},
+headercontainer:{
+  position:"absolute",
+  top:0,
+  backgroundColor:"white",
+  width:"100%",
+  height:80,
+  marginBottom:5,
+  borderRadius:10,
+  shadowOpacity: 1,
+  shadowRadius: 6,
+
+  elevation: 6,
+
+  //borderColor:"red",
+  //borderWidth:5,
+  zIndex:5
 }
 });
 

@@ -47,18 +47,18 @@ export default class EmailTrialScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-            <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
+            <View style={styles.background}>      
                     <Text style={styles.headerText}>Email</Text>
-            </ImageBackground>
+            </View>
     <Card style={styles.card}>
       <Card.Content>
-        <Title>Contact us via Email</Title>
+        <Title style={{fontFamily:"NunitoBold"}}>Contact us via Email</Title>
         <TouchableOpacity style={styles.button} onPress={this.openEmail}>
-          <Text>Send Email</Text>
+          <Text style={{fontFamily:"NunitoBold"}}>Send Email</Text>
         </TouchableOpacity>
       </Card.Content>
     </Card>
-    <Text style={{alignSelf:"center"}}>Or call our hotline at 9737 7893. Thank you!</Text>
+    <Text style={{alignSelf:"center", fontFamily:"Nunito"}}>Or call our hotline at 9737 7893. Thank you!</Text>
       </View>
     );
   }
@@ -67,40 +67,47 @@ export default class EmailTrialScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#ececec",
     flexDirection:"column",
     justifyContent:"flex-start"
   },
   background:{
     width:"110%",
-    height:100,
-    //top:50,
-    //alignSelf: "flex-start",
-    //justifyContent: "flex-start",
+    height:110,
     position: "relative",
-    //borderColor: "black",
-    //borderWidth: 5,
-    marginBottom: 30
-  },
+    backgroundColor:"#fec241",
+    borderColor: "black",
+    borderWidth: 5,
+    marginBottom: 15,
+    bottom:5,
+    right:5
+},
   headerText:{
-      color:"black",
-      fontSize: 28,
-      fontWeight:"bold",
-      flexDirection: "column",
-      alignSelf:"center",
-      marginTop: 40,
-      marginRight:50
-  },
+    fontFamily: "OpenSansbold",
+    //paddingVertical: 10,
+    marginTop:45,
+    paddingTop: 6,
+    paddingBottom:5,
+    fontSize: 24,
+    alignSelf:"center",
+    right:12,
+},
   card:{
     margin:20,
     borderColor:"#FFC30B",
     borderWidth:1.5,
+    borderRadius:5,
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
 
   },
   button:{
     alignItems: "center",
-    backgroundColor: "#DDDDDD",
+    backgroundColor: "#fec241",
     padding: 10,
-    marginTop: 20
+    marginTop: 20,
+    borderRadius:5
   }
 });

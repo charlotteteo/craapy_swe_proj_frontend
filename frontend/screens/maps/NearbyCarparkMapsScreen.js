@@ -83,11 +83,14 @@ function NearbyCarparkMapsScreen ({navigation,route}){
       return Object.keys(data).map(key => {
         let obj = data[key];
         obj.keyName = key;
+        // index=0
         
         for (const item of carparksavailable) {
+          index++;
           if (item.car_park_no === key) {
             obj.name=item.address
             obj.free_parking=item.free_parking
+            // obj.index=index
             
             break
           }
@@ -102,6 +105,7 @@ function NearbyCarparkMapsScreen ({navigation,route}){
         return (
           
                 <TouchableOpacity	onPress={() => {
+                  // navigation.navigate("CarparkInfoScreen",{index_list:index,lotsavail:__})
                   //YIPING AND ANANYA B -- navigate from here :)))
               
               }}>

@@ -106,36 +106,191 @@ function ResultsScreen ({ navigation,route }){
     getHawkers();
   }, []);
 
+  const getCurrentDate=()=>{
+
+    var date = new Date().getDate();
+    var month = new Date().getMonth() + 1;
+    var year = new Date().getFullYear();
+
+    //Alert.alert(date + '-' + month + '-' + year);
+    // You can turn it in to your desired format
+    // return date + '/' + month + '/' + year;
+    return '07/03/22'
+}
+
+
+
+function opennowtime(x){
+  // time= new Date().getHours(x);
+  time = 21
+
+  try{
+  actualhours=x.split(':')[1]
+  startinghr=actualhours.split('-')[0].trim()
+  endinghr=actualhours.split('-')[1]
+ 
+  
+
+  if (startinghr.includes('pm')){
+    startinghr = parseInt(startinghr)
+    startinghr = (startinghr) + 12
+  }else{
+    startinghr = parseInt(startinghr)
+  }
+  if (endinghr.includes('pm')){
+    endinghr = parseInt(endinghr)
+    endinghr = (endinghr) + 12
+  }else{
+    endinghr = parseInt(endinghr)
+  }
+  console.log("startinghr:",startinghr)
+  console.log("endinghr:",endinghr)
+  
+  time= new Date().getHours()
+  if (endinghr>startinghr){
+    if ( time>=startinghr && time<=endinghr){
+      return true
+    }else{
+      return false
+    }
+  
+  }else{
+// 15 to 3 now is 21
+// starting hr higher than ending hr
+    if (time>startinghr){
+      console.log(x)
+      return true
+    }else{
+      if (time<endinghr){
+        return true
+      }else{
+        return false
+      }
+    }
+  }
+}catch{
+  if (time>9 && time<21){
+    return true
+  }else{
+    return false
+  }
+
+}
+
+}
+const checkOpen=(start,end)=>{
+
+  var date = new Date().getDate();
+  var month = new Date().getMonth() + 1;
+  var year = new Date().getFullYear();
+
+  //Alert.alert(date + '-' + month + '-' + year);
+  // You can turn it in to your desired format
+  // return date + '/' + month + '/' + year;
+  if (start!=""){
+    start_date=parseInt(start.split("/")[0])
+    start_month=parseInt(start.split("/")[1])
+    end_date=parseInt(end.split("/")[0])
+    end_month=parseInt(end.split("/")[1])
+    // console.log(start_date,start_month,end_date,end_month)
+
+    
+    if (month<start_month){
+      return true
+    }else{
+      if (month==start_month){
+        if (date>=start_date && date <=end_date){
+  
+          return false
+        }else{
+          return true
+        }
+      }else{
+        if (month!=start_month && date <=end_date){
+          return false
+        }else{
+          return true
+        }
+      }
+      
+    }
+
+  }else{
+    return true
+  }
+
+
+
+
+
+
+
+}
   const list = () => {
   
     return data.map((element) => {
-     
-      return (
+      // console.log(getCurrentDate())
+      console.log(element.name,checkOpen(element.q2_cleaningstartdate,element.q2_cleaningenddate),opennowtime(element.operationhours))
+      if (checkOpen(element.q2_cleaningstartdate,element.q2_cleaningenddate) && opennowtime(element.operationhours)){
+        return (
         
-              <TouchableOpacity	onPress={() => {
-                navigation.navigate("InfoScreen",{path:element.name})
-            }}>
+          <TouchableOpacity	onPress={() => {
+            navigation.navigate("InfoScreen",{path:element.name})
+        }}>
 
-           
-            <Card style={{ marginBottom: 10 }}>
-                      <Card.Content>
-                {/* <View key={element.key} style={{margin: 10}}> */}
-                  <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
-                    {element.name}
-                    </Text>
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Address:{element.address}</Text>
+       
+        <Card style={{ marginBottom: 10 }}>
+                  <Card.Content>
+            {/* <View key={element.key} style={{margin: 10}}> */}
+              <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
+                {element.name}
+                </Text>
+              <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Address:{element.address}</Text>
 
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Operation Hours:{element.operationhours}</Text>
+              <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Operation Hours:{element.operationhours}</Text>
 
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Food Categories:{element.foodcategories}</Text>
+              <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Food Categories:{element.foodcategories}</Text>
+              <Text style={[ {fontWeight: 'bold',fontSize: 20 }]}>OPEN NOW</Text>
 
-            </Card.Content>
-  
-  
-  </Card>
-            </TouchableOpacity>
+        </Card.Content>
+
+
+</Card>
+        </TouchableOpacity>
+    
+  );
+      }else{
+        return (
         
-      );
+          <TouchableOpacity	onPress={() => {
+            navigation.navigate("InfoScreen",{path:element.name})
+        }}>
+
+       
+        <Card style={{ marginBottom: 10 }}>
+                  <Card.Content>
+            {/* <View key={element.key} style={{margin: 10}}> */}
+              <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
+                {element.name}
+                </Text>
+              <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Address:{element.address}</Text>
+
+              <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Operation Hours:{element.operationhours}</Text>
+
+              <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Food Categories:{element.foodcategories}</Text>
+              <Text style={[ {fontWeight: 'bold',fontSize: 20 }]}>CLOSED</Text>
+
+        </Card.Content>
+
+
+</Card>
+        </TouchableOpacity>
+    
+  );
+      }
+
+      
+   
     });
   };
 
@@ -155,10 +310,28 @@ const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
-		<Stack.Navigator headerMode="float">
-    <Stack.Screen name="ResultsScreen" component={ResultsScreen} />
-    	<Stack.Screen name="InfoScreen" component={InfoScreen} />
-      <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen} />
+<Stack.Navigator headerMode="none">
+    <Stack.Screen name="ResultsScreen" component={ResultsScreen} 
+                    options={{
+                      headerBackTitleVisible:false,
+                      headerTitle:false,
+                      headerTransparent:true,
+                      headerTintColor:'#fff'
+                  }}/>
+    	<Stack.Screen name="InfoScreen" component={InfoScreen} 
+                      options={{
+                        headerBackTitleVisible:false,
+                        headerTitle:false,
+                        headerTransparent:true,
+                        headerTintColor:'#fff'
+                    }}/>
+      <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen} 
+                      options={{
+                        headerBackTitleVisible:false,
+                        headerTitle:false,
+                        headerTransparent:true,
+                        headerTintColor:'#fff'
+                    }}/>
 		</Stack.Navigator>
 	);
 }

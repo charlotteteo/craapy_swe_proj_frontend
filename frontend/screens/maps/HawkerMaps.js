@@ -24,6 +24,8 @@ import {
 	Paragraph,
 	IconButton,
 } from "react-native-paper";
+import moment from 'moment';
+
 import * as WebBrowser from 'expo-web-browser';
 import { hawkerclosure } from '../../assets/HawkerClosure';
 import MapView,  { MAP_TYPES, PROVIDER_DEFAULT,PROVIDER_GOOGLE } from 'react-native-maps';
@@ -33,6 +35,7 @@ import { Marker } from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
 import CarparkInfoScreen from '../maps/CarparkInfoScreen'
 
+import EmailScreen from "../help/EmailScreen";
 
 const { width, height } = Dimensions.get('window');
 
@@ -56,19 +59,131 @@ const markers =() => {
 
 function HawkerMaps ({navigation}){
 
+const checkOpen=(start,end)=>{
+
+    var date = new Date().getDate();
+    var month = new Date().getMonth() + 1;
+    var year = new Date().getFullYear();
+
+    //Alert.alert(date + '-' + month + '-' + year);
+    // You can turn it in to your desired format
+    // return date + '/' + month + '/' + year;
+    if (start!=""){
+      start_date=parseInt(start.split("/")[0])
+      start_month=parseInt(start.split("/")[1])
+      end_date=parseInt(end.split("/")[0])
+      end_month=parseInt(end.split("/")[1])
+      console.log(start_date,start_month,end_date,end_month)
+
+      
+      if (month<start_month){
+        return true
+      }else{
+        if (month==start_month){
+          if (date>=start_date && date <=end_date){
+    
+            return false
+          }else{
+            return true
+          }
+        }else{
+          if (month!=start_month && date <=end_date){
+            return false
+          }else{
+            return true
+          }
+        }
+        
+      }
+
+    }else{
+      return true
+    }
+
+
+
+
+
+
+
+}
+
 const list = () => {
     return hawkerclosure.map((element) => {
       _handleOpenWithWebBrowser = () => {
         WebBrowser.openBrowserAsync(element.Address);
       };
+        if (checkOpen(element.q2_cleaningstartdate,element.q2_cleaningenddate)){
+      
+        return (
+        
+          <TouchableOpacity	
+
+          onPress={() => {
+
+               console.log(element.Name)
+               navigation.navigate("Results",{path:element.Name})
+            // navigation.navigate("Results")
+          }
+  
+     
+          }
+        >
+         <SafeAreaView>
+         <Card style={{ marginBottom: 10,borderColor:"#FFC30B",borderWidth:1.5,width: 350}}>
+                  <Card.Content>
+              
+              <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center',}]}>
+                {element.Name}
+            
+                  </Text>
+                  <Text></Text>
+              <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>
+                Hawker Centre Closure:
+                </Text>
+             <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>
+                {element.q2_cleaningstartdate} to {element.q2_cleaningenddate}
+        
+                  </Text>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>
+               OPEN TODAY
+        
+                  </Text>
+              
+                  <Text></Text>
+                  <View style={{alignItems:"center"}}>
+        <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
+        <View style={{alignItems:"center"}}>
+    <Text style={styles.text}>Open on Google Maps</Text>
+    </View>
+  </Pressable>
+  </View>
+
+            
+        </Card.Content>
+
+
+</Card>
+</SafeAreaView>
+
+        </TouchableOpacity>
+  
+  );
+      }else{
+
+      
 
 
       return (
         
               <TouchableOpacity	
 
-              onPress={() => 
-                navigation.navigate("Results",{path:element.name})
+              onPress={() => {
+
+                   console.log(element.Name)
+                   navigation.navigate("Results",{path:element.Name})
+                // navigation.navigate("Results")
+              }
       
          
               }
@@ -86,9 +201,13 @@ const list = () => {
                     Hawker Centre Closure:
                     </Text>
                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>
-                    {element.q1_cleaningstartdate} to {element.q1_cleaningenddate}
+                    {element.q2_cleaningstartdate} to {element.q2_cleaningenddate}
             
                       </Text>
+                      <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>
+            CLOSED TODAY
+        
+                  </Text>
                       <Text></Text>
                       <View style={{alignItems:"center"}}>
             <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
@@ -107,9 +226,10 @@ const list = () => {
   
             </TouchableOpacity>
       
-      );
-    });
-  };
+      );}});}
+    
+  
+
    
   const modalizeRef = useRef(null);
   const onOpen = () => {
@@ -118,9 +238,9 @@ const list = () => {
 
   return (
       <View style={styles.container}>
-                              <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
+            <View style={styles.background}>      
                 <Text style={styles.headerText}>Hawker Map</Text>
-            </ImageBackground>  
+            </View>  
         {/* <MapView
                 initialRegion={{
                 latitude: LATITUDE,
@@ -248,15 +368,49 @@ const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
-    <NavigationContainer>
-      <Stack.Navigator headerMode="float">
-        <Stack.Screen name="Home" component={HomeScreenCopy}/>
-       <Stack.Screen name="HawkerMaps" component={HawkerMaps} />
-    <Stack.Screen name="Results" component={ResultsScreen}  />      
-    <Stack.Screen name="InfoScreen" component={InfoScreen} />
-		<Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen} />
+    // <NavigationContainer>
+      <Stack.Navigator headerMode="none">    
+        <Stack.Screen name="Maps" component={HawkerMaps} 
+                        options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>
+        <Stack.Screen name="Home" component={HomeScreenCopy}
+                        options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>
+        <Stack.Screen name="HawkerMaps" component={HawkerMaps} 
+                        options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>        
+        {/* <Stack.Screen name="Results" component={EmailScreen} />       */}
+        <Stack.Screen name="Results" component={ResultsScreen} 
+            //initialParams={{path:element.Name}}  
+
+                        options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>      
+        {/* <Stack.Screen name="InfoScreen" component={InfoScreen} /> */}
+        <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen} 
+                        options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>
 		  </Stack.Navigator>
-    </NavigationContainer>
+    // </NavigationContainer>
 	);
 }
 
@@ -318,23 +472,32 @@ const styles = StyleSheet.create({
   },
 
   background:{
-    width:"110%",
+    position:"absolute",
+    top:0,
+    backgroundColor:"white",
+    width:"100%",
     height:80,
-    //top:50,
-    //alignSelf: "flex-start",
-    //justifyContent: "flex-start",
-    position: "relative",
-    //borderColor: "black",
-    //borderWidth: 5,
-    marginBottom: 0
-},
+    marginBottom:5,
+    borderRadius:10,
+    shadowOpacity: 1,
+    shadowRadius: 6,
+  
+    elevation: 6,
+  
+    //borderColor:"red",
+    //borderWidth:5,
+    zIndex:5
+  },
 headerText:{
-    color:"black",
-    fontSize: 28,
-    fontWeight:"bold",
-    flexDirection: "column",
-    alignSelf:"center",
-    marginTop: 30
+  color:"black",
+  fontSize: 22,
+  fontWeight:"bold",
+  flexDirection: "column",
+  alignSelf:"center",
+  marginTop: 40,
+  marginBottom: 0,
+  fontFamily:"OpenSansbold",
+
 },
 test:{
   flex: 1, 
@@ -346,7 +509,7 @@ test:{
 buttoncarpark:{
   borderColor:"grey",
   borderWidth:1,
-  backgroundColor: "#F3F3F3",
+  backgroundColor: "#fec241",
   marginBottom: 10,
   borderRadius:20,
   opacity: 0.7
@@ -385,4 +548,4 @@ ModalHeadertext:{
 }
 });
 
-module.exports = HawkerMaps;
+// module.exports = HawkerMaps;

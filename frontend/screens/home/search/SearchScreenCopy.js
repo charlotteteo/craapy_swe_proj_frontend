@@ -31,7 +31,6 @@ import {
 } from "react-native-paper";
 import { SearchBar } from 'react-native-elements';
 import { createStackNavigator } from "@react-navigation/stack";
-import FilterScreen from "../filter/FilterScreen";
 import NearbyCarparkMapsScreen from "../../maps/NearbyCarparkMapsScreen";
 
 function SearchScreenCopy({navigation}) {
@@ -197,7 +196,13 @@ function SearchScreenCopy({navigation}) {
         navigation.navigate("Results",{path:final,})     // SEARCHES for cuisine 
   
       }
-    
+   
+  // ratings
+  const [r1, setr1] = useState(false);
+  const [r2, setr2] = useState(false);
+  const [r3, setr3] = useState(false);
+  const [r4, setr4] = useState(false);
+  const [r5, setr5] = useState(false);
   
   // cuisine
   const [cuisine1, Setcuisine1] = useState(false);
@@ -206,29 +211,21 @@ function SearchScreenCopy({navigation}) {
   const [cuisine4, Setcuisine4] = useState(false);
   const [cuisine5, Setcuisine5] = useState(false);
 
-  // ratings
-  const [r1, setr1] = useState(false);
-  const [r2, setr2] = useState(false);
-  const [r3, setr3] = useState(false);
-  const [r4, setr4] = useState(false);
-  const [r5, setr5] = useState(false);
-
-  // neighbourhood area
-  const [a1, seta1] = useState(false);
-  const [a2, seta2] = useState(false);
-  const [a3, seta3] = useState(false);
-  const [a4, seta4] = useState(false);
-  const [a5, seta5] = useState(false);
-  const [a6, seta6] = useState(false);
-  const [a7, seta7] = useState(false);
-
-
   // distance
   const [n1, setn1] = useState(false);
   const [n2, setn2] = useState(false);
   const [n3, setn3] = useState(false);
   const [n4, setn4] = useState(false);
   const [n5, setn5] = useState(false);
+
+    // neighbourhood area
+    const [a1, seta1] = useState(false);
+    const [a2, seta2] = useState(false);
+    const [a3, seta3] = useState(false);
+    const [a4, seta4] = useState(false);
+    const [a5, seta5] = useState(false);
+    const [a6, seta6] = useState(false);
+    const [a7, seta7] = useState(false);
 
 
     // remove all other checkboxes when toggling
@@ -391,35 +388,35 @@ function SearchScreenCopy({navigation}) {
           <ScrollView nestedScrollEnabled = {true}>
     
           <CheckBox
-            title="1 Star"
+            title="Above 20"
             checked={r1}
             onPress={() => 
               setr1fx()
             }
           />
           <CheckBox
-              title="2 Stars"
+              title="Above 40"
               checked={r2}
               onPress={() => 
                 setr2fx()
               }
           />
           <CheckBox
-              title="3 Stars"
+              title="Above 60"
               checked={r3}
               onPress={() => 
                 setr3fx()
               }
           />
           <CheckBox
-              title="4 Stars"
+              title="Above 80"
               checked={r4}
               onPress={() => 
                 setr4fx()
               }
           />
           <CheckBox
-              title="5 Stars"
+              title="Above 90"
               checked={r5}
               onPress={() => 
                 setr5fx()

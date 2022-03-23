@@ -24,7 +24,6 @@ import {
 
 import { createStackNavigator } from "@react-navigation/stack";
 import SearchScreen from "./home/search/SearchScreen";
-import FilterScreen from "./home/filter/FilterScreen";
 import ResultsScreen from "./ResultsScreen"
 import { NavigationContainer } from '@react-navigation/native';
 import NearbyCarparkMapsScreen from "./maps/NearbyCarparkMapsScreen";

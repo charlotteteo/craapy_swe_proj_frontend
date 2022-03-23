@@ -28,7 +28,6 @@ import {
 import { SearchBar } from 'react-native-elements';
 import { createStackNavigator } from "@react-navigation/stack";
 
-import FilterScreen from "../filter/FilterScreen";
 
 //const SearchScreen = () => 
 
@@ -461,7 +460,6 @@ export default function homestack() {
 	return (
 		<Stack.Navigator headerMode="float">
 			<Stack.Screen name="Search" component={SearchScreen} />
-      <Stack.Screen name="Filter" component={FilterScreen} />
 		</Stack.Navigator>
 	);
 }

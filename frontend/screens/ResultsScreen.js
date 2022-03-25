@@ -25,6 +25,7 @@ function ResultsScreen ({ navigation,route }){
   cuisineArray = ["Chinese","Western","Indian","Thai","Japanese"]
   distanceArray = ["0.1","0.3","0.5","1","2"]
   neighbourhoodArray = ["Ardmore, Bukit Timah, Holland Road, Tanglin","Orchard, Cairnhill, River Valley","Jurong","Little India","Tampines, Pasir Ris","Queenstown, Tiong Bahru","Raffles Place, Cecil, Marina, Peoples Park"]
+  timeArray = ["open"]
 
   // BV MRT
   const LATITUDE =  1.3072;
@@ -34,7 +35,17 @@ function ResultsScreen ({ navigation,route }){
      try {
       var response = "empty"
 
-      if (path.length == 1) {
+      var length = path.length;
+      console.log("check");
+      console.log(path[length - 1]);
+
+      // TO NOT LET OPEN OR NOT AFFECT IF ELSE LATER
+      if (timeArray.includes(path[length - 1])) {
+        length = length - 1;
+        console.log("length - 1");
+      }
+
+      if (length == 1) {
         if (ratingArray.includes(path[0])) {
           var response = await fetch('http://localhost:8080/rating/'+path[0]);    //var used to make it editable. 
           //console.log("check??")
@@ -46,7 +57,7 @@ function ResultsScreen ({ navigation,route }){
           var response = await fetch('http://localhost:8080/neighbourhood/'+path[0]);    
         }
       }
-      else if (path.length == 2) {
+      else if (length == 2) {
         if (ratingArray.includes(path[0]) && neighbourhoodArray.includes(path[1])) {    // RATING + NEIGHBOURHOOD
           var response = await fetch('http://localhost:8080/ratingandneigh/'+path[1]+'/'+path[0]);  
         }
@@ -67,7 +78,7 @@ function ResultsScreen ({ navigation,route }){
           var response = await fetch('http://localhost:8080/neighcuis/'+path[0]+'/'+path[1]);  
         }
       }
-      else if (path.length == 3) {
+      else if (length == 3) {
         if (ratingArray.includes(path[0]) && distanceArray.includes(path[1]) && neighbourhoodArray.includes(path[2])) {    // RATING + NEIGHBOURHOOD + distance
           var response = await fetch('http://localhost:8080/ratingdistneigh/'+path[2]+'/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);  
         }
@@ -81,7 +92,7 @@ function ResultsScreen ({ navigation,route }){
           var response = await fetch('http://localhost:8080/distneighcuis/'+path[0]+'/'+path[2]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);  
         }
       }
-      else if (path.length == 4) {
+      else if (length == 4) {
         if (ratingArray.includes(path[0]) && cuisineArray.includes(path[1]) && distanceArray.includes(path[2]) && neighbourhoodArray.includes(path[3])) {    // CUISINE + distance + NEIGHBOURHOOD
           var response = await fetch('http://localhost:8080/allfilters/'+path[1]+'/'+path[3]+'/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[2]);
         }

@@ -102,7 +102,12 @@ function HomeScreenCopy({ navigation }) {
       //console.log(data)
       //console.log("check")
       //console.log(top10ratings.map(element))
+
     });
+
+    //CHECK
+    
+
       return () => getHawkers();
     }, [ navigation]);
 

@@ -163,7 +163,6 @@ function InfoScreen ({ navigation,route}){
     
 
 
-
     
   }
 

@@ -32,11 +32,14 @@ import * as WebBrowser from 'expo-web-browser';
 import * as FileSystem from 'expo-file-system';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import {top10ratings}  from "../assets/top10ratings";
+
 
 function InfoScreen ({ navigation,route}){
   
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [data2, setData2] = useState([]); // test can delete later
   const {path}=route.params;
   console.log(path)
 
@@ -48,9 +51,10 @@ function InfoScreen ({ navigation,route}){
       const response = await fetch('http://localhost:8080/search/'+path);
       const json = await response.json();
   
+      
       setData(json);
+      
   
-
     } catch (error) {
       console.error(error);
     } finally {
@@ -67,6 +71,28 @@ function InfoScreen ({ navigation,route}){
           //error;
       }
       */
+
+      // testing homescreen. 
+    //console.log(top10ratings);
+    /*
+    var historypath = 'http://localhost:8080/history/Holland V Coffee & Drink/Xiang Jiang Soya Sauce Chicken/Depot Road Zhen Shan Mei Laksa/Hock Kee Fried Kway Teow/Kwang Kee Teochew Fish Porridge/The Sugarcane Plant/Ma Bo/Teck Kee Hot & Cold Dessert/Ramen Taisho/Kwang Kee Teochew Fish Porridge';
+    try {
+      var response = await fetch(historypath);
+      const json2 = await response.json();   
+      console.log(historypath)    
+      setData2(json2);
+      console.log("hello1")
+      console.log(data)
+      console.log("hello")
+      
+      console.log(data2);
+      console.log("helloend")
+    } catch (error) {
+      console.error(error);
+    } finally {
+      //setLoading(false);
+    }*/
+    
 
 
     try {
@@ -104,14 +130,21 @@ function InfoScreen ({ navigation,route}){
     }
 
 
-    console.log(jsonHistory);
+    // to check if the history path works - IT DOES
+    /*var historypath = 'http://localhost:8080/history/';
+    for (let i = 1; i < 10; i++) {     // hardcoded btw 
+      historypath = historypath + jsonHistory["history" + (i).toString()] +"/";   
+    }
+    historypath = historypath + jsonHistory["history10"]; 
+    console.log(historypath)
+    //alert(historypath)*/
 
     for (let i = 9; i > 0; i--) {     // hardcoded btw 
       jsonHistory["history" + (i+1).toString()] = jsonHistory["history" + (i).toString()];   
     }
 
     jsonHistory["history1"] = path;
-
+    console.log("jsonHistory in infoscreen");
     console.log(jsonHistory);
 
     jsonString = JSON.stringify(jsonHistory);
@@ -134,6 +167,7 @@ function InfoScreen ({ navigation,route}){
     
   }
 
+  
 
 
 
@@ -144,6 +178,9 @@ function InfoScreen ({ navigation,route}){
 
   const List = () => {
    return data.map((element) => {
+    //console.log("check1")
+    //console.log(element);
+    //console.log("endcheck")
     address= 'https://www.google.com/maps?saddr=My+Location&daddr='+element.latitude_hc+','+element.longitude_hc
     _handleOpenWithWebBrowser = () => {
       WebBrowser.openBrowserAsync(address);

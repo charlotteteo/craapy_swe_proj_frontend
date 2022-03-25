@@ -33,6 +33,126 @@ import { SearchBar } from 'react-native-elements';
 import { createStackNavigator } from "@react-navigation/stack";
 import NearbyCarparkMapsScreen from "../../maps/NearbyCarparkMapsScreen";
 
+
+
+
+const getCurrentDate=()=>{
+
+  var date = new Date().getDate();
+  var month = new Date().getMonth() + 1;
+  var year = new Date().getFullYear();
+
+  //Alert.alert(date + '-' + month + '-' + year);
+  // You can turn it in to your desired format
+  // return date + '/' + month + '/' + year;
+  return '07/03/22'
+}
+
+
+
+function opennowtime(x){
+// can use to test time !!! allocate on 24h if not uncomment  line 125- to get actual hour
+// time= new Date().getHours(x);
+time = 21
+
+
+try{
+actualhours=x.split(':')[1]
+startinghr=actualhours.split('-')[0].trim()
+endinghr=actualhours.split('-')[1]
+
+
+
+if (startinghr.includes('pm')){
+  startinghr = parseInt(startinghr)
+  startinghr = (startinghr) + 12
+}else{
+  startinghr = parseInt(startinghr)
+}
+if (endinghr.includes('pm')){
+  endinghr = parseInt(endinghr)
+  endinghr = (endinghr) + 12
+}else{
+  endinghr = parseInt(endinghr)
+}
+console.log("startinghr:",startinghr)
+console.log("endinghr:",endinghr)
+
+time= new Date().getHours()
+if (endinghr>startinghr){
+  if ( time>=startinghr && time<=endinghr){
+    return true
+  }else{
+    return false
+  }
+
+}else{
+// 15 to 3 now is 21
+// starting hr higher than ending hr
+  if (time>startinghr){
+    console.log(x)
+    return true
+  }else{
+    if (time<endinghr){
+      return true
+    }else{
+      return false
+    }
+  }
+}
+}catch{
+if (time>9 && time<21){
+  return true
+}else{
+  return false
+}
+}
+
+}
+const checkOpen=(start,end)=>{
+
+var date = new Date().getDate();
+var month = new Date().getMonth() + 1;
+var year = new Date().getFullYear();
+
+//Alert.alert(date + '-' + month + '-' + year);
+// You can turn it in to your desired format
+// return date + '/' + month + '/' + year;
+if (start!=""){
+  start_date=parseInt(start.split("/")[0])
+  start_month=parseInt(start.split("/")[1])
+  end_date=parseInt(end.split("/")[0])
+  end_month=parseInt(end.split("/")[1])
+  // console.log(start_date,start_month,end_date,end_month)
+
+  
+  if (month<start_month){
+    return true
+  }else{
+    if (month==start_month){
+      if (date>=start_date && date <=end_date){
+
+        return false
+      }else{
+        return true
+      }
+    }else{
+      if (month!=start_month && date <=end_date){
+        return false
+      }else{
+        return true
+      }
+    }  
+  }
+}else{
+  return true
+}
+}
+
+
+
+
+
 function SearchScreenCopy({navigation}) {
 
     const [search, setSearch] = useState('');
@@ -170,18 +290,24 @@ function SearchScreenCopy({navigation}) {
         setn4(false)
         setn5(false)
       }
+      function clearPressedTime(){
+        seto1(true)
+        seto2(false)
+      }
       function clearAll() {
         clearPressedCuisine()
         clearPressedDistance()
         clearPressedNeighbourhood()
         clearPressedRatings()
+        clearPressedTime()
       }
   
     
       function checkFilter() {
         namearray = ["20","40","60","80","90","Chinese","Western","Indian","Thai","Japanese","0.1","0.3","0.5","1","2",
-              "Ardmore, Bukit Timah, Holland Road, Tanglin","Orchard, Cairnhill, River Valley","Jurong","Little India","Tampines, Pasir Ris","Queenstown, Tiong Bahru","Raffles Place, Cecil, Marina, Peoples Park"]
-        listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,cuisine5,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7]
+              "Ardmore, Bukit Timah, Holland Road, Tanglin","Orchard, Cairnhill, River Valley","Jurong","Little India","Tampines, Pasir Ris","Queenstown, Tiong Bahru","Raffles Place, Cecil, Marina, Peoples Park"
+              , "open"]
+        listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,cuisine5,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7,o2] // doesnt include all stalls thing. 
         length = listarray.length
         final = []
         for (let i=0; i<length; i++) {
@@ -227,6 +353,9 @@ function SearchScreenCopy({navigation}) {
     const [a6, seta6] = useState(false);
     const [a7, seta7] = useState(false);
 
+  //open now
+  const [o1, seto1] = useState(true);
+  const [o2, seto2] = useState(false);
 
     // remove all other checkboxes when toggling
   // ratings
@@ -271,6 +400,16 @@ function SearchScreenCopy({navigation}) {
   function setn5fx() {
     setn5(!n5)
     setn1(false), setn2(false), setn3(false), setn4(false)
+  }
+
+  // open
+  function seto1fx() {
+    seto1(true)
+    seto2(false)
+  }
+  function seto2fx() {
+    seto2(true)
+    seto1(false)
   }
 
 
@@ -574,6 +713,41 @@ function SearchScreenCopy({navigation}) {
 
 
         </ScrollView>
+      
+        <ScrollView horizontal={true}>
+      <Card style={{ marginBottom: 10,paddingBottom: 25, width:320,height:340,flexDirection:"column"}}>   
+                      <Card.Content>
+                {/* <View key={element.key} style={{margin: 10}}> */}
+                <View style ={styles.filterfieldtitle}>
+                <Text style={[ {fontWeight: 'bold',fontSize:20, color:"black"}]}>Time</Text>
+                </View>
+          {/* <Icon name="facebook" style={styles.icon}></Icon> */}
+          <View style={styles.clearFilterContainer}>
+            <Button title="Reset Default" onPress={clearPressedTime}/>
+          </View>
+          <ScrollView horizontal={false}>
+          
+        <CheckBox
+          title="All Stalls"
+          checked={o1}
+          onPress={() => seto1fx()}
+        />
+        <CheckBox
+          title="Stalls Open Now"
+          checked={o2}
+          onPress={() => seto2fx()}
+        />
+        </ScrollView>
+        </Card.Content>
+        </Card>
+
+
+        </ScrollView>
+
+
+
+
+
         </ScrollView>
 
 

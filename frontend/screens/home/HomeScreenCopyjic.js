@@ -40,7 +40,46 @@ function HomeScreenCopy({ navigation }) {
   const [wish, setWish] = useState(false);
   const [data, setData] = useState([]);
 
-  
+  const getHawkers = async () => {
+    // to get the history from async storage
+    try {
+      var jsonString = await AsyncStorage.getItem('history');
+      if (jsonString !== null) {
+        // We have data!!
+        jsonHistory = JSON.parse(jsonString);
+        var historypath = 'http://localhost:8080/history/';
+        for (let i = 1; i < 10; i++) {     // hardcoded btw 
+          historypath = historypath + jsonHistory["history" + (i).toString()] +"/";   
+        }
+        historypath = historypath + jsonHistory["history10"]; 
+      }
+      else if (jsonString == null) {
+        var historypath = 'http://localhost:8080/history/Holland V Coffee & Drink/Xiang Jiang Soya Sauce Chicken/Depot Road Zhen Shan Mei Laksa/Hock Kee Fried Kway Teow/Kwang Kee Teochew Fish Porridge/The Sugarcane Plant/Ma Bo/Teck Kee Hot & Cold Dessert/Ramen Taisho/Kwang Kee Teochew Fish Porridge';
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+    //console.log(historypath)  
+
+    console.log(historypath)
+    console.log("This is the json history - home screen!!!")
+    console.log(jsonHistory);
+    //GET FROM BACKEND
+    try {
+      
+      var response = await fetch(historypath);
+      const json = await response.json();       
+      setData(json);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      //setLoading(false);
+    }
+    //console.log(data)
+    //console.log("check")
+    //console.log(top10ratings.map(element))
+    return () => getHawkers();
+  };
 
   const recentlist = () => {
     // DISPLAY ON SCREEN?
@@ -64,47 +103,8 @@ function HomeScreenCopy({ navigation }) {
 
 
   useEffect(() => {
-    const getHawkers = navigation.addListener("focus", async (e) => {
-      // to get the history from async storage
-      try {
-        var jsonString = await AsyncStorage.getItem('history');
-        if (jsonString !== null) {
-          // We have data!!
-          jsonHistory = JSON.parse(jsonString);
-          var historypath = 'http://localhost:8080/history/';
-          for (let i = 1; i < 10; i++) {     // hardcoded btw 
-            historypath = historypath + jsonHistory["history" + (i).toString()] +"/";   
-          }
-          historypath = historypath + jsonHistory["history10"]; 
-        }
-        else if (jsonString == null) {
-          var historypath = 'http://localhost:8080/history/Holland V Coffee & Drink/Xiang Jiang Soya Sauce Chicken/Depot Road Zhen Shan Mei Laksa/Hock Kee Fried Kway Teow/Kwang Kee Teochew Fish Porridge/The Sugarcane Plant/Ma Bo/Teck Kee Hot & Cold Dessert/Ramen Taisho/Kwang Kee Teochew Fish Porridge';
-        }
-      } catch (error) {
-        // Error retrieving data
-      }
-      //console.log(historypath)  
-  
-      console.log(historypath)
-      console.log("This is the json history - home screen!!!")
-      console.log(jsonHistory);
-      //GET FROM BACKEND
-      try {
-        
-        var response = await fetch(historypath);
-        const json = await response.json();       
-        setData(json);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        //setLoading(false);
-      }
-      //console.log(data)
-      //console.log("check")
-      //console.log(top10ratings.map(element))
-    });
-      return () => getHawkers();
-    }, [ navigation]);
+    getHawkers();
+  }, []);
 
 
 
@@ -193,7 +193,7 @@ function HomeScreenCopy({ navigation }) {
         </View>
         <ScrollView scrollEventThrottle={16}>
           <View style={{flex:1, backgroundColor:"white", paddingTop:10}}>
-          <Text style={styles.scrolltitle}>Recently Clicked Stalls</Text>
+          <Text style={styles.scrolltitle}>Recent</Text>
           <View style={{height:130, marginTop:20}}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
            {recentlist()}

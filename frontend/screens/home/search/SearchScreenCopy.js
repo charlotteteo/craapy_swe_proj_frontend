@@ -81,9 +81,19 @@ function SearchScreenCopy({navigation}) {
     };
     
     const list = () => {
+      
   
         return filteredDataSource.map((element) => {
-         
+          if (element.operationhours==""){
+            element.operationhours="Mon-Sun :9am-6pm"
+          }
+          if ((element.foodcategories!="")){
+            element.foodcategories=element.foodcategories.replace("'","")
+            element.foodcategories=element.foodcategories.replace("'","")
+            element.foodcategories=element.foodcategories.replace("'","")
+            element.foodcategories=element.foodcategories.replace("[","")
+            element.foodcategories=element.foodcategories.replace("]","")
+          }
           return (
             
                   <TouchableOpacity	onPress={() => {
@@ -91,20 +101,26 @@ function SearchScreenCopy({navigation}) {
                 
                 }}>
       
-                <Card style={{ marginBottom: 10 }}>
-                          <Card.Content>
-                    {/* <View key={element.key} style={{margin: 10}}> */}
-                      <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
-                        {element.name}
-                        </Text>
-                      <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Address:{element.address}</Text>
-    
-                      <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Operation Hours:{element.operationhours}</Text>
-    
-                      <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Food Categories:{element.foodcategories}</Text>
-    
-    
-                </Card.Content>
+      <Card style={{ marginBottom: 10 ,backgroundColor:"#FFF2D6",}}>
+                        <Card.Content>
+                  {/* <View key={element.key} style={{margin: 10}}> */}
+                    <Text style={[ {fontWeight: 'bold',fontSize: 22,color:"#654321"}]}>
+                      {element.name}
+                      </Text>
+                      {/* <View
+  style={{
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+  }}
+/> */}
+                    <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>{element.hawkercentrename}</Text>
+  
+                    <Text style={[ {fontSize: 15}]}>Operates on {element.operationhours}</Text>
+  
+                    <Text style={[ {fontSize: 15}]}>Food Categories: {element.foodcategories}</Text>
+
+  
+              </Card.Content>
       
       
       </Card>
@@ -278,10 +294,8 @@ function SearchScreenCopy({navigation}) {
 
 
     return (
-      <SafeAreaView style={styles.container}>
-      <View>      
-        <Text style={styles.headerTitle}>Search</Text>
-    </View>  
+      <SafeAreaView style={styles.container}>    
+        <Text style={styles.headerText}>Search</Text>
 <View style={styles.searchbar}>
   <SearchBar //style = {styles.searchbar}
     round
@@ -662,7 +676,7 @@ const styles = StyleSheet.create({
     paddingBottom:5,
     left: 10
   },
-
+  
 
   clearAllButton: {       // HARD TO PRESS - click above it...
     top:35,
@@ -709,14 +723,15 @@ const styles = StyleSheet.create({
     marginBottom: 50
 },
 headerText:{
-    color:"white",
-    fontSize: 28,
-    fontWeight:"bold",
-    flexDirection: "column",
-    alignSelf:"center",
-    marginTop: 30,
-    marginRight:15,
-    marginBottom:10
+  color:"black",
+  fontSize: 22,
+  fontWeight:"bold",
+  flexDirection: "column",
+  alignSelf:"center",
+  marginTop: 40,
+  marginBottom: 0,
+  fontFamily:"OpenSansbold",
+
 },
 headerTitle: {
   //marginLeft:8,

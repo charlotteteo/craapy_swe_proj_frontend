@@ -54,6 +54,7 @@ function InfoScreen ({ navigation,route}){
 
   const List = () => {
    return data.map((element) => {
+    console.log(element)
     address= 'https://www.google.com/maps?saddr=My+Location&daddr='+element.latitude_hc+','+element.longitude_hc
     _handleOpenWithWebBrowser = () => {
       WebBrowser.openBrowserAsync(address);

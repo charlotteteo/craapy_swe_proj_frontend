@@ -83,14 +83,12 @@ function NearbyCarparkMapsScreen ({navigation,route}){
       return Object.keys(data).map(key => {
         let obj = data[key];
         obj.keyName = key;
-        // index=0
         
         for (const item of carparksavailable) {
-          index++;
           if (item.car_park_no === key) {
             obj.name=item.address
             obj.free_parking=item.free_parking
-            // obj.index=index
+            obj.car_park_type=item.car_park_type
             
             break
           }
@@ -104,52 +102,40 @@ function NearbyCarparkMapsScreen ({navigation,route}){
         // console.log(response1)
         return (
           
-                <TouchableOpacity	onPress={() => {
-                  // navigation.navigate("CarparkInfoScreen",{index_list:index,lotsavail:__})
-                  //YIPING AND ANANYA B -- navigate from here :)))
-              
-              }}>
-  
-                
-  
-             
-  <Card style={{ marginBottom: 10,borderColor:"#FFC30B",borderWidth:1.5 ,alignItems:"center",width:350}}>
-                        <Card.Content>
-                        <View style={{alignItems:"center"}}>
-                        
-                    <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
-                      {obj.name}
-                      </Text>
-                      <Text></Text>
-                    <Text style={[ {fontWeight: 'bold',fontSize: 15,color:'#c2c2c2'}]}>Carpark Code:{obj.keyName}</Text>
-  
-                    <Text style={[ {fontWeight: 'bold',fontSize: 15,color:'#c2c2c2'}]}>lots avail:{obj.lotsAvailable}</Text>
-  
-                    <Text style={[ {fontWeight: 'bold',fontSize: 15,color:'#c2c2c2'}]}>total lots:{obj.totalLots}</Text>
-                   
-                    <Text style={[ {fontWeight: 'bold',fontSize: 15,color:'#c2c2c2'}]}>free parking:{obj.free_parking}</Text>
-                    <Text></Text>
-                  </View>
-                   
-              </Card.Content>
-    
-    
-    
+          <TouchableOpacity	onPress={() => {
+            console.log(obj.car_park_no)
+            navigation.navigate("CarparkInfoScreen",{path:obj.car_park_no})
+            
+        }}>
 
-              <View style={{alignItems:"center"}}>
-            <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
-            <View style={{alignItems:"center"}}>
-        <Text style={styles.text}>Open on Google Maps</Text>
-        </View>
-     
-      </Pressable>
-      <Text></Text>
-      </View>
-      </Card>
-    
+       
+        <Card style={{ marginBottom: 10,backgroundColor:"#FFF2D6",width:350 }}>
+                  <Card.Content>
+            {/* <View key={element.key} style={{margin: 10}}> */}
+              {/* <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
+                {element.name}
+                </Text> */}
+               
+              <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center'}]}>{obj.name}</Text>
+              <Text></Text>
 
+              <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>{obj.car_park_type}</Text>
 
-              </TouchableOpacity>
+              <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>Free Parking: {obj.free_parking}</Text>
+<Text></Text>
+        </Card.Content>
+        <View style={{alignItems:"center"}}>
+        <Pressable style={styles.button_box} onPress={this._handleOpenWithWebBrowser}>
+        <View style={{alignItems:"center"}}>
+    <Text style={styles.text}>Google Maps</Text>
+    </View>
+  </Pressable>
+
+  <Text></Text>
+  </View>
+
+</Card>
+        </TouchableOpacity>
           
         );
       });
@@ -216,12 +202,16 @@ function NearbyCarparkMapsScreen ({navigation,route}){
 
 
   return (
-    <View style={styles.container}>
-                    <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
-              <Text style={styles.headerText}>Nearby Carparks Map</Text>
-          </ImageBackground>     
+      
 
-
+          <View style={styles.container}>
+                    {/* <ImageBackground style={styles.background} source={require('../../assets/yellowbackground.jpg')} resizeMode="cover">      
+              <Text style={styles.headerText}>Carpark Map</Text>
+          </ImageBackground>      */}
+      
+        <View style={styles.headercontainer}>
+          <Text style={styles.headerText}>Nearby Carpark Map</Text>
+          </View>
       {/* <MapView
               initialRegion={{
               latitude: LATITUDE,
@@ -299,6 +289,7 @@ function NearbyCarparkMapsScreen ({navigation,route}){
           {/* <Text>Custom Tiles</Text> */}
      
     </View>
+
   );
 
 }
@@ -357,16 +348,17 @@ const styles = StyleSheet.create({
 
     padding: 6,
     height: 45,
-    width: 250,
+    width: 200,
     // justifyContent: 'center',
     // alignItems: 'center',
     elevation: 5,
     justifyContent: 'center',
     paddingVertical: 5,
     paddingHorizontal: 8,
-    borderRadius: 2,
+    borderRadius: 8,
     elevation: 3,
-    backgroundColor: '#ffde17',
+    backgroundColor: '#fec241',
+    
   },
   text: {
     fontSize: 16,
@@ -389,11 +381,14 @@ const styles = StyleSheet.create({
 },
 headerText:{
     color:"black",
-    fontSize: 24,
+    fontSize: 22,
     fontWeight:"bold",
     flexDirection: "column",
     alignSelf:"center",
-    marginTop: 30
+    marginTop: 40,
+    marginBottom: 0,
+    fontFamily:"OpenSansbold",
+
 },
 test:{
   flex: 1, 
@@ -405,7 +400,7 @@ test:{
 buttoncarpark:{
   borderColor:"grey",
   borderWidth:1,
-  backgroundColor: "#F3F3F3",
+  backgroundColor: "#fec241",
   marginBottom: 10,
   borderRadius:20,
   opacity: 0.7
@@ -413,6 +408,7 @@ buttoncarpark:{
 },
 Buttontext:{
   fontWeight:"bold",
+  fontFamily:"NunitoBlack",
   fontSize: 15,
   padding:15
 },
@@ -441,6 +437,23 @@ ModalHeadertext:{
   alignSelf:"center",
   marginBottom:5,
   padding:5
+},
+headercontainer:{
+  position:"absolute",
+  top:0,
+  backgroundColor:"white",
+  width:"100%",
+  height:80,
+  marginBottom:5,
+  borderRadius:10,
+  shadowOpacity: 1,
+  shadowRadius: 6,
+
+  elevation: 6,
+
+  //borderColor:"red",
+  //borderWidth:5,
+  zIndex:5
 }
 });
 

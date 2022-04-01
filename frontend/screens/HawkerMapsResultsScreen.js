@@ -20,6 +20,7 @@ function ResultsScreen ({ navigation,route }){
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const {path} = route.params;
+  console.log(path);
   
   ratingArray = ["20","40","60","80","90"]
   cuisineArray = ["Chinese","Western","Indian","Thai","Japanese"]
@@ -35,7 +36,7 @@ function ResultsScreen ({ navigation,route }){
     
 
    
-      var response = await fetch('http://localhost:8080/search/'+path[0]);
+      var response = await fetch('http://localhost:8080/search/'+path);
   
       //console.log(path)
       const json = await response.json();
@@ -69,6 +70,12 @@ function ResultsScreen ({ navigation,route }){
 function opennowtime(x){
   // can use to test time !!! allocate on 24h if not uncomment  line 125- to get actual hour
   // time= new Date().getHours(x);
+  if (x==""){
+    time= new Date().getHours()
+    if (time>=9 && time<=18){
+        return true
+    }
+  }
   time = 21
 
 
@@ -177,13 +184,13 @@ const checkOpen=(start,end)=>{
   const list = () => {
   
     return data.map((element) => {
-      if ((element.foodcategories!="")){
-        element.foodcategories=element.foodcategories.replace("'","")
-        element.foodcategories=element.foodcategories.replace("'","")
-        element.foodcategories=element.foodcategories.replace("'","")
-        element.foodcategories=element.foodcategories.replace("[","")
-        element.foodcategories=element.foodcategories.replace("]","")
-      }
+        if ((element.foodcategories!="")){
+            element.foodcategories=element.foodcategories.replace("'","")
+            element.foodcategories=element.foodcategories.replace("'","")
+            element.foodcategories=element.foodcategories.replace("'","")
+            element.foodcategories=element.foodcategories.replace("[","")
+            element.foodcategories=element.foodcategories.replace("]","")
+          }
       // console.log(getCurrentDate())
       console.log(element.name,checkOpen(element.q2_cleaningstartdate,element.q2_cleaningenddate),opennowtime(element.operationhours))
       if (checkOpen(element.q2_cleaningstartdate,element.q2_cleaningenddate) && opennowtime(element.operationhours)){
@@ -238,11 +245,11 @@ const checkOpen=(start,end)=>{
           element.operationhours="Mon-Sun :9am-6pm"
         }
         if ((element.foodcategories!="")){
-          element.foodcategories=element.foodcategories.replace("'","")
-          element.foodcategories=element.foodcategories.replace("'","")
-          element.foodcategories=element.foodcategories.replace("'","")
-          element.foodcategories=element.foodcategories.replace("[","")
-          element.foodcategories=element.foodcategories.replace("]","")
+            element.foodcategories=element.foodcategories.replace("'","")
+            element.foodcategories=element.foodcategories.replace("'","")
+            element.foodcategories=element.foodcategories.replace("'","")
+            element.foodcategories=element.foodcategories.replace("[","")
+            element.foodcategories=element.foodcategories.replace("]","")
         }
         return (
           
@@ -292,7 +299,7 @@ const checkOpen=(start,end)=>{
   return (
     <View style={styles.container}>
     <View style={styles.background}>      
-        <Text style={styles.headerText}>Results</Text>
+        <Text style={styles.headerText}>{path}</Text>
     </View>  
       <ScrollView>
      {list()}

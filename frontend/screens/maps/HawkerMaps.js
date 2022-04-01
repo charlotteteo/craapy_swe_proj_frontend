@@ -17,6 +17,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import ResultsScreen from "../ResultsScreen";
 import HomeScreenCopy from "../home/HomeScreenCopy";
 import InfoScreen from "../InfoScreen";
+import HawkerMapsResultsScreen from "../HawkerMapsResultsScreen";
 import {
 	Avatar,
 	Card,
@@ -122,7 +123,7 @@ const list = () => {
           onPress={() => {
 
                console.log(element.Name)
-               navigation.navigate("Results",{path:element.Name})
+               navigation.navigate("HawkerResults",{path:element.Name})
             // navigation.navigate("Results")
           }
   
@@ -130,7 +131,7 @@ const list = () => {
           }
         >
          <SafeAreaView>
-         <Card style={{ marginBottom: 10,borderColor:"#FFC30B",borderWidth:1.5,width: 350}}>
+         <Card style={{ marginBottom: 10,backgroundColor:"#FFF2D6",width:350 }}>
                   <Card.Content>
               
               <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center',}]}>
@@ -189,7 +190,7 @@ const list = () => {
               }
             >
              <SafeAreaView>
-             <Card style={{ marginBottom: 10,borderColor:"#FFC30B",borderWidth:1.5,width: 350}}>
+             <Card style={{ marginBottom: 10,backgroundColor:"#FFF2D6",width:350 }}>
                       <Card.Content>
                   
                   <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center',}]}>
@@ -392,7 +393,7 @@ export default function homestack() {
                           headerTintColor:'#fff'
                       }}/>        
         {/* <Stack.Screen name="Results" component={EmailScreen} />       */}
-        <Stack.Screen name="Results" component={ResultsScreen} 
+        <Stack.Screen name="HawkerResults" component={HawkerMapsResultsScreen} 
             //initialParams={{path:element.Name}}  
 
                         options={{
@@ -426,7 +427,7 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    top: 80,
+    top:80,
     left: 0,
     right: 0,
     bottom: 0,
@@ -443,25 +444,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 10,
   },
-  buttonContainer: {
-    // flexDirection: 'row',
-    marginVertical: 20,
-    backgroundColor: 'transparent',
-  },
   button_box: {
 
     padding: 6,
     height: 45,
-    width: 250,
+    width: 200,
     // justifyContent: 'center',
     // alignItems: 'center',
     elevation: 5,
     justifyContent: 'center',
     paddingVertical: 5,
     paddingHorizontal: 8,
-    borderRadius: 2,
+    borderRadius: 8,
     elevation: 3,
-    backgroundColor: '#ffde17',
+    backgroundColor: '#fec241',
+    
   },
   text: {
     fontSize: 16,
@@ -469,34 +466,28 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'black',
+    alignItems:"center"
   },
-
   background:{
-    position:"absolute",
-    top:0,
-    backgroundColor:"white",
-    width:"100%",
+    width:"110%",
     height:80,
-    marginBottom:5,
-    borderRadius:10,
-    shadowOpacity: 1,
-    shadowRadius: 6,
-  
-    elevation: 6,
-  
-    //borderColor:"red",
-    //borderWidth:5,
-    zIndex:5
-  },
+    //top:50,
+    //alignSelf: "flex-start",
+    //justifyContent: "flex-start",
+    position: "relative",
+    //borderColor: "black",
+    //borderWidth: 5,
+    marginBottom: 0
+},
 headerText:{
-  color:"black",
-  fontSize: 22,
-  fontWeight:"bold",
-  flexDirection: "column",
-  alignSelf:"center",
-  marginTop: 40,
-  marginBottom: 0,
-  fontFamily:"OpenSansbold",
+    color:"black",
+    fontSize: 22,
+    fontWeight:"bold",
+    flexDirection: "column",
+    alignSelf:"center",
+    marginTop: 40,
+    marginBottom: 0,
+    fontFamily:"OpenSansbold",
 
 },
 test:{
@@ -517,6 +508,7 @@ buttoncarpark:{
 },
 Buttontext:{
   fontWeight:"bold",
+  fontFamily:"NunitoBlack",
   fontSize: 15,
   padding:15
 },
@@ -545,6 +537,23 @@ ModalHeadertext:{
   alignSelf:"center",
   marginBottom:5,
   padding:5
+},
+headercontainer:{
+  position:"absolute",
+  top:0,
+  backgroundColor:"white",
+  width:"100%",
+  height:80,
+  marginBottom:5,
+  borderRadius:10,
+  shadowOpacity: 1,
+  shadowRadius: 6,
+
+  elevation: 6,
+
+  //borderColor:"red",
+  //borderWidth:5,
+  zIndex:5
 }
 });
 

@@ -107,6 +107,12 @@ function ResultsScreen ({ navigation,route }){
 
           
       //console.log(json)
+      test = getCurrentDate();
+      console.log(test);
+      console.log(opennowtime("Mon - Sun: 7am-7pm"));
+      console.log("check");
+      filterDate();
+      console.log("endcheck");
 
       setData(json);
     } catch (error) {
@@ -130,16 +136,24 @@ function ResultsScreen ({ navigation,route }){
 
     //Alert.alert(date + '-' + month + '-' + year);
     // You can turn it in to your desired format
-    // return date + '/' + month + '/' + year;
-    return '07/03/22'
+     return date + '/' + month + '/' + year;
+    //return '07/03/22'
 }
 
+
+  const filterDate=(jsonarray)=>{
+
+    data.map((element) => {
+      console.map(element);
+    });
+
+  }
 
 
 function opennowtime(x){
   // can use to test time !!! allocate on 24h if not uncomment  line 125- to get actual hour
-  // time= new Date().getHours(x);
-  time = 21
+   time= new Date().getHours(x);
+  //time = 21
 
 
   try{
@@ -167,9 +181,9 @@ function opennowtime(x){
   time= new Date().getHours()
   if (endinghr>startinghr){
     if ( time>=startinghr && time<=endinghr){
-      return true
+      return "Open"
     }else{
-      return false
+      return "Closed"
     }
   
   }else{
@@ -177,20 +191,20 @@ function opennowtime(x){
 // starting hr higher than ending hr
     if (time>startinghr){
       console.log(x)
-      return true
+      return "Open"
     }else{
       if (time<endinghr){
-        return true
+        return "Open"
       }else{
-        return false
+        return "Closed"
       }
     }
   }
 }catch{
   if (time>9 && time<21){
-    return true
+    return "Open"
   }else{
-    return false
+    return "Closed"
   }
 }
 
@@ -213,25 +227,25 @@ const checkOpen=(start,end)=>{
 
     
     if (month<start_month){
-      return true
+      return "True"
     }else{
       if (month==start_month){
         if (date>=start_date && date <=end_date){
   
-          return false
+          return "False"
         }else{
-          return true
+          return "True"
         }
       }else{
         if (month!=start_month && date <=end_date){
-          return false
+          return "False"
         }else{
-          return true
+          return "True"
         }
       }  
     }
   }else{
-    return true
+    return "True"
   }
 }
 
@@ -241,6 +255,11 @@ const checkOpen=(start,end)=>{
   
     return data.map((element) => {
      
+      var statusval = opennowtime(element.operationhours);
+      //console.log("hello: " + statusval);
+
+
+
       return (
         
               <TouchableOpacity	onPress={() => {
@@ -258,7 +277,11 @@ const checkOpen=(start,end)=>{
 
                   <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Operation Hours:{element.operationhours}</Text>
 
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Food Categories:{element.foodcategories}</Text>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Food Categories:{element.foodcategories}
+                  
+                  </Text>
+
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>Status: {opennowtime(element.operationhours)} </Text>
 
             </Card.Content>
   

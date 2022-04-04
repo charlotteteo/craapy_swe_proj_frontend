@@ -34,9 +34,9 @@ import InfoScreen from "../InfoScreen";
 import NearbyCarparkMapsScreen from "../maps/NearbyCarparkMapsScreen";
 import CarparkInfoScreen from "../maps/CarparkInfoScreen";
 import * as WebBrowser from 'expo-web-browser';
-import ResultsScreen from "../ResultsScreen";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import OverallCarparkInfoScreen from '../maps/OverallCarparkInfoScreen';
+import CarparkMapsScreen from "../maps/CarparkMapsScreen";
 
 function HomeScreenCopy({ navigation }) {
   const [wish, setWish] = useState(false);
@@ -270,13 +270,7 @@ export default function homestack() {
           headerTintColor:'#fff'
       }}
       />
-{/* 
-    <Stack.Screen name="ResultsScreen" component={ResultsScreen} 
-                    options={{
-                      headerBackTitleVisible:false,
-                      headerTitle:false,
-                      headerTintColor:'#fff',
-                  }}/> */}
+      
          <Stack.Screen
         name="InfoScreen"
         component={InfoScreen}
@@ -301,7 +295,24 @@ export default function homestack() {
                           headerTransparent:true,
                           headerTintColor:'#fff'
                       }}/>  
-            
+                      <Stack.Screen name="CarparkMapsScreen" component={CarparkMapsScreen}       
+                options={{
+                          headerBackTitleVisible:false,
+                          headerTitle:false,
+                          headerTransparent:true,
+                          headerTintColor:'#fff'
+                      }}/>  
+              <Stack.Screen
+        name="OverallCarparkInfoScreen"
+        component={OverallCarparkInfoScreen}
+        options={{
+          headerBackTitleVisible:false,
+          headerTitle:false,
+          headerTransparent:true,
+          headerTintColor:'black'
+      }}
+      />
+   
     </Stack.Navigator>
   );
 }

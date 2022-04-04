@@ -17,61 +17,73 @@ import {
 } from "react-native-paper";
 
 
-function CarparkInfoScreen ({ navigation,route}){
+function OverallCarparkInfoScreen ({ navigation,route}){
   
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);// test can delete later
-  const {name,free_parking,latitude,longitude,car_park_type,type_of_parking_system,lotsAvailable,totalLots,short_term_parking,night_parking,gantry_height}=route.params;
-//   const getMovies = async () => {
-//     try {
-//      // const response=await fetch('http://localhost:8080/getcarparkinfo/ 1.313349962/103.7645874')
-//      const response = await fetch('http://localhost:8080/getcarparkinfo/'+latitude+ "/"+longitude);
-//      const json = await response.json();
+  const [data, setData] = useState([]);
+  const [data2, setData2] = useState([]); // test can delete later
+  const {name,latitude,longitude,free_parking,car_park_type,type_of_parking_system,short_term_parking,night_parking,gantry_height}=route.params;
+ 
 
-//      setData(json);
-//      console.log(data)
 
-//    } catch (error) {
-//      console.error(error);
-//    } finally {
-//      setLoading(false);
+  const getMovies = async () => {
+    try {
+     // const response=await fetch('http://localhost:8080/getcarparkinfo/ 1.313349962/103.7645874')
+     const response = await fetch("http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/getnearestcarpark/"+latitude+"/"+longitude)
+     const json = await response.text();
+
+     setData(json);
+     console.log(data)
+
+   } catch (error) {
+     console.error(error);
+   } finally {
+     setLoading(false);
      
-//    }
-//  }
+   }
+ }
 
-//  useEffect(() => {
-//    getMovies();
-//  }, []);
-
-
-//  const  list= () =>{
-
-//    return Object.keys(data).map(key => {
-//      let obj = data[key];
-//      obj.keyName = key;
-
-//      return (<Text>{obj.lotsAvailable}/{obj.totalLots} </Text>);})}
-
-
+ useEffect(() => {
+   getMovies();
+ }, []);
+ const getLotsAvail=()=>{
+  // if (!data.slice(0,11).includes(";")){
+  //   return 18
+  // }
+    if (data.slice(10,).includes(";")){
+      return data.slice(11,)}
+    return data.slice(10,)
+  
+ }
+const getTotalLots=()=>{
+  // if (!data.slice(0,11).includes(";")){
+  //   return 238
+  // }
+  if (data.slice(4,7).includes(";")){
+    return data.slice(5,8)}
+  return data.slice(4,7)
+}
 
   return (
 
-
+  
     <View style={styles.container}>
     <View style={styles.headercontainer}>
-      <Text style={styles.headerText}>Carpark Info</Text>
+      <Text style={styles.headerText}>Overall Carpark Info</Text>
     </View>
       <Title style={{fontSize: 20,alignSelf:"center", textAlign:"center", fontFamily:"OpenSansbold", marginTop:10, marginBottom:10}}>{name}</Title>
 
-   
-  <ScrollView style={styles.content}>
+
+  {/* <ScrollView style={styles.content}> */}
 <SafeAreaView style={styles.cardcontainer}>
     <Card style={styles.card}>
     <Title style={{fontFamily:"Nunito", color:"black", alignSelf:"center", fontSize:20}}>Available Slots:</Title>
       <Text style={styles.paragraph}>
-        {lotsAvailable}/{totalLots}
+        {getLotsAvail()}/{getTotalLots()}
+        {/* {data[0].lotsAvailable}/{data[0].totalLots} */}
       </Text>
     </Card>
+   
     <Card style={styles.card}>
     <Title style={{fontFamily:"Nunito", color:"black", alignSelf:"center"}}>Free Parking</Title>
       <Text style={styles.paragraph3}>
@@ -90,7 +102,6 @@ function CarparkInfoScreen ({ navigation,route}){
       <Title style={styles.paragraph2}>Type of Parking System:</Title>
       <Text style={styles.bigcontent}>
       {type_of_parking_system}
-      {/* data:{list()} */}
       </Text>
   </View>
   <View style={{margin:10}}>
@@ -108,12 +119,12 @@ function CarparkInfoScreen ({ navigation,route}){
   <View style={{margin:10}}>
       <Title style={styles.paragraph2}>Gantry Height:</Title>
       <Text style={styles.bigcontent}>
-      {gantry_height}m
+      {gantry_height}
       </Text>
       </View>
-    </Card>
-{/* {list()} */}
-</ScrollView>
+  </Card> 
+
+
 </View>
 
 
@@ -123,12 +134,13 @@ function CarparkInfoScreen ({ navigation,route}){
 
 
 
+
 const Stack = createStackNavigator();
 
 export default function homestack() {
 	return (
 		  <Stack.Navigator mode="none">
-          <Stack.Screen name="CarparkMapsScreen" component={CarparkMapsScreen}       
+         <Stack.Screen name="CarparkMapsScreen" component={CarparkMapsScreen}       
         options={{
                   headerBackTitleVisible:false,
                   headerTitle:false,
@@ -136,13 +148,29 @@ export default function homestack() {
                   headerTintColor:'black'
               }}/>
 
-        <Stack.Screen name="CarparkInfoScreen" component={ResultsScreen}       
+          <Stack.Screen name="OverallCarparkInfoScreen" component={OverallCarparkInfoScreen}       
         options={{
                   headerBackTitleVisible:false,
                   headerTitle:false,
                   headerTransparent:true,
                   headerTintColor:'black'
               }}/>
+
+                {/* <Stack.Screen name="CarparkMapsScreen" component={CarparkMapsScreen}       
+        options={{
+                  headerBackTitleVisible:false,
+                  headerTitle:false,
+                  headerTransparent:true,
+                  headerTintColor:'black'
+              }}/>
+           <Stack.Screen name="OverallCarparkInfoScreen" component={OverallCarparkInfoScreen}       
+        options={{
+                  headerBackTitleVisible:false,
+                  headerTitle:false,
+                  headerTransparent:true,
+                  headerTintColor:'black'
+              }}/>
+       */}
 		  </Stack.Navigator>
 
 	);
@@ -244,6 +272,5 @@ bigcontent:{
   fontSize:16,
   flexShrink: 1 ,
   }
-});
-
-module.exports=CarparkInfoScreen;
+})
+module.exports=OverallCarparkInfoScreen;

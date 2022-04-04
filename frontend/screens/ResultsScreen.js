@@ -35,12 +35,13 @@ function ResultsScreen ({ navigation,route }){
     
 
    
-      var response = await fetch('http://localhost:8080/search/'+path[0]);
+      var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/getcarparkinfo/1.3010632720874935/103.85411804993093');
   
       //console.log(path)
       const json = await response.json();
   
       setData(json);
+      console.log(data)
     } catch (error) {
       console.error(error);
     } finally {

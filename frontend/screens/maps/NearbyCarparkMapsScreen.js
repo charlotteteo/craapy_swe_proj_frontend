@@ -32,7 +32,7 @@ import { Marker } from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
 import InfoScreen from "../InfoScreen";
 import CarparkInfoScreen from '../maps/CarparkInfoScreen'
-
+import OverallCarparkInfoScreen from '../maps/OverallCarparkInfoScreen'
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
@@ -81,6 +81,7 @@ function NearbyCarparkMapsScreen ({navigation,route}){
     const  list= () =>{
   
       return Object.keys(data).map(key => {
+   
         let obj = data[key];
         obj.keyName = key;
         
@@ -89,9 +90,16 @@ function NearbyCarparkMapsScreen ({navigation,route}){
             obj.name=item.address
             obj.free_parking=item.free_parking
             obj.car_park_type=item.car_park_type
-  
+            obj.type_of_parking_system=item.type_of_parking_system
             
-            break
+            obj.short_term_parking=item.short_term_parking
+            
+            obj.car_park_type=item.car_park_type
+            
+            obj.night_parking=item.night_parking
+
+            obj.gantry_height=item.gantry_height
+            
           }
         }
         obj.address= 'https://www.google.com/maps?saddr=My+Location&daddr='+obj.latitude+','+obj.longitude
@@ -105,7 +113,8 @@ function NearbyCarparkMapsScreen ({navigation,route}){
           
           <TouchableOpacity	onPress={() => {
             console.log(obj.car_park_no)
-            navigation.navigate("CarparkInfoScreen",{path:obj.car_park_no})
+            navigation.navigate("CarparkInfoScreen",{"name":obj.name,"free_parking":obj.free_parking,'car_park_type':obj.car_park_type,'type_of_parking_system':obj.type_of_parking_system,'lotsAvailable':obj.lotsAvailable,'totalLots':obj.totalLots,'short_term_parking':obj.short_term_parking,'night_parking':obj.night_parking,'gantry_height':obj.gantry_height})
+      
             
         }}>
 
@@ -119,7 +128,7 @@ function NearbyCarparkMapsScreen ({navigation,route}){
                
               <Text style={[ {fontWeight: 'bold',fontSize: 18,textAlign: 'center'}]}>{obj.name}</Text>
               <Text></Text>
-              <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>Lots Available: {obj.lotsAvailable}</Text>
+              <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>Lots Available: {obj.lotsAvailable}/{obj.totalLots}</Text>
 
               {/* <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>{obj.car_park_type}</Text> */}
 
@@ -469,7 +478,7 @@ export default function homestack() {
     
   
   
-        <Stack.Screen name="CarparkInfoScreen" component={ResultsScreen}       
+        <Stack.Screen name="ResultsScreen" component={ResultsScreen}       
                 options={{
                           headerBackTitleVisible:false,
                           headerTitle:false,

@@ -29,9 +29,10 @@ import MapView,  { MAP_TYPES, PROVIDER_DEFAULT,PROVIDER_GOOGLE } from 'react-nat
 import { MaterialIcons } from "@expo/vector-icons";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
+import CarparkInfoScreen from "./CarparkInfoScreen";
 import { Modalize } from 'react-native-modalize';
 import { reducedcarparksavailable } from '../../assets/reducedcarparksavailability';
-import CarparkInfoScreen from "../maps/CarparkInfoScreen";
+import OverallCarparkInfoScreen from "../maps/CarparkInfoScreen";
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
@@ -64,7 +65,7 @@ function CarparkMapsScreen ({navigation}){
   // useEffect(() => {
   //   getMovies();
   // }, []);
-  const data=reducedcarparksavailable;
+  const data=carparksavailable;
 
 
 const markers =() => {
@@ -84,17 +85,20 @@ const markers =() => {
    
     return data.map((element) => {
     
-      const address= 'https://www.google.com/maps?saddr=My+Location&daddr='+element.latitude+','+element.longitude
+      const address= 'https://www.google.com/maps?saddr=My+Location&daddr='+element.Coordinates.latitude+','+element.Coordinates.longitude
       _handleOpenWithWebBrowser = () => {
         WebBrowser.openBrowserAsync(address);
       };
 
+
+
+
       return (
         
               <TouchableOpacity	onPress={() => {
-                console.log(element.car_park_no)
-                navigation.navigate("CarparkInfoScreen",{path:element.car_park_no})
-                
+                console.log(element.latitude,element.longitude)
+                navigation.navigate("OverallCarparkInfoScreen",{'name':element.address,'free_parking':element.free_parking,'latitude':element.Coordinates.latitude,'longitude':element.Coordinates.longitude,'car_park_type':element.car_park_type,'type_of_parking_system':element.type_of_parking_system,'lotsAvailable':-1,'totalLots':-1,'short_term_parking':element.short_term_parking,'night_parking':element.night_parking,'gantry_height':element.gantry_height})
+
             }}>
 
            
@@ -247,20 +251,18 @@ const Stack = createStackNavigator();
 export default function homestack() {
 	return (
 		  <Stack.Navigator headerMode="none">
-
-        <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen}    
-            
-                options={{
-                          headerBackTitleVisible:false,
-                          headerTitle:false,
-                          headerTransparent:true,
-                          headerTintColor:'red'
-                      }}
-                      
-                      initialParams={{path:element.car_park_no}} />  
-              <Stack.Screen
-        name="CarparkMapsScreen"
-        component={CarparkMapsScreen}
+          
+          <Stack.Screen name="CarparkMapsScreen" component={CarparkMapsScreen}       
+        options={{
+                  headerBackTitleVisible:false,
+                  headerTitle:false,
+                  headerTransparent:true,
+                  headerTintColor:'black'
+              }}/>
+        
+  <Stack.Screen
+        name="OverallCarparkInfoScreen"
+        component={OverallCarparkInfoScreen}
         options={{
           headerBackTitleVisible:false,
           headerTitle:false,
@@ -268,6 +270,7 @@ export default function homestack() {
           headerTintColor:'black'
       }}
       />
+   
 		  </Stack.Navigator>
 	);
 }

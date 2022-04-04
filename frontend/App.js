@@ -17,7 +17,7 @@ import HelpScreen from "./screens/help/HelpScreen";
 import MapScreen from "./screens/maps/HawkerMaps";
 import NearbyCarparkMapsScreenCopy from "./screens/maps/NearbyCarparkMapsScreenCopy";
 import CarparkMapsScreen from "./screens/maps/CarparkMapsScreen";
-
+import OverallCarparkInfoScreen from "./screens/maps/OverallCarparkInfoScreen";
 const Tab = createBottomTabNavigator();
 
 export default function App() {

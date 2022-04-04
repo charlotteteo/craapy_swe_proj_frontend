@@ -8,7 +8,7 @@ import InfoScreen from "./InfoScreen";
 import NearbyCarparkMapsScreen from "./maps/NearbyCarparkMapsScreen";
 import {
 	Avatar,
-	
+	Chip,
 	Card,
 	Title,
 	Paragraph,
@@ -191,12 +191,12 @@ const checkOpen=(start,end)=>{
             element.foodcategories=element.foodcategories.replace("[","")
             element.foodcategories=element.foodcategories.replace("]","")
           }
+       if (element.operationhours==null){
+          element.operationhours="Mon-Sun :9am-6pm"
+       }
       // console.log(getCurrentDate())
       console.log(element.name,checkOpen(element.q2_cleaningstartdate,element.q2_cleaningenddate),opennowtime(element.operationhours))
       if (checkOpen(element.q2_cleaningstartdate,element.q2_cleaningenddate) && opennowtime(element.operationhours)){
-          if (element.operationhours==""){
-            element.operationhours="Mon-Sun :9am-6pm"
-          }
           if ((element.foodcategories!="")){
             element.foodcategories=element.foodcategories.replace("'","")
             element.foodcategories=element.foodcategories.replace("'","")
@@ -206,92 +206,93 @@ const checkOpen=(start,end)=>{
           }
           return (
             
-                  <TouchableOpacity	onPress={() => {
-                    navigation.navigate("InfoScreen",{path:element.name})
-                
-                }}>
-      
-                <Card style={{ marginBottom: 10 ,backgroundColor:"#FFF2D6",}}>
-                          <Card.Content>
-                    {/* <View key={element.key} style={{margin: 10}}> */}
-                    <Text style={[ {fontWeight: 'bold',fontSize: 22,color:"#654321"}]}>
-                      {element.name}
-                      </Text>
-                      {/* <View
-  style={{
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-  }}
-/> */}
-                    <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>{element.hawkercentrename}</Text>
-  
-                    <Text style={[ {fontSize: 15}]}>Operates on {element.operationhours}</Text>
-  
-                    <Text style={[ {fontSize: 15}]}>Food Categories: {element.foodcategories}</Text>
-
-
-                      <Text style={[ {fontSize: 18}]}>OPEN NOW</Text>
-    
-    
-                </Card.Content>
-      
-      
-      </Card>
-                </TouchableOpacity>
+            <TouchableOpacity	onPress={() => {
+              navigation.navigate("InfoScreen",{path:element.name})
           
-          );
-      }else{
-        if (element.operationhours==""){
-          element.operationhours="Mon-Sun :9am-6pm"
-        }
-        if ((element.foodcategories!="")){
-            element.foodcategories=element.foodcategories.replace("'","")
-            element.foodcategories=element.foodcategories.replace("'","")
-            element.foodcategories=element.foodcategories.replace("'","")
-            element.foodcategories=element.foodcategories.replace("[","")
-            element.foodcategories=element.foodcategories.replace("]","")
-        }
-        return (
-          
-                <TouchableOpacity	onPress={() => {
-                  navigation.navigate("InfoScreen",{path:element.name})
-              
-              }}>
-    
-              <Card style={{ marginBottom: 10 ,backgroundColor:"#FFF2D6",}}>
-                        <Card.Content>
-                  {/* <View key={element.key} style={{margin: 10}}> */}
-                  <Text style={[ {fontWeight: 'bold',fontSize: 22,color:"#654321"}]}>
-                      {element.name}
-                      </Text>
-                      {/* <View
-  style={{
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-  }}
+          }}>
+
+          <Card style={{ marginBottom: 10 ,backgroundColor:"#FFF2D6",}}>
+                    <Card.Content>
+              {/* <View key={element.key} style={{margin: 10}}> */}
+              <Text style={[ {fontWeight: 'bold',fontSize: 22,color:"#654321"}]}>
+                {element.name}
+                </Text>
+                {/* <View
+style={{
+borderBottomColor: 'black',
+borderBottomWidth: 1,
+}}
 /> */}
-                    <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>{element.hawkercentrename}</Text>
-  
-                    <Text style={[ {fontSize: 15}]}>Operates on {element.operationhours}</Text>
-  
-                    <Text style={[ {fontSize: 15}]}>Food Categories: {element.foodcategories}</Text>
+              <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>{element.hawkercentrename}</Text>
+
+              <Text style={[ {fontSize: 15}]}>Operates on {element.operationhours}</Text>
+
+              <Text style={[ {fontSize: 15,marginBottom:5}]}>Food Categories: {element.foodcategories}</Text>
+              <Chip icon="information" selectedColor="black" style={{backgroundColor:"#62BD69",width:"37%"}}>
+                OPEN NOW
+                </Chip>
 
 
+          </Card.Content>
 
-                    <Text style={[ {fontSize: 18}]}>CLOSED</Text>
-  
-              </Card.Content>
+
+</Card>
+          </TouchableOpacity>
     
+    );
+}else{
+  if (element.operationhours==""){
+    element.operationhours="Mon-Sun :9am-6pm"
+  }
+  if ((element.foodcategories!="")){
+    element.foodcategories=element.foodcategories.replace("'","")
+    element.foodcategories=element.foodcategories.replace("'","")
+    element.foodcategories=element.foodcategories.replace("'","")
+    element.foodcategories=element.foodcategories.replace("[","")
+    element.foodcategories=element.foodcategories.replace("]","")
+  }
+  return (
     
-    </Card>
-              </TouchableOpacity>
+          <TouchableOpacity	onPress={() => {
+            navigation.navigate("InfoScreen",{path:element.name})
         
-        );
-      }
+        }}>
 
-      
-   
-    });
+        <Card style={{ marginBottom: 10 ,backgroundColor:"#FFF2D6",}}>
+                  <Card.Content>
+            {/* <View key={element.key} style={{margin: 10}}> */}
+            <Text style={[ {fontWeight: 'bold',fontSize: 22,color:"#654321"}]}>
+                {element.name}
+                </Text>
+                {/* <View
+style={{
+borderBottomColor: 'black',
+borderBottomWidth: 1,
+}}
+/> */}
+              <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>{element.hawkercentrename}</Text>
+
+              <Text style={[ {fontSize: 15}]}>Operates on {element.operationhours}</Text>
+
+              <Text style={[ {fontSize: 15, marginBottom:5}]}>Food Categories: {element.foodcategories}</Text>
+
+
+              <Chip icon="information" mode='outlined' style={{backgroundColor:"#ff9494",width:"30%"}}>
+              CLOSED
+              </Chip>
+
+        </Card.Content>
+
+
+</Card>
+        </TouchableOpacity>
+  
+  );
+}
+
+
+
+});
   };
 
 
@@ -376,7 +377,7 @@ headercontainer:{
   marginBottom: 0
 },headerText:{
   color:"black",
-  fontSize: 22,
+  fontSize: 20,
   fontWeight:"bold",
   flexDirection: "column",
   alignSelf:"center",

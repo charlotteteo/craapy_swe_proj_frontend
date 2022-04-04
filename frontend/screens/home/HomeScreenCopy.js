@@ -1,8 +1,7 @@
 
 
  
-import React, { useState } from "react";
-import NearbyCarparkMapsScreen from "../maps/NearbyCarparkMapsScreen";
+import React, {useEffect, useState } from "react";
 import {
   Text,
   View,
@@ -32,19 +31,111 @@ import {top10ratings}  from "../../assets/top10ratings";
 import { top10communityratings } from "../../assets/top10communityratings";
 import { healthychoices } from "../../assets/healthychoices";
 import InfoScreen from "../InfoScreen";
+import NearbyCarparkMapsScreen from "../maps/NearbyCarparkMapsScreen";
 import CarparkInfoScreen from "../maps/CarparkInfoScreen";
+import * as WebBrowser from 'expo-web-browser';
+import ResultsScreen from "../ResultsScreen";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 function HomeScreenCopy({ navigation }) {
   const [wish, setWish] = useState(false);
+  const [data, setData] = useState([]);
+
+  
+
+  const recentlist = () => {
+    // DISPLAY ON SCREEN?
+    return data.map((element) => {
+      //console.log("check1 - recent history")
+      //console.log(element);
+      //console.log("endcheck - recent history")
+
+      const thumbnail=element.thumbnail;
+      return (
+      <TouchableOpacity
+      onPress={()=>{navigation.navigate("InfoScreen",{path:element.name})}}
+      >
+        
+        <Choices name={element.name} 
+          imageUri={{uri:thumbnail}} />
+          </TouchableOpacity>
+      );
+    });
+  };
+
+
+  useEffect(() => {
+    const getHawkers = navigation.addListener("focus", async (e) => {
+      // to get the history from async storage
+      try {
+        var jsonString = await AsyncStorage.getItem('history');
+        console.log("jsonStringcheck")
+        console.log(jsonString)
+        if (jsonString !== null) {
+          // We have data!!
+          jsonHistory = JSON.parse(jsonString);
+          var historypath = 'http://localhost:8080/history/';
+          for (let i = 1; i < 10; i++) {     // hardcoded btw 
+            historypath = historypath + jsonHistory["history" + (i).toString()] +"/";   
+          }
+          historypath = historypath + jsonHistory["history10"]; 
+        }
+        else if (jsonString == null) {
+          var historypath = 'http://localhost:8080/history/3 Hainanese Chicken Rice/Xiang Jiang Soya Sauce Chicken/Depot Road Zhen Shan Mei Laksa/Hock Kee Fried Kway Teow/Kwang Kee Teochew Fish Porridge/The Sugarcane Plant/Ma Bo/Teck Kee Hot & Cold Dessert/Ramen Taisho/Kwang Kee Teochew Fish Porridge';
+        }
+      } catch (error) {
+        // Error retrieving data
+      }
+      //console.log(historypath)  
+  
+      console.log(historypath)
+      console.log("This is the json history - home screen!!!")
+      //console.log(jsonHistory);
+      //GET FROM BACKEND
+      try {
+        
+        var response = await fetch(historypath);
+        const json = await response.json();       
+        setData(json);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        //setLoading(false);
+      }
+      //console.log(data)
+      //console.log("check")
+      //console.log(top10ratings.map(element))
+
+    });
+
+    //CHECK
+    
+
+      return () => getHawkers();
+    }, [ navigation]);
+
+
+
+
+
   const ratingslist = () => {
     return top10ratings.map((element) => {
+      // CAN DELETE LATER
+      //console.log(top10ratings);
+      //console.log("element check ratings list")
+      //console.log(element);
+
+      //console.log(top10ratings.map(element));
+      const thumbnail=element.Thumbnail;
       return (
-        <TouchableOpacity
-        onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
-        >
-          <Choices name={element.Name} 
-            imageUri={{uri:element.Thumbnail}} />
-        </TouchableOpacity>
+      <TouchableOpacity
+      onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
+      >
+        
+        <Choices name={element.Name} 
+          imageUri={{uri:thumbnail}} />
+          </TouchableOpacity>
   
      
       );
@@ -54,27 +145,28 @@ function HomeScreenCopy({ navigation }) {
   
   const healthyratingslist = () => {
       return healthychoices.map((element) => {
+        const thumbnail=element.Thumbnail;
         return (
           <TouchableOpacity
           onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
           >
-        <Choices name={element.Name} 
-            imageUri={{uri:element.Thumbnail}} />
-        </TouchableOpacity>
+          <Choices name={element.Name} 
+            imageUri={{uri:thumbnail}} />
+            </TouchableOpacity>
         );
       });
     };
   
   const communityratingslist = () => {
       return top10communityratings.map((element) => {
+        const thumbnail=element.Thumbnail;
         return (
         
           <TouchableOpacity
           onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
       >
-        <Choices name={element.Name} 
-            imageUri={{uri:element.Thumbnail}} />
-       
+          <Choices name={element.Name} 
+            imageUri={{uri:thumbnail}} />
             </TouchableOpacity>
        
         );
@@ -85,7 +177,7 @@ function HomeScreenCopy({ navigation }) {
     <ScrollView>
       <View>
         <View style={styles.header}>
-          {/* <ImageBackground style={styles.container} source={require('../../assets/Background.png')} resizeMode="cover">
+          <ImageBackground style={styles.container} source={require('../../assets/Background.png')} resizeMode="cover">
           <View style={styles.headerwrap}>
               <Text style={styles.headerTitle}>HotHawks</Text>
               <Image
@@ -93,46 +185,39 @@ function HomeScreenCopy({ navigation }) {
                   style={styles.headerImage}
                   resizeMode="contain"
                 />
+              
           </View>
-          </ImageBackground> */}
-          <Text style={styles.text}>Good day to you,</Text>
-          <Text style={styles.headerTitle}>Happy Eating!</Text>
           <View style={styles.searchButton}>
-
-        <TouchableOpacity
-        onPress={() => navigation.navigate("Search")}
-        >
-          <View style={styles.searchcontainer}>
-        <Image
-                  source={require("../../assets/Search.png")}
-                  style={styles.headerImage}
-                  resizeMode="contain"
-                  tintColor="black"
-        />
-        <Text style={styles.button}>Search</Text>
+            <Button 
+            icon={require("../../assets/Search.png")}
+            color={"white"}
+            size={20}
+            onPress={() => navigation.navigate("Search")}
+            >
+            Search
+            </Button>
+            
+          </View>
+          </ImageBackground>
         </View>
-        </TouchableOpacity>
-        
-          </View>
-          </View>
         <ScrollView scrollEventThrottle={16}>
           <View style={{flex:1, backgroundColor:"white", paddingTop:10}}>
-          <Text style={styles.scrolltitle}>Recent</Text>
+          <Text style={styles.scrolltitle}>Recently Clicked Stalls</Text>
           <View style={{height:130, marginTop:20}}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-           {ratingslist()}
+           {recentlist()}
             </ScrollView>
           </View>
-        </View>
-        </ScrollView>
-        <ScrollView scrollEventThrottle={16}>
-          <View style={{flex:1, backgroundColor:"white", paddingTop:2}}>
+          </View>
+          
+          <View style={{flex:1, backgroundColor:"white", paddingTop:10}}>
           <Text style={styles.scrolltitle}>All Time Favourites</Text>
           <View style={{height:130, marginTop:20}}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
            {ratingslist()}
             </ScrollView>
           </View>
+
           <View>
             <Text style={styles.scrolltitle}>Trending</Text>
             <View style={{height:130, marginTop:20}}>
@@ -185,6 +270,13 @@ export default function homestack() {
           headerTintColor:'#fff'
       }}
       />
+{/* 
+    <Stack.Screen name="ResultsScreen" component={ResultsScreen} 
+                    options={{
+                      headerBackTitleVisible:false,
+                      headerTitle:false,
+                      headerTintColor:'#fff',
+                  }}/> */}
          <Stack.Screen
         name="InfoScreen"
         component={InfoScreen}
@@ -219,19 +311,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor:"white"
   },
-  header:{
-    flex:1,
-    //borderColor:"blue",
-    //borderWidth:5
-
-  },
-  text:{
-    color:"grey",
-    marginTop:50,
-    marginLeft:8,
-    fontWeight:"bold",
-    fontFamily:"notoserif"
-  },
   // header: {
   //   flex:1,
   //   backgroundColor: "rgba(240, 54, 14, 0.8)",
@@ -248,34 +327,40 @@ const styles = StyleSheet.create({
     //alignItems: "center"
   },
   headerImage: {
-    height:15,
-    width:15,
-    marginLeft:157,
-    marginRight:3
-  
-  },
-  searchcontainer:{
-    flexDirection:"row",
-    //justifyContent:"center",
-    alignItems:"center",
-    width:375,
-    //backgroundColor:"lightblue",
-    height:30
-
+    height: 50,
+    width: null,
+    paddingTop: 35,
+    marginRight:100,
+    marginLeft:5,
+    flex: 1,
   },
   headerTitle: {
-    color: "black",
-    marginLeft:8,
-    fontFamily: "serif",
+    color: "#fff",
+    //fontFamily: "Roboto",
     //paddingVertical: 10,
-    paddingTop: 2,
-    fontSize: 36,
+    paddingTop: 10,
+    fontSize: 28,
     fontStyle: 'normal',
     fontWeight: 'bold',
-    
     //lineHeight: 43,
     //letterSpacing: 0,
     //textAlign: 'center'
+  },
+  button_box: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 5,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: '#FFB899',
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
   },
   // headerSubtitle: {
   //   fontFamily: "sans-serif",
@@ -284,14 +369,9 @@ const styles = StyleSheet.create({
   // },
   searchButton: {
     alignItems: "center",
-    alignSelf:"center",
-    marginRight: 10,
-    marginTop: 10,
-    backgroundColor:"#d2d2d2",
-    borderRadius:15,
-    width:"95%",
-    height:30
-    
+    marginRight: 5,
+    marginTop: 0,
+    top:-5
   },
   scrolltitle:{
     fontSize:18,
@@ -301,7 +381,4 @@ const styles = StyleSheet.create({
     //marginBottom:10,
     marginLeft:10,
   },
-  button:{
-    fontWeight:"normal",
-  }
 });

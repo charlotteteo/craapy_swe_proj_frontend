@@ -89,6 +89,7 @@ function NearbyCarparkMapsScreen ({navigation,route}){
             obj.name=item.address
             obj.free_parking=item.free_parking
             obj.car_park_type=item.car_park_type
+  
             
             break
           }
@@ -116,10 +117,11 @@ function NearbyCarparkMapsScreen ({navigation,route}){
                 {element.name}
                 </Text> */}
                
-              <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center'}]}>{obj.name}</Text>
+              <Text style={[ {fontWeight: 'bold',fontSize: 18,textAlign: 'center'}]}>{obj.name}</Text>
               <Text></Text>
+              <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>Lots Available: {obj.lotsAvailable}</Text>
 
-              <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>{obj.car_park_type}</Text>
+              {/* <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>{obj.car_park_type}</Text> */}
 
               <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>Free Parking: {obj.free_parking}</Text>
 <Text></Text>

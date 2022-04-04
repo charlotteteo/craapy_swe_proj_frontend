@@ -156,13 +156,6 @@ function InfoScreen ({ navigation,route}){
     } catch (error) {
       // Error saving data
     }
-
-    
-
-    
-    
-
-
     
   }
 

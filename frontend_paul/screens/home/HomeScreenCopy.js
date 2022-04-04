@@ -1,6 +1,4 @@
 
-
- 
 import React, {useEffect, useState } from "react";
 import {
   Text,
@@ -67,6 +65,13 @@ function HomeScreenCopy({ navigation }) {
     const getHawkers = navigation.addListener("focus", async (e) => {
       // to get the history from async storage
       try {
+        var help = await AsyncStorage.getItem('randomthingy23');
+        console.log("TEST, help = ")
+        console.log(help)
+        if (help == null) {
+          console.log(" HELP IS NULL")
+        }
+
         var jsonString = await AsyncStorage.getItem('history');
         if (jsonString !== null) {
           // We have data!!
@@ -87,7 +92,8 @@ function HomeScreenCopy({ navigation }) {
   
       console.log(historypath)
       console.log("This is the json history - home screen!!!")
-      console.log(jsonHistory);
+      //console.log(jsonHistory);   - charlotte change this!!
+
       //GET FROM BACKEND
       try {
         
@@ -198,7 +204,7 @@ function HomeScreenCopy({ navigation }) {
         </View>
         <ScrollView scrollEventThrottle={16}>
           <View style={{flex:1, backgroundColor:"white", paddingTop:10}}>
-          <Text style={styles.scrolltitle}>Recently Clicked Stalls</Text>
+          <Text style={styles.scrolltitle}>Recent Stalls</Text>
           <View style={{height:130, marginTop:20}}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
            {recentlist()}

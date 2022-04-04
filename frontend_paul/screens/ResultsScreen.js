@@ -24,8 +24,11 @@ function ResultsScreen ({ navigation,route }){
   ratingArray = ["20","40","60","80","90"]
   cuisineArray = ["Chinese","Western","Indian","Thai","Japanese"]
   distanceArray = ["0.1","0.3","0.5","1","2"]
-  neighbourhoodArray = ["Ardmore, Bukit Timah, Holland Road, Tanglin","Orchard, Cairnhill, River Valley","Jurong","Little India","Tampines, Pasir Ris","Queenstown, Tiong Bahru","Raffles Place, Cecil, Marina, Peoples Park"]
-  timeArray = ["open"]
+  neighbourhoodArray = ["Ardmore, Bukit Timah, Holland Road, Tanglin", "Watten Estate, Novena, Thomson", "Bedok, Upper East Coast, Eastwood, Kew Drive", "Little India",
+                        "Upper Bukit Timah, Clementi Park, Ulu Pandan", "Queenstown, Tiong Bahru", "Katong, Joo Chiat, Amber Road", "Geylang, Eunos", "Middle Road, Golden Mile",
+                        "Raffles Place, Cecil, Marina, Peoples Park", "Orchard, Cairnhill, River Valley", "Pasir Panjang, Hong Leong Garden, Clementi New Town", "Jurong",
+                        "Serangoon Garden, Hougang, Punggol", "Tampines, Pasir Ris"]
+  //timeArray = ["open"]
 
   // BV MRT
   const LATITUDE =  1.3072;
@@ -40,10 +43,10 @@ function ResultsScreen ({ navigation,route }){
       console.log(path[length - 1]);
 
       // TO NOT LET OPEN OR NOT AFFECT IF ELSE LATER
-      if (timeArray.includes(path[length - 1])) {
+      /*if (timeArray.includes(path[length - 1])) {
         length = length - 1;
         console.log("length - 1");
-      }
+      }*/
 
       if (length == 1) {
         if (ratingArray.includes(path[0])) {

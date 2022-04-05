@@ -48,7 +48,7 @@ function InfoScreen ({ navigation,route}){
      try {
       // const response = await fetch('http://localhost:8080/search/De Sheng Shou Gong Mian Yu Tang');
 
-      const response = await fetch('http://localhost:8080/search/'+path);
+      const response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/search/'+path);
       const json = await response.json();
   
       

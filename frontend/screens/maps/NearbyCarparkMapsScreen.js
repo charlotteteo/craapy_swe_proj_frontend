@@ -59,7 +59,7 @@ function NearbyCarparkMapsScreen ({navigation,route}){
     const getMovies = async () => {
        try {
         // const response=await fetch('http://localhost:8080/getcarparkinfo/ 1.313349962/103.7645874')
-        const response = await fetch('http://localhost:8080/getcarparkinfo/'+latitude+ "/"+longitude);
+        const response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/getcarparkinfo/'+latitude+ "/"+longitude);
         const json = await response.json();
 
         setData(json);

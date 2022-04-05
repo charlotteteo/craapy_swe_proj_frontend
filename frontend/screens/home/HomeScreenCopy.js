@@ -77,14 +77,14 @@ function HomeScreenCopy({ navigation }) {
         if (jsonString !== null) {
           // We have data!!
           jsonHistory = JSON.parse(jsonString);
-          var historypath = 'http://localhost:8080/history/';
+          var historypath = 'http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/history/';
           for (let i = 1; i < 10; i++) {     // hardcoded btw 
             historypath = historypath + jsonHistory["history" + (i).toString()] +"/";   
           }
           historypath = historypath + jsonHistory["history10"]; 
         }
         else if (jsonString == null) {
-          var historypath = 'http://localhost:8080/history/3 Hainanese Chicken Rice/Xiang Jiang Soya Sauce Chicken/Depot Road Zhen Shan Mei Laksa/Hock Kee Fried Kway Teow/Kwang Kee Teochew Fish Porridge/The Sugarcane Plant/Ma Bo/Teck Kee Hot & Cold Dessert/Ramen Taisho/Kwang Kee Teochew Fish Porridge';
+          var historypath = 'http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/history/3 Hainanese Chicken Rice/Xiang Jiang Soya Sauce Chicken/Depot Road Zhen Shan Mei Laksa/Hock Kee Fried Kway Teow/Kwang Kee Teochew Fish Porridge/The Sugarcane Plant/Ma Bo/Teck Kee Hot & Cold Dessert/Ramen Taisho/Kwang Kee Teochew Fish Porridge';
         }
       } catch (error) {
         // Error retrieving data

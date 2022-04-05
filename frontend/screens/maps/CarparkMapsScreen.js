@@ -65,7 +65,7 @@ function CarparkMapsScreen ({navigation}){
   // useEffect(() => {
   //   getMovies();
   // }, []);
-  const data=carparksavailable;
+  const data=reducedcarparksavailable;
 
 
 const markers =() => {

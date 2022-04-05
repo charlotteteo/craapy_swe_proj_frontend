@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet,SafeAreaView,ActivityIndicator, FlatList, Text, View , TouchableOpacity,ScrollView} from 'react-native';
+import {Text,StyleSheet,SafeAreaView,ActivityIndicator, FlatList, View , TouchableOpacity,ScrollView} from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 //import SearchScreen from "./home/search/SearchScreen";
 //import FilterScreen from "./home/filter/FilterScreen";
@@ -15,7 +15,7 @@ import {
 	Paragraph,
 	IconButton,
 } from "react-native-paper";
-
+const split = require('split-string');
 
 function OverallCarparkInfoScreen ({ navigation,route}){
   
@@ -28,7 +28,7 @@ function OverallCarparkInfoScreen ({ navigation,route}){
 
   const getMovies = async () => {
     try {
-     // const response=await fetch('http://localhost:8080/getcarparkinfo/ 1.313349962/103.7645874')
+    //  const response=await fetch('http://localhost:8080/getcarparkinfo/ 1.313349962/103.7645874')
      const response = await fetch("http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/getnearestcarpark/"+latitude+"/"+longitude)
      const json = await response.text();
 
@@ -47,21 +47,14 @@ function OverallCarparkInfoScreen ({ navigation,route}){
    getMovies();
  }, []);
  const getLotsAvail=()=>{
-  // if (!data.slice(0,11).includes(";")){
-  //   return 18
-  // }
-    if (data.slice(10,).includes(";")){
-      return data.slice(11,)}
-    return data.slice(10,)
+
+  return split(String(data), { separator: ';' })[3]
+
   
  }
 const getTotalLots=()=>{
-  // if (!data.slice(0,11).includes(";")){
-  //   return 238
-  // }
-  if (data.slice(4,7).includes(";")){
-    return data.slice(5,8)}
-  return data.slice(4,7)
+  
+  return split(String(data), { separator: ';' })[1]
 }
 
   return (

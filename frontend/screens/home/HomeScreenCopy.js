@@ -15,6 +15,8 @@ import {
   ImageBackground
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useFonts } from 'expo-font';
+
 import { AntDesign } from "@expo/vector-icons";
 import {
   Avatar,
@@ -118,109 +120,126 @@ function HomeScreenCopy({ navigation }) {
 
 
 
-
-  const ratingslist = () => {
-    return top10ratings.map((element) => {
-      // CAN DELETE LATER
-      //console.log(top10ratings);
-      //console.log("element check ratings list")
-      //console.log(element);
-
-      //console.log(top10ratings.map(element));
-      const thumbnail=element.Thumbnail;
-      return (
-      <TouchableOpacity
-      onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
-      >
-        
-        <Choices name={element.Name} 
-          imageUri={{uri:thumbnail}} />
-          </TouchableOpacity>
-  
-     
-      );
-    });
-  };
-  
-  
-  const healthyratingslist = () => {
+    const healthyratingslist = () => {
       return healthychoices.map((element) => {
-        const thumbnail=element.Thumbnail;
         return (
           <TouchableOpacity
           onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
           >
-          <Choices name={element.Name} 
-            imageUri={{uri:thumbnail}} />
-            </TouchableOpacity>
+        <Choices name={element.Name} 
+            imageUri={{uri:element.Thumbnail}} />
+        </TouchableOpacity>
         );
       });
     };
   
   const communityratingslist = () => {
       return top10communityratings.map((element) => {
-        const thumbnail=element.Thumbnail;
         return (
         
           <TouchableOpacity
           onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
       >
-          <Choices name={element.Name} 
-            imageUri={{uri:thumbnail}} />
+        <Choices name={element.Name} 
+            imageUri={{uri:element.Thumbnail}} />
+       
             </TouchableOpacity>
        
         );
       });
     };
+
+    const ratingslist = () => {
+      return top10ratings.map((element) => {
+        return (
+          <TouchableOpacity
+          onPress={()=>{navigation.navigate("InfoScreen",{path:element.Name})}}
+          >
+            <Choices name={element.Name} 
+              imageUri={{uri:element.Thumbnail}} />
+          </TouchableOpacity>
+    
+       
+        );
+      });
+    };
+    
   
+  
+    const [loaded] = useFonts({
+  
+      OpenSans: require('../../assets/fonts/OpenSans.ttf'),
+      Nunito: require('../../assets/fonts/Nunito.ttf'),
+      NunitoBold: require('../../assets/fonts/NunitoBold.ttf'),
+      NunitoLight: require('../../assets/fonts/NunitoLight.ttf'),
+      OpenSansbold: require('../../assets/fonts/OpenSansBold.ttf'),
+      LatoBold:require('../../assets/fonts/LatoBold.ttf'),
+      LatoBlack:require('../../assets/fonts/LatoBlack.ttf'),
+      NunitoBlack:require('../../assets/fonts/NunitoBlack.ttf'),
+      // SF:require('../../assets/fonts/SF-UI-Display-Regular.otf'),
+      // SFBlack:require('../../assets/fonts/SF-UI-Display-Black.otf'),
+    });
+    
+    if (!loaded) {
+      return null;
+    }
+
   return (
     <ScrollView>
-      <View>
+      <View style={styles.container}>
         <View style={styles.header}>
-          <ImageBackground style={styles.container} source={require('../../assets/Background.png')} resizeMode="cover">
-          <View style={styles.headerwrap}>
-              <Text style={styles.headerTitle}>HotHawks</Text>
-              <Image
-                  source={require("../../assets/wok.png")}
+          <Text style={styles.text}>Good day to you,</Text>
+          <Text style={styles.headerTitle}>Happy Eating!</Text>
+          <View style={styles.searchButton}>
+
+
+
+
+    <TouchableOpacity
+        onPress={() => navigation.navigate("Search")}
+        >
+          <View style={styles.searchcontainer}>
+        <Image
+                  source={require("../../assets/Search.png")}
                   style={styles.headerImage}
                   resizeMode="contain"
-                />
-              
-          </View>
-          <View style={styles.searchButton}>
-            <Button 
-            icon={require("../../assets/Search.png")}
-            color={"white"}
-            size={20}
-            onPress={() => navigation.navigate("Search")}
-            >
-            Search
-            </Button>
-            
-          </View>
-          </ImageBackground>
+                  tintColor="black"
+        />
+        <Text style={styles.button}>Search e.g. Chicken Rice</Text>
         </View>
+        </TouchableOpacity>
+        
+          </View>
+          </View>
+          <View
+  style={{
+    borderBottomColor: 'rgba(242, 242, 247,1)',
+    borderBottomWidth: 2,
+    marginTop:20
+  }}
+/>
         <ScrollView scrollEventThrottle={16}>
-          <View style={{flex:1, backgroundColor:"white", paddingTop:10}}>
-          <Text style={styles.scrolltitle}>Recently Clicked Stalls</Text>
-          <View style={{height:130, marginTop:20}}>
+        <View style={{flex:1, backgroundColor:"white", paddingTop:5, borderTopRightRadius:20,borderTopLeftRadius:20}}>
+          <Text style={styles.scrolltitle}>Recent</Text>
+          
+          <View style={{height:190, marginTop:12, paddingBottom:5}}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
            {recentlist()}
             </ScrollView>
           </View>
-          </View>
-          
-          <View style={{flex:1, backgroundColor:"white", paddingTop:10}}>
+        </View>
+        </ScrollView>
+        <ScrollView scrollEventThrottle={16}>
+          <View style={{flex:1, backgroundColor:"white", paddingTop:5}}>
           <Text style={styles.scrolltitle}>All Time Favourites</Text>
-          <View style={{height:130, marginTop:20}}>
+          <View style={{height:190, marginTop:20}}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
            {ratingslist()}
             </ScrollView>
           </View>
-
           <View>
             <Text style={styles.scrolltitle}>Trending</Text>
-            <View style={{height:130, marginTop:20}}>
+            <View style={{height:190, marginTop:20}}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
              {communityratingslist()}
             </ScrollView>
@@ -229,7 +248,7 @@ function HomeScreenCopy({ navigation }) {
 
           <View>
             <Text style={styles.scrolltitle}>Healthy Choices</Text>
-            <View style={{height:130, marginTop:20}}>
+            <View style={{height:190, marginTop:20,paddingBottom:10}}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             {healthyratingslist()}
             </ScrollView>
@@ -267,11 +286,10 @@ export default function homestack() {
           headerBackTitleVisible:false,
           headerTitle:false,
           headerTransparent:true,
-          headerTintColor:'#fff'
+          headerTintColor:'black'
       }}
       />
-      
-         <Stack.Screen
+            <Stack.Screen
         name="InfoScreen"
         component={InfoScreen}
         options={{
@@ -312,84 +330,112 @@ export default function homestack() {
           headerTintColor:'black'
       }}
       />
-   
     </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor:"white"
-  },
-  // header: {
-  //   flex:1,
-  //   backgroundColor: "rgba(240, 54, 14, 0.8)",
-  //   borderBottomLeftRadius: 10,
-  //   borderBottomRightRadius: 10,
-  // },
-  headerwrap: {
-    // flex: 1,
-    flexDirection: "row",
-    // justifyContent: "center",
-    paddingTop: 35,
-    paddingRight:0,
-    marginLeft:100
-    //alignItems: "center"
-  },
-  headerImage: {
-    height: 50,
-    width: null,
-    paddingTop: 35,
-    marginRight:100,
-    marginLeft:5,
-    flex: 1,
-  },
-  headerTitle: {
-    color: "#fff",
-    //fontFamily: "Roboto",
-    //paddingVertical: 10,
-    paddingTop: 10,
-    fontSize: 28,
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    //lineHeight: 43,
-    //letterSpacing: 0,
-    //textAlign: 'center'
-  },
-  button_box: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 5,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: '#FFB899',
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
-  },
-  // headerSubtitle: {
-  //   fontFamily: "sans-serif",
-  //   color: "#fff",
-  //   fontSize: 15,
-  // },
-  searchButton: {
-    alignItems: "center",
-    marginRight: 5,
-    marginTop: 0,
-    top:-5
-  },
-  scrolltitle:{
-    fontSize:18,
-    fontWeight:"700",
-    //fontFamily: "Work Sans",
-    marginTop:10,
-    //marginBottom:10,
-    marginLeft:10,
-  },
-});
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        backgroundColor:"white",
+            //borderColor:"blue",
+        //borderWidth:5
+      },
+      header:{
+        flex:1,
+        //borderColor:"blue",
+        //borderWidth:5
+    
+      },
+      text:{
+        color:"grey",
+        marginTop:90,
+        marginLeft:9,
+        fontWeight:"bold",
+        fontFamily:"NunitoBold",
+        fontSize:16
+      },
+      // header: {
+      //   flex:1,
+      //   backgroundColor: "rgba(240, 54, 14, 0.8)",
+      //   borderBottomLeftRadius: 10,
+      //   borderBottomRightRadius: 10,
+      // },
+      headerwrap: {
+        // flex: 1,
+        flexDirection: "row",
+        // justifyContent: "center",
+        paddingTop: 35,
+        paddingRight:0,
+        marginLeft:100
+        //alignItems: "center"
+      },
+      headerImage: {
+        height:20,
+        width:20,
+        marginLeft:157,
+        marginRight:3,
+        
+      
+      },
+      searchcontainer:{
+        flexDirection:"row",
+        justifyContent:"flex-start",
+        alignItems:"center",
+        top:8,
+        right:140,
+        width:375,
+        //backgroundColor:"lightblue",
+        height:30
+    
+      },
+      headerTitle: {
+        color: "black",
+        marginLeft:8,
+        fontFamily: "OpenSansbold",
+        //paddingVertical: 10,
+        paddingTop: 4,
+        paddingBottom:5,
+        fontSize: 36,
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        
+        //lineHeight: 43,
+        //letterSpacing: 0,
+        //textAlign: 'center'
+      },
+      // headerSubtitle: {
+      //   fontFamily: "sans-serif",
+      //   color: "#fff",
+      //   fontSize: 15,
+      // },
+      searchButton: {
+        alignItems: "flex-start",
+        alignSelf:"center",
+        marginRight: 10,
+        marginTop: 10,
+        backgroundColor:"#fec241",
+        borderRadius:20,
+        width:"88%",
+        height:45,
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 2},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        
+      },
+      scrolltitle:{
+        fontSize:23,
+        fontWeight:"700",
+        fontFamily: "SFBlack",
+        marginTop:10,
+        //marginBottom:10,
+        marginLeft:15,
+      },
+      button:{
+        fontFamily:"NunitoBold",
+        marginLeft:5,
+        color:"white",
+        opacity:0.7,
+        fontSize:16
+      }
+    });

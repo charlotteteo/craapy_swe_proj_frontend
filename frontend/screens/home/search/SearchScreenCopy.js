@@ -42,7 +42,7 @@ function SearchScreenCopy({navigation}) {
   
     const getHawkers = async () => {
         try {
-         const response = await fetch('http://localhost:8080/hawkerstalls');
+         const response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/hawkerstalls');
          const json = await response.json();
          // console.log(json)
     
@@ -84,7 +84,7 @@ function SearchScreenCopy({navigation}) {
       
   
         return filteredDataSource.map((element) => {
-          if (element.operationhours==""){
+          if (element.operationhours=="" || element.operationhours==null){
             element.operationhours="Mon-Sun :9am-6pm"
           }
           if ((element.foodcategories!="")){
@@ -210,6 +210,7 @@ function SearchScreenCopy({navigation}) {
 
         
         //searchFilterFunction(final)
+        console.log(final)
         navigation.navigate("Results",{path:final,})     // SEARCHES for cuisine 
   
       }

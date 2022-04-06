@@ -16,7 +16,7 @@ import {
 } from "react-native-paper";
 
 
-function ResultsScreen ({ navigation,route }){
+function HawkerMapsResultsScreen ({ navigation,route }){
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const {path} = route.params;
@@ -388,4 +388,4 @@ headercontainer:{
 },
 });
 
-module.exports=ResultsScreen;
+module.exports=HawkerMapsResultsScreen;

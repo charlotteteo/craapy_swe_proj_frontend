@@ -1,5 +1,6 @@
 import React, {useState,useRef, useEffect,  Component} from 'react';
 import {
+  Chip,
   StyleSheet,
   View,
   Text,
@@ -286,10 +287,33 @@ const checkOpen=(start,end)=>{
     return true
   }}
 
+  function chip1(element){
+    console.log("ded")
+    if (checkOpen(element.q2_cleaningstartdate,element.q2_cleaningenddate) && opennowtime(element.operationhours)){
+      return (
+      <Text>
+      OPEN NOW
+      </Text>
+      );
+    }else{
+
+      return (
+<Text>
+     CLOSED
+      </Text>
+
+      );
+    }
+  }
 
 
   const list=()=>{
     return data.map((element) => {
+
+
+
+
+
       if ((element.foodcategories!="")){
         element.foodcategories=element.foodcategories.replace("'","")
         element.foodcategories=element.foodcategories.replace("'","")
@@ -344,7 +368,7 @@ const checkOpen=(start,end)=>{
               <FontAwesome5 name="map-marker-alt" size={22} color="white" />
               </View>
                 <View style={{width:"90%"}}>
-                    <Text style={styles.infotext} > ABC Brickworks Market & Food Centre </Text> 
+                    <Text style={styles.infotext} >{element.hawkercentrename} </Text> 
                     </View>
                     </View>
                   <View style={{flexDirection:"row", marginBottom:10,marginTop:10}}>
@@ -352,7 +376,7 @@ const checkOpen=(start,end)=>{
                       <FontAwesome5 name="clock" size={24} color="white" /> 
                     </View>
                     <View style={{width:"85%"}}>
-                    <Text style={styles.infotext} >  Mon - Sat: 7.30am-8pm, Closed on Sun </Text>
+                    <Text style={styles.infotext} >{element.operationhours}</Text>
                     </View>
                     </View>
               </View>
@@ -364,12 +388,24 @@ const checkOpen=(start,end)=>{
         <Text>{element.foodcategories}</Text>
         </Card.Content>
       </Card> */}
+      <View style={{borderColor:"red",borderWidth:5}}>
+        {/* {chip1(element)}
+         */}
+ {/* <Chip icon="information" selectedColor="black" style={{backgroundColor:"#62BD69",width:"37%"}}>
+                OPEN NOW
+                </Chip> */}
 
+
+      </View>
     <View>
+      
     <Text style={styles.text} >Information</Text> 
 <View style={{ flexDirection:"row", alignItems: "flex-start",justifyContent:"flex-start", marginBottom:20}}>
         <Text style={{fontFamily:"SF",marginTop:12,fontSize:20,color:"black", marginLeft:10}}>{element.foodcategories}</Text>
+
+        {chip1(element)}
         </View>
+        
     <View
       style={{
         borderBottomColor: 'rgba(242, 242, 247,1)',

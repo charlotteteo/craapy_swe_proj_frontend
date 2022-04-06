@@ -1,6 +1,5 @@
 import React, {useState,useRef, useEffect,  Component} from 'react';
 import {
-  Chip,
   StyleSheet,
   View,
   Text,
@@ -16,6 +15,7 @@ import {
 import * as WebBrowser from 'expo-web-browser';
 
 import {
+  Chip,
 	Avatar,
 	Card,
 	Title,
@@ -293,16 +293,16 @@ const checkOpen=(start,end)=>{
     console.log("ded")
     if (checkOpen(element.q2_cleaningstartdate,element.q2_cleaningenddate) && opennowtime(element.operationhours)){
       return (
-      <Text>
-      OPEN NOW
-      </Text>
+        <Chip icon="information" selectedColor="black" style={{backgroundColor:"#62BD69",width:"37%"}}>
+        OPEN NOW
+        </Chip>
       );
     }else{
 
       return (
-<Text>
-     CLOSED
-      </Text>
+        <Chip icon="information" mode='outlined' style={{backgroundColor:"#ff9494",width:"30%"}}>
+        CLOSED
+        </Chip>
 
       );
     }
@@ -350,62 +350,48 @@ const checkOpen=(start,end)=>{
     />    
 
 
-    <Card style = {{top:-80, borderTopLeftRadius:20, borderTopRightRadius:20,width:"100%"}}>
+    <Card style = {{top:-50, borderTopLeftRadius:20, borderTopRightRadius:20,width:"100%", height:700}}>
     <View style={{flexDirection:"row", justifyContent:"space-around",marginTop:10}}>
-    <Text style={styles.headerTitle}> {element.name}  </Text>
-    <View style = {styles.bordon}> 
-    <View style={{flexDirection:"row", alignItems:"center",justifyContent:"space-evenly",paddingLeft:15}} >
-    <FontAwesome name="star" size={24} color="white" />
-    <Text style={styles.buttontext} > 73% </Text> 
+      <View style={{ width:"68%", alignSelf:"center", marginLeft:5}}>
+        <Text style={styles.headerTitle}> {element.name}  </Text>
+      </View>
+        <View style = {styles.bordon}> 
+          <View style={{flexDirection:"row", alignItems:"center",justifyContent:"space-evenly",paddingLeft:15}} >
+             <FontAwesome name="star" size={24} color="white" />
+             <Text style={styles.buttontext} > 73% </Text> 
+        </View>
     </View>
     </View>
-    </View>
-
 
     <View style = {{padding:20,alignItems:"center", flexDirection:"column",height:"50%"}}>
 
-              <View style={{flexDirection:"column"}}>
-                <View style={{flexDirection:"row"}}>
-                  <View  style={{backgroundColor:"#FFBE30", borderRadius:25, alignItems:"center",justifyContent:"center",padding:13,height:"58%"}}>
+              <View>
+                <View style={{flexDirection:"row", height:"40%"}}>
+                  <View  style={{backgroundColor:"#FFBE30", borderRadius:32, alignItems:"center",justifyContent:"center",padding:10,height:"45%", marginTop:5}}>
               <FontAwesome5 name="map-marker-alt" size={22} color="white" />
               </View>
-                <View style={{width:"90%"}}>
+                <View style={{width:"90%", height:"65%", marginTop:8, marginLeft:6}}>
                     <Text style={styles.infotext} >{element.hawkercentrename} </Text> 
                     </View>
                     </View>
-                  <View style={{flexDirection:"row", marginBottom:10,marginTop:10}}>
-                    <View style={{backgroundColor:"#FFBE30", borderRadius:20, alignItems:"center",justifyContent:"center",padding:11,height:"64%"}}>
+                  <View style={{flexDirection:"row", marginBottom:10}}>
+                    <View style={{backgroundColor:"#FFBE30", borderRadius:20, alignItems:"center",justifyContent:"center",padding:10,height:"57%"}}>
                       <FontAwesome5 name="clock" size={24} color="white" /> 
                     </View>
                     <View style={{width:"85%"}}>
                     <Text style={styles.infotext} >{element.operationhours}</Text>
                     </View>
                     </View>
-              </View>
 
-              {/* <Card>
-        <Card.Content>
-        <Text style={styles.text} >Information</Text> 
-        <Text>Food Categories</Text>
-        <Text>{element.foodcategories}</Text>
-        </Card.Content>
-      </Card> */}
-      <View style={{borderColor:"red",borderWidth:5}}>
-        {/* {chip1(element)}
-         */}
- {/* <Chip icon="information" selectedColor="black" style={{backgroundColor:"#62BD69",width:"37%"}}>
-                OPEN NOW
-                </Chip> */}
-
-
+                    <View style={{alignSelf:"flex-start", bottom:15}}>
+        {chip1(element)}
       </View>
+              </View>
     <View>
       
     <Text style={styles.text} >Information</Text> 
 <View style={{ flexDirection:"row", alignItems: "flex-start",justifyContent:"flex-start", marginBottom:20}}>
         <Text style={{fontFamily:"SF",marginTop:12,fontSize:20,color:"black", marginLeft:10}}>{element.foodcategories}</Text>
-
-        {chip1(element)}
         </View>
         
     <View
@@ -425,7 +411,7 @@ const checkOpen=(start,end)=>{
     <Text style={styles.text} >Directions</Text> 
 
 
-              <View style={{ flexDirection:"row", alignItems: "center",justifyContent:"center"}}>
+              <View style={{ flexDirection:"row", alignItems: "center",justifyContent:"center", bottom:10}}>
               <TouchableOpacity onPress={this._handleOpenWithWebBrowser} 
           style={styles.button}>
                 <View style={{backgroundColor:'white',padding:11, borderRadius:23, marginTop:5}}>
@@ -466,7 +452,6 @@ const checkOpen=(start,end)=>{
 
               </View> 
     </Card> 
-  
     </ScrollView>
     </View>
 
@@ -476,7 +461,6 @@ const checkOpen=(start,end)=>{
 
 return(
 <View>
-  <Text>HIII</Text>
   <ScrollView>
   {list()}
   </ScrollView>
@@ -515,11 +499,11 @@ const styles = StyleSheet.create({
      marginLeft:20,
      fontFamily: "SFBlack",
      right:12,
-     fontSize: 25,
+     fontSize: 22,
      fontStyle: 'normal',
      fontWeight: 'bold',
      paddingTop: 10,
-     lineHeight: 43,
+     lineHeight: 0,
      letterSpacing: 0,
      
    },
@@ -527,7 +511,7 @@ const styles = StyleSheet.create({
      color: "black",
      fontFamily: 'SF',
      fontSize: 21,
-     marginTop:2,
+     marginTop:6,
      marginLeft:10
 
 
@@ -537,7 +521,7 @@ const styles = StyleSheet.create({
      fontWeight: 'bold',
      //textAlign: 'center',
      fontSize: 23,
-     marginBottom:0,
+     marginBottom:5,
      marginLeft:8
    },
    buttontext: {

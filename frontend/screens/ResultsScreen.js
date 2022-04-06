@@ -41,59 +41,59 @@ function ResultsScreen ({ navigation,route }){
 
      if (path.length == 1) {
        if (ratingArray.includes(path[0])) {
-         var response = await fetch('http://localhost:8080/rating/'+path[0]);    //var used to make it editable. 
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/rating/'+path[0]);    //var used to make it editable. 
          //console.log("check??")
        } 
        else if (distanceArray.includes(path[0])) {
-         var response = await fetch('http://localhost:8080/distance/'+LATITUDE+'/'+LONGITUDE +'/'+path[0]);    // USED BV MRT place. needs at least 800m to find smt 
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/distance/'+LATITUDE+'/'+LONGITUDE +'/'+path[0]);    // USED BV MRT place. needs at least 800m to find smt 
        } 
        else if (neighbourhoodArray.includes(path[0])) {
-         var response = await fetch('http://localhost:8080/neighbourhood/'+path[0]);    
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/neighbourhood/'+path[0]);    
        }
      }
      else if (path.length == 2) {
        if (ratingArray.includes(path[0]) && neighbourhoodArray.includes(path[1])) {    // RATING + NEIGHBOURHOOD
-         var response = await fetch('http://localhost:8080/ratingandneigh/'+path[1]+'/'+path[0]);  
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/ratingandneigh/'+path[1]+'/'+path[0]);  
        }
        else if (ratingArray.includes(path[0]) && distanceArray.includes(path[1])) {    // RATING + DISTANCE - used to not work last time
-         var response = await fetch('http://localhost:8080/ratinganddist/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);  
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/ratinganddist/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);  
          //alert('http://localhost:8080/ratinganddist/'+path[0]+'/1.3072/103.7906/'+path[1])
        }
        else if (distanceArray.includes(path[0]) && neighbourhoodArray.includes(path[1])) {    // DISTANCE + NEIGHBOURHOOD
-         var response = await fetch('http://localhost:8080/distandneigh/'+path[1]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[0]);  
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/distandneigh/'+path[1]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[0]);  
        } 
        else if (cuisineArray.includes(path[0]) && distanceArray.includes(path[1])) {    // CUISINE + DISTANCE
-         var response = await fetch('http://localhost:8080/distandcuis/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);   
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/distandcuis/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);   
        }
        else if (ratingArray.includes(path[0]) && cuisineArray.includes(path[1])) {    // RATING + CUISINE
-         var response = await fetch('http://localhost:8080/ratingandcuis/'+path[1]+'/'+path[0]);  
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/ratingandcuis/'+path[1]+'/'+path[0]);  
        }
        else if (cuisineArray.includes(path[0]) && neighbourhoodArray.includes(path[1])) {    // CUISINE + NEIGHBOURHOOD 
-         var response = await fetch('http://localhost:8080/neighcuis/'+path[0]+'/'+path[1]);  
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/neighcuis/'+path[0]+'/'+path[1]);  
        }
      }
      else if (path.length == 3) {
        if (ratingArray.includes(path[0]) && distanceArray.includes(path[1]) && neighbourhoodArray.includes(path[2])) {    // RATING + NEIGHBOURHOOD + distance
-         var response = await fetch('http://localhost:8080/ratingdistneigh/'+path[2]+'/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);  
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/ratingdistneigh/'+path[2]+'/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);  
        }
        else if (ratingArray.includes(path[0]) && cuisineArray.includes(path[1]) && neighbourhoodArray.includes(path[2])) {    // RATING + CUISINE + NEIGHBOURHOOD
-         var response = await fetch('http://localhost:8080/ratingneighcuis/'+path[1]+'/'+path[2]+'/'+path[0]);  
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/ratingneighcuis/'+path[1]+'/'+path[2]+'/'+path[0]);  
        }
        else if (ratingArray.includes(path[0]) && cuisineArray.includes(path[1]) && distanceArray.includes(path[2])) {    // RATING + CUISINE + distance
-         var response = await fetch('http://localhost:8080/ratingdistcuis/'+path[1]+'/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[2]);  
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/ratingdistcuis/'+path[1]+'/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[2]);  
        }
        else if (cuisineArray.includes(path[0]) && distanceArray.includes(path[1]) && neighbourhoodArray.includes(path[2])) {    // CUISINE + distance + NEIGHBOURHOOD
-         var response = await fetch('http://localhost:8080/distneighcuis/'+path[0]+'/'+path[2]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);  
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/distneighcuis/'+path[0]+'/'+path[2]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);  
        }
      }
      else if (path.length == 4) {
        if (ratingArray.includes(path[0]) && cuisineArray.includes(path[1]) && distanceArray.includes(path[2]) && neighbourhoodArray.includes(path[3])) {    // CUISINE + distance + NEIGHBOURHOOD
-         var response = await fetch('http://localhost:8080/allfilters/'+path[1]+'/'+path[3]+'/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[2]);
+         var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/allfilters/'+path[1]+'/'+path[3]+'/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[2]);
        }
      }
 
      if (response == "empty") {
-       var response = await fetch('http://localhost:8080/search/'+path[0]);
+       var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/search/'+path[0]);
      }
      
      //console.log(path)
@@ -429,6 +429,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: 'flex-end',
     alignItems: 'center',
+    backgroundColor:"white"
   },
 headercontainer:{
   position:"absolute",

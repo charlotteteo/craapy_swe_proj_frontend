@@ -119,9 +119,9 @@ function SearchScreenCopy({navigation}) {
 /> */}
                     <Text style={[ {fontWeight: 'bold',fontSize: 15, color:"rgb(142,142,147)"}]}>{element.hawkercentrename}</Text>
   
-                    <Text style={[ {fontSize: 15}]}>Operates on {element.operationhours}</Text>
+                    <Text style={[ {fontSize: 15, color:"rgb(142,142,147)"}]}>Operates on {element.operationhours}</Text>
   
-                    <Text style={[ {fontSize: 15}]}>Food Categories: {element.foodcategories}</Text>
+                    <Text style={[ {fontSize: 15, color:"rgb(142,142,147)"}]}>Food Categories: {element.foodcategories}</Text>
 
   
               </Card.Content>
@@ -211,7 +211,7 @@ function SearchScreenCopy({navigation}) {
             final.push(namearray[i])
           }
         }
-        alert(final) // only the first one for now
+        //alert(final) // only the first one for now
 
         
         //searchFilterFunction(final)

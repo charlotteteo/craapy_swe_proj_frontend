@@ -121,7 +121,7 @@ const getTotalLots=()=>{
   <View style={{margin:10}}>
       <Title style={styles.paragraph2}>Gantry Height:</Title>
       <Text style={styles.bigcontent}>
-      {gantry_height}
+      {gantry_height}m
       </Text>
       </View>
   </Card> 

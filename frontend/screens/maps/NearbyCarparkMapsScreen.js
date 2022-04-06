@@ -178,9 +178,9 @@ function NearbyCarparkMapsScreen ({navigation,route}){
             }
           }
           obj.address= 'https://www.google.com/maps?saddr=My+Location&daddr='+obj.latitude+','+obj.longitude
-          _handleOpenWithWebBrowser = () => {
-            WebBrowser.openBrowserAsync(address);
-          };
+          // _handleOpenWithWebBrowser = () => {
+          //   WebBrowser.openBrowserAsync(address);
+          // };
     
           // console.log(response1)
           return (
@@ -188,9 +188,9 @@ function NearbyCarparkMapsScreen ({navigation,route}){
             <MapView.Marker 
             coordinate = {{latitude: obj.latitude,longitude: obj.longitude} }
             
-            
+            title={obj.Name} 
             onPress={() => Alert.alert(
-              element.Name,
+              obj.Name,
               "Route in Google Maps",
               [
                 

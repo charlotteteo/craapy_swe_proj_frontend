@@ -173,34 +173,32 @@ const markers =() => {
           
         
           {data.map((element) => (
-        <MapView.Marker 
-        // FORMAT coordinate: {
-        //   latitude: 1.342339,
-        //   longitude: 103.7742345,
-        //   }
-          coordinate = {element.Coordinates}
-          title={element.title} 
-          onPress={() => Alert.alert(
-            element.Name,
-            "Route in Google Maps",
-            [
-              
-              {
-                text: "No",
-                onPress: () => console.log("Cancel Pressed"),
-                style: "cancel"
-              },
-              {
-                text: "Yes",
-                onPress: () => WebBrowser.openBrowserAsync(element.Address)
-              }
-            ]
-            )
-              
-              
-              
-              }
-              />
+          
+       
+         <MapView.Marker 
+         coordinate={element.Coordinates}
+         title={element.Name} 
+        onPress={() => Alert.alert(
+         element.Name,
+         "Route in Google Maps",
+         [
+           
+           {
+             text: "No",
+             onPress: () => console.log("Cancel Pressed"),
+             style: "cancel"
+           },
+           {
+             text: "Yes",
+             onPress: () => WebBrowser.openBrowserAsync('https://www.google.com/maps?saddr=My+Location&daddr='+element.Coordinates.latitude+','+element.Coordinates.longitude)
+           }
+         ]
+     )
+       
+       
+       
+       }
+       />
             ))}
                  
        

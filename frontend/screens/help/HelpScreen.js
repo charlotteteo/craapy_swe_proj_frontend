@@ -12,6 +12,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import FAQScreen from "./FAQScreen";
 import EmailScreen from "./EmailScreen";
 import { AntDesign } from '@expo/vector-icons'; 
+import { Octicons } from '@expo/vector-icons';
 
 function HelpScreen({ navigation }) {
 	return (
@@ -20,23 +21,44 @@ function HelpScreen({ navigation }) {
       <View style={styles.background}>      
                 <Text style={styles.headerText}>Help Page</Text>
             </View>     
+            <View
+  style={{
+    borderBottomColor: 'rgba(242, 242, 247,1)',
+    borderBottomWidth: 2,
+    marginTop:0,
+    width:"100%",
+    marginBottom:15,
+  }}
+/>
 
+<View style={{flexDirection:"column",width:"100%",justifyContent:"space-around",alignItems:"center",height:"70%"}}>
 			<TouchableOpacity
 				style={styles.button}
 				onPress={() => navigation.navigate("FAQ")}
 			>
-				<Text style={styles.buttonText2}>Help</Text>
-
-				<AntDesign name="questioncircleo" size={80} color="black" />
+                <View style={{flexDirection:"row", alignItems:"center"}}>
+                <View style={{marginTop:20,backgroundColor:"white",padding:23,borderRadius:45,right:30}}>
+				<AntDesign name="questioncircleo" size={50} color="black" />
+                </View>
+                <Text style={styles.buttonText2}>FAQ</Text>
+                </View>
 			</TouchableOpacity>
 
 			<TouchableOpacity
 				style={styles.button}
 				onPress={() => navigation.navigate("Email")}
 			>
-				<Text style={styles.buttonText}>Contact Us</Text>
-				<Image style={styles.image} source={require("../../assets/mail.png")}/>
+            <View style={{flexDirection:"row", alignItems:"center"}}>
+            <View style={{marginTop:20,backgroundColor:"white",padding:23,borderRadius:45}}>
+                    <Octicons name="mail" size={50} color="black" />
+            </View>
+            <View style={{width:"50%"}}>
+                <Text style={styles.buttonText}>Contact Us</Text>
+                </View>
+                </View>
+            
 			</TouchableOpacity>
+            </View>
 		</View>
 	);
 }
@@ -79,62 +101,64 @@ const styles = StyleSheet.create({
 
         //justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#ececec",
+        backgroundColor: "white",
     },
 
     button: {
-        backgroundColor: "white",
-        height: "25%",
-        width: "60%",
+        backgroundColor: "#fec241",
+        height: "27%",
+        width: "70%",
         alignItems: "center",
         borderColor:"black",
-        borderWidth:5,
+        //borderWidth:5,
         marginTop: 60,
         marginBottom:20,
-        borderRadius: 20,
-        shadowColor: '#171717',
-        shadowOffset: {width: -2, height: 4},
-        shadowOpacity: 0.5,
-        shadowRadius: 3,
+        borderRadius: 70,
+        justifyContent:"space-between",
+        flexDirection:"column"
+        
     },
 
     buttonText: {
         fontFamily:"NunitoBold",
         paddingBottom: 0,
         paddingTop: 20,
-        fontSize: 24,
-        color:"black"
+        fontSize: 30,
+        color:"white",
+        textAlign:"center",
+
     },
     buttonText2: {
         fontFamily:"NunitoBold",
         paddingBottom: 0,
         paddingTop: 20,
-        marginBottom:12,
-        fontSize: 24,
+        marginBottom:0,
+        fontSize: 30,
+        color:"white"
     },
     image: {
         width: "50%",
-        height: "60%",
-        bottom:7
+        height: "30%",
+        bottom:7,
     },
     image2:{
         marginTop:5,
         width: "46%",
-        height: "50%",
+        height: "10%",
         marginBottom:5
     },
     background:{
         width:"110%",
-        height:100,
+        height:95,
         //top:50,
         //alignSelf: "flex-start",
         //justifyContent: "flex-start",
-        bottom:5,
         position: "relative",
         borderColor: "black",
-        borderWidth: 5,
+        //borderWidth: 5,
         marginBottom: 0,
-        backgroundColor:"#fec241"
+        backgroundColor:"white",
+
 
     },
     headerText:{
@@ -143,7 +167,7 @@ const styles = StyleSheet.create({
         marginTop:40,
         paddingTop: 4,
         paddingBottom:5,
-        fontSize: 24,
+        fontSize: 25,
         alignSelf:"center"
     }
 });

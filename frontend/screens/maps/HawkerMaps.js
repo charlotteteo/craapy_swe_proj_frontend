@@ -26,7 +26,7 @@ import {
 	IconButton,
 } from "react-native-paper";
 import moment from 'moment';
-
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import * as WebBrowser from 'expo-web-browser';
 import { hawkerclosure } from '../../assets/HawkerClosure';
 import MapView,  { MAP_TYPES, PROVIDER_DEFAULT,PROVIDER_GOOGLE } from 'react-native-maps';
@@ -35,8 +35,9 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
 import CarparkInfoScreen from '../maps/CarparkInfoScreen'
-
+import { TransitionPresets } from '@react-navigation/stack';
 import EmailScreen from "../help/EmailScreen";
+import { EvilIcons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
 
@@ -131,7 +132,7 @@ const list = () => {
           }
         >
          <SafeAreaView>
-         <Card style={{ marginBottom: 10,backgroundColor:"#FFF2D6",width:350 }}>
+         <Card style={{ marginBottom: 10,backgroundColor:"#FFF2D6",width:350, borderRadius:10 }}>
                   <Card.Content>
               
               <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center',}]}>
@@ -139,14 +140,14 @@ const list = () => {
             
                   </Text>
                   <Text></Text>
-              <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>
+              <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'rgb(142,142,147)'}]}>
                 Hawker Centre Closure:
                 </Text>
-             <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>
+             <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'rgb(142,142,147)'}]}>
                 {element.q2_cleaningstartdate} to {element.q2_cleaningenddate}
         
                   </Text>
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'rgb(142,142,147)'}]}>
                OPEN TODAY
         
                   </Text>
@@ -301,31 +302,18 @@ const list = () => {
           />
         ))}
              
-         
-             
-          
-
-
-
-
-
-
-
-
-
-
-
 
               </MapView>
         <SafeAreaView style={styles.test}>
         <>
       <TouchableOpacity style={styles.buttoncarpark} onPress={onOpen}>
-        <Text style={styles.Buttontext}>Show all Hawker Centres</Text>
+      <EvilIcons name="navicon" size={30} color="white" />
       </TouchableOpacity>
 
       <Modalize ref={modalizeRef}
           scrollViewProps={{ showsVerticalScrollIndicator: false }}
           snapPoint={400}
+          modalHeight={650}
           modalStyle={styles.modalcontainer}
           HeaderComponent={
             <View>
@@ -341,9 +329,10 @@ const list = () => {
             width:1000,
             marginRight:100,
             paddingRight:100,
-        
             backgroundColor: 'rgba(0, 0, 0, 0.65)',
           }}
+          handlePosition="inside"
+   
           //withHandle={false}
           //adjustToContentHeight={true}
           >
@@ -397,10 +386,12 @@ export default function homestack() {
             //initialParams={{path:element.Name}}  
 
                         options={{
-                          headerBackTitleVisible:false,
-                          headerTitle:false,
-                          headerTransparent:true,
-                          headerTintColor:'#fff'
+                         // headerBackTitleVisible:false,
+                         // headerTitle:false,
+                         // headerTransparent:true,
+                          headerTintColor:'#fff',
+                          ...TransitionPresets.ModalSlideFromBottomIOS
+                          
                       }}/>      
         {/* <Stack.Screen name="InfoScreen" component={InfoScreen} /> */}
         <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen} 
@@ -427,7 +418,7 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    top:80,
+    top:95,
     left: 0,
     right: 0,
     bottom: 0,
@@ -470,40 +461,48 @@ const styles = StyleSheet.create({
   },
   background:{
     width:"110%",
-    height:80,
+    height:95,
     //top:50,
     //alignSelf: "flex-start",
     //justifyContent: "flex-start",
     position: "relative",
     //borderColor: "black",
     //borderWidth: 5,
-    marginBottom: 0
+    marginBottom: 0,
+    backgroundColor:"white",
+    shadowOpacity: 1,
+    shadowRadius: 6,
+  
+    elevation: 6,
+    zIndex:5
 },
 headerText:{
-    color:"black",
-    fontSize: 22,
-    fontWeight:"bold",
-    flexDirection: "column",
-    alignSelf:"center",
-    marginTop: 40,
-    marginBottom: 0,
-    fontFamily:"OpenSansbold",
+  color:"black",
+  fontSize: 25,
+  fontWeight:"bold",
+  flexDirection: "column",
+  alignSelf:"center",
+  marginTop: 50,
+  marginBottom: 0,
+  fontFamily:"OpenSansBold",
 
 },
 test:{
   flex: 1, 
   justifyContent: "flex-end",
-  alignItems: "center",
+  alignItems: "flex-end",
  //borderColor:"blue",
  //borderWidth:10
 },
 buttoncarpark:{
-  borderColor:"grey",
-  borderWidth:1,
   backgroundColor: "#fec241",
-  marginBottom: 10,
-  borderRadius:20,
-  opacity: 0.7
+  marginBottom: 80,
+  borderRadius:30,
+  padding:10,
+  paddingTop:12,
+  paddingBottom:12,
+  opacity:0.9,
+  left:150
 
 },
 Buttontext:{
@@ -532,18 +531,21 @@ elevation: 6,
 
 },
 ModalHeadertext:{
+  fontFamily:"SFBlack",
   fontWeight:"bold",
   fontSize: 25,
   alignSelf:"center",
   marginBottom:5,
-  padding:5
+  padding:5,
+  marginTop:20,
+  marginBottom:5
 },
 headercontainer:{
   position:"absolute",
   top:0,
   backgroundColor:"white",
   width:"100%",
-  height:80,
+  height:95,
   marginBottom:5,
   borderRadius:10,
   shadowOpacity: 1,

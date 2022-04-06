@@ -39,7 +39,7 @@ export default class EmailTrialScreen extends Component {
       ["rovereign455@gmail.com"],
       null,
       null,
-      "Query to CRAAPY",
+      "Query to Hawkerpedia",
       null
     );
   };
@@ -74,11 +74,20 @@ const styles = StyleSheet.create({
   },
   background:{
     width:"110%",
-    height:100,
+    height:95,
+    //top:50,
+    //alignSelf: "flex-start",
+    //justifyContent: "flex-start",
     position: "relative",
     //borderColor: "black",
     //borderWidth: 5,
-    marginBottom: 30
+    marginBottom: 0,
+    backgroundColor:"white",
+    shadowOpacity: 1,
+    shadowRadius: 6,
+  
+    elevation: 6,
+    zIndex:5
 },
 headerText:{
     color:"white",

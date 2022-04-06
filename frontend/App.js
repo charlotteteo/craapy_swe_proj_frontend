@@ -17,7 +17,7 @@ import HelpScreen from "./screens/help/HelpScreen";
 import MapScreen from "./screens/maps/HawkerMaps";
 import NearbyCarparkMapsScreenCopy from "./screens/maps/NearbyCarparkMapsScreenCopy";
 import CarparkMapsScreen from "./screens/maps/CarparkMapsScreen";
-import OverallCarparkInfoScreen from "./screens/maps/OverallCarparkInfoScreen";
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -51,9 +51,13 @@ export default function App() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: "#ffde17",
-          inactiveTintColor: "darkgrey",
+          activeTintColor: "#fec241",
+          inactiveTintColor: "rgba(152, 152, 157,1)",
+          style: {
+            backgroundColor: 'rgba(242, 242, 247,0.3)',
+          },
         }}
+
       >
         <Tab.Screen name="Home" component={HomeScreenCopy} />
         <Tab.Screen name="Maps" component={HawkerMaps} />

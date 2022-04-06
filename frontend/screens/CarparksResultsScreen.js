@@ -127,7 +127,7 @@ return (
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#FEE0D4"
+    backgroundColor: "black"
   },
   paragraph: {
     margin: 24,

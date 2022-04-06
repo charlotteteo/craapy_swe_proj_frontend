@@ -6,6 +6,7 @@ import FilterScreen from "./home/filter/FilterScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import InfoScreen from "./InfoScreen";
 import NearbyCarparkMapsScreen from "./maps/NearbyCarparkMapsScreen";
+import { Entypo } from '@expo/vector-icons'; 
 import {
 	Avatar,
 	Chip,
@@ -206,12 +207,13 @@ const checkOpen=(start,end)=>{
           }
           return (
             
+            
             <TouchableOpacity	onPress={() => {
               navigation.navigate("InfoScreen",{path:element.name})
           
           }}>
 
-          <Card style={{ marginBottom: 10 ,backgroundColor:"#FFF2D6",}}>
+          <Card style={{backgroundColor:"#FFF2D6", marginLeft:10,marginRight:10,marginBottom:5,marginTop:5}}>
                     <Card.Content>
               {/* <View key={element.key} style={{margin: 10}}> */}
               <Text style={[ {fontWeight: 'bold',fontSize: 22,color:"#654321"}]}>
@@ -258,7 +260,7 @@ borderBottomWidth: 1,
         
         }}>
 
-        <Card style={{ marginBottom: 10 ,backgroundColor:"#FFF2D6",}}>
+        <Card style={{  marginLeft:10,marginRight:10,marginBottom:5,marginTop:5,backgroundColor:"#FFF2D6",}}>
                   <Card.Content>
             {/* <View key={element.key} style={{margin: 10}}> */}
             <Text style={[ {fontWeight: 'bold',fontSize: 22,color:"#654321"}]}>
@@ -299,8 +301,11 @@ borderBottomWidth: 1,
 
   return (
     <View style={styles.container}>
-    <View style={styles.background}>      
+    <View style={styles.headercontainer}>   
+    <Entypo name="chevron-down" size={30} color="black" style={{left:193,top:10}} />  
+    <View style={{width:"60%",alignSelf:"center"}}>
         <Text style={styles.headerText}>{path}</Text>
+        </View> 
     </View>  
       <ScrollView>
      {list()}
@@ -350,21 +355,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 headercontainer:{
-  position:"absolute",
-  top:0,
+  width:"110%",
+  height:"auto",
+  //top:50,
+  //alignSelf: "flex-start",
+  //justifyContent: "flex-start",
+  position: "relative",
+  //borderColor: "black",
+  //borderWidth: 5,
+  marginBottom: 10,
+  padding:7,
   backgroundColor:"white",
-  width:"100%",
-  height:80,
-  marginBottom:5,
-  borderRadius:10,
-  shadowOpacity: 1,
-  shadowRadius: 6,
+  paddingTop:30,
 
-  elevation: 6,
-
-  //borderColor:"red",
-  //borderWidth:5,
-  zIndex:5
 }, background:{
   width:"110%",
   height:80,
@@ -374,16 +377,19 @@ headercontainer:{
   position: "relative",
   //borderColor: "black",
   //borderWidth: 5,
-  marginBottom: 0
-},headerText:{
+  marginBottom: 0,
+
+},
+headerText:{
   color:"black",
   fontSize: 20,
   fontWeight:"bold",
   flexDirection: "column",
   alignSelf:"center",
-  marginTop: 40,
+  marginTop: 10,
   marginBottom: 0,
   fontFamily:"OpenSansbold",
+  textAlign:"center"
 
 },
 });

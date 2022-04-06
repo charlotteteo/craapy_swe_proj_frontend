@@ -81,7 +81,6 @@ function SearchScreenCopy({navigation}) {
     };
     
     const list = () => {
-      
   
         return filteredDataSource.map((element) => {
           if (element.operationhours==""){
@@ -94,6 +93,7 @@ function SearchScreenCopy({navigation}) {
             element.foodcategories=element.foodcategories.replace("[","")
             element.foodcategories=element.foodcategories.replace("]","")
           }
+         
           return (
             
                   <TouchableOpacity	onPress={() => {
@@ -121,6 +121,7 @@ function SearchScreenCopy({navigation}) {
 
   
               </Card.Content>
+      
       
       
       </Card>
@@ -294,8 +295,10 @@ function SearchScreenCopy({navigation}) {
 
 
     return (
-      <SafeAreaView style={styles.container}>    
-        <Text style={styles.headerText}>Search</Text>
+      <SafeAreaView style={styles.container}>
+      <View>      
+        <Text style={styles.headerTitle}>Search</Text>
+    </View>  
 <View style={styles.searchbar}>
   <SearchBar //style = {styles.searchbar}
     round
@@ -676,7 +679,7 @@ const styles = StyleSheet.create({
     paddingBottom:5,
     left: 10
   },
-  
+
 
   clearAllButton: {       // HARD TO PRESS - click above it...
     top:35,
@@ -722,24 +725,14 @@ const styles = StyleSheet.create({
     //borderWidth: 5,
     marginBottom: 50
 },
-headerText:{
-  color:"black",
-  fontSize: 22,
-  fontWeight:"bold",
-  flexDirection: "column",
-  alignSelf:"center",
-  marginTop: 40,
-  marginBottom: 0,
-  fontFamily:"OpenSansbold",
 
-},
 headerTitle: {
   //marginLeft:8,
   fontFamily: "OpenSansbold",
   //paddingVertical: 10,
   paddingTop: 4,
   paddingBottom:5,
-  fontSize: 24,
+  fontSize: 25,
   alignSelf:"center"
 },
 

@@ -176,8 +176,8 @@ function HomeScreenCopy({ navigation }) {
       LatoBold:require('../../assets/fonts/LatoBold.ttf'),
       LatoBlack:require('../../assets/fonts/LatoBlack.ttf'),
       NunitoBlack:require('../../assets/fonts/NunitoBlack.ttf'),
-      // SF:require('../../assets/fonts/SF-UI-Display-Regular.otf'),
-      // SFBlack:require('../../assets/fonts/SF-UI-Display-Black.otf'),
+      SF:require('../../assets/fonts/SF-UI-Display-Regular.otf'),
+      SFBlack:require('../../assets/fonts/SF-UI-Display-Black.otf'),
     });
     
     if (!loaded) {
@@ -188,7 +188,7 @@ function HomeScreenCopy({ navigation }) {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.text}>Good day to you,</Text>
+          <Text style={styles.text}>Hawkerpedia Presents</Text>
           <Text style={styles.headerTitle}>Happy Eating!</Text>
           <View style={styles.searchButton}>
 
@@ -347,7 +347,7 @@ export default function homestack() {
     
       },
       text:{
-        color:"grey",
+        color:"rgb(209,209,214)",
         marginTop:90,
         marginLeft:9,
         fontWeight:"bold",

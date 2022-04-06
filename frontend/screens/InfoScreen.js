@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState,useRef, Component} from 'react';
 import {
   StyleSheet,
   View,
@@ -7,309 +7,194 @@ import {
  Button,
  Image,
  SafeAreaView,
- ImageBackground,
  ScrollView,
  TouchableOpacity,
- Pressable
+ Pressable,
+ ImageBackground,
 } from 'react-native';
 import {
-  Avatar,
-  Card,
-  Title,
-  Paragraph,
-  IconButton,
+	Avatar,
+	Card,
+	Title,
+	Paragraph,
+	IconButton,
 } from "react-native-paper";
-//import {CSVLink, CSVDownload} from 'react-csv';
-//import {writeJsonFile} from 'write-json-file';
+import { FontAwesome5 } from '@expo/vector-icons';
 
-import { createStackNavigator } from "@react-navigation/stack";
-import SearchScreen from "./home/search/SearchScreen";
-import ResultsScreen from "./ResultsScreen"
-import { NavigationContainer } from '@react-navigation/native';
-import NearbyCarparkMapsScreen from "./maps/NearbyCarparkMapsScreen";
-import * as WebBrowser from 'expo-web-browser';
+const InfoScreen = () => {
 
-import * as FileSystem from 'expo-file-system';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+  const viewRef = useRef();
 
-import {top10ratings}  from "../assets/top10ratings";
-
-
-function InfoScreen ({ navigation,route}){
-  
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const [data2, setData2] = useState([]); // test can delete later
-  const {path}=route.params;
-  console.log(path)
-
-
-  const getMovies = async () => {
-     try {
-      // const response = await fetch('http://localhost:8080/search/De Sheng Shou Gong Mian Yu Tang');
-
-      const response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/search/'+path);
-      const json = await response.json();
-  
-      
-      setData(json);
-      
-  
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-
-
-    // IF need to reset the history
-    /*
-      try {
-        await AsyncStorage.removeItem('history');
-      }
-      catch(error) {
-          //error;
-      }
-      */
-
-      // testing homescreen. 
-    //console.log(top10ratings);
-    /*
-    var historypath = 'http://localhost:8080/history/Holland V Coffee & Drink/Xiang Jiang Soya Sauce Chicken/Depot Road Zhen Shan Mei Laksa/Hock Kee Fried Kway Teow/Kwang Kee Teochew Fish Porridge/The Sugarcane Plant/Ma Bo/Teck Kee Hot & Cold Dessert/Ramen Taisho/Kwang Kee Teochew Fish Porridge';
+  const sharescreenshot = async () => {
     try {
-      var response = await fetch(historypath);
-      const json2 = await response.json();   
-      console.log(historypath)    
-      setData2(json2);
-      console.log("hello1")
-      console.log(data)
-      console.log("hello")
-      
-      console.log(data2);
-      console.log("helloend")
-    } catch (error) {
-      console.error(error);
-    } finally {
-      //setLoading(false);
-    }*/
-    
-
-
-    try {
-      var jsonString = await AsyncStorage.getItem('history');
-      if (jsonString == null) {
-        // We INITIALIZE jsonstring
-        console.log(jsonString)
-        jsonString = '{"history1":"Holland V Coffee & Drink", "history2":"Xiang Jiang Soya Sauce Chicken", "history3":"Depot Road Zhen Shan Mei Laksa","history4":"Hock Kee Fried Kway Teow","history5":"Kwang Kee Teochew Fish Porridge","history6":"The Sugarcane Plant", "history7":"Ma Bo", "history8":"Teck Kee Hot & Cold Dessert","history9":"Ramen Taisho","history10":"Kwang Kee Teochew Fish Porridge"}';
-        try {
-          await AsyncStorage.setItem(
-            'history',
-            jsonString
-          );
-        } catch (error) {
-          // Error saving data
-        }
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
-    
-    
-
-
-    //edot
-    
-    try {
-      var jsonString = await AsyncStorage.getItem('history');
-      if (jsonString !== null) {
-        // We have data!!
-        jsonHistory = JSON.parse(jsonString);
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
-
-
-    // to check if the history path works - IT DOES
-    /*var historypath = 'http://localhost:8080/history/';
-    for (let i = 1; i < 10; i++) {     // hardcoded btw 
-      historypath = historypath + jsonHistory["history" + (i).toString()] +"/";   
-    }
-    historypath = historypath + jsonHistory["history10"]; 
-    console.log(historypath)
-    //alert(historypath)*/
-
-    for (let i = 9; i > 0; i--) {     // hardcoded btw 
-      jsonHistory["history" + (i+1).toString()] = jsonHistory["history" + (i).toString()];   
-    }
-
-    jsonHistory["history1"] = path;
-    console.log("jsonHistory in infoscreen");
-    console.log(jsonHistory);
-
-    jsonString = JSON.stringify(jsonHistory);
-    try {
-      await AsyncStorage.setItem(
-        'history',
-        jsonString
-      );
-    } catch (error) {
-      // Error saving data
-    }
-
-    
-
-    
-    
-
-
-    
-  }
-
+      const uri = await captureRef(viewRef,{
+        format : 'png',
+        quality: 0.7
+      });
+    await Share.shareAsync(uri)
+    } catch(err){
+    console.error(err);}
+  };
   
+  return (
+     <SafeAreaView>
+       <ScrollView>
+     <View ref = {viewRef} style={{borderColor:"green",borderWidth:5}}>
+ <ImageBackground
+  // resizeMethod={'auto'}
+  style={{
+    width: "100%",
+    height: 400,
+    margin:0,
+  top:20,
+  left:0,
+  right:0,
+  borderColor:"red",
+  borderWidth:10
+  }}
+  source={require("../assets/Beehoon.png")}
+/>    
 
 
- useEffect(() => {
-    getMovies();
-  }, []);
+<Card style = {{top:-95, borderTopLeftRadius:20, borderTopRightRadius:20,left:-10,width:430}}>
+<View style = {styles.bordon}> 
+<View style={{flexDirection:"row"}} >
+<Text style={styles.buttontext} > 73% </Text> 
+<ImageBackground style={styles.big} source={require('../assets/star.png')} /> 
+</View>
+</View>
+               <Text style={styles.headerTitle}>  Lin Da Ma Lei Cha  </Text>
 
-  const List = () => {
-   return data.map((element) => {
-    console.log(element)
-    address= 'https://www.google.com/maps?saddr=My+Location&daddr='+element.latitude_hc+','+element.longitude_hc
-    _handleOpenWithWebBrowser = () => {
-      WebBrowser.openBrowserAsync(address);
-    };
-    return (
-      
-           <SafeAreaView >
-          <Card style= {{backgroundColor: "#FFB899"}}>
-          <Card.Content>
-              {/* <View key={element.key} style={{margin: 10}}> */}
-                <Text  style={styles.paragraph}>
-                  {element.name}
-                  </Text>
-                <Card.Cover source={{ uri: element.thumbnail }} />
-                <Text style={styles.infotext}> 
-                <ImageBackground style={styles.small} source={require('../assets/star.png')} /> {" "}: {element.rating} % {"\n"}  
-                <ImageBackground style={styles.small} source={require('../assets/location.png')} /> {" "}: {element.hawkercentrename} {"\n"}  
-                <ImageBackground style={styles.small} source={require('../assets/time.png')} />  {" "} : {element.operationhours}{"\n"} 
+<View style = {{margin:10 }}>
+                <Text > 
+
+                <ImageBackground style={styles.small} source={require('../assets/location.png')} /> {" "} <Text style={styles.infotext} > ABC Brickworks Market & Food Centre </Text> {"\n"} 
+                <View style={{backgroundColor:"#FFBE30", padding:2, borderRadius:12, alignItems:"center",justifyContent:"center"}}>
+                  <FontAwesome5 name="clock" size={24} color="white" /> 
+                </View>
+                 <Text style={styles.infotext} >  Mon - Sat: 7.30am-8pm, Closed on Sun </Text> {"\n"}
   
                 </Text>
-          </Card.Content>
-</Card>
+         
+<Text style={{marginTop:25,marginLeft:10,flexDirection:"row"}}> <ImageBackground style={styles.logo} source={require('../assets/direction.png')}/> <Text style={styles.text} > Directions:</Text> 
+</Text>
 
-          <Text  style={styles.infotext}>    
-          <Image style={styles.small} source={require('../assets/direction.png')} /> {" "} Directions:
-          </Text >
-          <View style={{ flexDirection:"row" }}>
-          <TouchableOpacity onPress={this._handleOpenWithWebBrowser}  
+          <View style={{ flexDirection:"row", alignItems: "center", marginLeft:25,marginTop:-25 }}>
+          <TouchableOpacity 
           style={styles.button}>
           <Image style={styles.med} source={require('../assets/bus.png')} />
-           <Text style={styles.infotext}>
-            Public Transport
-           </Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={()=>{
-            // navigation.navigate("NearbyCarparkMapsScreen",{latitude:1.311102033,longitude:103.7949448})
-
-            navigation.navigate("NearbyCarparkMapsScreen",{latitude:element.latitude_hc,longitude:element.longitude_hc,})
-                   
-          }}
+           
+           </TouchableOpacity >
+          <TouchableOpacity 
           style={styles.button}>
           <Image style={styles.med} source={require('../assets/car.png')} />
-           <Text style={styles.infotext}>
-            Car
-           </Text>
+          
           </TouchableOpacity >
-          <TouchableOpacity onPress={this._handleOpenWithWebBrowser} 
+          <TouchableOpacity
           style={styles.button}>
           <Image style={styles.med} source={require('../assets/walking.png')} />
-           <Text style={styles.infotext}>
-            Walking
-           </Text>
+
           </TouchableOpacity>
-          </View>
-          </SafeAreaView>
+          </View> 
+
+          </View> 
+</Card> 
+</View>
     
-   );
-  });
-};
+</ScrollView>
+</SafeAreaView>
+  );
+} 
 
-
-return (
-  <SafeAreaView>
-   {List()}
-
-  </SafeAreaView>
-);
-  
-}
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FEE0D4"
+  container:{
+    flex: 1,
+    //alignItems: "center",
+    backgroundColor: "white",
   },
-  paragraph: {
-    margin: 24,
-    marginTop: 0,
-    fontSize: 25,
+  headerTitle: {
+   color: "black",
+    marginLeft:8,
+    fontFamily: "serif",
+    
+    fontSize: 40,
+    fontStyle: 'normal',
     fontWeight: 'bold',
+    paddingTop: 10,
+    lineHeight: 43,
+    letterSpacing: 0,
     textAlign: 'center',
-    color : 'red',
+    paddingBottom:50
+    
   },
-  infotext: {
+   infotext:{
     color: "black",
+    textAlign: 'center',
+    fontFamily: 'arial',
+		fontSize: 23,
+    marginLeft: 10,
+    paddingTop: 10,
+    paddingBottom:30,
+
+  
+  },
+  text:{
+   color: "black",
     fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: 15,
+		fontSize: 23,
+    paddingTop: 10,
+    paddingBottom:30,
   },
-  logo: {
-    height: 128,
-    width: 128,
-  },
+  buttontext: {
+		color: "white",
+    fontWeight: 'bold',
+    textAlign: 'center',
+		fontSize: 23,
+    margin: 7,
+	},
   med:{
     height: 50,
     width: 50,
   },
   small: {
-    height: 10, 
-    width: 10,
+    height: 20, 
+    width: 20,
+    marginRight: 10,
+    marginBottom:-1,
   },
-  button: {         // tbh doesnt matter a lot haha
-    backgroundColor: "pink", // dark mode: #303337
-    height: "50%",
-    width: "22%",
+  logo:{
+    height:20,
+    width:20,
+  },
+   button: {         
+    backgroundColor: "#FFBE30", 
+    height: "42%",
+    width: "25%",
     alignItems: "center",
     justifyContent:"center",
-    margin: 10,
-    borderRadius: 20
+    margin : 12,
+    borderRadius: 20,
+
   },
-  
+   bordon: {         
+    backgroundColor: "#FFBE30", 
+    height: 50,
+    width: 150,
+    alignItems: "center",
+    justifyContent:"center",
+    margin : 12,
+    borderRadius: 20,
+
+  },
+  big: {
+   height:28,
+    width:28,
+   marginRight: 10,
+    marginTop: 9,
+  },
 });
 
-const Stack = createStackNavigator();
-export default function stacker() {
-  return (
-    <Stack.Navigator headerMode="float">
+export default InfoScreen;
 
-      <Stack.Screen name="ResultsScreen" component={ResultsScreen} /> 
-      <Stack.Screen name="Info" component={InfoScreen} 
-      options={{
-                headerBackTitleVisible:false,
-                headerTitle:false,
-                headerTransparent:true,
-                headerTintColor:'#fff'
-            }}/>
-       <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen} 
-      options={{
-                headerBackTitleVisible:false,
-                headerTitle:false,
-                headerTransparent:true,
-                headerTintColor:'#fff'
-            }}/>
-    </Stack.Navigator>
-  );
-}
-
-module.exports = InfoScreen;

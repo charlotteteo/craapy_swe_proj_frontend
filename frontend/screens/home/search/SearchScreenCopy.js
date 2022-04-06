@@ -34,6 +34,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import FilterScreen from "../filter/FilterScreen";
 import NearbyCarparkMapsScreen from "../../maps/NearbyCarparkMapsScreen";
 import { FontAwesome5 } from '@expo/vector-icons';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 function SearchScreenCopy({navigation}) {
 

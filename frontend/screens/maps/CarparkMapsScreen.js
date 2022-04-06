@@ -37,8 +37,9 @@ const { width, height } = Dimensions.get('window');
 import { EvilIcons } from '@expo/vector-icons';
 
 const ASPECT_RATIO = width / height;
-const LATITUDE =  1.3109708;
-const LONGITUDE = 103.7861198;
+const LATITUDE = 1.3691;
+const LONGITUDE = 103.8454;
+
 const LATITUDE_DELTA = 0.0922;
 
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;

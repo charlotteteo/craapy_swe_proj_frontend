@@ -155,13 +155,21 @@ const styles = StyleSheet.create({
     backgroundColor: "#ececec",
   },
   headercontainer:{
-    width:"120%",
-    right:5,
-    bottom:5,
-    height:110,
-    borderColor: "black",
-    borderWidth: 5,
-    backgroundColor:"#fec241"
+    width:"110%",
+    height:95,
+    //top:50,
+    //alignSelf: "flex-start",
+    //justifyContent: "flex-start",
+    position: "relative",
+    //borderColor: "black",
+    //borderWidth: 5,
+    marginBottom: 20,
+    backgroundColor:"white",
+    shadowOpacity: 1,
+    shadowRadius: 6,
+  
+    elevation: 6,
+    zIndex:5
 
   },
   headerText:{

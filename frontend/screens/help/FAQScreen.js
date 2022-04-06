@@ -27,9 +27,9 @@ const list = ()=>{
     <Card style={{ marginBottom: 10 ,borderColor:"#FFC30B",borderWidth:2}}>
         <Card.Content>
 
-            <Title>{element.name}</Title>
+            <Title style={{fontFamily:"LatoBold"}} >{element.name}</Title>
 
-            <Paragraph>{element.shortDesc}</Paragraph>
+            <Paragraph style={{fontFamily:"SF",fontSize:"15"}}>{element.shortDesc}</Paragraph>
         </Card.Content>
     
     </Card>
@@ -50,6 +50,15 @@ function FAQScreen({ navigation }) {
             <View style={styles.background}>      
                 <Text style={styles.headerText}>FAQ Page</Text>
             </View>
+            <View
+  style={{
+    borderBottomColor: 'rgba(242, 242, 247,1)',
+    borderBottomWidth: 2,
+    marginTop:0,
+    width:"100%",
+    marginBottom:15
+  }}
+/>
          
             <ScrollView>
                 {list()}
@@ -73,7 +82,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: "#ececec",
+        backgroundColor: "white",
     },
 
     button: {
@@ -104,20 +113,21 @@ const styles = StyleSheet.create({
     },
     background:{
         width:"110%",
-        height:110,
+        height:95,
+        //top:50,
+        //alignSelf: "flex-start",
+        //justifyContent: "flex-start",
         position: "relative",
-        backgroundColor:"#fec241",
-        borderColor: "black",
-        borderWidth: 5,
-        marginBottom: 15,
-        bottom:5
+        //borderColor: "black",
+        //borderWidth: 5,
+        backgroundColor:"white",
+
     },
     headerText:{
         fontFamily: "OpenSansbold",
         //paddingVertical: 10,
         marginTop:45,
         paddingTop: 4,
-        paddingBottom:5,
         fontSize: 24,
         alignSelf:"center"
     }

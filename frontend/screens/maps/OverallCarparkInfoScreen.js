@@ -64,7 +64,16 @@ const getTotalLots=()=>{
     <View style={styles.headercontainer}>
       <Text style={styles.headerText}>Overall Carpark Info</Text>
     </View>
-      <Title style={{fontSize: 20,alignSelf:"center", textAlign:"center", fontFamily:"OpenSansbold", marginTop:10, marginBottom:10}}>{name}</Title>
+    <View
+  style={{
+    borderBottomColor: 'rgba(242, 242, 247,1)',
+    borderBottomWidth: 2,
+    marginTop:0,
+    width:"100%",
+    marginBottom:15,
+  }}
+/>
+      <Title style={{fontSize: 20,alignSelf:"center", textAlign:"center", fontFamily:"OpenSansbold", marginTop:10, marginBottom:20}}>{name}</Title>
 
 
   {/* <ScrollView style={styles.content}> */}
@@ -173,23 +182,27 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     //alignItems: "center",
-    backgroundColor: "#ececec",
+    backgroundColor: "white",
   },
   headercontainer:{
-    width:"120%",
-    right:5,
-    bottom:5,
-    height:110,
-    borderColor: "black",
-    borderWidth: 5,
-    backgroundColor:"#fec241"
+    width:"110%",
+    height:95,
+    //top:50,
+    //alignSelf: "flex-start",
+    //justifyContent: "flex-start",
+    position: "relative",
+    //borderColor: "black",
+    //borderWidth: 5,
+    marginBottom: 0,
+    backgroundColor:"white",
+
 
   },
   headerText:{
     fontFamily: "OpenSansbold",
     //paddingVertical: 10,
-    right:38,
-    marginTop:50,
+    right:18,
+    marginTop:45,
     paddingTop: 4,
     paddingBottom:0,
     fontSize: 24,
@@ -206,12 +219,12 @@ cardcontainer:{
   flexDirection:"row",
   justifyContent: 'space-evenly',
   padding: 20,
-  backgroundColor: '#ecf0f1',
-  marginBottom:40
+  backgroundColor: 'white',
+  marginBottom:2
 
 },
 card:{
-  height:100,
+  height:90,
   width:160,
   borderRadius:10,
   shadowColor: '#171717',
@@ -224,6 +237,7 @@ card:{
 
 },
 card2:{
+  bottom:40,
   flexDirection: 'row',
   height:400,
   width:"90%",
@@ -246,9 +260,9 @@ paragraph:{
 },
 paragraph3:{
   fontWeight:"bold",
-  fontSize:18,
+  fontSize:22,
   alignSelf:"center",
-  marginTop:3,
+  marginTop:5,
   fontFamily:"LatoBold",
 },
 paragraph2:{

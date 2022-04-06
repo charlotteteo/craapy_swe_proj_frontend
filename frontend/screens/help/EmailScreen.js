@@ -39,7 +39,7 @@ export default class EmailTrialScreen extends Component {
       ["rovereign455@gmail.com"],
       null,
       null,
-      "Query to CRAAPY",
+      "Query to Hawkerpedia",
       null
     );
   };
@@ -50,6 +50,14 @@ export default class EmailTrialScreen extends Component {
             <View style={styles.background}>      
                     <Text style={styles.headerText}>Email</Text>
             </View>
+            <View
+  style={{
+    borderBottomColor: 'rgba(242, 242, 247,1)',
+    borderBottomWidth: 2,
+    marginTop:0,
+    width:"100%"
+  }}
+/>
     <Card style={styles.card}>
       <Card.Content>
         <Title style={{fontFamily:"NunitoBold"}}>Contact us via Email</Title>
@@ -67,27 +75,29 @@ export default class EmailTrialScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ececec",
+    backgroundColor: "white",
     flexDirection:"column",
     justifyContent:"flex-start"
   },
   background:{
     width:"110%",
-    height:110,
+    height:95,
+    //top:50,
+    //alignSelf: "flex-start",
+    //justifyContent: "flex-start",
     position: "relative",
-    backgroundColor:"#fec241",
-    borderColor: "black",
-    borderWidth: 5,
-    marginBottom: 15,
-    bottom:5,
-    right:5
+    //borderColor: "black",
+    //borderWidth: 5,
+    marginBottom: 5,
+    backgroundColor:"white",
+
 },
   headerText:{
     fontFamily: "OpenSansbold",
     //paddingVertical: 10,
     marginTop:45,
     paddingTop: 6,
-    paddingBottom:5,
+    paddingBottom:0,
     fontSize: 24,
     alignSelf:"center",
     right:12,

@@ -34,6 +34,7 @@ import { Modalize } from 'react-native-modalize';
 import { reducedcarparksavailable } from '../../assets/reducedcarparksavailability';
 import OverallCarparkInfoScreen from "../maps/CarparkInfoScreen";
 const { width, height } = Dimensions.get('window');
+import { EvilIcons } from '@expo/vector-icons';
 
 const ASPECT_RATIO = width / height;
 const LATITUDE =  1.3109708;
@@ -102,7 +103,7 @@ const markers =() => {
             }}>
 
            
-            <Card style={{ marginBottom: 10,backgroundColor:"#FFF2D6",width:350 }}>
+            <Card style={{ marginBottom: 10,backgroundColor:"#FFF2D6",width:350 ,borderRadius:10 }}>
                       <Card.Content>
                 {/* <View key={element.key} style={{margin: 10}}> */}
                   {/* <Text style={[ {fontWeight: 'bold',fontSize: 20}]}>
@@ -112,9 +113,9 @@ const markers =() => {
                   <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center'}]}>{element.address}</Text>
                   <Text></Text>
 
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>{element.car_park_type}</Text>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'rgb(142,142,147)'}]}>{element.car_park_type}</Text>
 
-                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'#c2c2c2'}]}>Free Parking: {element.free_parking}</Text>
+                  <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'rgb(142,142,147)'}]}>Free Parking: {element.free_parking}</Text>
 <Text></Text>
             </Card.Content>
             <View style={{alignItems:"center"}}>
@@ -208,23 +209,31 @@ const markers =() => {
       <SafeAreaView style={styles.test}>
       <>
     <TouchableOpacity style={styles.buttoncarpark} onPress={onOpen}>
-      <Text style={styles.Buttontext}>Show all Carparks</Text>
+        <EvilIcons name="navicon" size={30} color="white" />
     </TouchableOpacity>
 
     <Modalize ref={modalizeRef}
-        scrollViewProps={{ showsVerticalScrollIndicator: true }}
-        snapPoint={400}
-        overlayStyle={{
-          flex:1,
-          position:"relative",
-          right:200,
-          //justifyContent:"center",
-          alignSelf:"center",
-          width:1000,
-      
-          backgroundColor: 'rgba(0, 0, 0, 0.65)',
-        }}
-        modalStyle={styles.modalcontainer}
+          scrollViewProps={{ showsVerticalScrollIndicator: false }}
+          snapPoint={400}
+          modalHeight={650}
+          modalStyle={styles.modalcontainer}
+          HeaderComponent={
+            <View>
+              <Text style={styles.ModalHeadertext}>All Hawker Centres</Text>
+            </View>
+          }
+          overlayStyle={{
+            flex:1,
+            position:"relative",
+            right:200,
+            //justifyContent:"center",
+            alignSelf:"center",
+            width:1000,
+            marginRight:100,
+            paddingRight:100,
+            backgroundColor: 'rgba(0, 0, 0, 0.65)',
+          }}
+          handlePosition="inside"
         HeaderComponent={
           <View>
             <Text style={styles.ModalHeadertext}>All Carparks</Text>
@@ -294,7 +303,7 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    top:80,
+    top:95,
     left: 0,
     right: 0,
     bottom: 0,
@@ -337,24 +346,26 @@ const styles = StyleSheet.create({
   },
   background:{
     width:"110%",
-    height:80,
+    height:95,
     //top:50,
     //alignSelf: "flex-start",
     //justifyContent: "flex-start",
     position: "relative",
     //borderColor: "black",
     //borderWidth: 5,
-    marginBottom: 0
+    marginBottom: 0,
+    backgroundColor:"white",
+
 },
 headerText:{
-    color:"black",
-    fontSize: 22,
-    fontWeight:"bold",
-    flexDirection: "column",
-    alignSelf:"center",
-    marginTop: 40,
-    marginBottom: 0,
-    fontFamily:"OpenSansbold",
+  color:"black",
+  fontSize: 25,
+  fontWeight:"bold",
+  flexDirection: "column",
+  alignSelf:"center",
+  marginTop: 50,
+  marginBottom: 0,
+  fontFamily:"OpenSansBold",
 
 },
 test:{
@@ -365,12 +376,14 @@ test:{
  //borderWidth:10
 },
 buttoncarpark:{
-  borderColor:"grey",
-  borderWidth:1,
   backgroundColor: "#fec241",
-  marginBottom: 10,
-  borderRadius:20,
-  opacity: 0.7
+  marginBottom: 80,
+  borderRadius:30,
+  padding:10,
+  paddingTop:12,
+  paddingBottom:12,
+  opacity:0.9,
+  left:150
 
 },
 Buttontext:{
@@ -399,27 +412,27 @@ elevation: 6,
 
 },
 ModalHeadertext:{
+  fontFamily:"SFBlack",
   fontWeight:"bold",
   fontSize: 25,
   alignSelf:"center",
   marginBottom:5,
-  padding:5
+  padding:5,
+  marginTop:20,
+  marginBottom:5
 },
 headercontainer:{
   position:"absolute",
   top:0,
   backgroundColor:"white",
   width:"100%",
-  height:80,
+  height:95,
   marginBottom:5,
-  borderRadius:10,
+  //borderRadius:10,
   shadowOpacity: 1,
   shadowRadius: 6,
 
   elevation: 6,
-
-  //borderColor:"red",
-  //borderWidth:5,
   zIndex:5
 }
 });

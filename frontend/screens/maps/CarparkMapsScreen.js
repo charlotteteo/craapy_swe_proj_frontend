@@ -111,8 +111,7 @@ const markers =() => {
                     </Text> */}
                    
                   <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center'}]}>{element.address}</Text>
-                  <Text></Text>
-
+           
                   <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'rgb(142,142,147)'}]}>{element.car_park_type}</Text>
 
                   <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'rgb(142,142,147)'}]}>Free Parking: {element.free_parking}</Text>

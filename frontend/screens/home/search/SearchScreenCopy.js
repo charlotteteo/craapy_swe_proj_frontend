@@ -33,6 +33,7 @@ import { SearchBar } from 'react-native-elements';
 import { createStackNavigator } from "@react-navigation/stack";
 import FilterScreen from "../filter/FilterScreen";
 import NearbyCarparkMapsScreen from "../../maps/NearbyCarparkMapsScreen";
+import { FontAwesome5 } from '@expo/vector-icons';
 
 function SearchScreenCopy({navigation}) {
 
@@ -42,7 +43,7 @@ function SearchScreenCopy({navigation}) {
   
     const getHawkers = async () => {
         try {
-         const response = await fetch('http://localhost:8080/hawkerstalls');
+        const response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/hawkerstalls');
          const json = await response.json();
          // console.log(json)
     
@@ -83,7 +84,7 @@ function SearchScreenCopy({navigation}) {
     const list = () => {
   
         return filteredDataSource.map((element) => {
-          if (element.operationhours==""){
+          if (element.operationhours=="" || element.operationhours==null){
             element.operationhours="Mon-Sun :9am-6pm"
           }
           if ((element.foodcategories!="")){
@@ -101,10 +102,10 @@ function SearchScreenCopy({navigation}) {
                 
                 }}>
       
-      <Card style={{ marginBottom: 10 ,backgroundColor:"#FFF2D6",}}>
+      <Card style={{ marginTop:10,backgroundColor:"#FFF2D6",}}>
                         <Card.Content>
                   {/* <View key={element.key} style={{margin: 10}}> */}
-                    <Text style={[ {fontWeight: 'bold',fontSize: 22,color:"#654321"}]}>
+                    <Text style={[ {fontWeight: 'bold',fontSize: 22}]}>
                       {element.name}
                       </Text>
                       {/* <View
@@ -113,7 +114,7 @@ function SearchScreenCopy({navigation}) {
     borderBottomWidth: 1,
   }}
 /> */}
-                    <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>{element.hawkercentrename}</Text>
+                    <Text style={[ {fontWeight: 'bold',fontSize: 15, color:"rgb(142,142,147)"}]}>{element.hawkercentrename}</Text>
   
                     <Text style={[ {fontSize: 15}]}>Operates on {element.operationhours}</Text>
   
@@ -319,20 +320,6 @@ function SearchScreenCopy({navigation}) {
 {list()}
 </ScrollView>
        
-    
-        <TouchableOpacity
-        style={styles.button}
-        onPress={() => this.RBSheet.open()}       // MAKE IT NICER!!!!!!
-      >
-          <IconButton
-              icon="filter"
-              color={"#86939E"}
-              size={30}
-              //onPress={() => navigation.navigate("Filter")}
-            />
-        </TouchableOpacity>
-  
-  
 
         <TouchableOpacity
         style={styles.button}
@@ -340,7 +327,7 @@ function SearchScreenCopy({navigation}) {
       >
           <IconButton
               icon="filter"
-              color={"#86939E"}
+              color={"white"}
               size={30}
               //onPress={() => navigation.navigate("Filter")}
             />
@@ -602,6 +589,9 @@ function SearchScreenCopy({navigation}) {
       </SafeAreaView>
                 
       </RBSheet>
+  
+
+
 
     </SafeAreaView>
   );
@@ -656,14 +646,14 @@ const styles = StyleSheet.create({
 
 
   button: {         // tbh doesnt matter a lot haha
-    backgroundColor: "#BDC6CF", // dark mode: #303337
+    backgroundColor: "#fec241", // dark mode: #303337
     height: "6%",
     width: "10%",
     alignItems: "center",
     justifyContent:"center",
     position: "absolute",
     right: 8,
-    top: 99,
+    top: 37,
     margin: 10,
     borderRadius: 20,
   },

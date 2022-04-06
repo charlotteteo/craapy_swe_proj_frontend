@@ -16,9 +16,7 @@ import {
 	IconButton,
 } from "react-native-paper";
 const split = require('split-string');
-import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs();//Ignore all log notifications
+
 function OverallCarparkInfoScreen ({ navigation,route}){
   
   const [isLoading, setLoading] = useState(true);
@@ -144,13 +142,13 @@ const Stack = createStackNavigator();
 export default function homestack() {
 	return (
 		  <Stack.Navigator mode="none">
-         {/* <Stack.Screen name="CarparkMapsScreen" component={CarparkMapsScreen}       
+         <Stack.Screen name="CarparkMapsScreen" component={CarparkMapsScreen}       
         options={{
                   headerBackTitleVisible:false,
                   headerTitle:false,
                   headerTransparent:true,
                   headerTintColor:'black'
-              }}/> */}
+              }}/>
 
           <Stack.Screen name="OverallCarparkInfoScreen" component={OverallCarparkInfoScreen}       
         options={{
@@ -229,10 +227,10 @@ card:{
   height:90,
   width:160,
   borderRadius:10,
-  shadowColor: '#171717',
-  shadowOffset: {width: -2, height: 4},
-  shadowOpacity: 0.4,
-  shadowRadius: 3,
+  // shadowColor: '#171717',
+  // shadowOffset: {width: -2, height: 4},
+  // shadowOpacity: 0.4,
+  // shadowRadius: 3,
   backgroundColor:'#fed274',
   opacity:0.8
 
@@ -244,11 +242,11 @@ card2:{
   height:400,
   width:"90%",
   borderRadius:10,
-  shadowColor: '#171717',
-  shadowOffset: {width: -2, height: 4},
-  shadowOpacity: 0.5,
-  shadowRadius: 3,
-  backgroundColor:'white',
+  // shadowColor: '#171717',
+  // shadowOffset: {width: -2, height: 4},
+  // shadowOpacity: 0.5,
+  // shadowRadius: 3,
+  backgroundColor:'#fed274',
   opacity:0.8,
   alignSelf:"center"
 },
@@ -262,7 +260,7 @@ paragraph:{
 },
 paragraph3:{
   fontWeight:"bold",
-  fontSize:22,
+  fontSize:19,
   alignSelf:"center",
   marginTop:5,
   fontFamily:"LatoBold",

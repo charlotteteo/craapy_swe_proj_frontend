@@ -35,9 +35,7 @@ import { reducedcarparksavailable } from '../../assets/reducedcarparksavailabili
 import OverallCarparkInfoScreen from "../maps/CarparkInfoScreen";
 const { width, height } = Dimensions.get('window');
 import { EvilIcons } from '@expo/vector-icons';
-import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs();//Ignore all log notifications
+
 const ASPECT_RATIO = width / height;
 const LATITUDE =  1.3109708;
 const LONGITUDE = 103.7861198;
@@ -113,8 +111,7 @@ const markers =() => {
                     </Text> */}
                    
                   <Text style={[ {fontWeight: 'bold',fontSize: 20,textAlign: 'center'}]}>{element.address}</Text>
-                  <Text></Text>
-
+           
                   <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'rgb(142,142,147)'}]}>{element.car_park_type}</Text>
 
                   <Text style={[ {fontWeight: 'bold',fontSize: 15,textAlign: 'center',color:'rgb(142,142,147)'}]}>Free Parking: {element.free_parking}</Text>
@@ -263,14 +260,14 @@ export default function homestack() {
 	return (
 		  <Stack.Navigator headerMode="none">
           
-          {/* <Stack.Screen name="CarparkMapsScreen" component={CarparkMapsScreen}       
+          <Stack.Screen name="CarparkMapsScreen" component={CarparkMapsScreen}       
         options={{
                   headerBackTitleVisible:false,
                   headerTitle:false,
                   headerTransparent:true,
                   headerTintColor:'black'
               }}/>
-         */}
+        
   <Stack.Screen
         name="OverallCarparkInfoScreen"
         component={OverallCarparkInfoScreen}

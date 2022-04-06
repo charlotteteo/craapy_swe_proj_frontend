@@ -265,7 +265,7 @@ borderBottomWidth: 1,
         <Card style={{  marginLeft:10,marginRight:10,marginBottom:5,marginTop:5,backgroundColor:"#FFF2D6",}}>
                   <Card.Content>
             {/* <View key={element.key} style={{margin: 10}}> */}
-            <Text style={[ {fontWeight: 'bold',fontSize: 22,color:"#654321"}]}>
+            <Text style={[ {fontWeight: 'bold',fontSize: 22,color:"black"}]}>
                 {element.name}
                 </Text>
                 {/* <View
@@ -274,11 +274,11 @@ borderBottomColor: 'black',
 borderBottomWidth: 1,
 }}
 /> */}
-              <Text style={[ {fontWeight: 'bold',fontSize: 15}]}>{element.hawkercentrename}</Text>
+              <Text style={[ {fontWeight: 'bold',fontSize: 15,color:"rgb(142,142,147)"}]}>{element.hawkercentrename}</Text>
 
-              <Text style={[ {fontSize: 15}]}>Operates on {element.operationhours}</Text>
+              <Text style={[ {fontSize: 15,color:"rgb(142,142,147)"}]}>Operates on {element.operationhours}</Text>
 
-              <Text style={[ {fontSize: 15, marginBottom:5}]}>Food Categories: {element.foodcategories}</Text>
+              <Text style={[ {fontSize: 15, marginBottom:5,color:"rgb(142,142,147)"}]}>Food Categories: {element.foodcategories}</Text>
 
 
               <Chip icon="information" mode='outlined' style={{backgroundColor:"#ff9494",width:"30%"}}>

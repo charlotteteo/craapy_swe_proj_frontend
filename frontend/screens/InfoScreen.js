@@ -13,6 +13,8 @@ import {
  Pressable,
  ImageBackground,
 } from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
+
 import {
 	Avatar,
 	Card,
@@ -324,10 +326,10 @@ const checkOpen=(start,end)=>{
    if (element.operationhours==null){
       element.operationhours="Mon-Sun :9am-6pm"
    }
-      address= 'https://www.google.com/maps?saddr=My+Location&daddr='+element.latitude_hc+','+element.longitude_hc
-      _handleOpenWithWebBrowser = () => {
-        WebBrowser.openBrowserAsync(address);
-      };
+   address= 'https://www.google.com/maps?saddr=My+Location&daddr='+element.latitude_hc+','+element.longitude_hc
+   _handleOpenWithWebBrowser = () => {
+     WebBrowser.openBrowserAsync(address);
+   };
     return (
         <View style={styles.container}>
           <ScrollView>
@@ -424,8 +426,8 @@ const checkOpen=(start,end)=>{
 
 
               <View style={{ flexDirection:"row", alignItems: "center",justifyContent:"center"}}>
-              <TouchableOpacity 
-              style={styles.button}>
+              <TouchableOpacity onPress={this._handleOpenWithWebBrowser} 
+          style={styles.button}>
                 <View style={{backgroundColor:'white',padding:11, borderRadius:23, marginTop:5}}>
               <FontAwesome5 name="bus" size={30} color="black" />
               </View>
@@ -434,8 +436,13 @@ const checkOpen=(start,end)=>{
               </View>
               </TouchableOpacity >
               
-              <TouchableOpacity 
-              style={styles.button}>
+              <TouchableOpacity onPress={()=>{
+            // navigation.navigate("NearbyCarparkMapsScreen",{latitude:1.311102033,longitude:103.7949448})
+
+            navigation.navigate("NearbyCarparkMapsScreen",{latitude:element.latitude_hc,longitude:element.longitude_hc,})
+                   
+          }}
+          style={styles.button}>
               <View style={{backgroundColor:'white',padding:11, borderRadius:23, marginTop:5}}>
               <FontAwesome name="car" size={30} color="black" />
               </View>
@@ -444,8 +451,9 @@ const checkOpen=(start,end)=>{
               </View>
               
               </TouchableOpacity >
-              <TouchableOpacity
-              style={styles.button}>
+              <TouchableOpacity onPress={this._handleOpenWithWebBrowser} 
+          style={styles.button}>
+          
               <View style={{backgroundColor:'white',padding:11, borderRadius:23, marginTop:5,paddingLeft:15,paddingRight:15}}>
               <FontAwesome5 name="walking" size={30} color="black" />
               </View>

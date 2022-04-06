@@ -240,7 +240,8 @@ const checkOpen=(start,end)=>{
 
 }
   const list = () => {
-    if (data==null||data==""||data==[]){
+    // if (data==null||data==""||data==[]){
+      if (path=="Dragon"||path=="dragon"||path=="String"||path=="string"){
       return (
         <View style={{height:"100%",width:"100%",alignItems:"center"}}>
          <View style={{flexDirection:"column",justifyContent:"center",alignSelf:"center"}}>

@@ -16,7 +16,9 @@ import {
 	IconButton,
 } from "react-native-paper";
 const split = require('split-string');
-
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 function OverallCarparkInfoScreen ({ navigation,route}){
   
   const [isLoading, setLoading] = useState(true);
@@ -142,13 +144,13 @@ const Stack = createStackNavigator();
 export default function homestack() {
 	return (
 		  <Stack.Navigator mode="none">
-         <Stack.Screen name="CarparkMapsScreen" component={CarparkMapsScreen}       
+         {/* <Stack.Screen name="CarparkMapsScreen" component={CarparkMapsScreen}       
         options={{
                   headerBackTitleVisible:false,
                   headerTitle:false,
                   headerTransparent:true,
                   headerTintColor:'black'
-              }}/>
+              }}/> */}
 
           <Stack.Screen name="OverallCarparkInfoScreen" component={OverallCarparkInfoScreen}       
         options={{

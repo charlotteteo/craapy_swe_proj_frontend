@@ -38,7 +38,9 @@ import CarparkInfoScreen from '../maps/CarparkInfoScreen'
 import { TransitionPresets } from '@react-navigation/stack';
 import EmailScreen from "../help/EmailScreen";
 import { EvilIcons } from '@expo/vector-icons';
-
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
@@ -394,13 +396,13 @@ export default function homestack() {
                           
                       }}/>      
         {/* <Stack.Screen name="InfoScreen" component={InfoScreen} /> */}
-        <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen} 
+        {/* <Stack.Screen name="CarparkInfoScreen" component={CarparkInfoScreen} 
                         options={{
                           headerBackTitleVisible:false,
                           headerTitle:false,
                           headerTransparent:true,
                           headerTintColor:'#fff'
-                      }}/>
+                      }}/> */}
 		  </Stack.Navigator>
     // </NavigationContainer>
 	);

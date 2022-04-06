@@ -27,7 +27,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import NearbyCarparkMapsScreen from "./maps/NearbyCarparkMapsScreen";
 import * as WebBrowser from 'expo-web-browser';
 import CarparkMapsScreen from "./maps/CarparkMapsScreen";
-
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 function CarparkResultsScreen ({ navigation,route}){
   
   const [isLoading, setLoading] = useState(true);

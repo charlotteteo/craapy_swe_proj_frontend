@@ -35,7 +35,9 @@ import CarparkInfoScreen from '../maps/CarparkInfoScreen'
 import OverallCarparkInfoScreen from '../maps/OverallCarparkInfoScreen'
 import { EvilIcons } from '@expo/vector-icons';
 import { TransitionPresets } from '@react-navigation/stack';
-
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const { width, height } = Dimensions.get('window');
 

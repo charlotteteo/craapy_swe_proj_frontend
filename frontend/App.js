@@ -18,6 +18,10 @@ import MapScreen from "./screens/maps/HawkerMaps";
 import NearbyCarparkMapsScreenCopy from "./screens/maps/NearbyCarparkMapsScreenCopy";
 import CarparkMapsScreen from "./screens/maps/CarparkMapsScreen";
 import OverallCarparkInfoScreen from "./screens/maps/OverallCarparkInfoScreen";
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {

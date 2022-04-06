@@ -14,6 +14,9 @@ import {
 	Paragraph,
 	IconButton,
 } from "react-native-paper";
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 
 function ResultsScreen ({ navigation,route }){
@@ -24,7 +27,11 @@ function ResultsScreen ({ navigation,route }){
   ratingArray = ["20","40","60","80","90"]
   cuisineArray = ["Chinese","Western","Indian","Thai","Japanese"]
   distanceArray = ["0.1","0.3","0.5","1","2"]
-  neighbourhoodArray = ["Ardmore, Bukit Timah, Holland Road, Tanglin","Orchard, Cairnhill, River Valley","Jurong","Little India","Tampines, Pasir Ris","Queenstown, Tiong Bahru","Raffles Place, Cecil, Marina, Peoples Park"]
+  neighbourhoodArray = ["Ardmore, Bukit Timah, Holland Road, Tanglin", "Watten Estate, Novena, Thomson", "Bedok, Upper East Coast, Eastwood, Kew Drive", "Little India",
+                        "Upper Bukit Timah, Clementi Park, Ulu Pandan", "Queenstown, Tiong Bahru", "Katong, Joo Chiat, Amber Road", "Geylang, Eunos", "Middle Road, Golden Mile",
+                        "Raffles Place, Cecil, Marina, Peoples Park", "Orchard, Cairnhill, River Valley", "Pasir Panjang, Hong Leong Garden, Clementi New Town", "Jurong",
+                        "Serangoon Garden, Hougang, Punggol", "Tampines, Pasir Ris"]
+  //timeArray = ["open"]
 
   // BV MRT
   const LATITUDE =  1.3072;
@@ -32,16 +39,88 @@ function ResultsScreen ({ navigation,route }){
 
   const getHawkers = async () => {
      try {
-    
+      var response = "empty"
 
-   
-      var response = await fetch('http://craapy-env.eba-9gpy3v9a.us-east-1.elasticbeanstalk.com/getcarparkinfo/1.3010632720874935/103.85411804993093');
-  
+      var length = path.length;
+      console.log("check");
+      console.log(path[length - 1]);
+
+      // TO NOT LET OPEN OR NOT AFFECT IF ELSE LATER
+      /*if (timeArray.includes(path[length - 1])) {
+        length = length - 1;
+        console.log("length - 1");
+      }*/
+
+      if (length == 1) {
+        if (ratingArray.includes(path[0])) {
+          var response = await fetch('http://localhost:8080/rating/'+path[0]);    //var used to make it editable. 
+          //console.log("check??")
+        } 
+        else if (distanceArray.includes(path[0])) {
+          var response = await fetch('http://localhost:8080/distance/'+LATITUDE+'/'+LONGITUDE +'/'+path[0]);    // USED BV MRT place. needs at least 800m to find smt 
+        } 
+        else if (neighbourhoodArray.includes(path[0])) {
+          var response = await fetch('http://localhost:8080/neighbourhood/'+path[0]);    
+        }
+      }
+      else if (length == 2) {
+        if (ratingArray.includes(path[0]) && neighbourhoodArray.includes(path[1])) {    // RATING + NEIGHBOURHOOD
+          var response = await fetch('http://localhost:8080/ratingandneigh/'+path[1]+'/'+path[0]);  
+        }
+        else if (ratingArray.includes(path[0]) && distanceArray.includes(path[1])) {    // RATING + DISTANCE - used to not work last time
+          var response = await fetch('http://localhost:8080/ratinganddist/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);  
+          //alert('http://localhost:8080/ratinganddist/'+path[0]+'/1.3072/103.7906/'+path[1])
+        }
+        else if (distanceArray.includes(path[0]) && neighbourhoodArray.includes(path[1])) {    // DISTANCE + NEIGHBOURHOOD
+          var response = await fetch('http://localhost:8080/distandneigh/'+path[1]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[0]);  
+        } 
+        else if (cuisineArray.includes(path[0]) && distanceArray.includes(path[1])) {    // CUISINE + DISTANCE
+          var response = await fetch('http://localhost:8080/distandcuis/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);   
+        }
+        else if (ratingArray.includes(path[0]) && cuisineArray.includes(path[1])) {    // RATING + CUISINE
+          var response = await fetch('http://localhost:8080/ratingandcuis/'+path[1]+'/'+path[0]);  
+        }
+        else if (cuisineArray.includes(path[0]) && neighbourhoodArray.includes(path[1])) {    // CUISINE + NEIGHBOURHOOD 
+          var response = await fetch('http://localhost:8080/neighcuis/'+path[0]+'/'+path[1]);  
+        }
+      }
+      else if (length == 3) {
+        if (ratingArray.includes(path[0]) && distanceArray.includes(path[1]) && neighbourhoodArray.includes(path[2])) {    // RATING + NEIGHBOURHOOD + distance
+          var response = await fetch('http://localhost:8080/ratingdistneigh/'+path[2]+'/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);  
+        }
+        else if (ratingArray.includes(path[0]) && cuisineArray.includes(path[1]) && neighbourhoodArray.includes(path[2])) {    // RATING + CUISINE + NEIGHBOURHOOD
+          var response = await fetch('http://localhost:8080/ratingneighcuis/'+path[1]+'/'+path[2]+'/'+path[0]);  
+        }
+        else if (ratingArray.includes(path[0]) && cuisineArray.includes(path[1]) && distanceArray.includes(path[2])) {    // RATING + CUISINE + distance
+          var response = await fetch('http://localhost:8080/ratingdistcuis/'+path[1]+'/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[2]);  
+        }
+        else if (cuisineArray.includes(path[0]) && distanceArray.includes(path[1]) && neighbourhoodArray.includes(path[2])) {    // CUISINE + distance + NEIGHBOURHOOD
+          var response = await fetch('http://localhost:8080/distneighcuis/'+path[0]+'/'+path[2]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[1]);  
+        }
+      }
+      else if (length == 4) {
+        if (ratingArray.includes(path[0]) && cuisineArray.includes(path[1]) && distanceArray.includes(path[2]) && neighbourhoodArray.includes(path[3])) {    // CUISINE + distance + NEIGHBOURHOOD
+          var response = await fetch('http://localhost:8080/allfilters/'+path[1]+'/'+path[3]+'/'+path[0]+'/'+LATITUDE+'/'+LONGITUDE+'/'+path[2]);
+        }
+      }
+
+      if (response == "empty") {
+        var response = await fetch('http://localhost:8080/search/'+path[0]);
+      }
+      
       //console.log(path)
-      const json = await response.json();
-  
+      const json = await response.json();       // ACTUAL
+
+          
+      //console.log(json)
+      test = getCurrentDate();
+      console.log(test);
+      console.log(opennowtime("Mon - Sun: 7am-7pm"));
+      console.log("check");
+      filterDate();
+      console.log("endcheck");
+
       setData(json);
-      console.log(data)
     } catch (error) {
       console.error(error);
     } finally {

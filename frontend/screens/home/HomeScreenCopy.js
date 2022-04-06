@@ -39,6 +39,8 @@ import * as WebBrowser from 'expo-web-browser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import OverallCarparkInfoScreen from '../maps/OverallCarparkInfoScreen';
 import CarparkMapsScreen from "../maps/CarparkMapsScreen";
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 
 function HomeScreenCopy({ navigation }) {
   const [wish, setWish] = useState(false);
@@ -176,8 +178,8 @@ function HomeScreenCopy({ navigation }) {
       LatoBold:require('../../assets/fonts/LatoBold.ttf'),
       LatoBlack:require('../../assets/fonts/LatoBlack.ttf'),
       NunitoBlack:require('../../assets/fonts/NunitoBlack.ttf'),
-      // SF:require('../../assets/fonts/SF-UI-Display-Regular.otf'),
-      // SFBlack:require('../../assets/fonts/SF-UI-Display-Black.otf'),
+      SF:require('../../assets/fonts/SF-UI-Display-Regular.otf'),
+      SFBlack:require('../../assets/fonts/SF-UI-Display-Black.otf'),
     });
     
     if (!loaded) {

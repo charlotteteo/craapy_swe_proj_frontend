@@ -33,6 +33,9 @@ import { SearchBar } from 'react-native-elements';
 import { createStackNavigator } from "@react-navigation/stack";
 import FilterScreen from "../filter/FilterScreen";
 import NearbyCarparkMapsScreen from "../../maps/NearbyCarparkMapsScreen";
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 function SearchScreenCopy({navigation}) {
 
@@ -179,7 +182,16 @@ function SearchScreenCopy({navigation}) {
         seta5(false)
         seta6(false)
         seta7(false)
+        seta8(false)
+        seta9(false)
+        seta10(false)
+        seta11(false)
+        seta12(false)
+        seta13(false)
+        seta14(false)
+        seta15(false)
       }
+
       function clearPressedDistance(){
         setn1(false)
         setn2(false)
@@ -196,9 +208,16 @@ function SearchScreenCopy({navigation}) {
   
     
       function checkFilter() {
+        
         namearray = ["20","40","60","80","90","Chinese","Western","Indian","Thai","Japanese","0.1","0.3","0.5","1","2",
-              "Ardmore, Bukit Timah, Holland Road, Tanglin","Orchard, Cairnhill, River Valley","Jurong","Little India","Tampines, Pasir Ris","Queenstown, Tiong Bahru","Raffles Place, Cecil, Marina, Peoples Park"]
-        listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,cuisine5,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7]
+        "Ardmore, Bukit Timah, Holland Road, Tanglin", "Watten Estate, Novena, Thomson", "Bedok, Upper East Coast, Eastwood, Kew Drive", "Little India",
+        "Upper Bukit Timah, Clementi Park, Ulu Pandan", "Queenstown, Tiong Bahru", "Katong, Joo Chiat, Amber Road", "Geylang, Eunos", "Middle Road, Golden Mile",
+        "Raffles Place, Cecil, Marina, Peoples Park", "Orchard, Cairnhill, River Valley", "Pasir Panjang, Hong Leong Garden, Clementi New Town", "Jurong",
+          "Serangoon Garden, Hougang, Punggol", "Tampines, Pasir Ris"]
+        
+
+        listarray = [r1,r2,r3,r4,r5,cuisine1,cuisine2,cuisine3,cuisine4,cuisine5,n1,n2,n3,n4,n5,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15] 
+
         length = listarray.length
         final = []
         for (let i=0; i<length; i++) {
@@ -206,7 +225,7 @@ function SearchScreenCopy({navigation}) {
             final.push(namearray[i])
           }
         }
-        alert(final) // only the first one for now
+        //alert(final) // only the first one for now
 
         
         //searchFilterFunction(final)
@@ -237,6 +256,15 @@ function SearchScreenCopy({navigation}) {
   const [a5, seta5] = useState(false);
   const [a6, seta6] = useState(false);
   const [a7, seta7] = useState(false);
+  const [a8, seta8] = useState(false);
+  const [a9, seta9] = useState(false);
+  const [a10, seta10] = useState(false);
+  const [a11, seta11] = useState(false);
+  const [a12, seta12] = useState(false);
+  const [a13, seta13] = useState(false);
+  const [a14, seta14] = useState(false);
+  const [a15, seta15] = useState(false);
+ 
 
 
   // distance
@@ -547,41 +575,82 @@ function SearchScreenCopy({navigation}) {
           </View>
           <ScrollView horizontal={false}>
           
-        <CheckBox
-          title="Bukit Timah"
+          <CheckBox
+          title="Ardmore / Bukit Timah / Holland Road / Tanglin"
           checked={a1}
           onPress={() => seta1(!a1)}
         />
         <CheckBox
-          title="Orchard"
+          title= "Watten Estate / Novena / Thomson"
           checked={a2}
           onPress={() => seta2(!a2)}
         />
         <CheckBox
-          title="Jurong"
+          title= "Bedok / Upper East Coast / Eastwood / Kew Drive"
           checked={a3}
           onPress={() => seta3(!a3)}
         />
         <CheckBox
-          title="Little India"
+          title= "Little India / Farrer Park"
           checked={a4}
           onPress={() => seta4(!a4)}
         />
         <CheckBox
-          title="Tampines"
+          title= "Upper Bukit Timah / Clementi Park / Ulu Pandan"
           checked={a5}
           onPress={() => seta5(!a5)}
         />
         <CheckBox
-          title="Queenstown"
+          title= "Queenstown / Tiong Bahru"
           checked={a6}
           onPress={() => seta6(!a6)}
         />
         <CheckBox
-          title="Raffles Place"
+          title= "Katong / Joo Chiat / Amber Road"
           checked={a7}
           onPress={() => seta7(!a7)}
         />
+        <CheckBox
+          title= "Geylang / Eunos"
+          checked={a8}
+          onPress={() => seta8(!a8)}
+        />
+        <CheckBox
+          title= "Middle Road / Golden Mile"
+          checked={a9}
+          onPress={() => seta9(!a9)}
+        />
+        <CheckBox
+          title= "Raffles Place / Cecil / Marina / Peoples Park"
+          checked={a10}
+          onPress={() => seta10(!a10)}
+        />
+        <CheckBox
+          title= "Orchard / Cairnhill / River Valley"
+          checked={a11}
+          onPress={() => seta11(!a11)}
+        />
+        <CheckBox
+          title= "Pasir Panjang / Hong Leong Garden / Clementi New Town"
+          checked={a12}
+          onPress={() => seta12(!a12)}
+        />
+        <CheckBox
+          title= "Jurong / Chinese Garden"
+          checked={a13}
+          onPress={() => seta13(!a13)}
+        />
+        <CheckBox
+          title= "Serangoon Garden / Hougang / Punggol"
+          checked={a14}
+          onPress={() => seta14(!a14)}
+        />
+        <CheckBox
+          title= "Tampines / Pasir Ris"
+          checked={a15}
+          onPress={() => seta15(!a15)}
+        />
+
   
 
 

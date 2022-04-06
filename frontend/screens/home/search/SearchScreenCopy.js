@@ -602,9 +602,6 @@ function SearchScreenCopy({navigation}) {
       </SafeAreaView>
                 
       </RBSheet>
-  
-
-
 
     </SafeAreaView>
   );

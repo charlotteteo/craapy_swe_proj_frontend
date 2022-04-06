@@ -296,7 +296,7 @@ export default function homestack() {
           headerBackTitleVisible:false,
           headerTitle:false,
           headerTransparent:true,
-          headerTintColor:'#fff'
+          headerTintColor:'white'
       }}
       />
       <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen} 

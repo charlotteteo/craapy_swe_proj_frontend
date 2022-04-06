@@ -20,181 +20,232 @@ import {
 	IconButton,
 } from "react-native-paper";
 import { FontAwesome5 } from '@expo/vector-icons';
+import { createStackNavigator } from "@react-navigation/stack";
+import { FontAwesome } from '@expo/vector-icons';
+
 
 const InfoScreen = () => {
-
-  const viewRef = useRef();
-
-  const sharescreenshot = async () => {
-    try {
-      const uri = await captureRef(viewRef,{
-        format : 'png',
-        quality: 0.7
-      });
-    await Share.shareAsync(uri)
-    } catch(err){
-    console.error(err);}
-  };
   
   return (
-     <SafeAreaView>
+     <View style={styles.container}>
        <ScrollView>
-     <View ref = {viewRef} style={{borderColor:"green",borderWidth:5}}>
  <ImageBackground
   // resizeMethod={'auto'}
   style={{
     width: "100%",
     height: 400,
     margin:0,
-  top:20,
+   
+  top:-10,
   left:0,
   right:0,
-  borderColor:"red",
-  borderWidth:10
   }}
+  
   source={require("../assets/Beehoon.png")}
+  
 />    
 
 
-<Card style = {{top:-95, borderTopLeftRadius:20, borderTopRightRadius:20,left:-10,width:430}}>
+<Card style = {{top:-50, borderTopLeftRadius:20, borderTopRightRadius:20,width:"100%"}}>
+<View style={{flexDirection:"row", justifyContent:"space-around",marginTop:10}}>
+<Text style={styles.headerTitle}>  Lin Da Ma Lei Cha  </Text>
 <View style = {styles.bordon}> 
-<View style={{flexDirection:"row"}} >
+<View style={{flexDirection:"row", alignItems:"center",justifyContent:"space-evenly",paddingLeft:15}} >
+<FontAwesome name="star" size={24} color="white" />
 <Text style={styles.buttontext} > 73% </Text> 
-<ImageBackground style={styles.big} source={require('../assets/star.png')} /> 
 </View>
 </View>
-               <Text style={styles.headerTitle}>  Lin Da Ma Lei Cha  </Text>
+</View>
 
-<View style = {{margin:10 }}>
-                <Text > 
 
-                <ImageBackground style={styles.small} source={require('../assets/location.png')} /> {" "} <Text style={styles.infotext} > ABC Brickworks Market & Food Centre </Text> {"\n"} 
-                <View style={{backgroundColor:"#FFBE30", padding:2, borderRadius:12, alignItems:"center",justifyContent:"center"}}>
+<View style = {{padding:20,alignItems:"center", flexDirection:"column",height:"50%"}}>
+
+          <View style={{flexDirection:"column"}}>
+            <View style={{flexDirection:"row"}}>
+              <View  style={{backgroundColor:"#FFBE30", borderRadius:25, alignItems:"center",justifyContent:"center",padding:13,height:"58%"}}>
+          <FontAwesome5 name="map-marker-alt" size={22} color="white" />
+          </View>
+            <View style={{width:"90%"}}>
+                <Text style={styles.infotext} > ABC Brickworks Market & Food Centre </Text> 
+                </View>
+                </View>
+              <View style={{flexDirection:"row", marginBottom:10,marginTop:10}}>
+                <View style={{backgroundColor:"#FFBE30", borderRadius:20, alignItems:"center",justifyContent:"center",padding:11,height:"64%"}}>
                   <FontAwesome5 name="clock" size={24} color="white" /> 
                 </View>
-                 <Text style={styles.infotext} >  Mon - Sat: 7.30am-8pm, Closed on Sun </Text> {"\n"}
-  
-                </Text>
-         
-<Text style={{marginTop:25,marginLeft:10,flexDirection:"row"}}> <ImageBackground style={styles.logo} source={require('../assets/direction.png')}/> <Text style={styles.text} > Directions:</Text> 
-</Text>
+                <View style={{width:"85%"}}>
+                <Text style={styles.infotext} >  Mon - Sat: 7.30am-8pm, Closed on Sun </Text>
+                </View>
+                </View>
+          </View>
+<View>
+<View
+  style={{
+    borderBottomColor: 'rgba(242, 242, 247,1)',
+    borderBottomWidth: 2,
+    marginBottom:10
+  }}
+/>
 
-          <View style={{ flexDirection:"row", alignItems: "center", marginLeft:25,marginTop:-25 }}>
+ <Text style={styles.text} >Directions</Text> 
+
+
+          <View style={{ flexDirection:"row", alignItems: "center",justifyContent:"center"}}>
           <TouchableOpacity 
           style={styles.button}>
-          <Image style={styles.med} source={require('../assets/bus.png')} />
-           
+            <View style={{backgroundColor:'white',padding:11, borderRadius:23, marginTop:5}}>
+          <FontAwesome5 name="bus" size={30} color="black" />
+          </View>
+          <View>
+            <Text style={{fontFamily:"NunitoBlack",marginTop:12,fontSize:20,color:"white"}}>Bus</Text>
+          </View>
            </TouchableOpacity >
+           
           <TouchableOpacity 
           style={styles.button}>
-          <Image style={styles.med} source={require('../assets/car.png')} />
+          <View style={{backgroundColor:'white',padding:11, borderRadius:23, marginTop:5}}>
+          <FontAwesome name="car" size={30} color="black" />
+          </View>
+          <View>
+            <Text style={{fontFamily:"NunitoBlack",marginTop:12,fontSize:20,color:"white"}}>Car</Text>
+          </View>
           
           </TouchableOpacity >
           <TouchableOpacity
           style={styles.button}>
-          <Image style={styles.med} source={require('../assets/walking.png')} />
-
+          <View style={{backgroundColor:'white',padding:11, borderRadius:23, marginTop:5,paddingLeft:15,paddingRight:15}}>
+          <FontAwesome5 name="walking" size={30} color="black" />
+          </View>
+          <View>
+            <Text style={{fontFamily:"NunitoBlack",marginTop:12,fontSize:20,color:"white"}}>Walk</Text>
+          </View>
           </TouchableOpacity>
           </View> 
+          </View>
 
           </View> 
 </Card> 
-</View>
-    
 </ScrollView>
-</SafeAreaView>
+</View>
   );
 } 
 
+const Stack = createStackNavigator();
+export default function stacker() {
+  return (
+    <Stack.Navigator headerMode="float">
+
+      <Stack.Screen name="ResultsScreen" component={ResultsScreen} /> 
+      <Stack.Screen name="Info" component={InfoScreen} 
+      options={{
+                headerBackTitleVisible:false,
+                headerTitle:false,
+                headerTransparent:true,
+                headerTintColor:'#fff'
+            }}/>
+       <Stack.Screen name="NearbyCarparkMapsScreen" component={NearbyCarparkMapsScreen} 
+      options={{
+                headerBackTitleVisible:false,
+                headerTitle:false,
+                headerTransparent:true,
+                headerTintColor:'#fff'
+            }}/>
+    </Stack.Navigator>
+  );
+}
+
 
 const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    //alignItems: "center",
-    backgroundColor: "white",
-  },
   headerTitle: {
-   color: "black",
-    marginLeft:8,
-    fontFamily: "serif",
-    
-    fontSize: 40,
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    paddingTop: 10,
-    lineHeight: 43,
-    letterSpacing: 0,
-    textAlign: 'center',
-    paddingBottom:50
-    
-  },
-   infotext:{
     color: "black",
-    textAlign: 'center',
-    fontFamily: 'arial',
-		fontSize: 23,
-    marginLeft: 10,
-    paddingTop: 10,
-    paddingBottom:30,
+     marginLeft:20,
+     fontFamily: "SFBlack",
+     right:12,
+     fontSize: 25,
+     fontStyle: 'normal',
+     fontWeight: 'bold',
+     paddingTop: 10,
+     lineHeight: 43,
+     letterSpacing: 0,
+     
+   },
+    infotext:{
+     color: "black",
+     fontFamily: 'SF',
+     fontSize: 21,
+     marginTop:2,
+     marginLeft:10
 
-  
-  },
-  text:{
-   color: "black",
-    fontWeight: 'bold',
-    textAlign: 'center',
-		fontSize: 23,
-    paddingTop: 10,
-    paddingBottom:30,
-  },
-  buttontext: {
-		color: "white",
-    fontWeight: 'bold',
-    textAlign: 'center',
-		fontSize: 23,
-    margin: 7,
-	},
-  med:{
-    height: 50,
-    width: 50,
-  },
-  small: {
-    height: 20, 
-    width: 20,
+
+   },
+   text:{
+      color: "black",
+     fontWeight: 'bold',
+     //textAlign: 'center',
+     fontSize: 23,
+     marginBottom:0,
+     marginLeft:8
+   },
+   buttontext: {
+     color: "white",
+     fontFamily:"SFBlack",
+     fontWeight: 'bold',
+     textAlign: 'center',
+     fontSize: 20,
+     marginRight:15,
+   },
+   med:{
+     height: 30,
+     width: 30,
+   },
+   small: {
+     height: 20, 
+     width: 20,
+   },
+    button: {         
+     backgroundColor: "#FFBE30", 
+     height: 130,
+     width: 80,
+     alignItems: "center",
+     justifyContent:"center",
+     padding: 10,
+     margin : 21,
+     borderRadius: 100,
+     justifyContent:"flex-start"
+   },
+    bordon: {         
+     backgroundColor: "#FFBE30", 
+     height: 40,
+     width: 100,
+     alignItems: "center",
+     justifyContent:"center",
+     margin : 12,
+     borderRadius: 20,
+ 
+   },
+   but:{         
+     backgroundColor: "#FFBE30", 
+     height: 30,
+     width: 30,
+     alignItems: "center",
+     justifyContent:"center",
+     borderRadius: 10,
+   },
+ 
+   big: {
+    height:25,
+     width:25,
     marginRight: 10,
-    marginBottom:-1,
-  },
-  logo:{
-    height:20,
-    width:20,
-  },
-   button: {         
-    backgroundColor: "#FFBE30", 
-    height: "42%",
-    width: "25%",
-    alignItems: "center",
-    justifyContent:"center",
-    margin : 12,
-    borderRadius: 20,
-
-  },
-   bordon: {         
-    backgroundColor: "#FFBE30", 
-    height: 50,
-    width: 150,
-    alignItems: "center",
-    justifyContent:"center",
-    margin : 12,
-    borderRadius: 20,
-
-  },
-  big: {
-   height:28,
-    width:28,
-   marginRight: 10,
-    marginTop: 9,
-  },
+     marginTop: 9,
+   },
+   stt: {
+     height: 34,
+     width : 34
+   },
+   container:{
+     backgroundColor:"white"
+   }
 });
 
-export default InfoScreen;
+module.exports=InfoScreen;
 

@@ -234,10 +234,9 @@ borderBottomWidth: 1,
               <Text style={[ {fontSize: 15, marginBottom:5,color:"rgb(142,142,147)"}]}>Food Categories: {element.foodcategories}</Text>
 
 
-              <Chip icon="information" mode='outlined' style={{backgroundColor:"#ff9494",width:"30%"}}>
-              OPEN NOW
-              </Chip>
-
+              <Chip icon="information" selectedColor="black" style={{backgroundColor:"#62BD69",width:"37%"}}>
+                OPEN NOW
+                </Chip>
 
 
           </Card.Content>

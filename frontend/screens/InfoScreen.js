@@ -358,7 +358,7 @@ const checkOpen=(start,end)=>{
         <View style = {styles.bordon}> 
           <View style={{flexDirection:"row", alignItems:"center",justifyContent:"space-evenly",paddingLeft:15}} >
              <FontAwesome name="star" size={24} color="white" />
-             <Text style={styles.buttontext} > 73% </Text> 
+             <Text style={styles.buttontext} > {element.rating}% </Text> 
         </View>
     </View>
     </View>

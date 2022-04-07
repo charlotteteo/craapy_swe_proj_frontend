@@ -353,7 +353,7 @@ borderBottomWidth: 1,
               <Text style={[ {fontWeight: 'bold',fontSize: 15,color:"rgb(142,142,147)"}]}>{element.hawkercentrename}</Text>
 
               <Text style={[ {fontSize: 15,color:"rgb(142,142,147)"}]}>Operates on {element.operationhours}</Text>
-              <Text style={[ {fontSize: 15,color:"rgb(142,142,147)"}]}>Rating: {element.rating}</Text>
+              <Text style={[ {fontSize: 15,color:"rgb(142,142,147)"}]}>Rating: {element.rating}%</Text>
               <Text style={[ {fontSize: 15, marginBottom:5,color:"rgb(142,142,147)"}]}>Food Categories: {element.foodcategories}</Text>
          
              

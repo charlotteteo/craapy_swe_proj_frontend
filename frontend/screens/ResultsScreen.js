@@ -28,7 +28,10 @@ function ResultsScreen ({ navigation,route }){
   ratingArray = ["20","40","60","80","90"]
   cuisineArray = ["Chinese","Western","Indian","Thai","Japanese"]
   distanceArray = ["0.1","0.3","0.5","1","2"]
-  neighbourhoodArray = ["Ardmore, Bukit Timah, Holland Road, Tanglin","Orchard, Cairnhill, River Valley","Jurong","Little India","Tampines, Pasir Ris","Queenstown, Tiong Bahru","Raffles Place, Cecil, Marina, Peoples Park"]
+  neighbourhoodArray =["Ardmore, Bukit Timah, Holland Road, Tanglin", "Watten Estate, Novena, Thomson", "Bedok, Upper East Coast, Eastwood, Kew Drive", "Little India",
+  "Upper Bukit Timah, Clementi Park, Ulu Pandan", "Queenstown, Tiong Bahru", "Katong, Joo Chiat, Amber Road", "Geylang, Eunos", "Middle Road, Golden Mile",
+  "Raffles Place, Cecil, Marina, Peoples Park", "Orchard, Cairnhill, River Valley", "Pasir Panjang, Hong Leong Garden, Clementi New Town", "Jurong",
+  "Serangoon Garden, Hougang, Punggol", "Tampines, Pasir Ris"]
 
   // BV MRT
   const LATITUDE =  1.3072;
@@ -306,7 +309,7 @@ borderBottomWidth: 1,
 
               <Text style={[ {fontSize: 15,color:"rgb(142,142,147)"}]}>Operates on {element.operationhours}</Text>
 
-              <Text style={[ {fontSize: 15,color:"rgb(142,142,147)"}]}>Rating: {element.rating}</Text>
+              <Text style={[ {fontSize: 15,color:"rgb(142,142,147)"}]}>Rating: {element.rating}%</Text>
               <Text style={[ {fontSize: 15, marginBottom:5,color:"rgb(142,142,147)"}]}>Food Categories: {element.foodcategories}</Text>
           <Chip icon="information" selectedColor="black" style={{backgroundColor:"#62BD69",width:"37%"}}>
                 OPEN NOW

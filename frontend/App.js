@@ -1,21 +1,12 @@
 import * as React from "react";
-import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { AntDesign } from '@expo/vector-icons'; 
-import { Feather } from '@expo/vector-icons'; 
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-import InfoScreen from "./screens/InfoScreen";
-import HawkerMaps from "./screens/maps/HawkerMaps";
+import HawkerMapsScreen from "./screens/maps/HawkerMapsScreen";
 import HomeScreen from "./screens/home/HomeScreen";
-import CarparksResultsScreen from "./screens/CarparksResultsScreen";
-import HomeScreenCopy from "./screens/home/HomeScreenCopy";
 import HelpScreen from "./screens/help/HelpScreen";
-import MapScreen from "./screens/maps/HawkerMaps";
-import NearbyCarparkMapsScreenCopy from "./screens/maps/NearbyCarparkMapsScreenCopy";
 import CarparkMapsScreen from "./screens/maps/CarparkMapsScreen";
 
 const Tab = createBottomTabNavigator();
@@ -59,8 +50,8 @@ export default function App() {
         }}
 
       >
-        <Tab.Screen name="Home" component={HomeScreenCopy} />
-        <Tab.Screen name="Maps" component={HawkerMaps} />
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Maps" component={HawkerMapsScreen} />
         <Tab.Screen name="Carparks" component={CarparkMapsScreen} />
         <Tab.Screen name="Help" component={HelpScreen} />
       </Tab.Navigator>

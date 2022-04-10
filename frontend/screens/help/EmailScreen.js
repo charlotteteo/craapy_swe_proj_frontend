@@ -22,7 +22,10 @@ import {
 } from "react-native-paper";
  
 import Communications from "react-native-communications";
-
+/**
+ * Email Screen containing information of email to contact for technical support
+ * @Class EmailScreen
+ */
 
 export default class EmailTrialScreen extends Component {
   constructor(props) {
@@ -34,6 +37,12 @@ export default class EmailTrialScreen extends Component {
  
  
   /*Function to send the mail function(to, cc, bcc, subject, body)*/
+  /**
+   * Function to send the mail function(to, cc, bcc, subject, body)
+ * links to email application
+ * @method openEmail 
+ */
+
   openEmail = () => {
     Communications.email(
       ["rovereign455@gmail.com"],

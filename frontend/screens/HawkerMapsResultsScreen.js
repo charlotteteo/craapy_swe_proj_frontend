@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {  StyleSheet,SafeAreaView,ActivityIndicator, FlatList, Text, View , TouchableOpacity,ScrollView} from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
-import SearchScreen from "./home/search/SearchScreen";
-import FilterScreen from "./home/filter/FilterScreen";
-import { NavigationContainer } from '@react-navigation/native';
 import InfoScreen from "./InfoScreen";
 import NearbyCarparkMapsScreen from "./maps/NearbyCarparkMapsScreen";
 import { Entypo } from '@expo/vector-icons'; 
@@ -18,8 +15,13 @@ import {
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();//Ignore all log notifications
-
-function ResultsScreen ({ navigation,route }){
+/**
+ * Results screen of hawker stalls in a specific hawker centre
+ * @Class HawkerMapsResultsScreen
+ * @param {*} param0 
+ * @return
+ */
+function HawkerMapsResultsScreen ({ navigation,route }){
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const {path} = route.params;
@@ -68,6 +70,12 @@ function ResultsScreen ({ navigation,route }){
     return '07/03/22'
 }
 
+ /**
+   * time check based on opening hours
+   * @method opennowtime
+   * @param x
+   * @returns boolean 
+   */
 
 
 function opennowtime(x){
@@ -136,6 +144,13 @@ function opennowtime(x){
 }
 
 }
+
+ /**
+   * time check based on hawker closure dates
+   * @method checkOpen
+   * @param start,end
+   * @returns boolean 
+   */
 const checkOpen=(start,end)=>{
 
   var date = new Date().getDate();
@@ -184,6 +199,15 @@ const checkOpen=(start,end)=>{
 
 
 }
+
+
+
+/**
+* Returns card frontend design for each element
+ * @Method list
+ * @return card content for each element in data
+ */
+
   const list = () => {
   
     return data.map((element) => {
@@ -400,4 +424,4 @@ headerText:{
 },
 });
 
-module.exports=ResultsScreen;
+module.exports=HawkerMapsResultsScreen;

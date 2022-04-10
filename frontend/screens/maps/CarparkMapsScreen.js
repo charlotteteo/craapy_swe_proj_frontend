@@ -44,31 +44,24 @@ const LATITUDE_DELTA = 0.0922;
 
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-
+/**
+ * Carpark Maps screen contains map with markers of all carparks and list of all available carparks and free parking timings
+ * On click of list element, it routes to carpark information screen.
+ * @Class CarparkMapsScreen
+ * @param {*} navigation 
+ */
 function CarparkMapsScreen ({navigation}){
   // const [isLoading, setLoading] = useState(tßrue);
   // const [data, setData] = useState([]);
   const modalizeRef = useRef(null);
   const onOpen = () => {
     modalizeRef.current?.open();}
-  // const getMovies = async () => {
-  //    try {
-  //     const response = await fetch('http://localhost:8080/carparkcodes');
-  //     const json = await response.json();
-
-  //     setData(json);
-  //   } catch (error) {
-  //     console.error(error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   getMovies();
-  // }, []);
   const data=reducedcarparksavailable;
-
+/**
+ * Mark coordinates for each location
+ * @Method markers
+ * @returns marker object 
+ */
 
 const markers =() => {
   return data.map((element) => {
@@ -81,7 +74,11 @@ const markers =() => {
 
 
 
-
+/**
+* Returns card frontend design for each element
+ * @Method list
+ * @return card content for each element in data
+ */
 
   const list = () => {
    
@@ -254,7 +251,10 @@ const markers =() => {
 
 
 const Stack = createStackNavigator();
-
+/**
+ * Stacking of Screens
+ * @Method homestack
+ */
 export default function homestack() {
 	return (
 		  <Stack.Navigator headerMode="none">

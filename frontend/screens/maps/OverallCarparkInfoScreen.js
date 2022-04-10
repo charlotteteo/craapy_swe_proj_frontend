@@ -16,7 +16,11 @@ import {
 	IconButton,
 } from "react-native-paper";
 const split = require('split-string');
-
+/**
+ * Carpark Information Screen contains lots available, free parking timings etc. for a specific carpark
+ * @Class OverallCarparkInfoScreen
+ * @param {*} navigation,route 
+ */
 function OverallCarparkInfoScreen ({ navigation,route}){
   
   const [isLoading, setLoading] = useState(true);
@@ -46,12 +50,29 @@ function OverallCarparkInfoScreen ({ navigation,route}){
  useEffect(() => {
    getMovies();
  }, []);
+
+
+
+
+ /**
+  * Slices string data to obtain lots available
+  * @method getLotsAvail
+  * @returns integer
+  */
  const getLotsAvail=()=>{
 
   return split(String(data), { separator: ';' })[3]
 
   
  }
+
+
+
+ /**
+  * Slices string data to obtain total lots 
+  * @method getTotalLots
+  * @returns integer
+  */
 const getTotalLots=()=>{
   
   return split(String(data), { separator: ';' })[1]
@@ -138,7 +159,10 @@ const getTotalLots=()=>{
 
 
 const Stack = createStackNavigator();
-
+/**
+ * Stacking of Screens
+ * @Method homestack
+ */
 export default function homestack() {
 	return (
 		  <Stack.Navigator mode="none">

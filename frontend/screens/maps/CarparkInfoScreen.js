@@ -18,7 +18,11 @@ import {
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();//Ignore all log notifications
-
+/**
+ * Carpark Information Screen contains lots available, free parking timings etc. for a specific carpark
+ * @Class CarparkInfoScreen
+ * @param {*} param0 
+ */
 function CarparkInfoScreen ({ navigation,route}){
   
   const [isLoading, setLoading] = useState(true);
@@ -136,7 +140,10 @@ style={{
 
 
 const Stack = createStackNavigator();
-
+/**
+ * Stacking of Screens
+ * @Method homestack
+ */
 export default function homestack() {
 return (
     <Stack.Navigator mode="none">

@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {  StyleSheet,SafeAreaView,ActivityIndicator, FlatList, Text, View , TouchableOpacity,ScrollView} from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
-import SearchScreen from "./home/search/SearchScreen";
-import FilterScreen from "./home/filter/FilterScreen";
-import { NavigationContainer } from '@react-navigation/native';
 import InfoScreen from "./InfoScreen";
 import NearbyCarparkMapsScreen from "./maps/NearbyCarparkMapsScreen";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -18,7 +15,12 @@ import {
   Image
 } from "react-native-paper";
 
-
+/**
+ * Results screen of hawker stalls upon search
+ * @Class ResultsScreen
+ * @param {*} param0 
+ * @return
+ */
 function ResultsScreen ({ navigation,route }){
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -128,6 +130,13 @@ function ResultsScreen ({ navigation,route }){
 
 
 
+ /**
+   * time check based on opening hours
+   * @method opennowtime
+   * @param x
+   * @returns boolean 
+   */
+
 function opennowtime(x){
   // can use to test time !!! allocate on 24h if not uncomment  line 125- to get actual hour
   // time= new Date().getHours(x);
@@ -194,6 +203,12 @@ function opennowtime(x){
 }
 
 }
+ /**
+   * time check based on hawker closure dates
+   * @method checkOpen
+   * @param start,end
+   * @returns boolean 
+   */
 const checkOpen=(start,end)=>{
 
   var date = new Date().getDate();
@@ -242,6 +257,13 @@ const checkOpen=(start,end)=>{
 
 
 }
+
+
+/**
+* Returns card frontend design for each element
+ * @Method list
+ * @return card content for each element in data
+ */
   const list = () => {
     // if (data==null||data==""||data==[]){
       if (path=="Dragon"||path=="dragon"||path=="String"||path=="string"){
@@ -395,7 +417,10 @@ borderBottomWidth: 1,
 
 
 const Stack = createStackNavigator();
-
+/**
+ * Stacking of Screens
+ * @Method homestack 
+ */
 export default function homestack() {
 	return (
 <Stack.Navigator headerMode="none">

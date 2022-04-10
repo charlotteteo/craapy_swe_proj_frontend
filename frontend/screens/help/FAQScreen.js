@@ -20,6 +20,11 @@ import {
 } from "react-native-paper";
 
 import {faq} from "../../assets/faq";
+/**
+* Returns card frontend design for each element
+ * @Method list
+ * @return card content for each element in data
+ */
 const list = ()=>{
     return (faq.map((element)=>{
         return(
@@ -38,6 +43,11 @@ const list = ()=>{
     }));
   };
    
+/**
+ * Contains list of common queries
+ * @Class FAQScreen 
+ * @param {*} param0 
+ */
 
 function FAQScreen({ navigation }) {
     const [searchtext, setsearchtext] = useState("");
@@ -67,7 +77,10 @@ function FAQScreen({ navigation }) {
     );
 }
 const Stack = createStackNavigator();
-
+/**
+ * Stacking of Screens
+ * @Method homestack
+ */
 export default function homestack() {
     return (
         <Stack.Navigator headerMode="none">

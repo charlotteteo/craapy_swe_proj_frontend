@@ -28,7 +28,12 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import * as FileSystem from 'expo-file-system';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+/**
+ * Hawker information Screen containing food categories, image of stall front, opening hours and how to get there.
+ * @Class InfoScreen
+ * @param {*} param0 
+ * @return
+ */
 
 function InfoScreen ({ navigation,route}){
   
@@ -67,7 +72,7 @@ function InfoScreen ({ navigation,route}){
       }
       */
 
-      // testing homescreen. 
+      // testing HomeScreen. 
     //console.log(top10ratings);
     /*
     var historypath = 'http://localhost:8080/history/Holland V Coffee & Drink/Xiang Jiang Soya Sauce Chicken/Depot Road Zhen Shan Mei Laksa/Hock Kee Fried Kway Teow/Kwang Kee Teochew Fish Porridge/The Sugarcane Plant/Ma Bo/Teck Kee Hot & Cold Dessert/Ramen Taisho/Kwang Kee Teochew Fish Porridge';
@@ -167,7 +172,11 @@ function InfoScreen ({ navigation,route}){
  useEffect(() => {
     getMovies();
   }, []);
-
+  /**
+   * get today's date in 'DD/MM/YY' format
+   * @method getCurrentDate
+   * @returns 
+   */
   const getCurrentDate=()=>{
 
     var date = new Date().getDate();
@@ -180,7 +189,12 @@ function InfoScreen ({ navigation,route}){
     return '07/03/22'
 }
 
-
+ /**
+   * time check based on opening hours
+   * @method opennowtime
+   * @param x
+   * @returns boolean 
+   */
 
 function opennowtime(x){
   // can use to test time !!! allocate on 24h if not uncomment  line 125- to get actual hour
@@ -248,6 +262,12 @@ function opennowtime(x){
 }
 
 }
+ /**
+   * time check based on hawker closure dates
+   * @method checkOpen
+   * @param start,end
+   * @returns boolean 
+   */
 const checkOpen=(start,end)=>{
 
   var date = new Date().getDate();
@@ -469,6 +489,11 @@ return(
 }
 
 const Stack = createStackNavigator();
+/**
+ * Stacking of Screens
+ * @Method Stacker
+ * @return
+ */
 export default function stacker() {
   return (
     <Stack.Navigator headerMode="float">

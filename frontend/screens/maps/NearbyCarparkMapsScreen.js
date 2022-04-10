@@ -47,6 +47,12 @@ const LATITUDE_DELTA = 0.0922;
 
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
+/**
+ * Nearby carpark maps contains map marked with carparks <1 m from a specific hawker centre and list of these carparks.
+ * On click on a list element, the screen is routed to carpark information screen.
+ * @Class NearbyCarparkMapsScreen
+ * @param {*} navigation,route 
+ */
 
 
 function NearbyCarparkMapsScreen ({navigation,route}){
@@ -83,7 +89,11 @@ function NearbyCarparkMapsScreen ({navigation,route}){
       getMovies();
     }, []);
   
-  
+  /**
+* Returns card frontend design for each element
+ * @Method list
+ * @return card content for each element in data
+ */
     const  list= () =>{
   
       return Object.keys(data).map(key => {
@@ -157,6 +167,14 @@ function NearbyCarparkMapsScreen ({navigation,route}){
         );
       });
     };
+
+
+
+    /**
+ * Mark coordinates for each location
+ * @Method maps
+ * @returns marker object
+ */
     const  maps= () =>{
       
       return Object.keys(data).map(key => {
@@ -492,7 +510,10 @@ headercontainer:{
 
 
 const Stack = createStackNavigator();
-
+/**
+ * Stacking of Screens
+ * @Method homestack
+ */
 export default function homestack() {
 	return (
     <NavigationContainer>

@@ -1,0 +1,753 @@
+{
+  "project": {},
+  "files": {
+    "home/search/SearchScreen.js": {
+      "name": "home/search/SearchScreen.js",
+      "modules": {},
+      "classes": {
+        "SearchScreen": 1
+      },
+      "fors": {},
+      "namespaces": {}
+    },
+    "home/HomeScreen.js": {
+      "name": "home/HomeScreen.js",
+      "modules": {},
+      "classes": {
+        "HomeScreen": 1
+      },
+      "fors": {},
+      "namespaces": {}
+    },
+    "maps/CarparkInfoScreen.js": {
+      "name": "maps/CarparkInfoScreen.js",
+      "modules": {},
+      "classes": {
+        "CarparkInfoScreen": 1
+      },
+      "fors": {},
+      "namespaces": {}
+    },
+    "maps/CarparkMapsScreen.js": {
+      "name": "maps/CarparkMapsScreen.js",
+      "modules": {},
+      "classes": {
+        "CarparkMapsScreen": 1
+      },
+      "fors": {},
+      "namespaces": {}
+    },
+    "maps/HawkerMapsScreen.js": {
+      "name": "maps/HawkerMapsScreen.js",
+      "modules": {},
+      "classes": {
+        "HawkerMapsScreen": 1
+      },
+      "fors": {},
+      "namespaces": {}
+    },
+    "maps/NearbyCarparkMapsScreen.js": {
+      "name": "maps/NearbyCarparkMapsScreen.js",
+      "modules": {},
+      "classes": {},
+      "fors": {},
+      "namespaces": {}
+    },
+    "maps/OverallCarparkInfoScreen.js": {
+      "name": "maps/OverallCarparkInfoScreen.js",
+      "modules": {},
+      "classes": {
+        "OverallCarparkInfoScreen": 1
+      },
+      "fors": {},
+      "namespaces": {}
+    },
+    "CarparksResultsScreen.js": {
+      "name": "CarparksResultsScreen.js",
+      "modules": {},
+      "classes": {},
+      "fors": {},
+      "namespaces": {}
+    },
+    "HawkerMapsResultsScreen.js": {
+      "name": "HawkerMapsResultsScreen.js",
+      "modules": {},
+      "classes": {},
+      "fors": {},
+      "namespaces": {}
+    },
+    "InfoScreen.js": {
+      "name": "InfoScreen.js",
+      "modules": {},
+      "classes": {
+        "InfoScreen": 1
+      },
+      "fors": {},
+      "namespaces": {}
+    },
+    "ResultsScreen.js": {
+      "name": "ResultsScreen.js",
+      "modules": {},
+      "classes": {
+        "ResultsScreen": 1
+      },
+      "fors": {},
+      "namespaces": {}
+    }
+  },
+  "modules": {},
+  "classes": {
+    "SearchScreen": {
+      "name": "SearchScreen",
+      "shortname": "SearchScreen",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "file": "home/search/SearchScreen.js",
+      "line": 40,
+      "description": "Search Screen contains both search and filter functions",
+      "params": [
+        {
+          "name": "param0",
+          "description": ""
+        }
+      ],
+      "return": {
+        "description": ""
+      }
+    },
+    "HomeScreen": {
+      "name": "HomeScreen",
+      "shortname": "HomeScreen",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "file": "home/HomeScreen.js",
+      "line": 42,
+      "description": "Home Screen contains top lists and search history",
+      "params": [
+        {
+          "name": "param0",
+          "description": "",
+          "type": "*"
+        }
+      ],
+      "return": {
+        "description": ""
+      }
+    },
+    "CarparkInfoScreen": {
+      "name": "CarparkInfoScreen",
+      "shortname": "CarparkInfoScreen",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "file": "maps/CarparkInfoScreen.js",
+      "line": 21,
+      "description": "Carpark Information Screen contains lots available, free parking timings etc. for a specific carpark",
+      "params": [
+        {
+          "name": "param0",
+          "description": "",
+          "type": "*"
+        }
+      ],
+      "return": {
+        "description": ""
+      }
+    },
+    "CarparkMapsScreen": {
+      "name": "CarparkMapsScreen",
+      "shortname": "CarparkMapsScreen",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "file": "maps/CarparkMapsScreen.js",
+      "line": 47,
+      "description": "Carpark Maps screen contains map with markers of all carparks and list of all available carparks and free parking timings\nOn click of list element, it routes to carpark information screen.",
+      "params": [
+        {
+          "name": "param0",
+          "description": "",
+          "type": "*"
+        }
+      ],
+      "return": {
+        "description": ""
+      }
+    },
+    "HawkerMapsScreen": {
+      "name": "HawkerMapsScreen",
+      "shortname": "HawkerMapsScreen",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "file": "maps/HawkerMapsScreen.js",
+      "line": 66,
+      "description": "Hawker Maps contains all hawker centres in Singapore marked on map and list of all hawker centres and their respective closure dates.",
+      "params": [
+        {
+          "name": "param0",
+          "description": "",
+          "type": "*"
+        }
+      ],
+      "return": {
+        "description": ""
+      }
+    },
+    "OverallCarparkInfoScreen": {
+      "name": "OverallCarparkInfoScreen",
+      "shortname": "OverallCarparkInfoScreen",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "file": "maps/OverallCarparkInfoScreen.js",
+      "line": 19,
+      "description": "Carpark Information Screen contains lots available, free parking timings etc. for a specific carpark",
+      "params": [
+        {
+          "name": "param0",
+          "description": "",
+          "type": "*"
+        }
+      ],
+      "return": {
+        "description": ""
+      }
+    },
+    "ResultsScreen": {
+      "name": "ResultsScreen",
+      "shortname": "ResultsScreen",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "file": "ResultsScreen.js",
+      "line": 21,
+      "description": "Results screen of hawker stalls upon search",
+      "params": [
+        {
+          "name": "param0",
+          "description": "",
+          "type": "*"
+        }
+      ],
+      "return": {
+        "description": ""
+      }
+    },
+    "InfoScreen": {
+      "name": "InfoScreen",
+      "shortname": "InfoScreen",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "file": "InfoScreen.js",
+      "line": 31,
+      "description": "Hawker information Screen containing food categories, image of stall front, opening hours and how to get there.",
+      "params": [
+        {
+          "name": "param0",
+          "description": "",
+          "type": "*"
+        }
+      ],
+      "return": {
+        "description": ""
+      }
+    }
+  },
+  "elements": {},
+  "classitems": [
+    {
+      "file": "home/search/SearchScreen.js",
+      "line": 69,
+      "description": "filter data source and search",
+      "itemtype": "method",
+      "name": "searchFilterFunction",
+      "params": [
+        {
+          "name": "text",
+          "description": ""
+        }
+      ],
+      "return": {
+        "description": ""
+      },
+      "class": "SearchScreen"
+    },
+    {
+      "file": "home/search/SearchScreen.js",
+      "line": 97,
+      "description": "Returns card frontend design for each element",
+      "itemtype": "method",
+      "name": "list",
+      "return": {
+        "description": "card content for each element in data"
+      },
+      "class": "SearchScreen"
+    },
+    {
+      "file": "home/search/SearchScreen.js",
+      "line": 153,
+      "description": "Crafts Safe area scroll view for list of items",
+      "itemtype": "method",
+      "name": "ItemView",
+      "params": [
+        {
+          "name": "item",
+          "description": "",
+          "type": "*"
+        }
+      ],
+      "return": {
+        "description": ""
+      },
+      "class": "SearchScreen"
+    },
+    {
+      "file": "home/search/SearchScreen.js",
+      "line": 174,
+      "description": "Item object created with name,address, operation hours and food categories",
+      "itemtype": "method",
+      "name": "renderItem",
+      "params": [
+        {
+          "name": "item",
+          "description": "",
+          "type": "*"
+        }
+      ],
+      "return": {
+        "description": ""
+      },
+      "class": "SearchScreen"
+    },
+    {
+      "file": "home/search/SearchScreen.js",
+      "line": 237,
+      "description": "Gather all filter inputs before navigating to results screen",
+      "itemtype": "method",
+      "name": "checkFilter",
+      "class": "SearchScreen"
+    },
+    {
+      "file": "home/search/SearchScreen.js",
+      "line": 703,
+      "description": "Stacking of Screens",
+      "itemtype": "method",
+      "name": "homestack",
+      "class": "SearchScreen"
+    },
+    {
+      "file": "home/HomeScreen.js",
+      "line": 51,
+      "description": "Returns card frontend design for each element in recent list",
+      "itemtype": "method",
+      "name": "recentlist",
+      "return": {
+        "description": "card content for each element in data"
+      },
+      "class": "HomeScreen"
+    },
+    {
+      "file": "home/HomeScreen.js",
+      "line": 130,
+      "description": "Returns card frontend design for each element in healthy ratings list",
+      "itemtype": "method",
+      "name": "healthyratingslist",
+      "return": {
+        "description": "card content for each element in data"
+      },
+      "class": "HomeScreen"
+    },
+    {
+      "file": "home/HomeScreen.js",
+      "line": 148,
+      "description": "Returns card frontend design for each element in community ratings list",
+      "itemtype": "method",
+      "name": "communityratingslist",
+      "return": {
+        "description": "card content for each element in data"
+      },
+      "class": "HomeScreen"
+    },
+    {
+      "file": "home/HomeScreen.js",
+      "line": 168,
+      "description": "Returns card frontend design for each element in ratingslist",
+      "itemtype": "method",
+      "name": "ratingslist",
+      "return": {
+        "description": "card content for each element in data"
+      },
+      "class": "HomeScreen"
+    },
+    {
+      "file": "maps/CarparkMapsScreen.js",
+      "line": 61,
+      "description": "Mark coordinates for each location",
+      "itemtype": "method",
+      "name": "markers",
+      "return": {
+        "description": ""
+      },
+      "class": "CarparkMapsScreen"
+    },
+    {
+      "file": "maps/CarparkMapsScreen.js",
+      "line": 78,
+      "description": "Returns card frontend design for each element",
+      "itemtype": "method",
+      "name": "list",
+      "return": {
+        "description": "card content for each element in data"
+      },
+      "class": "CarparkMapsScreen"
+    },
+    {
+      "file": "maps/CarparkMapsScreen.js",
+      "line": 255,
+      "description": "Stacking of Screens",
+      "itemtype": "method",
+      "name": "homestack",
+      "class": "CarparkMapsScreen"
+    },
+    {
+      "file": "maps/HawkerMapsScreen.js",
+      "line": 53,
+      "description": "Mark coordinates for each location",
+      "itemtype": "method",
+      "name": "markers",
+      "return": {
+        "description": ""
+      },
+      "class": "HawkerMapsScreen"
+    },
+    {
+      "file": "maps/HawkerMapsScreen.js",
+      "line": 123,
+      "description": "Returns card frontend design for each element",
+      "itemtype": "method",
+      "name": "list",
+      "return": {
+        "description": "card content for each element in data"
+      },
+      "class": "HawkerMapsScreen"
+    },
+    {
+      "file": "maps/HawkerMapsScreen.js",
+      "line": 374,
+      "description": "Stacking of Screens",
+      "itemtype": "method",
+      "name": "homestack",
+      "class": "HawkerMapsScreen"
+    },
+    {
+      "file": "maps/NearbyCarparkMapsScreen.js",
+      "line": 86,
+      "description": "Returns card frontend design for each element",
+      "itemtype": "method",
+      "name": "list",
+      "return": {
+        "description": "card content for each element in data"
+      },
+      "class": "OverallCarparkInfoScreen"
+    },
+    {
+      "file": "maps/NearbyCarparkMapsScreen.js",
+      "line": 167,
+      "description": "Mark coordinates for each location",
+      "itemtype": "method",
+      "name": "maps",
+      "return": {
+        "description": ""
+      },
+      "class": "OverallCarparkInfoScreen"
+    },
+    {
+      "file": "maps/NearbyCarparkMapsScreen.js",
+      "line": 507,
+      "description": "Stacking of Screens",
+      "itemtype": "method",
+      "name": "homestack",
+      "class": "OverallCarparkInfoScreen"
+    },
+    {
+      "file": "maps/OverallCarparkInfoScreen.js",
+      "line": 58,
+      "description": "Slices string data to obtain lots available",
+      "itemtype": "method",
+      "name": "getLotsAvail",
+      "return": {
+        "description": ""
+      },
+      "class": "OverallCarparkInfoScreen"
+    },
+    {
+      "file": "maps/OverallCarparkInfoScreen.js",
+      "line": 72,
+      "description": "Slices string data to obtain total lots",
+      "itemtype": "method",
+      "name": "getTotalLots",
+      "return": {
+        "description": ""
+      },
+      "class": "OverallCarparkInfoScreen"
+    },
+    {
+      "file": "maps/OverallCarparkInfoScreen.js",
+      "line": 163,
+      "description": "Stacking of Screens",
+      "itemtype": "method",
+      "name": "homestack",
+      "return": {
+        "description": ""
+      },
+      "class": "OverallCarparkInfoScreen"
+    },
+    {
+      "file": "CarparksResultsScreen.js",
+      "line": 57,
+      "description": "Returns card frontend design for each element",
+      "itemtype": "method",
+      "name": "list",
+      "return": {
+        "description": "card content for each element in data"
+      },
+      "class": "ResultsScreen"
+    },
+    {
+      "file": "HawkerMapsResultsScreen.js",
+      "line": 76,
+      "description": "time check based on opening hours",
+      "itemtype": "method",
+      "name": "opennowtime",
+      "params": [
+        {
+          "name": "x",
+          "description": ""
+        }
+      ],
+      "return": {
+        "description": "boolean"
+      },
+      "class": "ResultsScreen"
+    },
+    {
+      "file": "HawkerMapsResultsScreen.js",
+      "line": 151,
+      "description": "time check based on hawker closure dates",
+      "itemtype": "method",
+      "name": "checkOpen",
+      "params": [
+        {
+          "name": "start,end",
+          "description": ""
+        }
+      ],
+      "return": {
+        "description": "boolean"
+      },
+      "class": "ResultsScreen"
+    },
+    {
+      "file": "HawkerMapsResultsScreen.js",
+      "line": 208,
+      "description": "Returns card frontend design for each element",
+      "itemtype": "method",
+      "name": "list",
+      "return": {
+        "description": "card content for each element in data"
+      },
+      "class": "ResultsScreen"
+    },
+    {
+      "file": "InfoScreen.js",
+      "line": 175,
+      "description": "get today's date in 'DD/MM/YY' format",
+      "itemtype": "method",
+      "name": "getCurrentDate",
+      "return": {
+        "description": ""
+      },
+      "class": "InfoScreen"
+    },
+    {
+      "file": "InfoScreen.js",
+      "line": 192,
+      "description": "time check based on opening hours",
+      "itemtype": "method",
+      "name": "opennowtime",
+      "params": [
+        {
+          "name": "x",
+          "description": ""
+        }
+      ],
+      "return": {
+        "description": "boolean"
+      },
+      "class": "InfoScreen"
+    },
+    {
+      "file": "InfoScreen.js",
+      "line": 265,
+      "description": "time check based on hawker closure dates",
+      "itemtype": "method",
+      "name": "checkOpen",
+      "params": [
+        {
+          "name": "start,end",
+          "description": ""
+        }
+      ],
+      "return": {
+        "description": "boolean"
+      },
+      "class": "InfoScreen"
+    },
+    {
+      "file": "InfoScreen.js",
+      "line": 492,
+      "description": "Stacking of Screens",
+      "itemtype": "method",
+      "name": "Stacker",
+      "return": {
+        "description": ""
+      },
+      "class": "InfoScreen"
+    },
+    {
+      "file": "ResultsScreen.js",
+      "line": 136,
+      "description": "time check based on opening hours",
+      "itemtype": "method",
+      "name": "opennowtime",
+      "params": [
+        {
+          "name": "x",
+          "description": ""
+        }
+      ],
+      "return": {
+        "description": "boolean"
+      },
+      "class": "ResultsScreen"
+    },
+    {
+      "file": "ResultsScreen.js",
+      "line": 209,
+      "description": "time check based on hawker closure dates",
+      "itemtype": "method",
+      "name": "checkOpen",
+      "params": [
+        {
+          "name": "start,end",
+          "description": ""
+        }
+      ],
+      "return": {
+        "description": "boolean"
+      },
+      "class": "ResultsScreen"
+    },
+    {
+      "file": "ResultsScreen.js",
+      "line": 265,
+      "description": "Returns card frontend design for each element",
+      "itemtype": "method",
+      "name": "list",
+      "return": {
+        "description": "card content for each element in data"
+      },
+      "class": "ResultsScreen"
+    },
+    {
+      "file": "ResultsScreen.js",
+      "line": 423,
+      "description": "Stacking of Screens",
+      "itemtype": "method",
+      "name": "homestack",
+      "class": "ResultsScreen"
+    }
+  ],
+  "warnings": [
+    {
+      "message": "replacing incorrect tag: params with param",
+      "line": " home/search/SearchScreen.js:69"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " home/search/SearchScreen.js:153"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " home/search/SearchScreen.js:174"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " maps/CarparkMapsScreen.js:61"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " maps/HawkerMapsScreen.js:53"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " maps/NearbyCarparkMapsScreen.js:167"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " maps/OverallCarparkInfoScreen.js:58"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " maps/OverallCarparkInfoScreen.js:72"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " HawkerMapsResultsScreen.js:76"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " HawkerMapsResultsScreen.js:151"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " InfoScreen.js:175"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " InfoScreen.js:192"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " InfoScreen.js:265"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " ResultsScreen.js:136"
+    },
+    {
+      "message": "replacing incorrect tag: returns with return",
+      "line": " ResultsScreen.js:209"
+    }
+  ]
+}

@@ -13,7 +13,12 @@ import FAQScreen from "./FAQScreen";
 import EmailScreen from "./EmailScreen";
 import { AntDesign } from '@expo/vector-icons'; 
 import { Octicons } from '@expo/vector-icons';
-
+/**
+ * Contains buttons that link to faq and email screen respectively
+ * @Class HelpScreen
+ * @param {*} param0 
+ * @return
+ */
 function HelpScreen({ navigation }) {
 	return (
 		<View style={styles.container}>
@@ -64,7 +69,10 @@ function HelpScreen({ navigation }) {
 }
 
 const Stack = createStackNavigator();
-
+/**
+ * Stacking of Screens
+ * @Method contactstack
+ */
 export default function contactstack() {
 	return (
 		<Stack.Navigator mode="card">

@@ -54,7 +54,11 @@ function CarparkResultsScreen ({ navigation,route}){
   useEffect(() => {
     getMovies();
   }, []);
-
+/**
+* Returns card frontend design for each element
+ * @Method list
+ * @return card content for each element in data
+ */
   const List = () => {
    return data.map((element) => {
     address= 'https://www.google.com/maps?saddr=My+Location&daddr='+element.latitude_hc+','+element.longitude_hc

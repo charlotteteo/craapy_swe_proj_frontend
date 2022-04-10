@@ -13,30 +13,17 @@ import {
  ImageBackground
 } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from '@react-navigation/native';
-import ResultsScreen from "../ResultsScreen";
 import HomeScreen from "../home/HomeScreen";
-import InfoScreen from "../InfoScreen";
 import HawkerMapsResultsScreen from "../HawkerMapsResultsScreen";
 import {
-	Avatar,
 	Card,
-	Title,
-	Paragraph,
-	IconButton,
 } from "react-native-paper";
-import moment from 'moment';
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import * as WebBrowser from 'expo-web-browser';
 import { hawkerclosure } from '../../assets/HawkerClosure';
 import MapView,  { MAP_TYPES, PROVIDER_DEFAULT,PROVIDER_GOOGLE } from 'react-native-maps';
-import { MaterialIcons } from "@expo/vector-icons";
-import RBSheet from "react-native-raw-bottom-sheet";
 import { Marker } from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
-import CarparkInfoScreen from './CarparkInfoScreen'
 import { TransitionPresets } from '@react-navigation/stack';
-import EmailScreen from "../help/EmailScreen";
 import { EvilIcons } from '@expo/vector-icons';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message

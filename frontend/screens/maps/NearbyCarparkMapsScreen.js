@@ -14,27 +14,17 @@ import {
 } from 'react-native';
 
 import {
-	Avatar,
-	
 	Card,
-	Title,
-	Paragraph,
-	IconButton,
 } from "react-native-paper";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import * as WebBrowser from 'expo-web-browser';
 import { carparksavailable } from '../../assets/carparksavailability';
 import MapView,  { MAP_TYPES, PROVIDER_DEFAULT,PROVIDER_GOOGLE } from 'react-native-maps';
-import { MaterialIcons } from "@expo/vector-icons";
-import RBSheet from "react-native-raw-bottom-sheet";
-import { Marker } from 'react-native-maps';
 import { Modalize } from 'react-native-modalize';
 import InfoScreen from "../InfoScreen";
-import CarparkInfoScreen from '../maps/CarparkInfoScreen'
-import OverallCarparkInfoScreen from '../maps/OverallCarparkInfoScreen'
+import CarparkInfoScreen from '../maps/CarparkInfoScreen';
 import { EvilIcons } from '@expo/vector-icons';
-import { TransitionPresets } from '@react-navigation/stack';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();//Ignore all log notifications

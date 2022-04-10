@@ -2,21 +2,14 @@ import React, { useState } from "react";
 import {
     Text,
     View,
-    TextInput,
     StyleSheet,
-    TouchableOpacity,
     ScrollView,
-    ImageBackground
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { FontAwesome } from "@expo/vector-icons";
 import {
-    Avatar,
-    Button,
     Card,
     Title,
     Paragraph,
-    IconButton,
 } from "react-native-paper";
 
 import {faq} from "../../assets/faq";

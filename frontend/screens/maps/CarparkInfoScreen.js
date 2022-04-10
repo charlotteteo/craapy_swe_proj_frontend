@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet,SafeAreaView,ActivityIndicator, FlatList, Text, View , TouchableOpacity,ScrollView} from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
-//import SearchScreen from "./home/search/SearchScreen";
-//import FilterScreen from "./home/filter/FilterScreen";
-import { NavigationContainer } from '@react-navigation/native';
-//import InfoScreen from "./InfoScreen";
 import CarparkMapsScreen from "./CarparkMapsScreen";
-import { carparkresult } from '../../assets/carparkresult';
 import {
 	Avatar,
 	
 	Card,
 	Title,
-	Paragraph,
-	IconButton,
 } from "react-native-paper";
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message

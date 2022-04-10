@@ -2,23 +2,13 @@ import React, { Component } from "react";
 import {
   Text,
   View,
-  TextInput,
   StyleSheet,
   TouchableOpacity,
-  ScrollView,
-  Button,
-  ImageBackground,
-  Linking,
-  Platform,
-  Alert
+
 } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
 import {
-  Avatar,
   Card,
   Title,
-  Paragraph,
-  IconButton,
 } from "react-native-paper";
  
 import Communications from "react-native-communications";
